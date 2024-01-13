@@ -6,9 +6,9 @@ class AssetManager {
         this.downloadQueue = [];
     };
 
-    queueDownload(path) {
+    queueDownload(path) {               // path is a string, depicting the path of the image. path is to identify the image in asset manager. 
         console.log("Queueing " + path);
-        this.downloadQueue.push(path);
+        this.downloadQueue.push(path);  // push the path into the queues
     };
 
     isDone() {
@@ -16,9 +16,9 @@ class AssetManager {
     };
 
     downloadAll(callback) {
-        if (this.downloadQueue.length === 0) setTimeout(callback, 10);
+        if (this.downloadQueue.length === 0) setTimeout(callback, 10); //if theres nothing in the queue just call callback, delays 10ms for the html to load.
         for (let i = 0; i < this.downloadQueue.length; i++) {
-            const img = new Image();
+            const img = new Image(); //creates the image tag. empty image waiting for somthing to download
 
             const path = this.downloadQueue[i];
             console.log(path);
