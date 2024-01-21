@@ -117,14 +117,14 @@ class Micro {
     update() {
         // all ground physics
 
-        const WALK = 400;
+        const WALK = 100;
         this.velocity.x = 0;
         this.velocity.y = 0;
 
         //update velocity
-        if (this.game.left) this.velocity.x += -WALK;
+        if (this.game.left) this.velocity.x -= WALK;
         if (this.game.right) this.velocity.x += WALK;
-        if (this.game.up) this.velocity.y += -WALK;
+        if (this.game.up) this.velocity.y -= WALK;
         if (this.game.down) this.velocity.y += WALK;
 
         //update position
