@@ -18,8 +18,8 @@ class Micro {
         //------------------------------------------------------------------------------------------
         //spritesheet, xStart, yStart, width, height, frameCount, frameDuration
         // this.animations = new Animator(this.spritesheet, 320, 0, 160, 150, 2, 0.3 )
-        this.x = 200;
-        this.y = 200;
+        this.x = x;
+        this.y = y;
         //------------------------------------------------------------------------------------------
 
         this.animations = [];
