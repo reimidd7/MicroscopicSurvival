@@ -12,12 +12,14 @@ class Micro {
         this.state = 0; //  0 = idle, 1 = walking, 2 = punching, 3 = running (PU)
 
         // this.dead = false;
+        // dead animation: this.animations = new Animator(this.spritesheet, 2, 0, 64, 60, 3, 0.4 )
+        // health decline animation: this.animations = new Animator(this.spritesheet, 0, 75, 65, 60, 1, 0.1 )
 
         this.velocity = { x: 0, y: 0 };
         // Micro's animations
         //------------------------------------------------------------------------------------------
         //spritesheet, xStart, yStart, width, height, frameCount, frameDuration
-        // this.animations = new Animator(this.spritesheet, 320, 0, 160, 150, 2, 0.3 )
+        //this.animations = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.2)
         this.x = x;
         this.y = y;
         //------------------------------------------------------------------------------------------
@@ -42,7 +44,7 @@ class Micro {
         // IDLE
         // State 0 = idle animation
         // Facing 0 = forward facing
-        this.animations[0][0][0] = new Animator(this.spritesheet, 0, 0, 160, 150, 2, 0.3)
+        this.animations[0][0][0] = new Animator(this.spritesheet, 2, 375, 64, 60, 2, 0.3)
         // this.animations[0][1][0] = new Animator(this.spritesheet, ) not implemented
         // this.animations[0][2][0] = new Animator(this.spritesheet, ) not implemented
         // this.animations[0][3][0] = new Animator(this.spritesheet, ) not implemented
@@ -50,21 +52,21 @@ class Micro {
         // WALK
         // State 1 = walking
         // facing 0 = forward facing
-        this.animations[1][0][0] = new Animator(this.spritesheet, 955, 0, 160, 150, 3, 0.3)
+        this.animations[1][0][0] = new Animator(this.spritesheet, 0, 260, 64, 60, 3, 0.3)
         //this.animations[1][1][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][0] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 1 = right facing
-        this.animations[1][0][1] = new Animator(this.spritesheet, 650, 0, 160, 150, 2, 0.3)
+        this.animations[1][0][1] = new Animator(this.spritesheet, 2, 320, 64, 60, 2, 0.3)
         //this.animations[1][1][1] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][1] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][1] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 2 = left facing
-        this.animations[1][0][2] = new Animator(this.spritesheet, 320, 0, 160, 150, 2, 0.3)
+        this.animations[1][0][2] = new Animator(this.spritesheet, 2, 135, 64, 60, 2, 0.3)
         //this.animations[1][1][2] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][2] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][2] = new Animator(this.spritesheet, ) not implemented
@@ -72,7 +74,7 @@ class Micro {
         // PUNCHING - not implemented
         // State 2 = punching
         // facing 0 = forward facing
-        //this.animations[2][0][0] = new Animator(this.spritesheet, ) not implemented
+        //this.animations[2][0][0] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.2) not implemented
         //this.animations[2][1][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[2][2][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[2][3][0] = new Animator(this.spritesheet, ) not implemented
