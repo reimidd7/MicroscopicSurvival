@@ -18,8 +18,8 @@ class GameEngine {
         this.right = false;
         this.up = false;
         this.down = false;
-        //this.A = false;
-       // this.B = false;
+        this.A = false;
+        // this.B = false;
 
         // Options and the Details
         this.options = options || {
@@ -47,7 +47,7 @@ class GameEngine {
             x: e.clientX - this.ctx.canvas.getBoundingClientRect().left,
             y: e.clientY - this.ctx.canvas.getBoundingClientRect().top
         });
-        
+
         this.ctx.canvas.addEventListener("mousemove", e => {
             if (this.options.debugging) {
                 console.log("MOUSE_MOVE", getXandY(e));
@@ -81,44 +81,48 @@ class GameEngine {
         this.ctx.canvas.addEventListener("keydown", e => {
             switch (e.code) {
                 case "KeyA":
+                case "ArrowLeft":
                     this.left = true;
                     break;
                 case "KeyD":
+                case "ArrowRight":
                     this.right = true;
                     break;
                 case "KeyW":
+                case "ArrowUp":
                     this.up = true;
                     break;
                 case "KeyS":
+                case "ArrowDown":
                     this.down = true;
                     break;
-                case "KeyE":
-                    if (!this.interactFlag) {
-                        this.interact = true;
-                        this.interactFlag = true;
-                    }
-                    break;     
+                case "Space":
+                    this.A = true;
+                    break;
             }
         }, false);
 
         this.ctx.canvas.addEventListener("keyup", e => {
             switch (e.code) {
                 case "KeyA":
+                case "ArrowLeft":
                     this.left = false;
                     break;
                 case "KeyD":
+                case "ArrowRight":
                     this.right = false;
                     break;
                 case "KeyW":
+                case "ArrowUp":
                     this.up = false;
                     break;
                 case "KeyS":
+                case "ArrowDown":
                     this.down = false;
                     break;
-                case "KeyE":
-                    this.interact = false;
-                    this.interactFlag = false;
-                    break;    
+                case "Space":
+                    this.A = false;
+                    break;
             }
         }, false);
     };
