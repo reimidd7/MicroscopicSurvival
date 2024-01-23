@@ -7,11 +7,16 @@ class Cell {
         this.spritesheet = ASSET_MANAGER.getAsset("./cell.png");
         this.animation = new Animator(this.spritesheet, 2, 63, 32, 32, 3, 0.4, false, true);
 
-        this.velocity = { x: 200, y: 200 };
-        this.x = x || Math.random() * 10;
-        this.y = y || Math.random() * 10;
+        this.velocity = { x: 100, y: 100 };
+        
+        // The area the cells spawn from
+        this.x = x || 0;
+        this.y = y || 0;
 
         this.radius = 14;
+        // base stats for prototype
+        this.health = 1;
+        this.damage = 2;
     }
     //left wall
     collideLeft() {
@@ -27,7 +32,7 @@ class Cell {
     }
     //Bottom wall
     collideBottom() {
-        return (this.y + this.radius) > 780;
+        return (this.y + this.radius) > 770;
     }
 
     update() {
@@ -37,13 +42,13 @@ class Cell {
         if (this.collideLeft() || this.collideRight()) {
             this.velocity.x = -this.velocity.x;
             if (this.collideLeft()) this.x = this.radius;
-            if (this.collideRight()) this.x = 1025 - this.radius;
+            if (this.collideRight()) this.x = 1010 - this.radius;
         }
     
         if (this.collideTop() || this.collideBottom()) {
             this.velocity.y = -this.velocity.y;
             if (this.collideTop()) this.y = this.radius;
-            if (this.collideBottom()) this.y = 780 - this.radius;
+            if (this.collideBottom()) this.y = 740 - this.radius;
         }
     }
     
