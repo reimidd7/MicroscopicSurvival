@@ -12,6 +12,18 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.addEntity(new Cell(gameEngine));
 
+	 // create the cell for the game
+	 function createCell() {
+        const cell = new Cell(gameEngine);
+        gameEngine.addEntity(cell);
+    }
+
+    // Spawn 10 cells with a delay
+    for (let i = 1; i < 10; i++) {
+        setTimeout(createCell, i * 1000); // miliseconds
+    }
+
+
 	gameEngine.init(ctx);
 
 	gameEngine.start();
