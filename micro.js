@@ -20,13 +20,13 @@ class Micro {
         //------------------------------------------------------------------------------------------
         //spritesheet, xStart, yStart, width, height, frameCount, frameDuration
         //this.animations = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.2)
-        this.x = x;
-        this.y = y;
+        //this.x = x;
+        //this.y = y;
         //------------------------------------------------------------------------------------------
 
         this.animations = [];
         this.loadAnimations();
-        this.animation = this.animations[this.state][this.size][this.facing];
+        //this.animation = this.animations[this.state][this.size][this.facing];
     };
 
     loadAnimations() {
@@ -52,7 +52,7 @@ class Micro {
         // WALK
         // State 1 = walking
         // facing 0 = forward facing
-        this.animations[1][0][0] = new Animator(this.spritesheet, 0, 260, 64, 60, 3, 0.3)
+        this.animations[1][0][0] = new Animator(this.spritesheet, 2, 260, 64, 60, 3, 0.3)
         //this.animations[1][1][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][0] = new Animator(this.spritesheet, ) not implemented
@@ -131,28 +131,39 @@ class Micro {
 
         //update position
         this.x += this.velocity.x * this.game.clockTick;
-        this.y += this.velocity.y * this.game. clockTick;
+        this.y += this.velocity.y * this.game.clockTick;
 
-        // update the states
-        if (this.velocity.x > 0) {
-            this.facing = 1;
-            this.state = 1;
-        } else if (this.velocity.x < 0) {
-            this.facing = 2;
-            this.state = 1;
-        } else if (this.velocity.y != 0) {
-            this.state = 1;
-        } else if (this.velocity.x == 0 && this.velocity.y == 0) {
-            this.state = 0;
-        } else {
+        // update state
+        if (Math.abs(this.velocity.x) > WALK) this.state = 1;
+        if (Math.abs(this.velocity.x) <= WALK) this.state = 1;
+        if (Math.abs(this.velocity.y) > WALK) this.state = 1;
+        if (Math.abs(this.velocity.y) <= WALK) this.state = 1;
+        
+        // update the direction
+        if (this.velocity.x < 0) this.facing = 2;
+        if (this.velocity.x > 0) this.facing = 1;
+        if (this.velocity.y != 0) this.facing = 0;
+        if (this.velocity.y == 0 && this.velocity.x == 0) this.facing = 0, this.state = 0 ;
+        // if (this.velocity.x > 0) {
+        //     this.facing = 1;
+        //     //this.state = 1;
+        // } else if (this.velocity.x < 0) {
+        //     this.facing = 2;
+        //    // this.state = 1;
+        // } else if (this.velocity.y != 0) {
+        //     this.state = 1;
+        // } else if (this.velocity.x == 0 && this.velocity.y == 0) {
+        //     this.state = 0;
+        // } else {
 
-        }
+        // }
 
-        this.animation = this.animations[this.state][this.size][this.facing];
+        //SOMETHING WRONG WITH LIFTING OFF A AND D KEYS!!!
 
     };
 
     draw(ctx) {
+        this.animation = this.animations[this.state][this.size][this.facing];
         this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
     };
 };
