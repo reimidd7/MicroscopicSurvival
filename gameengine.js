@@ -13,7 +13,13 @@ class GameEngine {
         this.click = null;
         this.mouse = null;
         this.wheel = null;
-        this.keys = {};
+        // this.keys = {};
+        this.left = false;
+        this.right = false;
+        this.up = false;
+        this.down = false;
+        //this.A = false;
+       // this.B = false;
 
         // Options and the Details
         this.options = options || {
@@ -72,8 +78,49 @@ class GameEngine {
             this.rightclick = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
-        this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
+        this.ctx.canvas.addEventListener("keydown", e => {
+            switch (e.code) {
+                case "KeyA":
+                    this.left = true;
+                    break;
+                case "KeyD":
+                    this.right = true;
+                    break;
+                case "KeyW":
+                    this.up = true;
+                    break;
+                case "KeyS":
+                    this.down = true;
+                    break;
+                case "KeyE":
+                    if (!this.interactFlag) {
+                        this.interact = true;
+                        this.interactFlag = true;
+                    }
+                    break;     
+            }
+        }, false);
+
+        this.ctx.canvas.addEventListener("keyup", e => {
+            switch (e.code) {
+                case "KeyA":
+                    this.left = false;
+                    break;
+                case "KeyD":
+                    this.right = false;
+                    break;
+                case "KeyW":
+                    this.up = false;
+                    break;
+                case "KeyS":
+                    this.down = false;
+                    break;
+                case "KeyE":
+                    this.interact = false;
+                    this.interactFlag = false;
+                    break;    
+            }
+        }, false);
     };
 
     addEntity(entity) {
@@ -96,12 +143,12 @@ class GameEngine {
         for (let i = 0; i < entitiesCount; i++) {
             let entity = this.entities[i];
 
-            if (!entity.removeFromWorld) {      //goes thru entity list and updates
+            if (!entity.removeFromWorld) {
                 entity.update();
             }
         }
 
-        for (let i = this.entities.length - 1; i >= 0; --i) { // only for removing an object... like a coin in mario
+        for (let i = this.entities.length - 1; i >= 0; --i) {
             if (this.entities[i].removeFromWorld) {
                 this.entities.splice(i, 1);
             }
