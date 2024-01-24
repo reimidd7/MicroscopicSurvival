@@ -15,7 +15,7 @@ ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 
-	//gameEngine.addEntity(new Antibody(gameEngine, 20 , 75));
+	gameEngine.addEntity(new Antibody(gameEngine, 20 , 75));
 	gameEngine.addEntity(new Bone(gameEngine));
 	gameEngine.addEntity(new Lymphocyte(gameEngine, 300, 20));
 	gameEngine.addEntity(new RedBloodCell(gameEngine));
