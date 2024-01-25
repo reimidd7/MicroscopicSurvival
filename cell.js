@@ -4,8 +4,12 @@ class Cell {
 
         this.game.cell = this;
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./cell.png");
-        this.animation = new Animator(this.spritesheet, 2, 63, 32, 32, 3, 0.4, false, true);
+        this.spritesheet = ASSET_MANAGER.getAsset("./cellman.png");
+        //Moving right
+        //this.animation = new Animator(this.spritesheet, 0, 0, 30, 35, 5, 0.4, false, true);
+       
+        //Moving left
+        this.animation = new Animator(this.spritesheet, 0, 36, 30, 70, 5, 0.4, false, true);
 
         this.velocity = { x: 100, y: 100 };
         
@@ -13,10 +17,10 @@ class Cell {
         this.x = x || 0;
         this.y = y || 0;
 
-        this.radius = 14;
+        this.radius = 16;
         // base stats for prototype
-        this.health = 1;
-        this.damage = 2;
+        // this.health = 1;
+        // this.damage = 2;
     }
     //left wall
     collideLeft() {
@@ -56,9 +60,9 @@ class Cell {
     draw(ctx) {
         this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
 
-        const circleX = this.x + this.radius;
-        const circleY = this.y + this.radius;
-
+        const circleX = this.x + this.radius; // Center X
+        const circleY = this.y + this.radius; // Center Y
+    
         ctx.beginPath();
         ctx.arc(circleX, circleY, this.radius, 0, 2 * Math.PI, false);
         ctx.strokeStyle = 'red';
