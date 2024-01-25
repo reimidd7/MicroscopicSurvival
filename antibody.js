@@ -16,16 +16,19 @@ class Antibody {
         //var dist = distance(this, this.target);   
         //this.speed = 200;
         //this.velocity = {x : (this.target.x - this.x) / dist * this.speed, y : (this.target.y - this.y) / dist * this.speed };
-        this.animations = [];
+        
+        this.animator = [];
 
+        this.loadAnimations();
+    };
+
+    loadAnimations() {
         for (var i = 0; i < 4; i++) {
-            this.animations.push([]);
+            this.animator.push([]);
         }
 
-        this.animations[0] = new Animator(this.spritesheet, 0, 0, 126, 92, 7, 0.1);
-         //add 3 other animations for the 3 other directions
-
-        //this.loadAnimations();
+        this.animator[0] = new Animator(this.spritesheet, 0, 0, 126, 92, 7, 0.1);
+        //add 3 other animations for the 3 other directions
     };
 
     draw(ctx) {
@@ -52,9 +55,7 @@ class Antibody {
 
         // ctx.drawImage(offscreenCanvas, x, y, h, h);
 
-        // NOT WORKING ?
-        this.animator = this.animations[this.facing];
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+        this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y);
     };
 
     update() {
@@ -63,8 +64,6 @@ class Antibody {
         this.velocity.y = 0;
 
         //update based on Micro's location
-        this.facing = 1;
-
         if (this.velocity.x > 0 && this.velocity.y > 0) {
             this.facing = 0;
         } else if (this.velocity.x < 0 && this.velocity.y < 0) {

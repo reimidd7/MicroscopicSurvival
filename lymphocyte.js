@@ -17,9 +17,9 @@ class Lymphocyte {
         //Lymphocytes two states are ALIVE (and shooting) or DEAD (and not shooting)
         if (this.dead) {
             this.animator = new Animator(ASSET_MANAGER.getAsset("LymphocyteEdited.png"), 640, 0, 160, 160, 1, 1);
-            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
         } else {
-            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
             if (this.elapsedTime > this.fireRate) {
                 this.game.addEntity(new Antibody(this.game, this.x, this.y+50, 0))
                 this.elapsedTime = 0;
