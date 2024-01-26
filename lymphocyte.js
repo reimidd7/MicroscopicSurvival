@@ -9,7 +9,7 @@ class Lymphocyte {
 
         this.speed = 100;
 
-        this.fireRate = 5;
+        this.fireRate = 10;
         this.elapsedTime = 0;
     };
 
@@ -21,15 +21,15 @@ class Lymphocyte {
         } else {
             this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y);
             if (this.elapsedTime > this.fireRate) {
-                this.game.addEntity(new Antibody(this.game, this.x, this.y+50, 0))
+                gameEngine.addEntity(new Antibody(this.game, this.x, this.y+50, 0))
                 this.elapsedTime = 0;
-            //     this.antibody = new Animator(ASSET_MANAGER.getAsset("antibody.png"), 0, 0, 126, 92, 7, .1);
-            //     this.antibody.drawFrame(this.game.clockTick, ctx, this.x, this.y+50);
             }
+            this.elapsedTime++;
         }
     };
 
     update() {
         if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
+        
     };
 }

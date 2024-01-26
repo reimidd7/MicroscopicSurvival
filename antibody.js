@@ -35,8 +35,8 @@ class Antibody {
         //FOR ROTATING IN 4 DIRECTIONS
         // let x = 63;
         // let y = 96;
-        // let w = ;
-        // let h = ;
+        // let w = 24;
+        // let h = 24;
 
         // let rotateVal = 0; //0 = 0, 1 = Math.PI/2, 2 = Math.PI, 3 = (3*Math.PI)/2
 
@@ -47,22 +47,23 @@ class Antibody {
         // var offscreenCtx = offscreenCanvas.getContext('2d');
         // offscreenCtx.save();
 
-        // offscreen.translate(x, y);
+        // offscreenCtx.translate(x, y);
         // offscreenCtx.rotate(rotateVal);
         // offscreenCtx.translate(-x, -y);
         // offscreenCtx.drawImage(this.spritesheet, 0, 0, 126, 92, 7, 0.1); //check this
         // offscreenCtx.restore();
 
-        // ctx.drawImage(offscreenCanvas, x, y, h, h);
+        ctx.drawImage(offscreenCanvas, x, y, h, h);
 
         this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y);
     };
 
     update() {
         //update x and y based off Micro's location 
+
         this.velocity.x = 0;
         this.velocity.y = 0;
-
+        
         //update based on Micro's location
         if (this.velocity.x > 0 && this.velocity.y > 0) {
             this.facing = 0;
