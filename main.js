@@ -9,6 +9,12 @@ ASSET_MANAGER.queueDownload("SpeedBoost.png");
 ASSET_MANAGER.queueDownload("antibody.png");
 ASSET_MANAGER.queueDownload("./MicroSpritesheet.png");
 ASSET_MANAGER.queueDownload("./cell.png");
+ASSET_MANAGER.queueDownload("./otherTiles.png");
+ASSET_MANAGER.queueDownload("./redtiles.png");
+
+
+
+
 
 
 ASSET_MANAGER.downloadAll(() => {
@@ -16,7 +22,7 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 
 	gameEngine.addEntity(new Antibody(gameEngine, 20 , 75));
-	gameEngine.addEntity(new Bone(gameEngine));
+	//gameEngine.addEntity(new Bone(gameEngine));
 	gameEngine.addEntity(new Lymphocyte(gameEngine, 300, 20));
 	gameEngine.addEntity(new RedBloodCell(gameEngine));
 	gameEngine.addEntity(new SpeedBoost(gameEngine));
@@ -35,6 +41,9 @@ ASSET_MANAGER.downloadAll(() => {
     for (let i = 1; i < 10; i++) {
         setTimeout(createCell, i * 1000); // miliseconds
     }
+
+	gameEngine.addEntity(new LevelOne(gameEngine, 32, 32));
+
 
 
 	gameEngine.init(ctx);
