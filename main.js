@@ -42,7 +42,7 @@ ASSET_MANAGER.downloadAll(() => {
         setTimeout(createCell, i * 1000); // miliseconds
     }
 
-	gameEngine.addEntity(new LevelOne(gameEngine, 32, 32));
+	gameEngine.addEntity(new LevelOne(gameEngine, 0, 0));
 
 
 
