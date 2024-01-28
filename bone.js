@@ -1,11 +1,11 @@
 class Bone {
 
-    constructor(game) {
+    constructor(game, x, y) {
         this.game = game;
-        this.animator = new Animator(ASSET_MANAGER.getAsset("bones.png"), 420, 190, 224, 162, 1, 1);
+        this.animator = new Animator(ASSET_MANAGER.getAsset("bones.png"), 0, 0, 163, 202, 3, 0.4);
 
-        this.x = 0;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
     };
 
     draw(ctx) {
@@ -13,7 +13,7 @@ class Bone {
     };
 
     update() {
-        this.x += this.speed * this.game.clockTick;
+        if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
     };
 
 
