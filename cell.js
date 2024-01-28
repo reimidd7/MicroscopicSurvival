@@ -52,7 +52,7 @@ class Cell {
         // }
 
         // Adjust the speed as needed
-        const chaseSpeed = 75;
+        const chaseSpeed = 25;
 
         this.velocity.x = vectorDirectionX * chaseSpeed;
         this.velocity.y = vectorDirectionY * chaseSpeed;
