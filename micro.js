@@ -16,21 +16,17 @@ class Micro {
         // health decline animation: this.animations = new Animator(this.spritesheet, 0, 75, 65, 60, 1, 0.1 )
 
         this.velocity = { x: 0, y: 0 };
-        // Micro's animations
-        //------------------------------------------------------------------------------------------
-        //spritesheet, xStart, yStart, width, height, frameCount, frameDuration
-        //this.animations = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.2)
-        //this.x = x;
-        //this.y = y;
-        //------------------------------------------------------------------------------------------
 
+        this.updateBB();
+
+        // Micro's animations
         this.animations = [];
         this.loadAnimations();
         //this.animation = this.animations[this.state][this.size][this.facing];
     };
 
     loadAnimations() {
-        for (var i = 0; i < 3; i++) { // 2 states for now.. punch and running no sprites yet
+        for (var i = 0; i < 3; i++) { // 3 states for now.. running not implemented yet
             this.animations.push([]);
             for (var j = 0; j < 1; j++) { // 1 size for now... until power ups are added
                 this.animations[i].push([]);
@@ -78,24 +74,6 @@ class Micro {
         this.animations[2][0][1] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.1); //not implemented
         this.animations[2][0][2] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.1); //not implemented
 
-        //this.animations[2][1][0] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][2][0] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][3][0] = new Animator(this.spritesheet, ) not implemented
-
-        // State 2 = punching
-        // facing 1 = right facing
-        //this.animations[2][0][1] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][1][1] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][2][1] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][3][1] = new Animator(this.spritesheet, ) not implemented
-
-        // State 2 = punching
-        // facing 2 = left facing
-        //this.animations[2][0][2] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][1][2] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][2][2] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[1][3][2] = new Animator(this.spritesheet, ) not implemented
-
         // RUNNING - not implemented
         // State 3 = running
         // facing 0 = forward facing
@@ -119,6 +97,17 @@ class Micro {
         //this.animations[1][3][2] = new Animator(this.spritesheet, ) not implemented
     };
 
+    updateBB() {
+        // this.centerX = this.x + 64 / 2;
+        // this.centerY = this.y + 60 / 2;
+        // const radius = 60;
+
+        if (this.size === 0) {
+            this.BB = new BoundingCircle(this.x + 64 / 2, this.y + 60 / 2, 25);
+        }
+        
+    }
+
     update() {
         // all ground physics
 
@@ -136,6 +125,7 @@ class Micro {
         //update position
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
+        this.updateBB();
 
         // update state!
         if (this.game.A) {
@@ -164,5 +154,11 @@ class Micro {
     draw(ctx) {
         this.animation = this.animations[this.state][this.size][this.facing];
         this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+
+
+        ctx.beginPath();
+        ctx.arc(this.BB.x, this.BB.y, this.BB.radius, 0, 2 * Math.PI);
+        ctx.strokeStyle = 'red';
+        ctx.stroke();
     };
 };
