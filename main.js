@@ -11,10 +11,7 @@ ASSET_MANAGER.queueDownload("./MicroSpritesheet.png");
 ASSET_MANAGER.queueDownload("./cellman.png");
 ASSET_MANAGER.queueDownload("./otherTiles.png");
 ASSET_MANAGER.queueDownload("./redtiles.png");
-
-
-
-
+ASSET_MANAGER.queueDownload("./hudlives.png");
 
 
 ASSET_MANAGER.downloadAll(() => {
@@ -29,22 +26,14 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.addEntity(new Micro(gameEngine,200,200));
 
-	gameEngine.addEntity(new Cell(gameEngine));
-
-	 // create the cell for the game
-	 function createCell() {
-        const cell = new Cell(gameEngine);
-        gameEngine.addEntity(cell);
+	for (let i = 0; i < 10; i++) {
+        const randomX = Math.random() * canvas.width;
+        const randomY = Math.random() * canvas.height;
+        gameEngine.addEntity(new Cell(gameEngine, randomX, randomY));
     }
-
-    // Spawn 10 cells with a delay
-    for (let i = 1; i < 30; i++) {
-        setTimeout(createCell, i * 1000); // miliseconds
-    }
-
+	
 	gameEngine.addEntity(new LevelOne(gameEngine, 0, 0));
-
-
+	// gameEngine.addEntity(new HUD(gameEngine));
 
 	gameEngine.init(ctx);
 

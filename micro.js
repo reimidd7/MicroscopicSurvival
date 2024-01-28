@@ -111,7 +111,7 @@ class Micro {
     update() {
         // all ground physics
 
-        const WALK = 100;
+        const WALK = 500;
         this.velocity.x = 0;
         this.velocity.y = 0;
 
