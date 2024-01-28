@@ -12,6 +12,10 @@ class LevelOne {
 
         this.animator = new Animator(this.spritesheet, 32, 31, 16, 16, 1, 0.1);
 
+
+    
+
+
     };
 
     loadAnimations() {
@@ -32,7 +36,7 @@ class LevelOne {
         }
     };
 
-    update() {   
+    update() {
        // this.x += this.speed * this.game.clockTick;
     };
 }
