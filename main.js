@@ -22,9 +22,9 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 
 	gameEngine.addEntity(new Antibody(gameEngine, 20 , 75));
-	//gameEngine.addEntity(new Bone(gameEngine));
-	gameEngine.addEntity(new Lymphocyte(gameEngine, 300, 20));
-	gameEngine.addEntity(new RedBloodCell(gameEngine));
+	gameEngine.addEntity(new Bone(gameEngine, 20, 400));
+	gameEngine.addEntity(new Lymphocyte(gameEngine, 20, 20));
+	gameEngine.addEntity(new RedBloodCell(gameEngine, 20, 200));
 	gameEngine.addEntity(new SpeedBoost(gameEngine));
 
 	gameEngine.addEntity(new Micro(gameEngine,200,200));

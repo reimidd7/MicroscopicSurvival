@@ -1,11 +1,11 @@
 class RedBloodCell {
 
-    constructor(game) {
-        this.game = game;
-        this.animator = new Animator(ASSET_MANAGER.getAsset("RedBloodCell.png"), 0, 0, 156, 158, 12, 1);
+    constructor(game, x, y) {
+        Object.assign(this, {game, x, y});
+        this.animator = new Animator(ASSET_MANAGER.getAsset("RedBloodCell.png"), 0, 0, 160, 160, 11, 0.2);
 
-        this.x = 0;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
     };
 
     draw(ctx) {
@@ -13,6 +13,7 @@ class RedBloodCell {
     };
 
     update() {
-        this.x += this.speed * this.game.clockTick;
+        if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
     };
+
 }
