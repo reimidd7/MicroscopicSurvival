@@ -52,7 +52,7 @@ class Cell {
         // }
 
         // Adjust the speed as needed
-        const chaseSpeed = 25;
+        const chaseSpeed = 100;
 
         this.velocity.x = vectorDirectionX * chaseSpeed;
         this.velocity.y = vectorDirectionY * chaseSpeed;
@@ -93,8 +93,6 @@ class Cell {
 
 
     update() {
-    
-
         if (this.paused > 0) {
             this.paused -= this.game.clockTick;
         } else {
@@ -181,16 +179,15 @@ class Cell {
 
     draw(ctx) {
         this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
-       // this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
 
-        const circleX = this.x + this.radius; // Center X
-        const circleY = this.y + this.radius; // Center Y
+        // const circleX = this.x + this.radius; // Center X
+        // const circleY = this.y + this.radius; // Center Y
     
-        ctx.beginPath();
-        ctx.arc(circleX, circleY, this.radius, 0, 2 * Math.PI, false);
-        ctx.strokeStyle = 'red';
-        ctx.stroke();
-        ctx.closePath();
+        // ctx.beginPath();
+        // ctx.arc(circleX, circleY, this.radius, 0, 2 * Math.PI, false);
+        // ctx.strokeStyle = 'red';
+        // ctx.stroke();
+        // ctx.closePath();
     }
 }
 
