@@ -8,7 +8,7 @@ ASSET_MANAGER.queueDownload("RedBloodCell.png");
 ASSET_MANAGER.queueDownload("SpeedBoost.png");
 ASSET_MANAGER.queueDownload("antibody.png");
 ASSET_MANAGER.queueDownload("./MicroSpritesheet.png");
-ASSET_MANAGER.queueDownload("./cell.png");
+ASSET_MANAGER.queueDownload("./cellman.png");
 
 
 ASSET_MANAGER.downloadAll(() => {
@@ -32,7 +32,7 @@ ASSET_MANAGER.downloadAll(() => {
     }
 
     // Spawn 10 cells with a delay
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i < 30; i++) {
         setTimeout(createCell, i * 1000); // miliseconds
     }
 
