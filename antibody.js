@@ -53,7 +53,7 @@ class Antibody {
         // offscreenCtx.drawImage(this.spritesheet, 0, 0, 126, 92, 7, 0.1); //check this
         // offscreenCtx.restore();
 
-        ctx.drawImage(offscreenCanvas, x, y, h, h);
+        //ctx.drawImage(offscreenCanvas, x, y, h, h);
 
         this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y);
     };
