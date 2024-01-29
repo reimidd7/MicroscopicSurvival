@@ -23,6 +23,7 @@ ASSET_MANAGER.downloadAll(() => {
 	gameEngine.addEntity(new Bone(gameEngine, 20, 400));
 	gameEngine.addEntity(new RedBloodCell(gameEngine, 20, 200));
 	gameEngine.addEntity(new SpeedBoost(gameEngine));
+	
 
 	gameEngine.addEntity(new Micro(gameEngine,500,300));
 
