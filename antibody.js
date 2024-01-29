@@ -20,9 +20,10 @@ class Antibody {
         var dist = getDistance(this, this.target);   
         this.velocity = {x : (this.target.x - this.x) / dist * this.speed, y : (this.target.y - this.y) / dist * this.speed };
         
-        this.animator = [];
+        this.facing = getFacing(this.velocity); //0 = N, 1 = NE, 2 = E, 3 = SE, 4 = S, 5 = SW, 6 = W, 7 = NW
 
-        this.loadAnimations();
+        this.cache = [];
+        this.animator = new Animator(this.spritesheet, 0, 0, 126, 92, 7, 0.1);
     };
 
     //ADAPTED FROM PROFESSOR MARRIOTT'S TOWER-DEFENSE-DEMO CODE (ARROW CLASS)
@@ -91,8 +92,7 @@ class Antibody {
             this.cache[angle] = offscreenCanvas;
         }
 
-        this.animator[0] = new Animator(this.spritesheet, 0, 0, 126, 92, 7, 0.1);
-        //add 3 other animations for the 3 other directions
+        ctx.drawImage(this.cache[angle], this.x - xOffset, this.y - yOffset);
     };
 
     //ADAPTED FROM PROFESSOR MARRIOTT'S TOWER-DEFENSE-DEMO CODE (ARROW CLASS)
@@ -101,8 +101,8 @@ class Antibody {
         if (angle < 0) angle += Math.PI * 2;
         let degrees = Math.floor(angle / Math.PI / 2 * 360);
 
-        //ctx.drawImage(offscreenCanvas, x, y, h, h);
-    }
+        this.drawAngle(ctx, degrees);
+    };
 
     update() {        
         //updates based on Micro's location
@@ -121,6 +121,5 @@ class Antibody {
 
         //console.log("facing: " + this.facing);
     };
-    
 
 }
