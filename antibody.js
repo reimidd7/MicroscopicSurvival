@@ -16,7 +16,7 @@ class Antibody {
 
         this.speed = 300;
 
-        // to make antibody head toward Micro (for later)
+        // to make antibody head toward Micro 
         var dist = getDistance(this, this.target);   
         this.velocity = {x : (this.target.x - this.x) / dist * this.speed, y : (this.target.y - this.y) / dist * this.speed };
         
@@ -87,7 +87,7 @@ class Antibody {
             offscreenCtx.rotate(radians);
             offscreenCtx.translate(-126, -126);
             offscreenCtx.drawImage(this.spritesheet, 126, 92);
-            //this.animator.drawFrame(this.game.clockTick, offscreenCtx, this.x, this.y, 1);
+            //this.animator.drawFrame(this.game.clockTick, offscreenCtx, this.x, this.y, 1); //try to get spritesheet to animate properly
             offscreenCtx.restore();
             this.cache[angle] = offscreenCanvas;
         }
@@ -95,68 +95,14 @@ class Antibody {
         ctx.drawImage(this.cache[angle], this.x - xOffset, this.y - yOffset);
     };
 
+    //ADAPTED FROM PROFESSOR MARRIOTT'S TOWER-DEFENSE-DEMO CODE (ARROW CLASS)
     draw(ctx) {
-        // this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y);
-        // this.facing = getFacing(this.velocity);
-
-        // console.log(this.animator);
-        // console.log(this.facing);
-
-        // if (this.facing == 4) {
-        //     this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
-        // } else {
-        //     ctx.save();
-        //     if (this.facing == 0) { 
-        //         ctx.scale(-1, -1);
-        //     } else if (this.facing == 1) {
-        //         ctx.scale(-1, -1);
-        //     } else if (this.facing == 2) {
-        //         ctx.scale(-1, 1); //or maybe the other way around???
-        //     } else if (this.facing == 3) {
-        //         ctx.scale(1, 1);
-        //     } else if (this.facing == 5) {
-        //         ctx.scale(-1, 1);
-        //     } else if (this.facing == 6) {
-        //         ctx.scale(-1, 1);
-        //     } else if (this.facing == 7) {
-        //         ctx.scale(-1, 1);
-        //     } 
-        //     this.rotateAntibody(this.facing, ctx);
-
-        //     //this should changed based on rotation too?
-        //     //this.animator.drawFrame(this.game.clockTick, ctx, (this.x), this.y, 1);
-        //     ctx.restore();
-        // }     
-
         let angle = Math.atan2(this.velocity.y , this.velocity.x);
         if (angle < 0) angle += Math.PI * 2;
         let degrees = Math.floor(angle / Math.PI / 2 * 360);
 
         this.drawAngle(ctx, degrees);
     };
-
-    // rotateAntibody(facing, ctx) {
-    //     let x = this.x;
-    //     let y = this.y;
-    //     let w = 126;
-    //     let h = 92;
-
-    //     let rotateVal = (facing/4) * Math.PI;  //need to account for negatives
-
-    //     var offscreenCanvas = document.createElement('canvas');
-    //     offscreenCanvas.width = 126;
-    //     offscreenCanvas.height = 126;
-
-    //     var offscreenCtx = offscreenCanvas.getContext('2d');
-    //     offscreenCtx.save();
-    //     offscreenCtx.translate(63, 63);
-    //     offscreenCtx.rotate(rotateVal);
-    //     offscreenCtx.translate(-63, -63);
-    //     offscreenCtx.drawImage(this.spritesheet, 126, 92); //check this
-    //     offscreenCtx.restore();
-
-    //     ctx.drawImage(offscreenCanvas, x, y, w, w);
-    // };
 
     update() {        
         //updates based on Micro's location
@@ -173,7 +119,7 @@ class Antibody {
         this.elapsedTime += this.game.clockTick;
         this.facing = getFacing(this.velocity);
 
-        console.log("facing: " + this.facing);
+        //console.log("facing: " + this.facing);
     };
 
 }

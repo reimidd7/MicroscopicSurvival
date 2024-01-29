@@ -9,22 +9,14 @@ class LevelOne {
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles.png");
 
-
         this.animator = new Animator(this.spritesheet, 32, 31, 16, 16, 1, 0.1);
-
-
-    
-
-
     };
 
     loadAnimations() {
 
     }
 
-
     draw(ctx) {
-
         for (let i = 0; i < 24; i++) {
             for (let j = 0; j < 32; j++) {
                 const row = this.x + j * 32;
@@ -37,6 +29,9 @@ class LevelOne {
     };
 
     update() {
-       // this.x += this.speed * this.game.clockTick;
+        // this.x += this.speed * this.game.clockTick;
+        const index = this.game.entities.indexOf(this);
+        this.game.entities.splice(index, 1);
+        this.game.entities.splice(this.game.entities.length, 0, this);
     };
 }
