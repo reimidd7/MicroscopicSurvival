@@ -11,7 +11,7 @@ ASSET_MANAGER.queueDownload("./MicroSpritesheet.png");
 ASSET_MANAGER.queueDownload("./cellman.png");
 ASSET_MANAGER.queueDownload("./otherTiles.png");
 ASSET_MANAGER.queueDownload("./redtiles.png");
-ASSET_MANAGER.queueDownload("hudhearts.png");
+//ASSET_MANAGER.queueDownload("hudhearts.png");
 
 
 ASSET_MANAGER.downloadAll(() => {
@@ -19,7 +19,7 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 
 	gameEngine.addEntity(new Antibody(gameEngine, 20 , 75));
-	gameEngine.addEntity(new HUD(gameEngine, 0, 10));
+	//gameEngine.addEntity(new HUD(gameEngine, 0, 10));
 	gameEngine.addEntity(new Bone(gameEngine, 20, 400));
 	gameEngine.addEntity(new Lymphocyte(gameEngine, 20, 20));
 	gameEngine.addEntity(new RedBloodCell(gameEngine, 20, 200));
@@ -32,7 +32,7 @@ ASSET_MANAGER.downloadAll(() => {
         gameEngine.addEntity(new Cell(gameEngine, randomX, randomY));
     }
 
-	gameEngine.addEntity(new LevelOne(gameEngine, 0, 300));
+	gameEngine.addEntity(new LevelOne(gameEngine, 0, 0));
 	
 	gameEngine.init(ctx);
 
