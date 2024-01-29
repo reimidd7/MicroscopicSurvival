@@ -5,6 +5,8 @@ class Lymphocyte {
 
         this.animator = new Animator(ASSET_MANAGER.getAsset("LymphocyteEdited.png"), 0, 0, 160, 160, 3, 0.45);
 
+        //this.micro = this.game.entities.find((element) => element instanceof Micro);
+
         this.dead = false;
 
         this.speed = 100;
@@ -22,15 +24,28 @@ class Lymphocyte {
         //Lymphocytes two states are ALIVE (and shooting) or DEAD (and not shooting)
         if (this.dead) {
             this.animator = new Animator(ASSET_MANAGER.getAsset("LymphocyteEdited.png"), 640, 0, 160, 160, 1, 1);
-            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
+            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5, 1);
         } else {
-            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
+            console.log("trying to spawn antibody top");
+            
             if (this.elapsedTime > this.fireRate) {
-                gameEngine.addEntity(new Antibody(this.game, this.x, this.y+50, 0))
-                this.elapsedTime = 0;
+                console.log("trying to spawn antibody");
+                for(var i = 0; i < this.game.entities.length; i++) {
+                    var micro = this.game.entities[i];
+                    if (micro instanceof Micro && this.elapsedTime > this.fireRate) {
+                        gameEngine.addEntity(new Antibody(this.game, this.x, this.y, micro));
+                        console.log("new antibody spawned");
+                        this.elapsedTime = 0;
+                    }
+                }
             }
             this.elapsedTime++;
+            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5, 1);
         }
     };
 
+    update() {
+        //if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
+        
+    };
 }

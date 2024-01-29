@@ -15,7 +15,4 @@ class Bone {
     update() {
         if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
     };
-
-
-    //add minor rotation back and forth (more aesthetic)
 }

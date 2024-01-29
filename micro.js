@@ -40,7 +40,7 @@ class Micro {
         // IDLE
         // State 0 = idle animation
         // Facing 0 = forward facing
-        this.animations[0][0][0] = new Animator(this.spritesheet, 2, 375, 64, 60, 2, 0.3);
+        this.animations[0][0][0] = new Animator(this.spritesheet, 2, 375, 64, 60, 2, 0.2);
         // this.animations[0][1][0] = new Animator(this.spritesheet, ) not implemented
         // this.animations[0][2][0] = new Animator(this.spritesheet, ) not implemented
         // this.animations[0][3][0] = new Animator(this.spritesheet, ) not implemented
@@ -48,21 +48,21 @@ class Micro {
         // WALK
         // State 1 = walking
         // facing 0 = forward facing
-        this.animations[1][0][0] = new Animator(this.spritesheet, 2, 260, 64, 60, 3, 0.3);
+        this.animations[1][0][0] = new Animator(this.spritesheet, 2, 260, 64, 60, 3, 0.2);
         //this.animations[1][1][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][0] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 1 = right facing
-        this.animations[1][0][1] = new Animator(this.spritesheet, 2, 320, 64, 60, 2, 0.3);
+        this.animations[1][0][1] = new Animator(this.spritesheet, 2, 320, 64, 60, 2, 0.2);
         //this.animations[1][1][1] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][1] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][1] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 2 = left facing
-        this.animations[1][0][2] = new Animator(this.spritesheet, 2, 135, 64, 60, 2, 0.3);
+        this.animations[1][0][2] = new Animator(this.spritesheet, 2, 135, 64, 60, 2, 0.2);
         //this.animations[1][1][2] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][2] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][2] = new Animator(this.spritesheet, ) not implemented
@@ -108,6 +108,23 @@ class Micro {
         
     }
 
+    //left wall
+    collideLeft() {
+        return (this.x - this.BB.radius) < 0;
+    }
+    //right wall
+    collideRight() {
+        return (this.x + this.BB.radius) > 1025;
+    }
+    //Top wall
+    collideTop() {
+        return (this.y - this.BB.radius) < 0;
+    }
+    //Bottom wall
+    collideBottom() {
+        return (this.y + this.BB.radius) > 770;
+    }
+
     update() {
         // all ground physics
 
@@ -123,9 +140,39 @@ class Micro {
 
 
         //update position
-        this.x += this.velocity.x * this.game.clockTick;
-        this.y += this.velocity.y * this.game.clockTick;
-        this.updateBB();
+        if (this.collideLeft() || this.collideRight()) {
+            this.velocity.x = -this.velocity.x;
+            if (this.collideLeft()) {
+                this.x = this.BB.radius;
+            }
+            if (this.collideRight()) {
+                this.x = 1010 - this.BB.radius;
+            }
+    
+            //random direction after hitting wall
+            this.velocity.x = Math.random() * 100 + 50;
+            this.updateBB();
+
+        } else if (this.collideBottom() || this.collideTop()) {
+            this.velocity.y = -this.velocity.y;
+            if (this.collideBottom()) {
+                this.y = this.BB.radius;
+            }
+            if (this.collideTop()) {
+                this.y = 760 - this.BB.radius;
+            }
+
+            //random direction after hitting wall
+            this.velocity.y = Math.random() * 100 + 50;
+            this.updateBB();
+            
+        } else {
+            
+            this.x += this.velocity.x * this.game.clockTick;
+            this.y += this.velocity.y * this.game.clockTick;
+            this.updateBB();
+        }
+
 
         // update state!
         if (this.game.A) {

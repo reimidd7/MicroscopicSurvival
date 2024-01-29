@@ -21,10 +21,12 @@ ASSET_MANAGER.downloadAll(() => {
 	gameEngine.addEntity(new Antibody(gameEngine, 20 , 75));
 	//gameEngine.addEntity(new HUD(gameEngine, 0, 10));
 	gameEngine.addEntity(new Bone(gameEngine, 20, 400));
-	gameEngine.addEntity(new Lymphocyte(gameEngine, 20, 20));
 	gameEngine.addEntity(new RedBloodCell(gameEngine, 20, 200));
 	gameEngine.addEntity(new SpeedBoost(gameEngine));
-	gameEngine.addEntity(new Micro(gameEngine,200,200));
+
+	gameEngine.addEntity(new Micro(gameEngine,500,300));
+
+	gameEngine.addEntity(new Lymphocyte(gameEngine, 500, 500));
 
 	for (let i = 0; i < 10; i++) {
         const randomX = Math.random() * canvas.width;
