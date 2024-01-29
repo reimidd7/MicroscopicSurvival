@@ -31,6 +31,28 @@ class Antibody {
         //add 3 other animations for the 3 other directions
     };
 
+    update() {
+        //update x and y based off Micro's location 
+
+        this.velocity.x = 0;
+        this.velocity.y = 0;
+        
+        //update based on Micro's location
+        if (this.velocity.x > 0 && this.velocity.y > 0) {
+            this.facing = 0;
+        } else if (this.velocity.x < 0 && this.velocity.y < 0) {
+            this.facing = 1;
+        } else if (this.velocity.x < 0 && this.velocity.y > 0) {
+            this.facing = 2;
+        } else if (this.velocity.x > 0 && this.velocity.y < 0) {
+            this.facing = 3;
+        }
+
+        //for now, eventually will use this.velocity.x/y
+        this.x += 500 * this.game.clockTick;
+        this.y += 0 * this.game.clockTick
+    };
+
     draw(ctx) {
         //FOR ROTATING IN 4 DIRECTIONS
         // let x = 63;
@@ -53,31 +75,9 @@ class Antibody {
         // offscreenCtx.drawImage(this.spritesheet, 0, 0, 126, 92, 7, 0.1); //check this
         // offscreenCtx.restore();
 
-        ctx.drawImage(offscreenCanvas, x, y, h, h);
+        //ctx.drawImage(offscreenCanvas, x, y, h, h);
 
         this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y);
-    };
-
-    update() {
-        //update x and y based off Micro's location 
-
-        this.velocity.x = 0;
-        this.velocity.y = 0;
-        
-        //update based on Micro's location
-        if (this.velocity.x > 0 && this.velocity.y > 0) {
-            this.facing = 0;
-        } else if (this.velocity.x < 0 && this.velocity.y < 0) {
-            this.facing = 1;
-        } else if (this.velocity.x < 0 && this.velocity.y > 0) {
-            this.facing = 2;
-        } else if (this.velocity.x > 0 && this.velocity.y < 0) {
-            this.facing = 3;
-        }
-
-        //for now, eventually will use this.velocity.x/y
-        this.x += 500 * this.game.clockTick;
-        this.y += 0 * this.game.clockTick
     };
 
 }

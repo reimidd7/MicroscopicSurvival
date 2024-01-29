@@ -13,6 +13,11 @@ class Lymphocyte {
         this.elapsedTime = 0;
     };
 
+    update() {
+        if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
+        
+    };
+
     draw(ctx) {
         //Lymphocytes two states are ALIVE (and shooting) or DEAD (and not shooting)
         if (this.dead) {
@@ -28,8 +33,4 @@ class Lymphocyte {
         }
     };
 
-    update() {
-        if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
-        
-    };
 }
