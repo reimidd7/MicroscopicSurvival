@@ -11,13 +11,8 @@ class SceneManager {
     }
 
     loadLevel(level) {
-
         this.game.entities = [];
         this.level = level;
-
-
-
-
 
         for (var i = 0; i < level.cornertiles.length; i++) {
             let corner = level.cornertiles[i];
@@ -40,6 +35,16 @@ class SceneManager {
         for (var i = 0; i < level.rippedtiles.length; i++) {
             let rip = level.rippedtiles[i];
             this.game.addEntity(new RippedTiles(this.game, rip.x, rip.y));
+        }
+
+        for (var i = 0; i < level.bones.length; i++) {
+            let bone = level.bones[i];
+            this.game.addEntity(new Bone(this.game, bone.x, bone.y));
+        }
+
+        for (var i = 0; i < level.redbloodcells.length; i++) {
+            let blood = level.redbloodcells[i];
+            this.game.addEntity(new RedBloodCell(this.game, blood.x, blood.y));
         }
 
         // ADD ENEMIES TO CANVAS USING LEVELS.JS

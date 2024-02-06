@@ -202,7 +202,14 @@ var levelOne = {
     // ------------------------ ALL BACKGROUND ^^^^ CAN ADD MORE ABOVE HERE -------------------------------------
 
     //add bones
+    bones: [
+        {x: 300, y: 300}
+    ],
+
     //add red blood cells
+    redbloodcells: [
+        {x: 400, y: 400}
+    ],
     //add power ups?
 
     //adding 1 lymphocyte
