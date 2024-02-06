@@ -26,7 +26,7 @@ class Cell {
         this.dead = false;
         this.healthpoints = 1;
         this.hitpoints = 1;
-        this.timer = .2;
+        this.timer = 3;
         
 
     }
@@ -50,16 +50,25 @@ class Cell {
             vectorDirectionY = 0;
         }
 
-        // Adjust the speed as needed
-        const chaseSpeed = 100;
+        const scalingFactor = Math.sqrt(this.game.entities.length / 30); // Adjust 30 based on your desired threshold
 
+        // Adjust the speed as needed, considering the scaling factor
+        let chaseSpeed = 5 * scalingFactor;
+    
+        // Check if there are only a few cells left
+        if (this.game.entities.length <= 5) {
+            // Increase speed when only a few cells are left
+            chaseSpeed *= 1.5; // You can adjust the multiplier as needed
+        }
+    
         this.velocity.x = vectorDirectionX * chaseSpeed;
         this.velocity.y = vectorDirectionY * chaseSpeed;
-
+    
         // Update position based on velocity
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
     }
+    
 
     loadAnimations() {
         for (var i = 0; i < 4; i++) {
@@ -165,7 +174,7 @@ class Cell {
                     
 
                     entity.healthpoints -= this.hitpoints; // Use the hitpoints property of the Cell
-                    this.timer = 5;
+                    this.timer = 3;
                     // Check if Micro's healthpoints reach zero
                     if (entity.healthpoints <= 0) {
                         entity.dead = true;

@@ -26,7 +26,7 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.addEntity(new Lymphocyte(gameEngine, 500, 500));
 
-	for (let i = 0; i < 2; i++) {
+	for (let i = 0; i < 30; i++) {
         const randomX = Math.random() * canvas.width;
         const randomY = Math.random() * canvas.height;
         gameEngine.addEntity(new Cell(gameEngine, randomX, randomY));
