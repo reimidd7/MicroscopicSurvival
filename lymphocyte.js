@@ -24,7 +24,7 @@ class Lymphocyte {
                     var micro = this.game.entities[i];
                     if (micro instanceof Micro && this.elapsedTime > this.fireRate) {
                         //(this.game.entities[this.game.entities.length - 1]).removeFromWorld = true;
-                        gameEngine.addEntity(new Antibody(this.game, this.x, this.y, micro));
+                        this.game.addEntity(new Antibody(this.game, this.x, this.y, micro));
                         this.elapsedTime = 0;
                         //gameEngine.addEntity(new LevelOne(gameEngine, 0, 0));
                     }
