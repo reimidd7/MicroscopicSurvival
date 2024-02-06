@@ -11,7 +11,6 @@ ASSET_MANAGER.queueDownload("./MicroSpritesheet.png");
 ASSET_MANAGER.queueDownload("./cellman.png");
 ASSET_MANAGER.queueDownload("./otherTiles.png");
 ASSET_MANAGER.queueDownload("./redtiles.png");
-ASSET_MANAGER.queueDownload("./hudlives.png");
 
 
 ASSET_MANAGER.downloadAll(() => {
@@ -27,7 +26,7 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.addEntity(new Lymphocyte(gameEngine, 500, 500));
 
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 2; i++) {
         const randomX = Math.random() * canvas.width;
         const randomY = Math.random() * canvas.height;
         gameEngine.addEntity(new Cell(gameEngine, randomX, randomY));

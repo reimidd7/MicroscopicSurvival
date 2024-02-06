@@ -23,6 +23,12 @@ class Micro {
         this.animations = [];
         this.loadAnimations();
         //this.animation = this.animations[this.state][this.size][this.facing];
+
+        // Testing cellman killing micro
+        this.healthBar = new HealthBar(this, true);
+        this.dead = false;
+        this.maxHealth = 100;
+        this.healthpoints = this.maxHealth;
     };
 
     loadAnimations() {
@@ -196,6 +202,31 @@ class Micro {
         if (this.velocity.y == 0 && this.velocity.x == 0) this.facing = 0, this.state = 0;
         if (this.velocity.y == 0 && this.velocity.x == 0 && this.game.A) this.facing = 0, this.state = 2; //ugly code but punching while idle need this
 
+        this.healthBar.update(this);
+
+        // Check for collisions with other cells
+        for (const entity of this.game.entities) {
+             if (entity !== this && entity instanceof Micro) {
+                const dx = this.x - entity.x;
+                const dy = this.y - entity.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < this.radius + entity.BB.radius) {
+            // Cell touched the Micro, make the Micro take damage
+            entity.healthpoints -= 1;
+
+            // You might want to add additional logic or effects here
+
+            // Check if Micro's healthpoints reach zero
+            if (entity.healthpoints <= 0) {
+                entity.dead = true;
+                // Additional logic for Micro's death can be added here
+            }
+        }
+    }
+}
+
+
     };
 
     draw(ctx) {
@@ -207,5 +238,9 @@ class Micro {
         ctx.arc(this.BB.x, this.BB.y, this.BB.radius, 0, 2 * Math.PI);
         ctx.strokeStyle = 'red';
         ctx.stroke();
+
+        const barX = (ctx.canvas.width - this.healthBar.barWidth) / 2;
+        const barY = ctx.canvas.height - this.healthBar.barHeight;
+        this.healthBar.draw(ctx, barX, barY, this);
     };
 };
