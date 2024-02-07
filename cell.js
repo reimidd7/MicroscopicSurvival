@@ -22,45 +22,53 @@ class Cell {
         this.animator = [];
         this.loadAnimations();
 
+        //fighting
+        this.dead = false;
+        this.healthpoints = 1;
+        this.hitpoints = 1;
+        this.timer = 3;
+        
+
     }
 
     chaseTarget(target) {
+        //direction and distance to Micro
         const directionX = target.x - this.x;
         const directionY = target.y - this.y;
 
         const distance = Math.sqrt(directionX ** 2 + directionY ** 2);
 
         let vectorDirectionX, vectorDirectionY;
-
+        // Check if the distance between the current cell and the target is not zero
         if (distance !== 0) {
+            // If not zero, calculate the normalized components of the direction vector
              vectorDirectionX = directionX / distance;
              vectorDirectionY = directionY / distance;
         } else {
+            // If the distance is zero (to avoid division by zero), set the components to zero
             vectorDirectionX = 0;
             vectorDirectionY = 0;
         }
 
-        // const arrivalThreshold = 10;
+        const scalingFactor = Math.sqrt(this.game.entities.length / 30); // Adjust 30 based on your desired threshold
 
-        // if (distance < arrivalThreshold) {
-        //     // If close enough, make the cell move in a circular motion around the Micro entity
-        //     const angle = Math.atan2(this.y - target.y, this.x - target.x);
-        //     const circleRadius = 50; // Adjust the radius of the circular motion as needed
+        // Adjust the speed as needed, considering the scaling factor
+        let chaseSpeed = 5 * scalingFactor;
     
-        //     vectorDirectionX = Math.cos(angle) * circleRadius;
-        //     vectorDirectionY = Math.sin(angle) * circleRadius;
-        // }
-
-        // Adjust the speed as needed
-        const chaseSpeed = 100;
-
+        // Check if there are only a few cells left
+        if (this.game.entities.length <= 5) {
+            // Increase speed when only a few cells are left
+            chaseSpeed *= 1.5; // You can adjust the multiplier as needed
+        }
+    
         this.velocity.x = vectorDirectionX * chaseSpeed;
         this.velocity.y = vectorDirectionY * chaseSpeed;
-
+    
         // Update position based on velocity
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
     }
+    
 
     loadAnimations() {
         for (var i = 0; i < 4; i++) {
@@ -72,6 +80,9 @@ class Cell {
         
        //Left animation
        this.animator[1] = new Animator(this.spritesheet, 0, 0, 45, 51, 5, 0.4, false, true);
+
+       //Dead animation
+       this.animator[2] = new Animator(this.spritesheet, 224, 0, 45, 51, 1, .3, false, true);
     };
 
     //left wall
@@ -91,14 +102,15 @@ class Cell {
         return (this.y + this.radius) > 770;
     }
 
-
     update() {
         if (this.paused > 0) {
             this.paused -= this.game.clockTick;
         } else {
        
-        this.x += this.velocity.x * this.game.clockTick;
-        this.y += this.velocity.y * this.game.clockTick;
+            if (!this.dead) {
+                this.x += this.velocity.x * this.game.clockTick;
+                this.y += this.velocity.y * this.game.clockTick;
+
 
         if (this.velocity.x > 0) {
             // Moving right
@@ -131,64 +143,70 @@ class Cell {
         }
 
          // Check for collisions with other cells
-         for (const entity of this.game.entities) {
-            if (entity !== this && entity instanceof Cell) {
+        for (const entity of this.game.entities) {
+        if (entity !== this && entity instanceof Cell) {
+        const dx = this.x - entity.x;
+        const dy = this.y - entity.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.radius + entity.radius) {
+            // Calculate new positions for avoiding overlap
+            const angle = Math.atan2(dy, dx);
+            const overlap = this.radius + entity.radius - distance;
+            const separationDistance = overlap; // Adjust the factor to control separation distance
+
+            // Update positions without changing velocities
+            this.x += separationDistance * Math.cos(angle);
+            this.y += separationDistance * Math.sin(angle);
+
+            entity.x -= separationDistance * Math.cos(angle);
+            entity.y -= separationDistance * Math.sin(angle);
+        }  
+         
+        for (const entity of this.game.entities) {
+            if (entity !== this && entity instanceof Micro) {
                 const dx = this.x - entity.x;
                 const dy = this.y - entity.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
+        
+                if (distance < this.radius + entity.BB.radius && this.timer <= 0) {
+                    // Cell touched the Micro, make the Micro take damage
+                    
 
-                if (distance < this.radius + entity.radius) {
-                    // Collision detected, calculate new positions for avoiding overlap
-                    const angle = Math.atan2(dy, dx);
-                    const overlap = this.radius + entity.radius - distance;
-                    const separationDistance = overlap * 1.5; // Adjust the factor to control separation distance
-
-                    this.x += separationDistance * Math.cos(angle);
-                    this.y += separationDistance * Math.sin(angle);
-
-                    entity.x -= separationDistance * Math.cos(angle);
-                    entity.y -= separationDistance * Math.sin(angle);
-
-                    // Calculate new velocities for both cells
-                    const thisSpeed = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
-                    const entitySpeed = Math.sqrt(entity.velocity.x ** 2 + entity.velocity.y ** 2);
-
-                    const thisAngle = Math.atan2(this.velocity.y, this.velocity.x);
-                    const entityAngle = Math.atan2(entity.velocity.y, entity.velocity.x);
-
-                    this.velocity.x = thisSpeed * Math.cos(thisAngle + angle);
-                    this.velocity.y = thisSpeed * Math.sin(thisAngle + angle);
-
-                    entity.velocity.x = entitySpeed * Math.cos(entityAngle + angle + Math.PI);
-                    entity.velocity.y = entitySpeed * Math.sin(entityAngle + angle + Math.PI);
-                } else if (entity instanceof Micro) {
-                    if (targetEntity) {
-                        that.hitpoints -= 1;
+                    entity.healthpoints -= this.hitpoints; // Use the hitpoints property of the Cell
+                    this.timer = 3;
+                    // Check if Micro's healthpoints reach zero
+                    if (entity.healthpoints <= 0) {
+                        entity.dead = true;
+                        // Additional logic for Micro's death can be added here
                     }
+                }
+            }
+        }        
+    
+    this.timer -= this.game.clockTick;
+    if (this.timer < 0) {
+        this.timer = 0;
+    }
+    const targetEntity = this.game.entities.find(entity => entity instanceof Micro);
+    if (targetEntity) {
+    
+        this.chaseTarget(targetEntity);
             }
         }
-    }
-        const targetEntity = this.game.entities.find(entity => entity instanceof Micro);
-        if (targetEntity) {
-            console.log('Micro is taking -1 damage');
-            this.chaseTarget(targetEntity);
-        }
+    }}
     }
 }
 
 
-    draw(ctx) {
+draw(ctx) {
+    if (this.dead) {
+        this.animator[2].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+    } else {
         this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
-
-        // const circleX = this.x + this.radius; // Center X
-        // const circleY = this.y + this.radius; // Center Y
-    
-        // ctx.beginPath();
-        // ctx.arc(circleX, circleY, this.radius, 0, 2 * Math.PI, false);
-        // ctx.strokeStyle = 'red';
-        // ctx.stroke();
-        // ctx.closePath();
     }
+
+}
 }
 
 
