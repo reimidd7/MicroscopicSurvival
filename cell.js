@@ -201,9 +201,9 @@ class Cell {
 
 draw(ctx) {
     if (this.dead) {
-        this.animator[2].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animator[2].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
     } else {
-        this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
     }
 
 }
