@@ -170,7 +170,7 @@ class Cell {
     }
         const targetEntity = this.game.entities.find(entity => entity instanceof Micro);
         if (targetEntity) {
-            console.log('Micro is taking -1 damage');
+            //console.log('Micro is taking -1 damage');
             this.chaseTarget(targetEntity);
         }
     }
@@ -178,7 +178,7 @@ class Cell {
 
 
     draw(ctx) {
-        this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
 
         // const circleX = this.x + this.radius; // Center X
         // const circleY = this.y + this.radius; // Center Y

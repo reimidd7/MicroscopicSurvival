@@ -19,6 +19,8 @@ class Micro {
 
         this.updateBB();
 
+        this.radius = this.BB.radius;
+
         // Micro's animations
         this.animations = [];
         this.loadAnimations();
@@ -132,6 +134,8 @@ class Micro {
         this.velocity.x = 0;
         this.velocity.y = 0;
 
+        //deal with power ups here?
+
         //update velocity
         if (this.game.left) this.velocity.x -= WALK;
         if (this.game.right) this.velocity.x += WALK;
@@ -200,7 +204,7 @@ class Micro {
 
     draw(ctx) {
         this.animation = this.animations[this.state][this.size][this.facing];
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
 
 
         ctx.beginPath();

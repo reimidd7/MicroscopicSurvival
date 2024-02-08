@@ -1,15 +1,13 @@
 class Bone {
 
     constructor(game, x, y) {
-        this.game = game;
-        this.animator = new Animator(ASSET_MANAGER.getAsset("bones.png"), 0, 0, 163, 202, 3, 0.4);
+        Object.assign(this, {game, x, y});
 
-        this.x = x;
-        this.y = y;
+        this.animator = new Animator(ASSET_MANAGER.getAsset("bones.png"), 0, 0, 163, 202, 3, 0.4);
     };
 
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 0.3, true);
     };
 
     update() {
