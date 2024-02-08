@@ -23,7 +23,7 @@ class LevelOne {
                 const col = this.y +i * 32;
                 //ctx.strokeStyle = 'white';
                 //ctx.strokeRect(row, col, 32, 32);
-                this.animator.drawFrame(this.game.clockTick, ctx, row, col, 2);
+                this.animator.drawFrame(this.game.clockTick, ctx, row, col, 2, true);
             }
         }
     };
