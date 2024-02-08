@@ -16,7 +16,7 @@ class Bone {
     };
 
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 0.3, true);
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
     };
 
     update() {
