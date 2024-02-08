@@ -11,6 +11,7 @@ ASSET_MANAGER.queueDownload("./MicroSpritesheet.png");
 ASSET_MANAGER.queueDownload("./cellman.png");
 ASSET_MANAGER.queueDownload("./otherTiles.png");
 ASSET_MANAGER.queueDownload("./redtiles.png");
+ASSET_MANAGER.queueDownload("./stunmine.png");
 
 
 ASSET_MANAGER.downloadAll(() => {
