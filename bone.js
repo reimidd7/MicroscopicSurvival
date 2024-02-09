@@ -1,18 +1,27 @@
 class Bone {
 
     constructor(game, x, y) {
-        this.game = game;
-        this.animator = new Animator(ASSET_MANAGER.getAsset("bones.png"), 0, 0, 163, 202, 3, 0.4);
+        Object.assign(this, { game, x, y });
 
-        this.x = x;
-        this.y = y;
+        this.spritesheet = ASSET_MANAGER.getAsset("./bones.png");
+        this.animator = new Animator(this.spritesheet, 0, 0, 47, 45, 4, 0.4);
+
+       // this.updateBB();
+    };
+
+
+    update() {
+        // if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
+       // this.updateBB();
     };
 
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
     };
 
     update() {
         if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
     };
+
+
 }
