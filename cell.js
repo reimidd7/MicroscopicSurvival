@@ -4,7 +4,7 @@ class Cell {
 
         this.game.cell = this;
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./cellman.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/cellman.png");
 
         this.facing = 0; //0 = right // 1 = left, dead, stick, idle
     
@@ -201,9 +201,9 @@ class Cell {
 
 draw(ctx) {
     if (this.dead) {
-        this.animator[2].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animator[2].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
     } else {
-        this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
     }
 
 }

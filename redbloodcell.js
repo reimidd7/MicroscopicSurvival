@@ -3,7 +3,7 @@ class RedBloodCell {
     constructor(game, x, y) {
         Object.assign(this, {game, x, y});
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./RedBloodCell.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/RedBloodCell.png");
         this.animator = new Animator(this.spritesheet, 0, 0, 65, 52, 12, 0.2);
 
         //this.updateBB();
@@ -18,7 +18,7 @@ class RedBloodCell {
 //     }
 
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
     };
 
     update() {

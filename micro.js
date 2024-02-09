@@ -5,7 +5,7 @@ class Micro {
 
         this.game.micro = this;
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./MicroSpritesheet.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/MicroSpritesheet.png");
 
         this.size = 0; // 0 = normal, 1 = big (PU), 2 = shield normal (PU), 3 = shield big (PU) 
         this.facing = 0; // 0 = forward, 1 = right, 2 = left

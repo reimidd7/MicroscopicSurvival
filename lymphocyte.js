@@ -3,7 +3,7 @@ class Lymphocyte {
     constructor(game, x, y) {
         Object.assign(this, {game, x, y});
 
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./LymphocyteEdited.png"), 0, 0, 160, 160, 3, 0.45);
+        this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/LymphocyteEdited.png"), 0, 0, 160, 160, 3, 0.45);
 
         this.dead = false;
 
@@ -21,7 +21,7 @@ class Lymphocyte {
     draw(ctx) {
         //Lymphocytes two states are ALIVE (and shooting) or DEAD (and not shooting)
         if (this.dead) {
-            this.animator = new Animator(ASSET_MANAGER.getAsset("LymphocyteEdited.png"), 640, 0, 160, 160, 1, 1);
+            this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/LymphocyteEdited.png"), 640, 0, 160, 160, 1, 1);
             this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5, 1, true);
         } else {
             if (this.elapsedTime > this.fireRate) {
