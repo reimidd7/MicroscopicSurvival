@@ -78,3 +78,10 @@ function getFacing(velocity) {
 function collide(A, B) {
     return (getDistance(A, B) < A.radius + B.radius);
 };
+
+const PARAMS = {
+    BITWIDTH: 16,
+    SCALE: 2,
+    DENUG: true
+
+};

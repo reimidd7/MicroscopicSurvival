@@ -1,4 +1,4 @@
-let BLOCK_SIZE = 32;
+BLOCK_SIZE = 32;
 var levelOne = {
     // add music
     // label

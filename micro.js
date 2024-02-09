@@ -236,11 +236,11 @@ class Micro {
 
     draw(ctx) {
         this.animation = this.animations[this.state][this.size][this.facing];
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1, true);
 
 
         ctx.beginPath();
-        ctx.arc(this.BB.x, this.BB.y, this.BB.radius, 0, 2 * Math.PI);
+        ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
         ctx.strokeStyle = 'red';
         ctx.stroke();
 

@@ -1,18 +1,22 @@
 /** NOT IMPLEMENTED YET
  * 
  */
-
+const MICRO_WIDTH = 64;
+const MICRO_HEIGHT = 60;
 class SceneManager {
     constructor(game) {
         this.game = game;
-        //this.game.camera = this;
+        this.game.camera = this;
+        this.x = 0;
+        this.y = 0;
 
         this.loadLevel(levelOne);
     }
 
     loadLevel(level) {
-        this.game.entities = [];
+       // this.game.entities = [];
         this.level = level;
+
 
         for (var i = 0; i < level.cornertiles.length; i++) {
             let corner = level.cornertiles[i];
@@ -58,13 +62,24 @@ class SceneManager {
             this.game.addEntity(new Cell(this.game, c.x, c.y));
         }
 
-        this.game.addEntity(new Micro(this.game, 100, 100));
-
-
+        this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
+        this.game.addEntity(this.micro);
 
     };
 
     update() {
+
+        let midpointX = PARAMS.CANVAS_WIDTH / 2 - MICRO_WIDTH / 2 ;
+        let midpointY = PARAMS.CANVAS_HEIGHT / 2 - MICRO_HEIGHT / 2;
+
+        // should keep micro completely centered in the screen
+        this.x = this.micro.x - midpointX;
+        console.log("midpoint" + midpointX); 
+        this.y = this.micro.y - midpointY;
+
+    };
+
+    draw() {
 
     };
 }

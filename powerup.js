@@ -32,9 +32,9 @@ class Powerup {
 
     draw(ctx) {
         if (this.type != "speed") {
-            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 3, true);
+            this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3, true);
         } else {
-            this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2, true);
+            this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 2, true);
         }
         
     };

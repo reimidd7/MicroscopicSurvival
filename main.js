@@ -2,6 +2,7 @@
 const ASSET_MANAGER = new AssetManager();
 
 
+
 ASSET_MANAGER.queueDownload("./LymphocyteEdited.png");
 ASSET_MANAGER.queueDownload("./RedBloodCell.png"); 
 ASSET_MANAGER.queueDownload("./speed.png");
@@ -23,8 +24,15 @@ ASSET_MANAGER.queueDownload("./bones.png");
 ASSET_MANAGER.downloadAll(() => {
 	const gameEngine = new GameEngine();
 
+	//add music here
+
+	PARAMS.BLOCKWIDTH = PARAMS.BITWIDTH * PARAMS.SCALE;
+
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
+
+	PARAMS.CANVAS_WIDTH = canvas.width;
+	PARAMS.CANVAS_HEIGHT = canvas.height;
 
 
 	gameEngine.init(ctx);
