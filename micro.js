@@ -6,6 +6,7 @@ class Micro {
         this.game.micro = this;
 
         this.spritesheet = ASSET_MANAGER.getAsset("./MicroSpritesheet.png");
+        this.spritesheet2 = ASSET_MANAGER.getAsset("./MicroPUNCH (1).png");
 
         this.size = 0; // 0 = normal, 1 = big (PU), 2 = shield normal (PU), 3 = shield big (PU) 
         this.facing = 0; // 0 = forward, 1 = right, 2 = left
@@ -78,9 +79,9 @@ class Micro {
         // PUNCHING - not implemented
         // State 2 = punching
         // facing 0 = forward facing
-        this.animations[2][0][0] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.1); //not implemented
-        this.animations[2][0][1] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.1); //not implemented
-        this.animations[2][0][2] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.1); //not implemented
+        this.animations[2][0][0] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
+        this.animations[2][0][1] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
+        this.animations[2][0][2] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
 
         // RUNNING - not implemented
         // State 3 = running
