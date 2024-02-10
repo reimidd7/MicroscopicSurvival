@@ -169,32 +169,32 @@ class Cell {
                             entity.y -= separationDistance * Math.sin(angle);
                         }
 
-                        for (const entity of this.game.entities) {
-                            if (entity !== this && entity instanceof Micro) {
-                                const dx = this.x - entity.x;
-                                const dy = this.y - entity.y;
-                                const distance = Math.sqrt(dx * dx + dy * dy);
+                        // for (const entity of this.game.entities) {
+                        //     if (entity !== this && entity instanceof Micro) {
+                        //         const dx = this.x - entity.x;
+                        //         const dy = this.y - entity.y;
+                        //         const distance = Math.sqrt(dx * dx + dy * dy);
 
-                                if (distance < this.radius + entity.BB.radius && this.timer <= 0) {
-                                    // Cell touched the Micro, make the Micro take damage
+                        //         if (distance < this.radius + entity.BB.radius && this.timer <= 0) {
+                        //             // Cell touched the Micro, make the Micro take damage
 
 
                                     
-                                    entity.healthpoints -= this.hitpoints; // Use the hitpoints property of the Cell
-                                    this.timer = 3;
-                                    // Check if Micro's healthpoints reach zero
-                                    if (entity.healthpoints <= 0) {
-                                        entity.dead = true;
-                                        // Additional logic for Micro's death can be added here
-                                    }
-                                }
-                            }
-                        }
+                        //             entity.healthpoints -= this.hitpoints; // Use the hitpoints property of the Cell
+                        //             this.timer = 3;
+                        //             // Check if Micro's healthpoints reach zero
+                        //             if (entity.healthpoints <= 0) {
+                        //                 entity.dead = true;
+                        //                 // Additional logic for Micro's death can be added here
+                        //             }
+                        //         }
+                        //     }
+                        // }
 
-                        this.timer -= this.game.clockTick;
-                        if (this.timer < 0) {
-                            this.timer = 0;
-                        }
+                        // this.timer -= this.game.clockTick;
+                        // if (this.timer < 0) {
+                        //     this.timer = 0;
+                        // }
                         const targetEntity = this.game.entities.find(entity => entity instanceof Micro);
                         if (targetEntity) {
 

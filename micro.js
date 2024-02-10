@@ -244,7 +244,7 @@ class Micro {
                 } else {
                     if (entity !== that && this.BB.collide(entity.BB)) {
                         console.log(entity.BB);
-    
+
                         if (that.state == 2) {
                             if (entity instanceof Cell || entity instanceof Lymphocyte && !entity.dead) {
                                 // entities need to decrease health (is that variable in their classes)
@@ -254,28 +254,34 @@ class Micro {
                                     entity.dead = true;
                                 }
                             }
-    
+
                         } else {
-                            if (entity instanceof Cell) {
+                            if (entity instanceof Cell && !entity.dead) {
                                 // Cell touched the Micro, make the Micro take damage
-                                console.log("touch");
-                                this.healthpoints -= 1;
-    
+                                if (entity.timer <= 0) {
+                                    this.healthpoints -= 1;
+                                    entity.timer = 3;
+                                }
+                                // makes it so micro doesnt die as quick
+                                entity.timer -= this.game.clockTick;
+                                if (entity.timer < 0) {
+                                    entity.timer = 0;
+                                }
+
                                 // Check if Micro's healthpoints reach zero
                                 if (entity.healthpoints <= 0) {
                                     this.dead = true;
-                                    // Additional logic for Micro's death can be added here
                                 }
                             }
                         }
-    
-    
-    
+
+
+
                     }
-    
+
                 }
 
-               
+
             }
         }
 
