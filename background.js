@@ -7,6 +7,9 @@ class CornerTiles {
         Object.assign(this, { game, x, y, flip });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+        this.BB = new BoundingBox(this.x, this.y, 32, 32);
+
+
     }
 
     update() {
@@ -21,22 +24,22 @@ class CornerTiles {
         ctx.save();
         // 1 == flip horizontal | 2 == flip vertical | 3 == flip horizontal and vertical
         if (this.flip == 1) {
-            ctx.scale(-1,1);
-            ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x-32) + this.game.camera.x, this.y - this.game.camera.y, 32, 32);
+            ctx.scale(-1, 1);
+            ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x - 32) + this.game.camera.x, this.y - this.game.camera.y, 32, 32);
             // ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x-32), this.y, 32, 32);
 
             ctx.restore();
 
         } else if (this.flip == 2) {
-            ctx.scale(1,-1);
-            ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x - this.game.camera.x, (-this.y-32) + this.game.camera.y, 32, 32);
+            ctx.scale(1, -1);
+            ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x - this.game.camera.x, (-this.y - 32) + this.game.camera.y, 32, 32);
             // ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x, (-this.y-32), 32, 32);
 
             ctx.restore();
 
         } else if (this.flip == 3) {
-            ctx.scale(-1,-1);
-            ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x-32) + this.game.camera.x, (-this.y-32) + this.game.camera.y, 32, 32);
+            ctx.scale(-1, -1);
+            ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x - 32) + this.game.camera.x, (-this.y - 32) + this.game.camera.y, 32, 32);
             // ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x-32), (-this.y-32), 32, 32);
 
             ctx.restore();
@@ -45,11 +48,13 @@ class CornerTiles {
             ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
             // ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x, this.y , 32, 32);
 
-        
+
         }
         //ctx.restore();
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         //ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x, this.y, 32, 32);
+        ctx.strokeStyle = 'White';
+        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
 
     };
 
@@ -60,6 +65,9 @@ class TopBottomWalls {
         Object.assign(this, { game, x, y, flip });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+        
+        this.BB = new BoundingBox(this.x, this.y, 32, 32);
+
     }
 
     update() {
@@ -76,7 +84,7 @@ class TopBottomWalls {
         // 1 == light red up
         if (this.flip == 1) {
             ctx.scale(1, -1);
-            ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x - this.game.camera.x, (-this.y-32) + this.game.camera.y, 32, 32);
+            ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x - this.game.camera.x, (-this.y - 32) + this.game.camera.y, 32, 32);
             // ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x, (-this.y-32), 32, 32);
 
             ctx.restore();
@@ -88,6 +96,8 @@ class TopBottomWalls {
         }
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         // ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x, this.y, 32, 32);
+        ctx.strokeStyle = 'White';
+        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
     };
 
 };
@@ -97,6 +107,9 @@ class LeftRightWalls {
         Object.assign(this, { game, x, y, flip });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+        this.BB = new BoundingBox(this.x, this.y, 32, 32);
+
+       
     }
 
     update() {
@@ -113,7 +126,7 @@ class LeftRightWalls {
         // 1 == light red Left
         if (this.flip == 1) {
             ctx.scale(-1, 1);
-            ctx.drawImage(this.spritesheet, 143, 31, 16, 16, (-this.x-32) + this.game.camera.x, this.y - this.game.camera.y, 32, 32);
+            ctx.drawImage(this.spritesheet, 143, 31, 16, 16, (-this.x - 32) + this.game.camera.x, this.y - this.game.camera.y, 32, 32);
             // ctx.drawImage(this.spritesheet, 143, 31, 16, 16, (-this.x-32), this.y, 32, 32);
 
             ctx.restore();
@@ -125,6 +138,8 @@ class LeftRightWalls {
         }
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         //  ctx.drawImage(this.spritesheet, 143, 31, 16, 16, this.x, this.y, 32, 32);
+        ctx.strokeStyle = 'White';
+        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
     };
 
 };
@@ -134,6 +149,8 @@ class CharacterTiles {
         Object.assign(this, { game, x, y, scale });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_light.png");
+        this.BB = new BoundingBox(this.x, this.y, 32, 32);
+
     }
 
     update() {
@@ -149,6 +166,9 @@ class CharacterTiles {
         ctx.drawImage(this.spritesheet, 62, 0, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32 * this.scale, 32 * this.scale);
         // ctx.drawImage(this.spritesheet, 62, 0, 16, 16, this.x, this.y, 32 * this.scale, 32 * this.scale);
 
+        ctx.strokeStyle = 'White';
+        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+
     };
 
 };
@@ -158,7 +178,9 @@ class RippedTiles {
         Object.assign(this, { game, x, y });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
-    }
+       this.BB = new BoundingBox(this.x, this.y, 32, 32);
+    };
+
 
     update() {
 
@@ -172,7 +194,8 @@ class RippedTiles {
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         ctx.drawImage(this.spritesheet, 79, 31, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
         // ctx.drawImage(this.spritesheet, 79, 31, 16, 16, this.x, this.y, 32, 32);
-
+        ctx.strokeStyle = 'White';
+        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
     };
 
 };
@@ -182,6 +205,8 @@ class NormalTiles {
         Object.assign(this, { game, x, y });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
+       this.BB = new BoundingBox(this.x, this.y, 32, 32);
+
     }
 
     update() {
@@ -196,6 +221,8 @@ class NormalTiles {
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         ctx.drawImage(this.spritesheet, 80, 0, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
         // ctx.drawImage(this.spritesheet, 80, 0, 16, 16, this.x, this.y, 32, 32);
+        ctx.strokeStyle = 'White';
+        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
 
     };
 

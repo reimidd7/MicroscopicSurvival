@@ -219,7 +219,7 @@ var levelOne = {
 
     //adding 3 cellmans
     cell: [
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}
+        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}
     ]
 
 

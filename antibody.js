@@ -64,7 +64,7 @@ class Antibody {
             } else if (this.facing == 4) {
                 offscreenCanvas.width = 200;
                 offscreenCanvas.height = 270;
-                xOffset = 80;
+                xOffset = 0;
                 yOffset = 70;
             } else if (this.facing == 5) {
                 offscreenCanvas.width = 220;
@@ -105,7 +105,7 @@ class Antibody {
                     
         }
         
-        // ctx.drawImage(this.cache[angle], (this.x - xOffset), (this.y - yOffset) );
+        // ctx.drawImage(this.cache[angle], (this.x - xOffset), (this.y - yOffset));
         ctx.drawImage(this.cache[angle], (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y);
 
         // this.animator.drawFrame(this.game.clockTick, ctx, this.x-xOffset, this.y -yOffset, 1, true);
@@ -139,7 +139,7 @@ class Antibody {
 
         this.facing = getFacing(this.velocity);
 
-        //console.log("facing: " + this.facing);
+        // console.log("facing: " + this.facing);
     };
 
 }
