@@ -75,6 +75,9 @@ class Cell {
 
     }
 
+    decreaseHealth() {
+        this.healthpoints -= 1;
+    };
 
     loadAnimations() {
         for (var i = 0; i < 4; i++) {

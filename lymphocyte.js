@@ -2,8 +2,10 @@ class Lymphocyte {
 
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
+        this.spritesheet = ASSET_MANAGER.getAsset("./LymphocyteEdited.png");
 
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./LymphocyteEdited.png"), 0, 0, 160, 160, 3, 0.45);
+
+        this.animation = new Animator(this.spritesheet, 0, 0, 160, 160, 3, 0.45);
 
         this.dead = false;
         this.healthpoints = 2;
@@ -13,6 +15,10 @@ class Lymphocyte {
         this.fireRate = 65;
         this.elapsedTime = 0;
         this.updateBB();
+    };
+
+    decreaseHealth() {
+        this.healthpoints -= 1;
     };
 
     updateBB() {
@@ -30,9 +36,7 @@ class Lymphocyte {
         var adjustedx = this.x - this.game.camera.x;
         var adjustedy = this.y - this.game.camera.y;
         if (this.dead) {
-            this.animator = new Animator(ASSET_MANAGER.getAsset("LymphocyteEdited.png"), 640, 0, 160, 160, 1, 1);
-            this.animator.drawFrame(this.game.clockTick, ctx, adjustedx, adjustedy, .5, 1, true);
-            // this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5, 1, true);
+            this.animation = new Animator(this.spritesheet, 640, 0, 160, 160, 1, 0.3);
 
         } else {
             if (this.elapsedTime > this.fireRate) {
@@ -48,10 +52,12 @@ class Lymphocyte {
                 }
             }
             this.elapsedTime++;
-            this.animator.drawFrame(this.game.clockTick, ctx, adjustedx, adjustedy, .5, 1, true);
+            this.animation.drawFrame(this.game.clockTick, ctx, adjustedx, adjustedy, .5, 1, true);
             // this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5, 1, true);
 
         }
+        this.animation.drawFrame(this.game.clockTick, ctx, adjustedx, adjustedy, .5, 1, true);
+
 
         ctx.beginPath();
         ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);

@@ -205,37 +205,6 @@ class Micro {
             this.healthBar.update(this);
 
             // Collisions
-            // console.log(this.game.entities);
-            // var that = this;
-            // this.game.entities.array.forEach(entity => {
-            //     if (entity.BB && that.BB.collide(entity.BB)) {
-
-            //         if (that.state == 2) {
-            //             if (entity instanceof Cell || entity instanceof Lymphocyte && !entity.dead) {
-            //                 // entities need to decrease health (is that variable in their classes)
-            //                 entity.health -= 1;
-            //                 if (entity.health <= 0) {
-            //                     entity.dead = true;
-            //                 }
-            //             }
-
-            //         } else {
-            //             if (entity instanceof Cell) {
-            //                 // Cell touched the Micro, make the Micro take damage
-            //                 this.healthpoints -= 1;
-
-            //                 // Check if Micro's healthpoints reach zero
-            //                 if (entity.healthpoints <= 0) {
-            //                     this.dead = true;
-            //                     // Additional logic for Micro's death can be added here
-            //                 }
-            //             }
-            //         }
-            //     }
-            //     that.updateBB();
-
-            // });
-
             var that = this;
             for (const entity of this.game.entities) {
                 if (entity instanceof NormalTiles || entity instanceof RippedTiles) {
@@ -243,14 +212,14 @@ class Micro {
 
                 } else {
                     if (entity !== that && this.BB.collide(entity.BB)) {
-                        console.log(entity.BB);
+                        //console.log(entity.BB);
 
                         if (that.state == 2) {
-                            if (entity instanceof Cell || entity instanceof Lymphocyte && !entity.dead) {
+                            if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
                                 // entities need to decrease health (is that variable in their classes)
-                                entity.healthpoints -= 1;
+                                entity.decreaseHealth();
                                 console.log("Entity: " + entity + " health: " + this.healthpoints);
-                                if (entity.health <= 0) {
+                                if (entity.healthpoints <= 0) {
                                     entity.dead = true;
                                 }
                             }
