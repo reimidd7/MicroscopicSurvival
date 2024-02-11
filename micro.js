@@ -207,24 +207,27 @@ class Micro {
             // Collisions
             var that = this;
             for (const entity of this.game.entities) {
+
+                // Skip these tiles because there is no collision.
                 if (entity instanceof NormalTiles || entity instanceof RippedTiles) {
                     //console.log(entity.BB);
 
                 } else {
+                    // check for collision
                     if (entity !== that && this.BB.collide(entity.BB)) {
-                        //console.log(entity.BB);
 
+                        // when punching Micro causes Cell and Lymphocyte's health to decline
                         if (that.state == 2) {
                             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
-                                // entities need to decrease health (is that variable in their classes)
                                 entity.decreaseHealth();
-                                console.log("Entity: " + entity + " health: " + this.healthpoints);
+
                                 if (entity.healthpoints <= 0) {
                                     entity.dead = true;
                                 }
                             }
-
                         } else {
+
+                            // Cell causes Micro's health to decline (used to be in Cell.js)
                             if (entity instanceof Cell && !entity.dead) {
                                 // Cell touched the Micro, make the Micro take damage
                                 if (entity.timer <= 0) {
@@ -236,15 +239,21 @@ class Micro {
                                 if (entity.timer < 0) {
                                     entity.timer = 0;
                                 }
-
                                 // Check if Micro's healthpoints reach zero
                                 if (entity.healthpoints <= 0) {
                                     this.dead = true;
                                 }
                             }
+
+                            // Check collisions with the antibodies MUST ADD BOUNDING BOXES TO THE ANTIBODIES (theres a chance this might be weird)
+                            // if (entity instanceof Antibody) {}
+
+                            // Check wall collisions (topbottomwalls & leftrightwalls & corners) 
+                            //if (entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) {}
+
+                            // Check collisions with bones and redblood cells
+                            //if (entity instanceof Bone || entity instanceof RedBloodCell) {}
                         }
-
-
 
                     }
 
@@ -253,8 +262,6 @@ class Micro {
 
             }
         }
-
-
     };
 
     draw(ctx) {
