@@ -7,15 +7,24 @@ class SceneManager {
         this.x = 0;
         this.y = 0;
 
+        this.title = true;
+
         this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
 
 
-        this.loadLevel(levelOne);
+        this.loadLevel(levelOne, true);
     }
 
-    loadLevel(level) {
-        //this.game.entities = [];
+    // clearEntities() {
+    //     this.game.entities.foreach(function (entity) {
+    //         entity.removeFromWorld = true;
+    //     });
+    // };
+
+    loadLevel(level, title) {
+        this.title = title;
         this.level = level;
+       // this.clearEntities();
 
 
         for (var i = 0; i < level.cornertiles.length; i++) {
@@ -84,6 +93,7 @@ class SceneManager {
     };
 
     update() {
+        PARAMS.DEBUG = document.getElementById("debug").checked;
 
         let midpointX = PARAMS.CANVAS_WIDTH / 2 - MICRO_WIDTH / 2;
         let midpointY = PARAMS.CANVAS_HEIGHT / 2 - MICRO_HEIGHT / 2;
@@ -95,7 +105,15 @@ class SceneManager {
 
     };
 
-    draw() {
+    draw(ctx) {
+        //title screen 
+        if (this.title) {
+            const width = 100;
+            const height = 100;
+            ctx.fillStyle = "White";
+            ctx.strokeRect(0,0,width, height);
+
+        }
 
     };
 }

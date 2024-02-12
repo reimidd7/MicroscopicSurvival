@@ -53,8 +53,12 @@ class CornerTiles {
         //ctx.restore();
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         //ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x, this.y, 32, 32);
-        ctx.strokeStyle = 'White';
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+
+        if (PARAMS.DEBUG) {
+            ctx.strokeStyle = 'White';
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+        }
+
 
     };
 
@@ -96,8 +100,10 @@ class TopBottomWalls {
         }
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         // ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x, this.y, 32, 32);
+        if (PARAMS.DEBUG) {
         ctx.strokeStyle = 'White';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+        }
     };
 
 };
@@ -138,8 +144,10 @@ class LeftRightWalls {
         }
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         //  ctx.drawImage(this.spritesheet, 143, 31, 16, 16, this.x, this.y, 32, 32);
+        if (PARAMS.DEBUG) {
         ctx.strokeStyle = 'White';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+        }
     };
 
 };
@@ -166,8 +174,10 @@ class CharacterTiles {
         ctx.drawImage(this.spritesheet, 62, 0, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32 * this.scale, 32 * this.scale);
         // ctx.drawImage(this.spritesheet, 62, 0, 16, 16, this.x, this.y, 32 * this.scale, 32 * this.scale);
 
+        if (PARAMS.DEBUG) {
         ctx.strokeStyle = 'White';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+        }
 
     };
 
@@ -194,8 +204,11 @@ class RippedTiles {
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         ctx.drawImage(this.spritesheet, 79, 31, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
         // ctx.drawImage(this.spritesheet, 79, 31, 16, 16, this.x, this.y, 32, 32);
+
+        if (PARAMS.DEBUG) {
         ctx.strokeStyle = 'White';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+        }
     };
 
 };
@@ -221,8 +234,11 @@ class NormalTiles {
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         ctx.drawImage(this.spritesheet, 80, 0, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
         // ctx.drawImage(this.spritesheet, 80, 0, 16, 16, this.x, this.y, 32, 32);
+
+        if (PARAMS.DEBUG) {
         ctx.strokeStyle = 'White';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+        }
 
     };
 

@@ -223,10 +223,13 @@ class Cell {
             // this.animator[this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
 
         }
+
+        if (PARAMS.DEBUG) {
         ctx.beginPath();
         ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
         ctx.strokeStyle = 'red';
         ctx.stroke();
+        }
 
     }
 }

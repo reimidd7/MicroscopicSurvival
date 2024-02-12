@@ -272,14 +272,16 @@ class Micro {
         this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1, true);
 
 
-
-        ctx.beginPath();
-        ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
-        ctx.strokeStyle = 'red';
-        ctx.stroke();
-
         const barX = (ctx.canvas.width - this.healthBar.barWidth) / 2;
         const barY = ctx.canvas.height - this.healthBar.barHeight;
         this.healthBar.draw(ctx, barX, barY, this);
+
+        
+        if (PARAMS.DEBUG) {
+            ctx.beginPath();
+            ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            }
     };
 };
