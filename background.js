@@ -6,7 +6,7 @@ class CornerTiles {
     constructor(game, x, y, flip) {
         Object.assign(this, { game, x, y, flip });
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/redtiles_bright.png");
         this.BB = new BoundingBox(this.x, this.y, 32, 32);
 
 
@@ -64,7 +64,7 @@ class TopBottomWalls {
     constructor(game, x, y, flip) {
         Object.assign(this, { game, x, y, flip });
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/redtiles_bright.png");
     }
 
     update() {
@@ -103,7 +103,7 @@ class LeftRightWalls {
     constructor(game, x, y, flip) {
         Object.assign(this, { game, x, y, flip });
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/redtiles_bright.png");
     }
 
     update() {
@@ -142,7 +142,7 @@ class CharacterTiles {
     constructor(game, x, y, scale) {
         Object.assign(this, { game, x, y, scale });
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_light.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/redtiles_light.png");
     }
 
     update() {
@@ -169,7 +169,7 @@ class RippedTiles {
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/redtiles_med.png");
     }
 
     update() {
@@ -194,7 +194,7 @@ class NormalTiles {
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/redtiles_med.png");
     }
 
     update() {
