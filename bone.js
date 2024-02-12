@@ -20,13 +20,7 @@ class Bone {
     };
 
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1, true);
-        // this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
-
-        ctx.beginPath();
-        ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
-        ctx.strokeStyle = 'red';
-        ctx.stroke();
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
     };
 
     update() {

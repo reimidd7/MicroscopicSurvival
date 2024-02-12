@@ -18,6 +18,7 @@ class RedBloodCell {
     }
 
     draw(ctx) {
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1, true);
         // this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
 
