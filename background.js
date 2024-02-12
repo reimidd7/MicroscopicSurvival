@@ -7,6 +7,9 @@ class CornerTiles {
         Object.assign(this, { game, x, y, flip });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+        this.BB = new BoundingBox(this.x, this.y, 32, 32);
+
+
     }
 
     update() {

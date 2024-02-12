@@ -2,7 +2,7 @@ class Lymphocyte {
 
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
-        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/LymphocyteEdited.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./LymphocyteEdited.png");
 
 
         this.animator = new Animator(ASSET_MANAGER.getAsset("./LymphocyteEdited.png"), 0, 0, 160, 160, 3, 0.45);
