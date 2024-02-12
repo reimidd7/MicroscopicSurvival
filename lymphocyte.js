@@ -5,7 +5,7 @@ class Lymphocyte {
         this.spritesheet = ASSET_MANAGER.getAsset("./sprites/LymphocyteEdited.png");
 
 
-        this.animation = new Animator(this.spritesheet, 0, 0, 160, 160, 3, 0.45);
+        this.animator = new Animator(ASSET_MANAGER.getAsset("./LymphocyteEdited.png"), 0, 0, 160, 160, 3, 0.45);
 
         this.dead = false;
         this.healthpoints = 2;
@@ -36,7 +36,7 @@ class Lymphocyte {
         var adjustedx = this.x - this.game.camera.x;
         var adjustedy = this.y - this.game.camera.y;
         if (this.dead) {
-            this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/LymphocyteEdited.png"), 640, 0, 160, 160, 1, 1);
+            this.animator = new Animator(ASSET_MANAGER.getAsset("LymphocyteEdited.png"), 640, 0, 160, 160, 1, 1);
             this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5, 1, true);
         } else {
             if (this.elapsedTime > this.fireRate) {

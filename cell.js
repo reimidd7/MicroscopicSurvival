@@ -4,7 +4,7 @@ class Cell {
 
         //this.game.cell = this;
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/cellman.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./cellman.png");
 
         this.facing = 0; //0 = right // 1 = left, dead, stick, idle
 

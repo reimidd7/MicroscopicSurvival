@@ -3,7 +3,7 @@ class Bone {
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/bones.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./bones.png");
         this.animator = new Animator(this.spritesheet, 0, 0, 47, 45, 4, 0.4);
 
        this.updateBB();

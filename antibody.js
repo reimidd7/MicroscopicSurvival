@@ -5,7 +5,7 @@ class Antibody {
 
         this.removeFromWorld = false;
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/antibody.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./antibody.png");
 
         this.x = x;
         this.y = y;
