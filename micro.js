@@ -11,24 +11,22 @@ class Micro {
         this.facing = 0; // 0 = forward, 1 = right, 2 = left
         this.state = 0; //  0 = idle, 1 = walking, 2 = punching, 3 = running (PU)
 
-        // this.dead = false;
-        // dead animation: this.animations = new Animator(this.spritesheet, 2, 0, 64, 60, 3, 0.4 )
+        this.dead = false;
+
         // health decline animation: this.animations = new Animator(this.spritesheet, 0, 75, 65, 60, 1, 0.1 )
 
         this.velocity = { x: 0, y: 0 };
 
         this.updateBB();
 
-        this.radius = this.BB.radius;
+        //this.radius = this.BB.radius;
 
         // Micro's animations
         this.animations = [];
         this.loadAnimations();
-        //this.animation = this.animations[this.state][this.size][this.facing];
 
         // Testing cellman killing micro
         this.healthBar = new HealthBar(this, true);
-        this.dead = false;
         this.maxHealth = 100;
         this.healthpoints = this.maxHealth;
     };
@@ -78,9 +76,9 @@ class Micro {
         // PUNCHING - not implemented
         // State 2 = punching
         // facing 0 = forward facing
-        this.animations[2][0][0] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.1); //not implemented
-        this.animations[2][0][1] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.1); //not implemented
-        this.animations[2][0][2] = new Animator(this.spritesheet, 5, 200, 64, 60, 3, 0.1); //not implemented
+        this.animations[2][0][0] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
+        this.animations[2][0][1] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
+        this.animations[2][0][2] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
 
         // RUNNING - not implemented
         // State 3 = running
@@ -106,14 +104,9 @@ class Micro {
     };
 
     updateBB() {
-        // this.centerX = this.x + 64 / 2;
-        // this.centerY = this.y + 60 / 2;
-        // const radius = 60;
-
         if (this.size === 0) {
             this.BB = new BoundingCircle(this.x + 64 / 2, this.y + 60 / 2, 25);
         }
-        
     }
 
     //left wall
@@ -136,110 +129,155 @@ class Micro {
     update() {
         // all ground physics
 
-        const WALK = 500;
-        this.velocity.x = 0;
-        this.velocity.y = 0;
+        if (this.dead) {
+            this.velocity.x = 0;
+            this.velocity.y = 0;
 
-        //deal with power ups here?
-
-        //update velocity
-        if (this.game.left) this.velocity.x -= WALK;
-        if (this.game.right) this.velocity.x += WALK;
-        if (this.game.up) this.velocity.y -= WALK;
-        if (this.game.down) this.velocity.y += WALK;
-
-
-        //update position
-        if (this.collideLeft() || this.collideRight()) {
-            this.velocity.x = -this.velocity.x;
-            if (this.collideLeft()) {
-                this.x = this.BB.radius;
-            }
-            if (this.collideRight()) {
-                this.x = 1010 - this.BB.radius;
-            }
-    
-            //random direction after hitting wall
-            this.velocity.x = Math.random() * 100 + 50;
-            this.updateBB();
-
-        } else if (this.collideBottom() || this.collideTop()) {
-            this.velocity.y = -this.velocity.y;
-            if (this.collideBottom()) {
-                this.y = this.BB.radius;
-            }
-            if (this.collideTop()) {
-                this.y = 760 - this.BB.radius;
-            }
-
-            //random direction after hitting wall
-            this.velocity.y = Math.random() * 100 + 50;
-            this.updateBB();
-            
         } else {
-            
-            this.x += this.velocity.x * this.game.clockTick;
-            this.y += this.velocity.y * this.game.clockTick;
-            this.updateBB();
-        }
+            const WALK = 500;
+            this.velocity.x = 0;
+            this.velocity.y = 0;
+
+            //deal with power ups here?
+
+            //update velocity
+            if (this.game.left) this.velocity.x -= WALK;
+            if (this.game.right) this.velocity.x += WALK;
+            if (this.game.up) this.velocity.y -= WALK;
+            if (this.game.down) this.velocity.y += WALK;
+
+            //update position
+            if (this.collideLeft() || this.collideRight()) {
+                this.velocity.x = -this.velocity.x;
+                if (this.collideLeft()) {
+                    this.x = this.BB.radius;
+                }
+                if (this.collideRight()) {
+                    this.x = 1010 - this.BB.radius;
+                }
+
+                //random direction after hitting wall
+                this.velocity.x = Math.random() * 100 + 50;
+                this.updateBB();
+
+            } else if (this.collideBottom() || this.collideTop()) {
+                this.velocity.y = -this.velocity.y;
+                if (this.collideBottom()) {
+                    this.y = this.BB.radius;
+                }
+                if (this.collideTop()) {
+                    this.y = 760 - this.BB.radius;
+                }
+
+                //random direction after hitting wall
+                this.velocity.y = Math.random() * 100 + 50;
+                this.updateBB();
+
+            } else {
+                this.x += this.velocity.x * this.game.clockTick;
+                this.y += this.velocity.y * this.game.clockTick;
+                this.updateBB();
+            }
 
 
-        // update state!
-        if (this.game.A) {
-            this.state = 2;
-        } else if (Math.abs(this.velocity.x) > WALK) {
-            this.state = 1;
-        } else if (Math.abs(this.velocity.x) <= WALK) {
-            this.state = 1;
-        } else if (Math.abs(this.velocity.y) > WALK) {
-            this.state = 1;
-        } else if (Math.abs(this.velocity.y) <= WALK) {
-            this.state = 1;
-        } else {
+            // update state!
+            if (this.game.A) {
+                this.state = 2;
+            } else if (Math.abs(this.velocity.x) > WALK) {
+                this.state = 1;
+            } else if (Math.abs(this.velocity.x) <= WALK) {
+                this.state = 1;
+            } else if (Math.abs(this.velocity.y) > WALK) {
+                this.state = 1;
+            } else if (Math.abs(this.velocity.y) <= WALK) {
+                this.state = 1;
+            } else {
 
-        }
+            }
 
-        // update the direction
-        if (this.velocity.x < 0) this.facing = 2;
-        if (this.velocity.x > 0) this.facing = 1;
-        if (this.velocity.y != 0) this.facing = 0;
-        if (this.velocity.y == 0 && this.velocity.x == 0) this.facing = 0, this.state = 0;
-        if (this.velocity.y == 0 && this.velocity.x == 0 && this.game.A) this.facing = 0, this.state = 2; //ugly code but punching while idle need this
+            // update the direction
+            if (this.velocity.x < 0) this.facing = 2;
+            if (this.velocity.x > 0) this.facing = 1;
+            if (this.velocity.y != 0) this.facing = 0;
+            if (this.velocity.y == 0 && this.velocity.x == 0) this.facing = 0, this.state = 0;
+            if (this.velocity.y == 0 && this.velocity.x == 0 && this.game.A) this.facing = 0, this.state = 2; //ugly code but punching while idle need this
 
-        this.healthBar.update(this);
+            this.healthBar.update(this);
 
-        // Check for collisions with other cells
-        for (const entity of this.game.entities) {
-             if (entity !== this && entity instanceof Micro) {
-                const dx = this.x - entity.x;
-                const dy = this.y - entity.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+            // Collisions
+            var that = this;
+            for (const entity of this.game.entities) {
 
-            if (distance < this.radius + entity.BB.radius) {
-            // Cell touched the Micro, make the Micro take damage
-            entity.healthpoints -= 1;
+                // Skip these tiles because there is no collision.
+                if (entity instanceof NormalTiles || entity instanceof RippedTiles) {
+                    //console.log(entity.BB);
 
-            // You might want to add additional logic or effects here
+                } else {
+                    // check for collision
+                    if (entity !== that && this.BB.collide(entity.BB)) {
 
-            // Check if Micro's healthpoints reach zero
-            if (entity.healthpoints <= 0) {
-                entity.dead = true;
-                // Additional logic for Micro's death can be added here
+                        // when punching Micro causes Cell and Lymphocyte's health to decline
+                        if (that.state == 2) {
+                            if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
+                                entity.decreaseHealth();
+
+                                if (entity.healthpoints <= 0) {
+                                    entity.dead = true;
+                                }
+                            }
+                        } else {
+
+                            // Cell causes Micro's health to decline (used to be in Cell.js)
+                            if (entity instanceof Cell && !entity.dead) {
+                                // Cell touched the Micro, make the Micro take damage
+                                if (entity.timer <= 0) {
+                                    this.healthpoints -= 1;
+                                    entity.timer = 3;
+                                }
+                                // makes it so micro doesnt die as quick
+                                entity.timer -= this.game.clockTick;
+                                if (entity.timer < 0) {
+                                    entity.timer = 0;
+                                }
+                                // Check if Micro's healthpoints reach zero
+                                if (entity.healthpoints <= 0) {
+                                    this.dead = true;
+                                }
+                            }
+
+                            // Check collisions with the antibodies MUST ADD BOUNDING BOXES TO THE ANTIBODIES (theres a chance this might be weird)
+                            // if (entity instanceof Antibody) {}
+
+                            // Check wall collisions (topbottomwalls & leftrightwalls & corners) 
+                            //if (entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) {}
+
+                            // Check collisions with bones and redblood cells
+                            //if (entity instanceof Bone || entity instanceof RedBloodCell) {}
+                        }
+
+                    }
+
+                }
+
+
             }
         }
-    }
-}
-
-
     };
 
     draw(ctx) {
-        this.animation = this.animations[this.state][this.size][this.facing];
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, true);
+        if (this.dead) {
+            this.animation = new Animator(this.spritesheet, 2, 0, 64, 60, 3, 0.4);
+
+        } else {
+            this.animation = this.animations[this.state][this.size][this.facing];
+        }
+
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1, true);
+
 
 
         ctx.beginPath();
-        ctx.arc(this.BB.x, this.BB.y, this.BB.radius, 0, 2 * Math.PI);
+        ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
         ctx.strokeStyle = 'red';
         ctx.stroke();
 
