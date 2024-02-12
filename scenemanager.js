@@ -58,7 +58,7 @@ class SceneManager {
             }
         }
 
-        if (level.redbloodcell) {
+        if (level.redbloodcells) {
             for (var i = 0; i < level.redbloodcells.length; i++) {
                 let blood = level.redbloodcells[i];
                 this.game.addEntity(new RedBloodCell(this.game, blood.x, blood.y));
