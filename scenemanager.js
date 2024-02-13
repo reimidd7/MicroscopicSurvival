@@ -8,9 +8,16 @@ class SceneManager {
         this.y = 0;
 
         this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
+        this.microLives =3;
 
+        // Initialize counts
+        this.lymphocyteCount = 0;
+        this.cellCount = 0;
 
         this.loadLevel(levelOne);
+
+        this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("./speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
+        // this.minimap = new Minimap(this.game, 0, 0, 100, 100); // Adjust x, y, w, h as needed
     }
 
     loadLevel(level) {
@@ -81,8 +88,11 @@ class SceneManager {
 
         this.game.addEntity(this.micro);
 
+        this.updateCounts();
+
     };
 
+    
     update() {
 
         let midpointX = PARAMS.CANVAS_WIDTH / 2 - MICRO_WIDTH / 2;
@@ -95,7 +105,72 @@ class SceneManager {
 
     };
 
-    draw() {
 
+    //start of HUD
+
+    // How many enemies are in the level
+    updateCounts() {
+    
+        this.lymphocyteCount = this.level.lymphocyte ? this.level.lymphocyte.length : 0;
+     
+        this.cellCount = this.level.cell ? this.level.cell.length : 0;
+    }
+
+    // Create the HUD with all components.
+    renderHUD() {
+
+        //Number of Enemies and Level
+        const xPositionLeft = 10; 
+        const xPositionCenter = (PARAMS.CANVAS_WIDTH - this.game.ctx.measureText("Level 1: " + (this.level.level1Count || 0)).width) / 2; // Center alignment position
+        const yPosition = 20;
+        const lineHeight = 30;
+        const fontSize = 15;
+        this.game.ctx.font = fontSize + "px Comic Sans MS";
+        this.game.ctx.fillStyle = "white";
+    
+        
+        this.game.ctx.fillText("Lymphocytes: " + this.lymphocyteCount, xPositionLeft, yPosition);
+    
+        
+        this.game.ctx.fillText("Cellman: " + this.cellCount, xPositionLeft, yPosition + lineHeight);
+    
+        const level1Text = "Level 1 "; // Text for level 1
+        // const level1Count = this.level.level1Count || 0; // Get level 1 count from level object
+        //this.game.ctx.fillText(level1Text + level1Count, xPositionCenter, yPosition + 2 * lineHeight);
+        this.game.ctx.fillText(level1Text, xPositionCenter, yPosition);
+
+        
+        const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x position as needed
+        const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
+        this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions as needed 
+
+
+
+        //Micro lives as circle change into hearts when sprite is found 
+        const circleSize = 20;
+        const circleGap1 = 20;
+        const circleY1 = 20;
+        const circleColor = 'green';
+        const greyColor = 'grey';
+
+        for (let i = 0; i < 3; i++) {
+            const circleX = PARAMS.CANVAS_WIDTH - (3 - i) * (circleSize + circleGap1);
+            this.game.ctx.beginPath();
+            this.game.ctx.arc(circleX, circleY1, circleSize, 0, 2 * Math.PI);
+            this.game.ctx.fillStyle = i < this.microLives ? circleColor : greyColor;
+            this.game.ctx.fill();
+            this.game.ctx.closePath();
+        }
+    
+    }
+    
+    
+
+    draw() {
+        this.renderHUD();
     };
+
+
+
+    
 }

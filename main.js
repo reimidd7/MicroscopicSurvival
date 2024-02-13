@@ -18,7 +18,6 @@ ASSET_MANAGER.queueDownload("./otherTiles.png");
 ASSET_MANAGER.queueDownload("./redtiles_bright.png");
 ASSET_MANAGER.queueDownload("./redtiles_light.png");
 ASSET_MANAGER.queueDownload("./redtiles_med.png");
-// ASSET_MANAGER.queueDownload("./hudlives.png");
 ASSET_MANAGER.queueDownload("./bones.png");
 
 ASSET_MANAGER.downloadAll(() => {

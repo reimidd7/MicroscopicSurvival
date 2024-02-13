@@ -223,6 +223,7 @@ class Micro {
 
                                 if (entity.healthpoints <= 0) {
                                     entity.dead = true;
+                                   
                                 }
                             }
                         } else {
@@ -232,7 +233,7 @@ class Micro {
                                 // Cell touched the Micro, make the Micro take damage
                                 if (entity.timer <= 0) {
                                     this.healthpoints -= 1;
-                                    entity.timer = 3;
+                                    entity.timer = 1;
                                 }
                                 // makes it so micro doesnt die as quick
                                 entity.timer -= this.game.clockTick;

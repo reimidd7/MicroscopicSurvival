@@ -57,7 +57,7 @@ class Cell {
         const scalingFactor = Math.sqrt(this.game.entities.length / 30); // Adjust 30 based on your desired threshold
 
         // Adjust the speed as needed, considering the scaling factor
-        let chaseSpeed = 5 * scalingFactor;
+        let chaseSpeed = 1 * scalingFactor;
 
         // Check if there are only a few cells left
         if (this.game.entities.length <= 5) {
@@ -171,6 +171,9 @@ class Cell {
                             entity.x -= separationDistance * Math.cos(angle);
                             entity.y -= separationDistance * Math.sin(angle);
                         }
+
+                
+                        
 
                         // for (const entity of this.game.entities) {
                         //     if (entity !== this && entity instanceof Micro) {
