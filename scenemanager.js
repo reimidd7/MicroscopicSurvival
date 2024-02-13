@@ -8,14 +8,12 @@ class SceneManager {
         this.y = 0;
 
         this.title = true;
-        this.spritesheet = ASSET_MANAGER.getAsset("./TitleSpritesheet.png")
+        this.spritesheet = ASSET_MANAGER.getAsset("./TitleSpritesheet.png");
         this.animation = new Animator(this.spritesheet, 143, 75, 52, 40, 3, 0.3); //flea
         this.animation2 = new Animator(this.spritesheet, 116, 0, 75, 70, 3, 0.3); //bird
         this.animation3 = new Animator(this.spritesheet, 148, 420, 48, 30, 3, 0.3); //dog
         this.animation4 = new Animator(this.spritesheet, 7, 280, 145, 140, 3, 0.2); //horse
         this.animation5 = new Animator(this.spritesheet, 108, 121, 74, 140, 3, 0.2); //human
-
-
 
         this.menuSelect = {
             start: false
@@ -86,6 +84,8 @@ class SceneManager {
             }
         }
 
+        this.game.addEntity(this.micro);
+
         if (level.lymphocyte) {
             for (var i = 0; i < level.lymphocyte.length; i++) {
                 let l = level.lymphocyte[i];
@@ -100,7 +100,7 @@ class SceneManager {
             }
         }
 
-        this.game.addEntity(this.micro);
+       
 
     };
 
@@ -112,12 +112,10 @@ class SceneManager {
 
         // should keep micro completely centered in the screen
         this.x = this.micro.x - midpointX;
-        console.log("midpoint" + midpointX);
         this.y = this.micro.y - midpointY;
 
         if (this.title && (this.game.click || this.game.A)) {
             if ((this.game.click && this.game.click.x > 278 && this.game.click.x < 382) && (this.game.click && this.game.click.y > 425 && this.game.click.y < 452)) {
-                console.log("in box");
                 this.title = false;
                 this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
                 this.loadLevel(levelOne, false);
@@ -131,10 +129,8 @@ class SceneManager {
             const width = PARAMS.CANVAS_WIDTH;
             const height = PARAMS.CANVAS_HEIGHT;
 
-
             ctx.fillStyle = "#a6a2a8";
             ctx.fillRect(0, 0, width, height);
-
 
             // Levels
             this.animation.drawFrame(this.game.clockTick, ctx, 164, 350, 1, true);
@@ -143,8 +139,15 @@ class SceneManager {
             this.animation4.drawFrame(this.game.clockTick, ctx, 355, 300, .65, true);
             this.animation5.drawFrame(this.game.clockTick, ctx, 460, 318, .5, true);
 
-            ctx.drawImage(ASSET_MANAGER.getAsset("./title.png"), 108, 38, 468, 209);
 
+            ctx.drawImage(ASSET_MANAGER.getAsset("./title.png"), 108, 48, 468, 209);
+
+            ctx.drawImage(ASSET_MANAGER.getAsset("./Micro_IDLE.png"), 140, 155, 128, 64);
+
+
+            ctx.font = "24px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("LEVELS:", 170, 320);
             ctx.font = "32px sans-serif";
             ctx.fillStyle = "White";
             ctx.fillText("START", PARAMS.CANVAS_WIDTH / 2 - 64, 450);
