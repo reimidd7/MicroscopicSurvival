@@ -126,7 +126,7 @@ class SceneManager {
             }
         }
 
-        this.game.addEntity(this.micro);
+        //this.game.addEntity(this.micro);
 
         this.updateCounts();
 
@@ -190,9 +190,9 @@ class SceneManager {
         this.game.ctx.fillText(level1Text, xPositionCenter, yPosition);
 
         
-        const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x position as needed
-        const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
-        this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions as needed 
+        //const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x position as needed
+        //const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
+        //this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions as needed 
 
 
 
@@ -223,6 +223,7 @@ class SceneManager {
             const width = PARAMS.CANVAS_WIDTH;
             const height = PARAMS.CANVAS_HEIGHT;
 
+
             ctx.fillStyle = "#a6a2a8";
             ctx.fillRect(0, 0, width, height);
 
@@ -249,9 +250,11 @@ class SceneManager {
 
 
         }
+
+        //Heads up display and mini map
         this.renderHUD();
 
-        this.minimap.draw(this.game.ctx);
+        this.minimap.draw(ctx);
     };
 
 
