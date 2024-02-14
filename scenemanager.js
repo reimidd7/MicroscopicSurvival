@@ -37,7 +37,7 @@ class SceneManager {
 
         this.loadLevel(levelOne, true);
 
-        this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("./speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
+        this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
         
         this.minimap = new Minimap(this.game, 0, 460,68); // Adjust size as needed
 
@@ -190,9 +190,9 @@ class SceneManager {
         this.game.ctx.fillText(level1Text, xPositionCenter, yPosition);
 
         
-        //const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x position as needed
-        //const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
-        //this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions as needed 
+        const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x position as needed
+        const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
+        this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions as needed 
 
 
 
