@@ -21,7 +21,7 @@ class Micro {
 
         this.updateBB();
 
-        this.radius = 25;
+        //this.radius = 25;
 
         // Micro's animations
         this.animations = [];
@@ -108,10 +108,10 @@ class Micro {
     updateBB() {
         if (this.size === 0) {
             this.BB = new BoundingCircle(this.x + 64 / 2, this.y + 60 / 2, 25);
-            this.radius = 25;
-        }  else if (this.size === 1) {
+            // this.radius = 25;
+        } else if (this.size === 1) {
             this.BB = new BoundingCircle(this.x + 88 / 2, this.y + 74 / 2, 50);
-            this.radius = 50;
+            //this.radius = 50;
         }
     };
 
@@ -169,13 +169,13 @@ class Micro {
             if (this.collideLeft() || this.collideRight()) {
                 this.velocity.x = -this.velocity.x;
                 if (this.collideLeft() && this.size == 0) {
-                    this.x = this.radius;
+                    this.x = this.BB.radius;
                 } else if (this.collideLeft() && this.size == 1) {
-                    this.x = this.radius - 20;
+                    this.x = this.BB.radius - 20;
                 }
 
                 if (this.collideRight()) {
-                    this.x = 955 - this.radius;
+                    this.x = 955 - this.BB.radius;
                 }
 
                 //random direction after hitting wall
@@ -186,13 +186,13 @@ class Micro {
             } else if (this.collideBottom() || this.collideTop()) {
                 this.velocity.y = -this.velocity.y;
                 if (this.collideTop() && this.size == 0) {
-                    this.y = this.radius;
+                    this.y = this.BB.radius;
                 } else if (this.collideTop() && this.size == 1) {
-                    this.y = this.radius - 20;
+                    this.y = this.BB.radius - 20;
                 }
 
                 if (this.collideBottom()) {
-                    this.y = 715 - this.radius;
+                    this.y = 715 - this.BB.radius;
                 }
 
                 //random direction after hitting wall
@@ -238,7 +238,6 @@ class Micro {
 
                 // Skip these tiles because there is no collision.
                 if (entity instanceof NormalTiles || entity instanceof RippedTiles) {
-                    //console.log(entity.BB);
 
                 } else {
                     // check for collision
@@ -255,7 +254,7 @@ class Micro {
 
                                 if (entity.healthpoints <= 0) {
                                     entity.dead = true;
-                                   
+
                                 }
                             }
                         } else {
@@ -265,15 +264,18 @@ class Micro {
                                 // Cell touched the Micro, make the Micro take damage
                                 if (entity.timer <= 0) {
                                     this.healthpoints -= 1;
-                                    entity.timer = 1;
+                                    console.log(entity.timer);
+                                    entity.timer = 2;
                                 }
                                 // makes it so micro doesnt die as quick
                                 entity.timer -= this.game.clockTick;
+
                                 if (entity.timer < 0) {
                                     entity.timer = 0;
                                 }
+
                                 // Check if Micro's healthpoints reach zero
-                                if (entity.healthpoints <= 0) {
+                                if (this.healthpoints <= 0) {
                                     this.dead = true;
                                 }
                             }
@@ -281,38 +283,35 @@ class Micro {
                             // Check collisions with the antibodies MUST ADD BOUNDING BOXES TO THE ANTIBODIES (theres a chance this might be weird)
                             // if (entity instanceof Antibody) {}
 
-                            // Check wall collisions (topbottomwalls & leftrightwalls & corners) 
-                            //if (entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) {}
-
-
                             //account for case where micro has size powerup!!!!!!!!!
                             // Check collisions with bones and redblood cells
                             if (entity instanceof Bone || entity instanceof RedBloodCell) {
+
                                 if (this.lastBB.x <= (entity.BB.x - this.radius)) { // Collided with the left
-                                    this.x = entity.BB.x - this.radius*3.5; 
+                                    this.x = entity.BB.x - this.BB.radius * 3.5;
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                     //console.log("left collision");
                                 } else if (this.lastBB.x >= entity.BB.x) { // Collided with the right
-                                    this.x = entity.BB.x + this.radius;
+                                    this.x = entity.BB.x + this.BB.radius;
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                     //console.log("right collision");
-                                }  
+                                }
 
                                 if (this.lastBB.y >= (entity.BB.y + this.radius)) { // Collided with the bottom
-                                    this.y = entity.BB.y + this.radius;
+                                    this.y = entity.BB.y + this.BB.radius;
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                     //console.log("bottom collision");
                                 } else if (this.lastBB.y <= entity.BB.y) { // Collided with the top
-                                    this.y = entity.BB.y - this.radius*2.5;
+                                    this.y = entity.BB.y - this.BB.radius * 2.5;
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
@@ -335,6 +334,11 @@ class Micro {
                         }
 
                     }
+                    // // Check wall collisions (topbottomwalls & leftrightwalls & corners) 
+                    // if (entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) {
+                    //     this.velocity.x = -1;
+                    //     this.velocity.y = -1;
+                    // }
                 }
             }
         }
@@ -347,7 +351,7 @@ class Micro {
         ctx.fill();
         ctx.closePath();
     }
-    
+
 
     draw(ctx) {
         if (this.dead) {
@@ -367,12 +371,12 @@ class Micro {
         const barY = ctx.canvas.height - this.healthBar.barHeight;
         this.healthBar.draw(ctx, barX, barY, this);
 
-        
+
         if (PARAMS.DEBUG) {
             ctx.beginPath();
             ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
             ctx.strokeStyle = 'red';
             ctx.stroke();
-            }
+        }
     };
 };

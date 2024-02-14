@@ -30,6 +30,7 @@ class BoundingCircle {
             if (distance < this.radius + oth.radius) {
                 return true;
             }
+            return false
         }
     };
 

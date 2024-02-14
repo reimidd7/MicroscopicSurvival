@@ -35,12 +35,14 @@ class SceneManager {
         this.lymphocyteCount = 0;
         this.cellCount = 0;
 
-        this.loadLevel(levelOne, true);
-
         this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
         
         this.minimap = new Minimap(this.game, 0, 460,68); // Adjust size as needed
 
+
+        this.loadLevel(levelOne, true);
+
+       
     
     }
 
@@ -103,7 +105,7 @@ class SceneManager {
             }
         }
 
-        this.game.addEntity(this.micro);
+        //this.game.addEntity(this.micro);
 
         if (level.lymphocyte) {
             for (var i = 0; i < level.lymphocyte.length; i++) {
@@ -126,7 +128,7 @@ class SceneManager {
             }
         }
 
-        //this.game.addEntity(this.micro);
+        this.game.addEntity(this.micro);
 
         this.updateCounts();
 
@@ -147,7 +149,7 @@ class SceneManager {
         if (this.title && (this.game.click || this.game.A)) {
             if ((this.game.click && this.game.click.x > 278 && this.game.click.x < 382) && (this.game.click && this.game.click.y > 425 && this.game.click.y < 452)) {
                 this.title = false;
-                this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
+                //this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
                 this.loadLevel(levelOne, false);
             }
         }
