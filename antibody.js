@@ -7,9 +7,6 @@ class Antibody {
 
         this.spritesheet = ASSET_MANAGER.getAsset("./antibody.png");
 
-        this.x = x;
-        this.y = y;
-
         this.target = target;
 
         this.speed = 30;
