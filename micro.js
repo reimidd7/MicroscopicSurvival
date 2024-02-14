@@ -155,7 +155,7 @@ class Micro {
             this.velocity.y = 0;
 
         } else {
-            const WALK = 500;
+            const WALK = 250;
             this.velocity.x = 0;
             this.velocity.y = 0;
 

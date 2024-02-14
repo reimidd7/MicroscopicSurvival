@@ -121,6 +121,13 @@ class SceneManager {
         //     }
         // }
 
+        if (level.cell) {
+            for (var i = 0; i < 5; i++) {
+                let c = level.cell[i];
+                this.game.addEntity(new Cell(this.game, c.x, c.y));
+            }
+        }
+
         if (level.powerups) {
             for (var i = 0; i < level.powerups.length; i++) {
                 let p = level.powerups[i];
