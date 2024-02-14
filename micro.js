@@ -287,7 +287,7 @@ class Micro {
                             // Check collisions with bones and redblood cells
                             if (entity instanceof Bone || entity instanceof RedBloodCell) {
 
-                                if (this.lastBB.x <= (entity.BB.x - this.radius)) { // Collided with the left
+                                if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
                                     this.x = entity.BB.x - this.BB.radius * 3.5;
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
@@ -303,7 +303,7 @@ class Micro {
                                     //console.log("right collision");
                                 }
 
-                                if (this.lastBB.y >= (entity.BB.y + this.radius)) { // Collided with the bottom
+                                if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
                                     this.y = entity.BB.y + this.BB.radius;
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
