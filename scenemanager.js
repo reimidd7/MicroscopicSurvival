@@ -124,6 +124,7 @@ class SceneManager {
     };
 
     draw(ctx) {
+        
         //title screen 
         if (this.title) {
             const width = PARAMS.CANVAS_WIDTH;
