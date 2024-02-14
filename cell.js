@@ -2,7 +2,9 @@ class Cell {
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
 
-        //this.game.cell = this;
+        
+
+        this.game.cell = this;
 
         this.spritesheet = ASSET_MANAGER.getAsset("./cellman.png");
 
@@ -57,7 +59,7 @@ class Cell {
         const scalingFactor = Math.sqrt(this.game.entities.length / 30); // Adjust 30 based on your desired threshold
 
         // Adjust the speed as needed, considering the scaling factor
-        let chaseSpeed = 5 * scalingFactor;
+        let chaseSpeed = 1 * scalingFactor;
 
         // Check if there are only a few cells left
         if (this.game.entities.length <= 5) {
@@ -172,6 +174,9 @@ class Cell {
                             entity.y -= separationDistance * Math.sin(angle);
                         }
 
+                
+                        
+
                         // for (const entity of this.game.entities) {
                         //     if (entity !== this && entity instanceof Micro) {
                         //         const dx = this.x - entity.x;
@@ -210,8 +215,15 @@ class Cell {
             this.updateBB();
 
         }
-    }
+    };
 
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Grey";
+        ctx.beginPath();
+        ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    
 
     draw(ctx) {
         if (this.dead) {
@@ -231,8 +243,8 @@ class Cell {
         ctx.stroke();
         }
 
-    }
-}
+    };
+};
 
 
 

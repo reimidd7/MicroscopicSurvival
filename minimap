@@ -1,0 +1,24 @@
+// class Minimap {
+//     constructor(game, x, y, w, h) {
+//         Object.assign(this, { game, x, y, w, h });
+//     };
+
+//     update() {
+//         // Update logic...
+//     };
+
+//     draw(ctx) {
+//         // Fill the background with light grey
+//         ctx.fillStyle = "#CCCCCC";
+//         ctx.fillRect(this.x, this.y, this.w, this.h);
+
+//         // Draw the border
+//         ctx.strokeStyle = "black";
+//         ctx.strokeRect(this.x, this.y, this.w, this.h);
+
+//         // Draw entities
+//         for (var i = 0; i < this.game.entities.length; i++) {
+//             this.game.entities[i].drawMinimap(ctx, this.x, this.y, this.w, this.h);
+//         }
+//     };
+// }

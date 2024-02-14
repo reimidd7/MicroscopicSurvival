@@ -22,7 +22,6 @@ ASSET_MANAGER.queueDownload("./Micro_IDLE.png");
 ASSET_MANAGER.queueDownload("./TitleSpritesheet.png");
 ASSET_MANAGER.queueDownload("./title.png");
 
-// ASSET_MANAGER.queueDownload("./hudlives.png");
 ASSET_MANAGER.queueDownload("./bones.png");
 
 ASSET_MANAGER.downloadAll(() => {
