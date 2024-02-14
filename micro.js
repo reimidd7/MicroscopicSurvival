@@ -249,7 +249,7 @@ class Micro {
                             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
                                 entity.decreaseHealth();
 
-                                if (entity.healthpoints < 0 && this.size == 1) {
+                                if (entity.healthpoints > 0 && this.size == 1) {
                                     entity.decreaseHealth(); //deal double damage (if able to) -- basically only works on lymphocytes
                                 }
 
@@ -278,7 +278,10 @@ class Micro {
                             }
 
                             // Check collisions with the antibodies MUST ADD BOUNDING BOXES TO THE ANTIBODIES (theres a chance this might be weird)
-                            // if (entity instanceof Antibody) {}
+                            if (entity instanceof Antibody) {
+                                entity.removeFromWorld = true;
+                                this.healthpoints -= 1;
+                            }
 
                             // Check wall collisions (topbottomwalls & leftrightwalls & corners) 
                             //if (entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) {}
@@ -327,14 +330,13 @@ class Micro {
                                     entity.removeFromWorld = true;
                                 } else if (entity.type === "size") {
                                     this.size = 1;
-                                    //fix this!!
                                     entity.removeFromWorld = true;
                                 }
                             }
                         }
 
-                    }
-                }
+                    } 
+                } 
             }
         }
     };
