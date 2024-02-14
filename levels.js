@@ -211,7 +211,11 @@ var levelOne = {
         {x: 400, y: 400}
     ],
     
-    //add power ups?
+    //add power ups (Level 1 only has speed and size powerups)
+    powerups:[
+        {x: 200, y: 350, type: "speed"},
+        {x: 475, y: 620, type: "size"}
+    ],
 
     //adding 1 lymphocyte
     lymphocyte: [

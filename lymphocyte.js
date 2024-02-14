@@ -10,7 +10,7 @@ class Lymphocyte {
         this.dead = false;
         this.healthpoints = 2;
 
-        this.speed = 100;
+        this.speed = 50;
 
         this.fireRate = 65;
         this.elapsedTime = 0;
