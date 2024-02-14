@@ -8,6 +8,9 @@ class SceneManager {
         this.y = 0;
 
         this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
+        this.cell = new Cell(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
+        this.lymphocyte = new Lymphocyte(this.game, 100, 100)
+
         this.microLives =3;
 
         // Initialize counts
@@ -17,7 +20,10 @@ class SceneManager {
         this.loadLevel(levelOne);
 
         this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("./speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
-        // this.minimap = new Minimap(this.game, 0, 0, 100, 100); // Adjust x, y, w, h as needed
+        
+        this.minimap = new Minimap(this.game, 0, 460,68); // Adjust size as needed
+
+    
     }
 
     loadLevel(level) {
@@ -168,9 +174,38 @@ class SceneManager {
 
     draw() {
         this.renderHUD();
+
+        this.minimap.draw(this.game.ctx);
     };
 
 
 
     
+}
+
+class Minimap {
+    constructor(game, x, y, size) {
+        Object.assign(this, { game, x, y, size });
+    }
+
+    update() {
+        // Update logic if needed
+    }
+
+    draw(ctx) {
+
+        //background color
+        ctx.fillStyle = "lightgrey";
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+        // Draw minimap border
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(this.x, this.y, this.size, this.size);
+
+        // Draw entities on the minimap
+        for (const entity of this.game.entities) {
+            if (entity.drawMinimap) {
+                entity.drawMinimap(ctx, this.x, this.y, this.size);
+            }
+        }
+    }
 }

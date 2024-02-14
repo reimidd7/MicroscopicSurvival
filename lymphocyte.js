@@ -31,6 +31,11 @@ class Lymphocyte {
 
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Purple";
+        ctx.fillRect(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, PARAMS.SCALE * Math.min(this.size + 1, 2));
+    }
+
     draw(ctx) {
         //Lymphocytes two states are ALIVE (and shooting) or DEAD (and not shooting)
         var adjustedx = this.x - this.game.camera.x;
@@ -65,4 +70,4 @@ class Lymphocyte {
         ctx.stroke();
     };
 
-}
+};

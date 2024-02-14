@@ -212,10 +212,10 @@ var levelOne = {
     ],
     //add power ups?
 
-    // //adding 1 lymphocyte
-    // lymphocyte: [
-    //     {x: 300, y: 100}
-    // ],
+    //adding 1 lymphocyte
+    lymphocyte: [
+        {x: 300, y: 100}
+    ],
 
     //adding 30 cellmans
     cell: [
@@ -236,13 +236,8 @@ var levelOne = {
         {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
        
 
-    ],
-
+    ]
     
-    //adding 1 lymphocyte
-    lymphocyte: [
-        {x: 300, y: 100}
-    ],
 
 
 };

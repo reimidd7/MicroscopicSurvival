@@ -265,6 +265,15 @@ class Micro {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Green";
+        ctx.beginPath();
+        ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+    }
+    
+
     draw(ctx) {
         if (this.dead) {
             this.animation = new Animator(this.spritesheet, 2, 0, 64, 60, 3, 0.4);

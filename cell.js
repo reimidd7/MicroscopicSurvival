@@ -2,7 +2,9 @@ class Cell {
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
 
-        //this.game.cell = this;
+        
+
+        this.game.cell = this;
 
         this.spritesheet = ASSET_MANAGER.getAsset("./cellman.png");
 
@@ -213,6 +215,11 @@ class Cell {
             this.updateBB();
 
         }
+    };
+
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Red";
+        ctx.fillRect(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, PARAMS.SCALE * Math.min(this.size + 1, 2));
     }
 
 
@@ -231,8 +238,8 @@ class Cell {
         ctx.strokeStyle = 'red';
         ctx.stroke();
 
-    }
-}
+    };
+};
 
 
 
