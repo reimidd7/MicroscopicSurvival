@@ -1,5 +1,11 @@
 const MICRO_WIDTH = 64;
 const MICRO_HEIGHT = 60;
+
+const LYMPOCYTE_WIDTH = 64;
+const LYMPOCYTE_HEIGHT = 60;
+
+const CELL_WIDTH = 64;
+const CELL_HEIGHT = 60;
 class SceneManager {
     constructor(game) {
         this.game = game;
@@ -9,7 +15,7 @@ class SceneManager {
 
         this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
         this.cell = new Cell(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
-        this.lymphocyte = new Lymphocyte(this.game, 100, 100)
+        this.lymphocyte = new Lymphocyte(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
 
         this.microLives =3;
 
@@ -104,10 +110,13 @@ class SceneManager {
         let midpointX = PARAMS.CANVAS_WIDTH / 2 - MICRO_WIDTH / 2;
         let midpointY = PARAMS.CANVAS_HEIGHT / 2 - MICRO_HEIGHT / 2;
 
+
         // should keep micro completely centered in the screen
         this.x = this.micro.x - midpointX;
         console.log("midpoint" + midpointX);
         this.y = this.micro.y - midpointY;
+
+
 
     };
 

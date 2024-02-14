@@ -33,8 +33,11 @@ class Lymphocyte {
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Purple";
-        ctx.fillRect(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, PARAMS.SCALE * Math.min(this.size + 1, 2));
+        ctx.beginPath();
+        ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+        ctx.fill();
     }
+    
 
     draw(ctx) {
         //Lymphocytes two states are ALIVE (and shooting) or DEAD (and not shooting)

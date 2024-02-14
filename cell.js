@@ -218,10 +218,12 @@ class Cell {
     };
 
     drawMinimap(ctx, mmX, mmY) {
-        ctx.fillStyle = "Red";
-        ctx.fillRect(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, PARAMS.SCALE * Math.min(this.size + 1, 2));
+        ctx.fillStyle = "Grey";
+        ctx.beginPath();
+        ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+        ctx.fill();
     }
-
+    
 
     draw(ctx) {
         if (this.dead) {
