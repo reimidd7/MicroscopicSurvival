@@ -119,6 +119,13 @@ class SceneManager {
             }
         }
 
+        if (level.powerups) {
+            for (var i = 0; i < level.powerups.length; i++) {
+                let p = level.powerups[i];
+                this.game.addEntity(new Powerup(this.game, p.x, p.y, p.type));
+            }
+        }
+
         this.game.addEntity(this.micro);
 
         this.updateCounts();

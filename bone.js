@@ -11,8 +11,8 @@ class Bone {
 
     updateBB() {
         // will need to add more when bones rotate and scale
-        this.BB = new BoundingCircle(this.x + 50 / 2 , this.y + 54 / 2, 15);
-    }
+        this.BB = new BoundingCircle(this.x + 50 / 2 , this.y + 54 / 2, 20);
+    };
 
     update() {
         // if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
@@ -30,10 +30,5 @@ class Bone {
         ctx.stroke();
         }
     };
-
-    update() {
-        //if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
-    };
-
 
 }

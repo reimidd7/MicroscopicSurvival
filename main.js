@@ -5,7 +5,7 @@ const ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("./LymphocyteEdited.png");
 ASSET_MANAGER.queueDownload("./RedBloodCell.png"); 
-ASSET_MANAGER.queueDownload("./speed.png");
+ASSET_MANAGER.queueDownload("speed.png");
 ASSET_MANAGER.queueDownload("clone.png");
 ASSET_MANAGER.queueDownload("explode.png");
 ASSET_MANAGER.queueDownload("shield.png");
