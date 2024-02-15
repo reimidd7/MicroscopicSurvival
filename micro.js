@@ -167,15 +167,17 @@ class Micro {
 
             //update position
             if (this.collideLeft() || this.collideRight()) {
-                this.velocity.x = -this.velocity.x;
+                this.velocity.x = -this.velocity.x - 2;
                 if (this.collideLeft() && this.size == 0) {
-                    this.x = this.radius;
+                    this.x = this.BB.radius;
                 } else if (this.collideLeft() && this.size == 1) {
-                    this.x = this.radius - 20;
+                    this.x = this.BB.radius - 20;
                 }
 
-                if (this.collideRight()) {
-                    this.x = 955 - this.radius;
+                if (this.collideRight() && this.size == 0) {
+                    this.x = 956 - this.BB.radius;
+                } else if (this.collideRight() && this.size == 1) {
+                    this.x = 956 - this.BB.radius;
                 }
 
                 //random direction after hitting wall
@@ -184,16 +186,19 @@ class Micro {
                 this.updateBB();
 
             } else if (this.collideBottom() || this.collideTop()) {
-                this.velocity.y = -this.velocity.y;
+                this.velocity.y = -this.velocity.y - 2;
                 if (this.collideTop() && this.size == 0) {
-                    this.y = this.radius;
+                    this.y = this.BB.radius;
                 } else if (this.collideTop() && this.size == 1) {
-                    this.y = this.radius - 20;
+                    this.y = this.BB.radius - 20;
                 }
 
-                if (this.collideBottom()) {
-                    this.y = 715 - this.radius;
+                if (this.collideBottom() && this.size == 0) {
+                    this.y = 716 - this.BB.radius;
+                } else if (this.collideBottom() && this.size == 1) {
+                    this.y = 716 - this.BB.radius;
                 }
+
 
                 //random direction after hitting wall
                 this.velocity.x = Math.random() * 100 + 50;
@@ -206,7 +211,6 @@ class Micro {
                 this.updateLastBB();
                 this.updateBB();
             }
-
 
             // update state!
             if (this.game.A) {

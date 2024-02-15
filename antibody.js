@@ -34,7 +34,7 @@ class Antibody {
         this.animator = new Animator(this.spritesheet, 0, 10, 126, 82, 7, 0.1);
 
         this.canvas = document.getElementById("canvas");
-        this.snapshot;
+        //this.snapshot = ctx.getImageData(0, 0, 684, 512);
     };
 
     //ADAPTED FROM PROFESSOR MARRIOTT'S TOWER-DEFENSE-DEMO CODE (ARROW CLASS)
@@ -100,7 +100,7 @@ class Antibody {
             //console.log(this.cache[frameNumber][angle]);
 
         }
-        this.snapshot = ctx.getImageData(0, 0, ctx.width, ctx.height);
+        this.snapshot = ctx.getImageData(0, 0, 684, 512);
         //prof said to try focusing on this
         //attempt
         //ctx.drawImage(this.cache[frameNumber][angle], 0 + 126 * frameNumber, 92, 126, 92, (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y, 126, 92);
@@ -134,8 +134,9 @@ class Antibody {
 
         //calls 7 times for all 7 frames in the spritesheet
         for (let k = 0; k < 7; k++) {
+            ctx.putImageData(this.snapshot, 0, 0);
             this.drawAngle(ctx, degrees, k);
-            ctx.putImageData(this.snapshot, this.x, this.y);
+            
         }
 
         //this.drawAngle(ctx, degrees, 1);
