@@ -7,10 +7,16 @@ class Antibody {
 
         this.spritesheet = ASSET_MANAGER.getAsset("./antibody.png");
 
-        this.x = x;
-        this.y = y;
+        this.frame1 = ASSET_MANAGER.getAsset("./antibody1.png");
+        this.frame2 = ASSET_MANAGER.getAsset("./antibody2.png");
+        this.frame3 = ASSET_MANAGER.getAsset("./antibody3.png");
+        this.frame4 = ASSET_MANAGER.getAsset("./antibody4.png");
+        this.frame5 = ASSET_MANAGER.getAsset("./antibody5.png");
+        this.frame6 = ASSET_MANAGER.getAsset("./antibody6.png");
+        this.frame7 = ASSET_MANAGER.getAsset("./antibody7.png");
 
-        this.target = target;
+        this.antibodySprites = [this.frame1, this.frame2, this.frame3, this.frame4, this.frame5, this.frame6, this.frame7];
+        //after on frame, do this, after 2 frames, do frame 2
 
         this.speed = 30;
 
@@ -26,6 +32,9 @@ class Antibody {
 
         this.cache = [];
         this.animator = new Animator(this.spritesheet, 0, 10, 126, 82, 7, 0.1);
+
+        this.canvas = document.getElementById("canvas");
+        this.snapshot;
     };
 
     //ADAPTED FROM PROFESSOR MARRIOTT'S TOWER-DEFENSE-DEMO CODE (ARROW CLASS)
@@ -33,8 +42,8 @@ class Antibody {
         this.facing = getFacing(this.velocity);
         if (angle < 0 || angle > 359) return;
 
-        var xOffset = 90;
-        var yOffset = 45;
+        var xOffset = 60;
+        var yOffset = 60;
 
 
         if (this.cache[frameNumber][angle].length == 0) {
@@ -50,6 +59,26 @@ class Antibody {
 
             //this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, false);
 
+            if (this.facing == 0) {
+                var xOffset = 0;
+                var yOffset = 450;
+            } else if (this.facing == 1) {
+                
+            } else if (this.facing == 2) {
+                
+            } else if (this.facing == 3) {
+                
+            } else if (this.facing == 4) {
+                
+            } else if (this.facing == 5) {
+                var xOffset = 60;
+                var yOffset = 60;
+            } else if (this.facing == 6) {
+                
+            } else if (this.facing == 7) {
+                
+            }
+
             offscreenCtx.save();
             offscreenCtx.translate(126, 126);
             offscreenCtx.rotate(radians);
@@ -63,23 +92,24 @@ class Antibody {
             //for reference
             //drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
 
-
             //working
-            offscreenCtx.drawImage(this.spritesheet, 0, 0, 126, 92, 126, 92, 84, 54);
+            offscreenCtx.drawImage(this.antibodySprites[frameNumber], 0, 0, 126, 92, 126, 92, 126, 92);
             offscreenCtx.restore();
             this.cache[frameNumber][angle] = offscreenCanvas;
 
             //console.log(this.cache[frameNumber][angle]);
 
         }
-
+        this.snapshot = ctx.getImageData(0, 0, ctx.width, ctx.height);
         //prof said to try focusing on this
         //attempt
-        //ctx.drawImage(this.cache[frameNumber][angle], 0 + 126 * frameNumber, 82, 126, 82, (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y, 126, 82);
+        //ctx.drawImage(this.cache[frameNumber][angle], 0 + 126 * frameNumber, 92, 126, 92, (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y, 126, 92);
 
         //working
         ctx.drawImage((this.cache[frameNumber][angle]), (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y);
 
+
+        //this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, false);
         //for reference
         // ctx.drawImage(this.spritesheet, 
         //     this.xStart + this.width*frame, this.yStart,
@@ -103,11 +133,12 @@ class Antibody {
         }
 
         //calls 7 times for all 7 frames in the spritesheet
-        // for (let k = 1; k <= 7; k++) {
-        //     this.drawAngle(ctx, degrees, k);
-        // }
+        for (let k = 0; k < 7; k++) {
+            this.drawAngle(ctx, degrees, k);
+            ctx.putImageData(this.snapshot, this.x, this.y);
+        }
 
-        this.drawAngle(ctx, degrees, 1);
+        //this.drawAngle(ctx, degrees, 1);
 
         this.updateBB();
         
