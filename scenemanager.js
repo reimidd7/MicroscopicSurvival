@@ -6,6 +6,7 @@ const LYMPOCYTE_HEIGHT = 60;
 
 const CELL_WIDTH = 64;
 const CELL_HEIGHT = 60;
+
 class SceneManager {
     constructor(game) {
         this.game = game;

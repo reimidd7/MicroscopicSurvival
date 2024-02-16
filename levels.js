@@ -1,4 +1,6 @@
 BLOCK_SIZE = 32;
+CANVAS_WIDTH = 1024;
+CANVAS_HEIGHT = 768;
 var levelOne = {
     // add music
     // label
@@ -201,25 +203,33 @@ var levelOne = {
     
     // ------------------------ ALL BACKGROUND ^^^^ CAN ADD MORE ABOVE HERE -------------------------------------
 
-    //add bones
+    //adds a bone randomly in each quadrent of the gameboard.
     bones: [
-        {x: 300, y: 300}
+        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (154 - 32) + 32}, 
+        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (308 - 155) + 155},
+        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (462 - 318) + 309},
+        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (616 - 472) + 463},
+        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (736 - 626) + 617}
     ],
 
-    //add red blood cells
+    //adds 1 red blood cell randomly in each quadrent of the gameboard.
     redbloodcells: [
-        {x: 400, y: 400}
+        {x: Math.random() * (480 - 32) + 32, y: Math.random() * (352 - 32) + 32}, // ++
+        {x: Math.random() * (992 - 480) + 480, y: Math.random() * (704 - 352) + 352}, // --
+        {x: Math.random() * (992 - 480) + 480, y: Math.random() * (352 - 32) + 32}, // -+
+        {x: Math.random() * (480 - 32) + 32, y: Math.random() * (704 - 352) + 352} //+-
+        
     ],
     
     //add power ups (Level 1 only has speed and size powerups)
     powerups:[
-        {x: 200, y: 350, type: "speed"},
-        {x: 475, y: 620, type: "size"}
+        {x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed"},
+        {x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size"}
     ],
 
     //adding 1 lymphocyte
     lymphocyte: [
-        {x: 500, y: 200}
+        {x: CANVAS_WIDTH / 2 - 104, y: CANVAS_HEIGHT / 2 - 104}
     ],
 
     //adding 30 cellmans
