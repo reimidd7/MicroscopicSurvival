@@ -5,33 +5,15 @@ class BoundingCircle {
     };
 
     collide(oth) {
+        const dx = this.x - oth.x;
+        const dy = this.y - oth.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (oth instanceof BoundingBox) {
-            let circleDistanceX = Math.abs(this.x - oth.x - oth.w / 2);
-            let circleDistanceY = Math.abs(this.y - oth.y - oth.h / 2);
-
-            if (circleDistanceX > (oth.w / 2 + this.radius) || circleDistanceY > (oth.h / 2 + this.radius)) {
-                return false;
-            }
-
-            if (circleDistanceX <= (oth.w / 2) || circleDistanceY <= (oth.h / 2)) {
-                return true;
-            }
-
-            let cornerDistance_sq = (circleDistanceX - oth.w / 2) ** 2 +
-                (circleDistanceY - oth.h / 2) ** 2;
-
-            return cornerDistance_sq <= (this.radius ** 2);
-        } else if (oth instanceof BoundingCircle) {
-            const dx = this.x - oth.x;
-            const dy = this.y - oth.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < this.radius + oth.radius) {
-                return true;
-            }
-            return false
+        if (distance < this.radius + oth.radius) {
+            return true;
         }
+        return false
+
     };
 
 

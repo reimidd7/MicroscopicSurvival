@@ -30,7 +30,7 @@ class SceneManager {
         this.cell = new Cell(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
         this.lymphocyte = new Lymphocyte(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
 
-        this.microLives =3;
+        this.microLives = 3;
 
         // Initialize counts
         this.lymphocyteCount = 0;
@@ -47,16 +47,16 @@ class SceneManager {
     
     }
 
-    // clearEntities() {
-    //     this.game.entities.foreach(function (entity) {
-    //         entity.removeFromWorld = true;
-    //     });
-    // };
+    clearEntities() {
+        for (const entity of this.game.entities) {
+            entity.removeFromWorld = true;
+        }
+    };
 
     loadLevel(level, title) {
         this.title = title;
         this.level = level;
-        // this.clearEntities();
+        this.clearEntities();
 
 
         for (var i = 0; i < level.cornertiles.length; i++) {
@@ -136,7 +136,12 @@ class SceneManager {
             }
         }
 
+        this.micro.removeFromWorld = false;
+
+        //this.micro = {x: PARAMS.CANVAS_WIDTH / 2, y: PARAMS.CANVAS_HEIGHT / 2};
+
         this.game.addEntity(this.micro);
+        
 
         this.updateCounts();
 
@@ -154,6 +159,7 @@ class SceneManager {
         this.x = this.micro.x - midpointX;
         this.y = this.micro.y - midpointY;
 
+
         if (this.title && (this.game.click || this.game.A)) {
             if ((this.game.click && this.game.click.x > 278 && this.game.click.x < 382) && (this.game.click && this.game.click.y > 425 && this.game.click.y < 452)) {
                 this.title = false;
@@ -161,6 +167,7 @@ class SceneManager {
                 this.loadLevel(levelOne, false);
             }
         }
+
 
 
     };
@@ -265,6 +272,10 @@ class SceneManager {
         this.renderHUD();
 
         this.minimap.draw(ctx);
+
+        if (this.micro.gameover) {
+            //add end screen here
+        }
     };
 
 

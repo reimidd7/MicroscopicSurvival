@@ -21,16 +21,18 @@ class Micro {
 
         this.updateBB();
 
-        //this.radius = 25;
+        // Testing cellman killing micro
+        this.healthBar = new HealthBar(this, true);
+        this.maxHealth = 10;
+        this.healthpoints = this.maxHealth;
+
+        this.gameover = false;
 
         // Micro's animations
         this.animations = [];
         this.loadAnimations();
 
-        // Testing cellman killing micro
-        this.healthBar = new HealthBar(this, true);
-        this.maxHealth = 100;
-        this.healthpoints = this.maxHealth;
+
     };
 
     loadAnimations() {
@@ -49,7 +51,6 @@ class Micro {
         // State 0 = idle animation
         // Facing 0 = forward facing
         this.animations[0][0][0] = new Animator(this.spritesheet, 2, 375, 64, 60, 2, 0.2);
-        // this.animations[0][1][0] = new Animator(this.spritesheet, ) not implemented
         // this.animations[0][2][0] = new Animator(this.spritesheet, ) not implemented
         // this.animations[0][3][0] = new Animator(this.spritesheet, ) not implemented
 
@@ -57,21 +58,18 @@ class Micro {
         // State 1 = walking
         // facing 0 = forward facing
         this.animations[1][0][0] = new Animator(this.spritesheet, 2, 260, 64, 60, 3, 0.2);
-        //this.animations[1][1][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][0] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][0] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 1 = right facing
         this.animations[1][0][1] = new Animator(this.spritesheet, 2, 320, 64, 60, 2, 0.2);
-        //this.animations[1][1][1] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][1] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][1] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 2 = left facing
         this.animations[1][0][2] = new Animator(this.spritesheet, 2, 135, 64, 60, 2, 0.2);
-        //this.animations[1][1][2] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][2][2] = new Animator(this.spritesheet, ) not implemented
         //this.animations[1][3][2] = new Animator(this.spritesheet, ) not implemented
 
@@ -81,37 +79,13 @@ class Micro {
         this.animations[2][0][0] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
         this.animations[2][0][1] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
         this.animations[2][0][2] = new Animator(this.spritesheet, 5, 200, 64, 60, 4, 0.1); //not implemented
-
-        // RUNNING - not implemented
-        // State 3 = running
-        // facing 0 = forward facing
-        //this.animations[2][0][0] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][1][0] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][2][0] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][3][0] = new Animator(this.spritesheet, ) not implemented
-
-        // State 3 = running
-        // facing 1 = right facing
-        //this.animations[2][0][1] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][1][1] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][2][1] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][3][1] = new Animator(this.spritesheet, ) not implemented
-
-        // State 3 = running
-        // facing 2 = left facing
-        //this.animations[2][0][2] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][1][2] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[2][2][2] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[1][3][2] = new Animator(this.spritesheet, ) not implemented
     };
 
     updateBB() {
         if (this.size === 0) {
-            this.BB = new BoundingCircle(this.x + 64 / 2, this.y + 60 / 2, 25);
-            // this.radius = 25;
+            this.BB = new BoundingCircle(this.x + 64 / 2, this.y + 60 / 2, 20);
         } else if (this.size === 1) {
-            this.BB = new BoundingCircle(this.x + 88 / 2, this.y + 74 / 2, 50);
-            //this.radius = 50;
+            this.BB = new BoundingCircle(this.x + 88 / 2, this.y + 74 / 2, 40);
         }
     };
 
@@ -151,11 +125,25 @@ class Micro {
         // all ground physics
 
         if (this.dead) {
-            this.velocity.x = 0;
-            this.velocity.y = 0;
+            this.game.camera.microLives -= 1;
+            if (this.game.camera.microLives > 0) {
+
+                this.dead = false;
+                this.healthpoints = this.maxHealth;
+                //this.x = PARAMS.CANVAS_WIDTH / 2;
+                //this.y = PARAMS.CANVAS_WIDTH / 2;
+                this.game.camera.loadLevel(levelOne, false);
+            } else {
+                console.log("dead");
+
+                this.velocity.x = 0;
+                this.velocity.y = 0;
+                this.gameover = true;
+                //add end of game screen here? or in draw()
+            }
 
         } else {
-            const WALK = 250;
+            const WALK = 150;
             this.velocity.x = 0;
             this.velocity.y = 0;
 
@@ -165,7 +153,27 @@ class Micro {
             if (this.game.up) this.velocity.y -= WALK;
             if (this.game.down) this.velocity.y += WALK;
 
-            //update position
+            // update state!
+            if (this.game.A) {
+                this.state = 2;
+            } else if (Math.abs(this.velocity.x) > WALK) {
+                this.state = 1;
+            } else if (Math.abs(this.velocity.x) <= WALK) {
+                this.state = 1;
+            } else if (Math.abs(this.velocity.y) > WALK) {
+                this.state = 1;
+            } else if (Math.abs(this.velocity.y) <= WALK) {
+                this.state = 1;
+            } else { }
+
+            // update the direction
+            if (this.velocity.x < 0) this.facing = 2;
+            if (this.velocity.x > 0) this.facing = 1;
+            if (this.velocity.y != 0) this.facing = 0;
+            if (this.velocity.y == 0 && this.velocity.x == 0) this.facing = 0, this.state = 0;
+            if (this.velocity.y == 0 && this.velocity.x == 0 && this.game.A) this.facing = 0, this.state = 2; //ugly code but punching while idle need this
+
+            //update wall collisions
             if (this.collideLeft() || this.collideRight()) {
                 this.velocity.x = -this.velocity.x;
                 if (this.collideLeft() && this.size == 0) {
@@ -207,31 +215,6 @@ class Micro {
                 this.updateBB();
             }
 
-
-            // update state!
-            if (this.game.A) {
-                this.state = 2;
-            } else if (Math.abs(this.velocity.x) > WALK) {
-                this.state = 1;
-            } else if (Math.abs(this.velocity.x) <= WALK) {
-                this.state = 1;
-            } else if (Math.abs(this.velocity.y) > WALK) {
-                this.state = 1;
-            } else if (Math.abs(this.velocity.y) <= WALK) {
-                this.state = 1;
-            } else {
-
-            }
-
-            // update the direction
-            if (this.velocity.x < 0) this.facing = 2;
-            if (this.velocity.x > 0) this.facing = 1;
-            if (this.velocity.y != 0) this.facing = 0;
-            if (this.velocity.y == 0 && this.velocity.x == 0) this.facing = 0, this.state = 0;
-            if (this.velocity.y == 0 && this.velocity.x == 0 && this.game.A) this.facing = 0, this.state = 2; //ugly code but punching while idle need this
-
-            this.healthBar.update(this);
-
             // Collisions
             var that = this;
             for (const entity of this.game.entities) {
@@ -255,6 +238,7 @@ class Micro {
                                 if (entity.healthpoints <= 0) {
                                     entity.dead = true;
 
+
                                 }
                             }
                         } else {
@@ -264,7 +248,6 @@ class Micro {
                                 // Cell touched the Micro, make the Micro take damage
                                 if (entity.timer <= 0) {
                                     this.healthpoints -= 1;
-                                    console.log(entity.timer);
                                     entity.timer = 2;
                                 }
                                 // makes it so micro doesnt die as quick
@@ -277,6 +260,7 @@ class Micro {
                                 // Check if Micro's healthpoints reach zero
                                 if (this.healthpoints <= 0) {
                                     this.dead = true;
+
                                 }
                             }
 
@@ -289,38 +273,76 @@ class Micro {
                             //account for case where micro has size powerup!!!!!!!!!
                             // Check collisions with bones and redblood cells
                             if (entity instanceof Bone || entity instanceof RedBloodCell) {
+                                if (that.size == 0 && this.BB.collide(entity.BB)) {
 
-                                if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
-                                    this.x = entity.BB.x - this.BB.radius * 3.5;
-                                    if (this.velocity.x > 0) {
-                                        this.velocity.x = 0;
-                                        this.velocity.y = 0;
+                                    if (this.velocity.y > 0 && this.velocity.x > 0) {
+                                        this.x -= this.BB.radius - 15;
+                                        this.y -= this.BB.radius - 15;
+
+                                    } else if (this.velocity.y > 0 && this.velocity.x < 0) {
+                                        this.x += this.BB.radius - 15;
+                                        this.y -= this.BB.radius - 15;
+
+                                    } else if (this.velocity.y < 0 && this.velocity.x < 0) {
+                                        this.x += this.BB.radius - 15;
+                                        this.y += this.BB.radius - 15;
+
+                                    } else if (this.velocity.y < 0 && this.velocity.x > 0) {
+                                        this.x -= this.BB.radius - 15;
+                                        this.y += this.BB.radius - 15;
+
+                                    } else if (this.velocity.x > 0) {
+                                        this.x -= this.BB.radius - 16;
+                                        this.y -= this.velocity.y;
+
+                                    } else if (this.velocity.x < 0) {
+                                        this.x += this.BB.radius - 16;
+                                        this.y -= this.velocity.y;
+
+                                    } else if (this.velocity.y > 0) {
+                                        this.x -= this.velocity.x;
+                                        this.y -= this.BB.radius - 16;
+
+                                    } else if (this.velocity.y < 0) {
+                                        this.x -= this.velocity.x;
+                                        this.y += this.BB.radius - 16;
                                     }
-                                    //console.log("left collision");
-                                } else if (this.lastBB.x >= entity.BB.x) { // Collided with the right
-                                    this.x = entity.BB.x + this.BB.radius;
-                                    if (this.velocity.x > 0) {
-                                        this.velocity.x = 0;
-                                        this.velocity.y = 0;
-                                    }
-                                    //console.log("right collision");
+                                    this.velocity.x = 0;
+                                    this.velocity.y = 0;
+
                                 }
 
-                                if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
-                                    this.y = entity.BB.y + this.BB.radius;
-                                    if (this.velocity.y > 0) {
-                                        this.velocity.x = 0;
-                                        this.velocity.y = 0;
-                                    }
-                                    //console.log("bottom collision");
-                                } else if (this.lastBB.y <= entity.BB.y) { // Collided with the top
-                                    this.y = entity.BB.y - this.BB.radius * 2.5;
-                                    if (this.velocity.y > 0) {
-                                        this.velocity.x = 0;
-                                        this.velocity.y = 0;
-                                    }
-                                    //console.log("top collision");
-                                }
+                                // if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
+                                //     this.x = entity.BB.x - this.BB.radius * 3.5;
+                                //     if (this.velocity.x > 0) {
+                                //         this.velocity.x = 0;
+                                //         this.velocity.y = 0;
+                                //     }
+                                //     //console.log("left collision");
+                                // } else if (this.lastBB.x >= entity.BB.x) { // Collided with the right
+                                //     this.x = entity.BB.x + this.BB.radius;
+                                //     if (this.velocity.x > 0) {
+                                //         this.velocity.x = 0;
+                                //         this.velocity.y = 0;
+                                //     }
+                                //     //console.log("right collision");
+                                // }
+
+                                // if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
+                                //     this.y = entity.BB.y + this.BB.radius;
+                                //     if (this.velocity.y > 0) {
+                                //         this.velocity.x = 0;
+                                //         this.velocity.y = 0;
+                                //     }
+                                //     //console.log("bottom collision");
+                                // } else if (this.lastBB.y <= entity.BB.y) { // Collided with the top
+                                //     this.y = entity.BB.y - this.BB.radius * 2.5;
+                                //     if (this.velocity.y > 0) {
+                                //         this.velocity.x = 0;
+                                //         this.velocity.y = 0;
+                                //     }
+                                //     //console.log("top collision");
+                                // }
 
                             }
 
@@ -335,9 +357,10 @@ class Micro {
                             }
                         }
 
-                    } 
-                } 
+                    }
+                }
             }
+            this.healthBar.update(this);
         }
     };
 
@@ -351,7 +374,7 @@ class Micro {
 
 
     draw(ctx) {
-        if (this.dead) {
+        if (this.gameover) {
             this.animation = new Animator(this.spritesheet, 2, 0, 64, 60, 3, 0.4);
 
         } else {

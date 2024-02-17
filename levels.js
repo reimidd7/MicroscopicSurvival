@@ -229,7 +229,7 @@ var levelOne = {
 
     //adding 1 lymphocyte
     lymphocyte: [
-        {x: CANVAS_WIDTH / 2 - 104, y: CANVAS_HEIGHT / 2 - 104}
+        {x: Math.random() * 1024, y: Math.random() * 768}
     ],
 
     //adding 30 cellmans
