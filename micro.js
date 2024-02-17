@@ -130,8 +130,8 @@ class Micro {
 
                 this.dead = false;
                 this.healthpoints = this.maxHealth;
-                //this.x = PARAMS.CANVAS_WIDTH / 2;
-                //this.y = PARAMS.CANVAS_WIDTH / 2;
+                this.x = PARAMS.CANVAS_WIDTH / 2;
+                this.y = PARAMS.CANVAS_WIDTH / 2;
                 this.game.camera.loadLevel(levelOne, false);
             } else {
                 console.log("dead");
@@ -376,7 +376,6 @@ class Micro {
     draw(ctx) {
         if (this.gameover) {
             this.animation = new Animator(this.spritesheet, 2, 0, 64, 60, 3, 0.4);
-
         } else {
             this.animation = this.animations[this.state][0][this.facing];
         }

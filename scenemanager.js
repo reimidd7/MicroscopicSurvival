@@ -57,8 +57,7 @@ class SceneManager {
         this.title = title;
         this.level = level;
         this.clearEntities();
-
-
+        
         for (var i = 0; i < level.cornertiles.length; i++) {
             let corner = level.cornertiles[i];
             this.game.addEntity(new CornerTiles(this.game, corner.x, corner.y, corner.flip));
@@ -142,8 +141,9 @@ class SceneManager {
 
         this.game.addEntity(this.micro);
         
-
+    
         this.updateCounts();
+        
 
     };
 
