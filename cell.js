@@ -4,7 +4,7 @@ class Cell {
 
         
 
-        this.game.cell = this;
+        //this.game.cell = this;
 
         this.spritesheet = ASSET_MANAGER.getAsset("./cellman.png");
 
@@ -59,13 +59,8 @@ class Cell {
         const scalingFactor = Math.sqrt(this.game.entities.length / 30); // Adjust 30 based on your desired threshold
 
         // Adjust the speed as needed, considering the scaling factor
-        let chaseSpeed = 1 * scalingFactor;
+        let chaseSpeed = 3 
 
-        // Check if there are only a few cells left
-        if (this.game.entities.length <= 5) {
-            // Increase speed when only a few cells are left
-            chaseSpeed *= 1.5; // You can adjust the multiplier as needed
-        }
 
         this.velocity.x = vectorDirectionX * chaseSpeed;
         this.velocity.y = vectorDirectionY * chaseSpeed;
