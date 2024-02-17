@@ -219,7 +219,7 @@ var levelOne = {
 
     //adding 1 lymphocyte
     lymphocyte: [
-        {x: 300, y: 100}
+        {x: 500, y: 200}
     ],
 
     //adding 30 cellmans

@@ -155,7 +155,7 @@ class Micro {
             this.velocity.y = 0;
 
         } else {
-            const WALK = 500;
+            const WALK = 250;
             this.velocity.x = 0;
             this.velocity.y = 0;
 
@@ -248,7 +248,7 @@ class Micro {
                             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
                                 entity.decreaseHealth();
 
-                                if (entity.healthpoints < 0 && this.size == 1) {
+                                if (entity.healthpoints > 0 && this.size == 1) {
                                     entity.decreaseHealth(); //deal double damage (if able to) -- basically only works on lymphocytes
                                 }
 
@@ -281,7 +281,10 @@ class Micro {
                             }
 
                             // Check collisions with the antibodies MUST ADD BOUNDING BOXES TO THE ANTIBODIES (theres a chance this might be weird)
-                            // if (entity instanceof Antibody) {}
+                            if (entity instanceof Antibody) {
+                                entity.removeFromWorld = true;
+                                this.healthpoints -= 1;
+                            }
 
                             //account for case where micro has size powerup!!!!!!!!!
                             // Check collisions with bones and redblood cells
@@ -327,19 +330,13 @@ class Micro {
                                     entity.removeFromWorld = true;
                                 } else if (entity.type === "size") {
                                     this.size = 1;
-                                    //fix this!!
                                     entity.removeFromWorld = true;
                                 }
                             }
                         }
 
-                    }
-                    // // Check wall collisions (topbottomwalls & leftrightwalls & corners) 
-                    // if (entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) {
-                    //     this.velocity.x = -1;
-                    //     this.velocity.y = -1;
-                    // }
-                }
+                    } 
+                } 
             }
         }
     };
