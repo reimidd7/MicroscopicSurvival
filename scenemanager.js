@@ -117,12 +117,14 @@ class SceneManager {
         // if (level.cell) {
         //     for (var i = 0; i < level.cell.length; i++) {
         //         let c = level.cell[i];
-        //         this.game.addEntity(new Cell(this.game, c.x, c.y));
+        //         this.game.addEntity(new Cell(this.game, c.x, c.y, this));
         //     }
         // }
-
+        
+        
+        //This was for the showing Chris meeting spawnded 5 cell man
         if (level.cell) {
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 30; i++) {
                 let c = level.cell[i];
                 this.game.addEntity(new Cell(this.game, c.x, c.y));
             }
@@ -268,10 +270,15 @@ class SceneManager {
 
         }
 
-        //Heads up display and mini map
-        this.renderHUD();
+       // Check if the game has started
+    if (this.title) {
+        // Game has not started, do not draw the minimap
+        return;
+    }
 
-        this.minimap.draw(ctx);
+    // Draw the rest of your game elements, including the HUD and minimap
+    this.renderHUD();
+    this.minimap.draw(ctx);
 
         if (this.micro.gameover) {
             //add end screen here

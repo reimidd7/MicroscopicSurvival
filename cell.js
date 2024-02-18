@@ -4,7 +4,7 @@ class Cell {
 
         
 
-        this.game.cell = this;
+        //this.game.cell = this;
 
         this.spritesheet = ASSET_MANAGER.getAsset("./cellman.png");
 
@@ -38,44 +38,52 @@ class Cell {
     }
 
     chaseTarget(target) {
-        //direction and distance to Micro
+        // Calculate direction and distance to Micro
         const directionX = target.x - this.x;
         const directionY = target.y - this.y;
-
         const distance = Math.sqrt(directionX ** 2 + directionY ** 2);
-
-        let vectorDirectionX, vectorDirectionY;
-        // Check if the distance between the current cell and the target is not zero
-        if (distance !== 0) {
-            // If not zero, calculate the normalized components of the direction vector
-            vectorDirectionX = directionX / distance;
-            vectorDirectionY = directionY / distance;
-        } else {
-            // If the distance is zero (to avoid division by zero), set the components to zero
-            vectorDirectionX = 0;
-            vectorDirectionY = 0;
+        
+        if (distance > 0 ) {
+            // Calculate normalized components of the direction vector
+            const vectorDirectionX = directionX / distance;
+            const vectorDirectionY = directionY / distance;
+    
+            // Set chase speed
+            const chaseSpeed = 100;
+    
+            // Update velocity based on chase speed and direction
+            this.velocity.x = vectorDirectionX * chaseSpeed;
+            this.velocity.y = vectorDirectionY * chaseSpeed;
+    
+            // Update position based on velocity
+            this.x += this.velocity.x * this.game.clockTick;
+            this.y += this.velocity.y * this.game.clockTick;
+    
+            // Handle wall collisions
+            if (this.collideLeft() || this.collideRight()) {
+                this.velocity.x = -this.velocity.x;
+                if (this.collideLeft()) {
+                    this.x = this.BB.radius;
+                }
+                if (this.collideRight()) {
+                    this.x = 960 - this.BB.radius;
+                }
+            }
+    
+            if (this.collideTop() || this.collideBottom()) {
+                this.velocity.y = -this.velocity.y;
+                if (this.collideTop()) {
+                    this.y = this.BB.radius;
+                }
+                if (this.collideBottom()) {
+                    this.y = 720 - this.BB.radius;
+                }
+            }
+    
+            this.updateBB();
         }
-
-        const scalingFactor = Math.sqrt(this.game.entities.length / 30); // Adjust 30 based on your desired threshold
-
-        // Adjust the speed as needed, considering the scaling factor
-        let chaseSpeed = 1 * scalingFactor;
-
-        // Check if there are only a few cells left
-        if (this.game.entities.length <= 5) {
-            // Increase speed when only a few cells are left
-            chaseSpeed *= 1.5; // You can adjust the multiplier as needed
-        }
-
-        this.velocity.x = vectorDirectionX * chaseSpeed;
-        this.velocity.y = vectorDirectionY * chaseSpeed;
-
-        // Update position based on velocity
-        this.x += this.velocity.x * this.game.clockTick;
-        this.y += this.velocity.y * this.game.clockTick;
-        this.updateBB();
-
     }
+    
 
     decreaseHealth() {
         this.healthpoints -= 1;
@@ -98,124 +106,86 @@ class Cell {
 
     //left wall
     collideLeft() {
-        return (this.x - this.radius) < 0;
+        return (this.x - this.BB.radius) < 0;
     }
     //right wall
     collideRight() {
-        return (this.x + this.radius) > 1025;
+        return (this.x + this.BB.radius) > 960;
     }
     //Top wall
     collideTop() {
-        return (this.y - this.radius) < 0;
+        return (this.y - this.BB.radius) < 0;
     }
     //Bottom wall
     collideBottom() {
-        return (this.y + this.radius) > 770;
+        return (this.y + this.BB.radius) > 720;
     }
 
+   
     update() {
         if (this.paused > 0) {
             this.paused -= this.game.clockTick;
         } else {
-
             if (!this.dead) {
                 this.x += this.velocity.x * this.game.clockTick;
                 this.y += this.velocity.y * this.game.clockTick;
-
-
+    
                 if (this.velocity.x > 0) {
-                    // Moving right
-                    this.facing = 0;
+                    this.facing = 0; // Moving right
                 } else if (this.velocity.x < 0) {
-                    // Moving left
-                    this.facing = 1;
+                    this.facing = 1; // Moving left
                 }
-
+    
                 if (this.collideLeft() || this.collideRight()) {
                     this.velocity.x = -this.velocity.x;
                     if (this.collideLeft()) {
-                        this.x = this.radius;
+                        this.x = this.BB.radius;
                     }
                     if (this.collideRight()) {
-                        this.x = 1010 - this.radius;
+                        this.x = 960 - this.BB.radius;
                     }
-
-                    //random direction after hitting wall
-                    this.velocity.y = Math.random() * 100 + 50;
                 }
-
+    
                 if (this.collideTop() || this.collideBottom()) {
                     this.velocity.y = -this.velocity.y;
-                    if (this.collideTop()) this.y = this.radius;
-                    if (this.collideBottom()) this.y = 740 - this.radius;
-
-                    //random direction after hitting wall
-                    this.velocity.x = Math.random() * 100 + 50;
-                }
-
-                // Check for collisions with other cells
-                for (const entity of this.game.entities) {
-                    if (entity !== this && entity instanceof Cell) {
-                        const dx = this.x - entity.x;
-                        const dy = this.y - entity.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance < this.radius + entity.radius) {
-                            // Calculate new positions for avoiding overlap
-                            const angle = Math.atan2(dy, dx);
-                            const overlap = this.radius + entity.radius - distance;
-                            const separationDistance = overlap; // Adjust the factor to control separation distance
-
-                            // Update positions without changing velocities
-                            this.x += separationDistance * Math.cos(angle);
-                            this.y += separationDistance * Math.sin(angle);
-
-                            entity.x -= separationDistance * Math.cos(angle);
-                            entity.y -= separationDistance * Math.sin(angle);
-                        }
-
-                
-                        
-
-                        // for (const entity of this.game.entities) {
-                        //     if (entity !== this && entity instanceof Micro) {
-                        //         const dx = this.x - entity.x;
-                        //         const dy = this.y - entity.y;
-                        //         const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        //         if (distance < this.radius + entity.BB.radius && this.timer <= 0) {
-                        //             // Cell touched the Micro, make the Micro take damage
-
-
-                                    
-                        //             entity.healthpoints -= this.hitpoints; // Use the hitpoints property of the Cell
-                        //             this.timer = 3;
-                        //             // Check if Micro's healthpoints reach zero
-                        //             if (entity.healthpoints <= 0) {
-                        //                 entity.dead = true;
-                        //                 // Additional logic for Micro's death can be added here
-                        //             }
-                        //         }
-                        //     }
-                        // }
-
-                        // this.timer -= this.game.clockTick;
-                        // if (this.timer < 0) {
-                        //     this.timer = 0;
-                        // }
-                        const targetEntity = this.game.entities.find(entity => entity instanceof Micro);
-                        if (targetEntity) {
-
-                            this.chaseTarget(targetEntity);
-                        }
+                    if (this.collideTop()) {
+                        this.y = this.BB.radius;
+                    }
+                    if (this.collideBottom()) {
+                        this.y = 720 - this.BB.radius;
                     }
                 }
+    
+                this.game.entities.forEach(entity => {
+                    if (entity instanceof Cell && entity !== this) {
+                        const dx = this.x - entity.x;
+                        const dy = this.y - entity.y;
+                        const distance = Math.sqrt(dx ** 2 + dy ** 2);
+                        const minDistance = this.radius + entity.radius;
+                        if (distance < minDistance) {
+                            // Resolve collision
+                            const overlap = minDistance - distance;
+                            const angle = Math.atan2(dy, dx);
+                            const targetX = this.x + Math.cos(angle) * overlap / 2;
+                            const targetY = this.y + Math.sin(angle) * overlap / 2;
+                            this.x = targetX;
+                            this.y = targetY;
+                            this.updateBB();
+                        }
+                    }
+                });
+    
+                // Check for Micro and chase if found
+                const targetEntity = this.game.entities.find(entity => entity instanceof Micro);
+                if (targetEntity) {
+                    this.chaseTarget(targetEntity);
+                }
             }
-
+    
             this.updateBB();
-
         }
     };
+    
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Grey";
