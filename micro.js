@@ -23,7 +23,7 @@ class Micro {
 
         // Testing cellman killing micro
         this.healthBar = new HealthBar(this, true);
-        this.maxHealth = 10;
+        this.maxHealth = 100;
         this.healthpoints = this.maxHealth;
 
         this.gameover = false;
@@ -143,7 +143,7 @@ class Micro {
             }
 
         } else {
-            const WALK = 150;
+            const WALK = 200;
             this.velocity.x = 0;
             this.velocity.y = 0;
 
@@ -200,7 +200,7 @@ class Micro {
                 }
 
                 if (this.collideBottom()) {
-                    this.y = 715 - this.BB.radius;
+                    this.y = 720 - this.BB.radius;
                 }
 
                 //random direction after hitting wall
@@ -248,7 +248,7 @@ class Micro {
                                 // Cell touched the Micro, make the Micro take damage
                                 if (entity.timer <= 0) {
                                     this.healthpoints -= 1;
-                                    entity.timer = 2;
+                                    entity.timer = 1;
                                 }
                                 // makes it so micro doesnt die as quick
                                 entity.timer -= this.game.clockTick;
@@ -276,36 +276,36 @@ class Micro {
                                 if (that.size == 0 && this.BB.collide(entity.BB)) {
 
                                     if (this.velocity.y > 0 && this.velocity.x > 0) {
-                                        this.x -= this.BB.radius - 15;
-                                        this.y -= this.BB.radius - 15;
+                                        this.x -= this.BB.radius - 15.5;
+                                        this.y -= this.BB.radius - 15.5;
 
                                     } else if (this.velocity.y > 0 && this.velocity.x < 0) {
-                                        this.x += this.BB.radius - 15;
-                                        this.y -= this.BB.radius - 15;
+                                        this.x += this.BB.radius - 15.5;
+                                        this.y -= this.BB.radius - 15.5;
 
                                     } else if (this.velocity.y < 0 && this.velocity.x < 0) {
-                                        this.x += this.BB.radius - 15;
-                                        this.y += this.BB.radius - 15;
+                                        this.x += this.BB.radius - 15.5;
+                                        this.y += this.BB.radius - 15.5;
 
                                     } else if (this.velocity.y < 0 && this.velocity.x > 0) {
-                                        this.x -= this.BB.radius - 15;
-                                        this.y += this.BB.radius - 15;
+                                        this.x -= this.BB.radius - 15.5;
+                                        this.y += this.BB.radius - 15.5;
 
                                     } else if (this.velocity.x > 0) {
-                                        this.x -= this.BB.radius - 16;
+                                        this.x -= this.BB.radius - 15.5;
                                         this.y -= this.velocity.y;
 
                                     } else if (this.velocity.x < 0) {
-                                        this.x += this.BB.radius - 16;
+                                        this.x += this.BB.radius - 15.5;
                                         this.y -= this.velocity.y;
 
                                     } else if (this.velocity.y > 0) {
                                         this.x -= this.velocity.x;
-                                        this.y -= this.BB.radius - 16;
+                                        this.y -= this.BB.radius - 15.5;
 
                                     } else if (this.velocity.y < 0) {
                                         this.x -= this.velocity.x;
-                                        this.y += this.BB.radius - 16;
+                                        this.y += this.BB.radius - 15.5;
                                     }
                                     this.velocity.x = 0;
                                     this.velocity.y = 0;
@@ -346,7 +346,7 @@ class Micro {
 
                             }
 
-                            if (entity instanceof Powerup) { //make them last for like 15 seconds only
+                            if (entity instanceof Powerup) { //make them last for like 20 seconds only
                                 if (entity.type === "speed") {
                                     this.WALK = 1000;
                                     entity.removeFromWorld = true;

@@ -205,19 +205,19 @@ var levelOne = {
 
     //adds a bone randomly in each quadrent of the gameboard.
     bones: [
-        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (154 - 32) + 32}, 
-        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (308 - 155) + 155},
-        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (462 - 318) + 309},
-        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (616 - 472) + 463},
-        {x: Math.random() * (960 - 32) + 32, y: Math.random() * (736 - 626) + 617}
+        {x: 312, y: 88}, 
+        {x: 263, y: 199},
+        {x: 50, y: 337},
+        {x: 682, y: 472},
+        {x: 839, y: 356}
     ],
 
     //adds 1 red blood cell randomly in each quadrent of the gameboard.
     redbloodcells: [
-        {x: Math.random() * (480 - 32) + 32, y: Math.random() * (352 - 32) + 32}, // ++
-        {x: Math.random() * (992 - 480) + 480, y: Math.random() * (704 - 352) + 352}, // --
-        {x: Math.random() * (992 - 480) + 480, y: Math.random() * (352 - 32) + 32}, // -+
-        {x: Math.random() * (480 - 32) + 32, y: Math.random() * (704 - 352) + 352} //+-
+        {x: 63, y: 40}, // ++
+        {x: 487, y: 460}, // --
+        {x: 673, y: 83}, // -+
+        {x: 260, y: 636} //+-
         
     ],
     
@@ -229,7 +229,7 @@ var levelOne = {
 
     //adding 1 lymphocyte
     lymphocyte: [
-        {x: Math.random() * 1024, y: Math.random() * 768}
+        {x: Math.random() * (960-64) + 64, y: Math.random() * (704 - 64) + 64}
     ],
 
     //adding 30 cellmans

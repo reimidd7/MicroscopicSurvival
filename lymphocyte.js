@@ -12,7 +12,7 @@ class Lymphocyte {
 
         this.speed = 50;
 
-        this.fireRate = 65;
+        this.fireRate = 80;
         this.elapsedTime = 0;
         this.updateBB();
     };

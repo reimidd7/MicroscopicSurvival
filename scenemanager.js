@@ -160,7 +160,7 @@ class SceneManager {
         this.y = this.micro.y - midpointY;
 
 
-        if (this.title && (this.game.click || this.game.A)) {
+        if (this.title) {
             if ((this.game.click && this.game.click.x > 278 && this.game.click.x < 382) && (this.game.click && this.game.click.y > 425 && this.game.click.y < 452)) {
                 this.title = false;
                 //this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
