@@ -123,10 +123,12 @@ class SceneManager {
         
         
         //This was for the showing Chris meeting spawnded 5 cell man
-        if (level.cell) {
-            for (var i = 0; i < 30; i++) {
-                let c = level.cell[i];
-                this.game.addEntity(new Cell(this.game, c.x, c.y));
+        if (!this.title) {
+            if (level.cell) {
+                for (var i = 0; i < 30; i++) {
+                    let c = level.cell[i];
+                    this.game.addEntity(new Cell(this.game, c.x, c.y));
+                }
             }
         }
 
@@ -201,9 +203,9 @@ class SceneManager {
         this.game.ctx.fillText(level1Text, xPositionCenter, yPosition);
 
         
-        const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x position as needed
+        const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x 
         const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
-        this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions as needed 
+        this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions
 
 
 
@@ -268,7 +270,7 @@ class SceneManager {
         return;
     }
 
-    // Draw the rest of your game elements, including the HUD and minimap
+    //HUD and minimap
     this.renderHUD();
     this.minimap.draw(ctx);
     };
