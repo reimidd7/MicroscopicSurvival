@@ -37,14 +37,14 @@ class SceneManager {
         this.cellCount = 0;
 
         this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
-        
-        this.minimap = new Minimap(this.game, 0, 460,68); // Adjust size as needed
+
+        this.minimap = new Minimap(this.game, 0, 460, 68); // Adjust size as needed
 
 
         this.loadLevel(levelOne, true);
 
-       
-    
+
+
     }
 
     clearEntities() {
@@ -57,7 +57,7 @@ class SceneManager {
         this.title = title;
         this.level = level;
         this.clearEntities();
-        
+
         for (var i = 0; i < level.cornertiles.length; i++) {
             let corner = level.cornertiles[i];
             this.game.addEntity(new CornerTiles(this.game, corner.x, corner.y, corner.flip));
@@ -120,8 +120,8 @@ class SceneManager {
         //         this.game.addEntity(new Cell(this.game, c.x, c.y, this));
         //     }
         // }
-        
-        
+
+
         //This was for the showing Chris meeting spawnded 5 cell man
         if (level.cell) {
             for (var i = 0; i < 30; i++) {
@@ -142,14 +142,14 @@ class SceneManager {
         //this.micro = {x: PARAMS.CANVAS_WIDTH / 2, y: PARAMS.CANVAS_HEIGHT / 2};
 
         this.game.addEntity(this.micro);
-        
-    
+
+
         this.updateCounts();
-        
+
 
     };
 
-    
+
     update() {
         PARAMS.DEBUG = document.getElementById("debug").checked;
 
@@ -179,9 +179,9 @@ class SceneManager {
 
     // How many enemies are in the level
     updateCounts() {
-    
+
         this.lymphocyteCount = this.level.lymphocyte ? this.level.lymphocyte.length : 0;
-     
+
         this.cellCount = this.level.cell ? this.level.cell.length : 0;
     }
 
@@ -189,26 +189,26 @@ class SceneManager {
     renderHUD() {
 
         //Number of Enemies and Level
-        const xPositionLeft = 10; 
+        const xPositionLeft = 10;
         const xPositionCenter = (PARAMS.CANVAS_WIDTH - this.game.ctx.measureText("Level 1: " + (this.level.level1Count || 0)).width) / 2; // Center alignment position
         const yPosition = 20;
         const lineHeight = 30;
         const fontSize = 15;
         this.game.ctx.font = fontSize + "px Comic Sans MS";
         this.game.ctx.fillStyle = "white";
-    
-        
+
+
         this.game.ctx.fillText("Lymphocytes: " + this.lymphocyteCount, xPositionLeft, yPosition);
-    
-        
+
+
         this.game.ctx.fillText("Cellman: " + this.cellCount, xPositionLeft, yPosition + lineHeight);
-    
+
         const level1Text = "Level 1 "; // Text for level 1
         // const level1Count = this.level.level1Count || 0; // Get level 1 count from level object
         //this.game.ctx.fillText(level1Text + level1Count, xPositionCenter, yPosition + 2 * lineHeight);
         this.game.ctx.fillText(level1Text, xPositionCenter, yPosition);
 
-        
+
         const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x position as needed
         const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
         this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions as needed 
@@ -230,13 +230,13 @@ class SceneManager {
             this.game.ctx.fill();
             this.game.ctx.closePath();
         }
-    
+
     }
-    
-    
+
+
 
     draw(ctx) {
-        
+
         //title screen 
         if (this.title) {
             const width = PARAMS.CANVAS_WIDTH;
@@ -265,29 +265,34 @@ class SceneManager {
             ctx.font = "32px sans-serif";
             ctx.fillStyle = "White";
             ctx.fillText("START", PARAMS.CANVAS_WIDTH / 2 - 64, 450);
-
-
-
         }
 
-       // Check if the game has started
-    if (this.title) {
-        // Game has not started, do not draw the minimap
-        return;
-    }
+        // Check if the game has started
+        if (this.title) {
+            // Game has not started, do not draw the minimap
+            return;
+        }
 
-    // Draw the rest of your game elements, including the HUD and minimap
-    this.renderHUD();
-    this.minimap.draw(ctx);
+        // Draw the rest of your game elements, including the HUD and minimap
+        this.renderHUD();
+        this.minimap.draw(ctx);
 
         if (this.micro.gameover) {
             //add end screen here
+        }
+        if (this.micro.won) {
+            ctx.font = "40px Veranda";
+            ctx.fillStyle = "White";
+            ctx.fillText("YOU WON LEVEL" + this.level.label, 190, 100);
+            ctx.font = "20px Veranda";
+            ctx.fillText("Find Portal...", 300,300);
+
         }
     };
 
 
 
-    
+
 }
 
 class Minimap {

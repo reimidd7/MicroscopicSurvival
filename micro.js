@@ -12,6 +12,7 @@ class Micro {
         this.state = 0; //  0 = idle, 1 = walking, 2 = punching, 3 = running (PU)
 
         this.dead = false;
+        this.won = false;
 
         // health decline animation: this.animations = new Animator(this.spritesheet, 0, 75, 65, 60, 1, 0.1 )
 
@@ -237,9 +238,18 @@ class Micro {
                                 }
 
                                 if (entity.healthpoints <= 0) {
+                                    if (entity instanceof Cell) this.game.camera.cellCount -= 1;
+
+                                    if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
+
                                     entity.dead = true;
 
 
+                                }
+
+                                if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
+                                    this.won = true;
+                                    console.log("WON");
                                 }
                             }
                         } else {

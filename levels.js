@@ -4,6 +4,7 @@ CANVAS_HEIGHT = 768;
 var levelOne = {
     // add music
     // label
+    label: "1",
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [{x: 0, y: 0, flip: 0}, {x: BLOCK_SIZE * 31, y: 0, flip: 1}
