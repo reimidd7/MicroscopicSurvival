@@ -135,7 +135,7 @@ class Cell {
                 } else if (this.velocity.x < 0) {
                     this.facing = 1; // Moving left
                 }
-    
+                // This might not be needed
                 if (this.collideLeft() || this.collideRight()) {
                     this.velocity.x = -this.velocity.x;
                     if (this.collideLeft()) {
