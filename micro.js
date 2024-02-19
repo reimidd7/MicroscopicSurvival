@@ -369,9 +369,13 @@ class Micro {
                             if (entity instanceof Powerup) { //make them last for like 15 seconds only
                                 entity.removeFromWorld = true;
                                 if (entity.type === "speed") {
+                                    entity.removeFromWorld = true;
+
                                     this.poweredUpSpeed = true;
                                     this.speedTime = 0;
                                 } else if (entity.type === "size") {
+                                    entity.removeFromWorld = true;
+
                                     this.poweredUpSize = true;
                                     this.sizeTime = 0;
                                 }
@@ -431,7 +435,7 @@ class Micro {
             this.speedTime++;
             //console.log("setting speed");
         } else if (this.poweredUpSpeed == true && this.speedTime >= 750) {
-            this.walk = 500;
+            this.walk = 200;
             this.speedTime = 0;
             this.poweredUpSpeed = false;
             //console.log("resetting speed");
