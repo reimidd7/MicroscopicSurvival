@@ -13,6 +13,11 @@ class Micro {
 
         this.dead = false;
 
+        this.poweredUpSize = false;
+        this.sizeTime = 0;
+        this.poweredUpSpeed = false;
+        this.speedTime = 0;
+
         // health decline animation: this.animations = new Animator(this.spritesheet, 0, 75, 65, 60, 1, 0.1 )
 
         this.velocity = { x: 0, y: 0 };
@@ -21,7 +26,7 @@ class Micro {
 
         this.updateBB();
 
-        this.radius = 25;
+        //this.radius = 25;
 
         // Micro's animations
         this.animations = [];
@@ -31,6 +36,12 @@ class Micro {
         this.healthBar = new HealthBar(this, true);
         this.maxHealth = 100;
         this.healthpoints = this.maxHealth;
+
+        //saving key currently pressed and key previously pressed
+        this.key = this.game.keyCode;
+        this.prevCode = null;
+
+        this.walk = 500;
     };
 
     loadAnimations() {
@@ -108,10 +119,10 @@ class Micro {
     updateBB() {
         if (this.size === 0) {
             this.BB = new BoundingCircle(this.x + 64 / 2, this.y + 60 / 2, 25);
-            this.radius = 25;
-        }  else if (this.size === 1) {
-            this.BB = new BoundingCircle(this.x + 88 / 2, this.y + 74 / 2, 50);
-            this.radius = 50;
+            //this.radius = 25;
+        } else if (this.size === 1) {
+            this.BB = new BoundingCircle(this.x + 92 / 2, this.y + 80 / 2, 32);
+            //this.radius = 50;
         }
     };
 
@@ -122,15 +133,20 @@ class Micro {
     //left wall
     collideLeft() {
         if (this.size == 0) {
-            return (this.x - this.BB.radius) < 0;
+            return (this.x - this.BB.radius) < 2;
         } else if (this.size == 1) {
-            return (this.x - this.BB.radius) < -32;
+            return (this.x - this.BB.radius) < -5;
         }
     };
 
     //right wall
     collideRight() {
-        return (this.x + this.BB.radius) > 960;
+        if (this.size == 0) {
+            return (this.x + this.BB.radius) > 955;
+        } else if (this.size == 1) {
+            return (this.x + this.BB.radius) > 930;
+        }
+
     };
 
     //Top wall
@@ -138,13 +154,18 @@ class Micro {
         if (this.size == 0) {
             return (this.y - this.BB.radius) < 0;
         } else if (this.size == 1) {
-            return (this.y - this.BB.radius) < -32;
+            return (this.y - this.BB.radius) < -5;
         }
     };
 
     //Bottom wall
     collideBottom() {
-        return (this.y + this.BB.radius) > 720;
+        if (this.size == 0) {
+            return (this.y + this.BB.radius) > 712;
+        } else if (this.size == 1) {
+            return (this.y + this.BB.radius) > 695;
+        }
+
     };
 
     update() {
@@ -155,55 +176,73 @@ class Micro {
             this.velocity.y = 0;
 
         } else {
-            const WALK = 500;
+
+            if (this.poweredUpSpeed == true || this.poweredUpSize == true) {
+                this.powerUp();
+            }
+
             this.velocity.x = 0;
             this.velocity.y = 0;
 
+
             //update velocity
-            if (this.game.left) this.velocity.x -= WALK;
-            if (this.game.right) this.velocity.x += WALK;
-            if (this.game.up) this.velocity.y -= WALK;
-            if (this.game.down) this.velocity.y += WALK;
+            if (this.game.left) this.velocity.x -= this.walk;
+            if (this.game.right) this.velocity.x += this.walk;
+            if (this.game.up) this.velocity.y -= this.walk;
+            if (this.game.down) this.velocity.y += this.walk;
+
+            this.key = this.game.keyCode;
 
             //update position
             if (this.collideLeft() || this.collideRight()) {
-                this.velocity.x = -this.velocity.x - 2;
-                if (this.collideLeft() && this.size == 0) {
-                    this.x = this.BB.radius;
-                } else if (this.collideLeft() && this.size == 1) {
-                    this.x = this.BB.radius - 20;
+                if (this.prevCode != this.key && this.key != null) {
+                    this.velocity.x = -this.velocity.x;
+                    if (this.collideLeft() && this.size == 0) {
+                        this.x = this.BB.radius + 20;
+                    } else if (this.collideLeft() && this.size == 1) {
+                        this.x = this.BB.radius - 2;
+                    }
+
+                    if (this.collideRight() && this.size == 0) {
+                        this.x = 950 - this.BB.radius;
+                    } else if (this.collideRight() && this.size == 1) {
+                        this.x = 925 - this.BB.radius;
+                    }
+
+                    //random direction after hitting wall
+                    this.velocity.y = Math.random() * 100 + 50;
+                    this.updateLastBB();
+                    this.updateBB();
                 }
 
-                if (this.collideRight() && this.size == 0) {
-                    this.x = 956 - this.BB.radius;
-                } else if (this.collideRight() && this.size == 1) {
-                    this.x = 956 - this.BB.radius;
-                }
+                this.prevCode = this.key;
 
-                //random direction after hitting wall
-                this.velocity.y = Math.random() * 100 + 50;
-                this.updateLastBB();
-                this.updateBB();
+                this.key = this.game.keyCode;
 
             } else if (this.collideBottom() || this.collideTop()) {
-                this.velocity.y = -this.velocity.y - 2;
-                if (this.collideTop() && this.size == 0) {
-                    this.y = this.BB.radius;
-                } else if (this.collideTop() && this.size == 1) {
-                    this.y = this.BB.radius - 20;
+                if (this.prevCode != this.key && this.key != null) {
+                    this.velocity.y = -this.velocity.y;
+                    if (this.collideTop() && this.size == 0) {
+                        this.y = this.BB.radius + 5;
+                    } else if (this.collideTop() && this.size == 1) {
+                        this.y = this.BB.radius - 3;
+                    }
+
+                    if (this.collideBottom() && this.size == 0) {
+                        this.y = 708- this.BB.radius;
+                    } else if (this.collideBottom() && this.size == 1) {
+                        this.y = 692 - this.BB.radius;
+                    }
+
+                    //random direction after hitting wall
+                    this.velocity.x = Math.random() * 100 + 50;
+                    this.updateLastBB();
+                    this.updateBB();
                 }
 
-                if (this.collideBottom() && this.size == 0) {
-                    this.y = 716 - this.BB.radius;
-                } else if (this.collideBottom() && this.size == 1) {
-                    this.y = 716 - this.BB.radius;
-                }
+                this.prevCode = this.key;
 
-
-                //random direction after hitting wall
-                this.velocity.x = Math.random() * 100 + 50;
-                this.updateLastBB();
-                this.updateBB();
+                this.key = this.game.keyCode;
 
             } else {
                 this.x += this.velocity.x * this.game.clockTick;
@@ -212,16 +251,17 @@ class Micro {
                 this.updateBB();
             }
 
+
             // update state!
             if (this.game.A) {
                 this.state = 2;
-            } else if (Math.abs(this.velocity.x) > WALK) {
+            } else if (Math.abs(this.velocity.x) > this.walk) {
                 this.state = 1;
-            } else if (Math.abs(this.velocity.x) <= WALK) {
+            } else if (Math.abs(this.velocity.x) <= this.walk) {
                 this.state = 1;
-            } else if (Math.abs(this.velocity.y) > WALK) {
+            } else if (Math.abs(this.velocity.y) > this.walk) {
                 this.state = 1;
-            } else if (Math.abs(this.velocity.y) <= WALK) {
+            } else if (Math.abs(this.velocity.y) <= this.walk) {
                 this.state = 1;
             } else {
 
@@ -276,7 +316,7 @@ class Micro {
                                     entity.timer = 0;
                                 }
                                 // Check if Micro's healthpoints reach zero
-                                if (entity.healthpoints <= 0) {
+                                if (this.healthpoints <= 0) {
                                     this.dead = true;
                                 }
                             }
@@ -291,56 +331,58 @@ class Micro {
                             //if (entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) {}
 
 
-                            //account for case where micro has size powerup!!!!!!!!!
+                            
                             // Check collisions with bones and redblood cells
-                            if (entity instanceof Bone || entity instanceof RedBloodCell) {
-                                if (this.lastBB.x <= (entity.BB.x - this.radius)) { // Collided with the left
-                                    this.x = entity.BB.x - this.radius*3.5; 
+                            if (entity instanceof Bone || entity instanceof RedBloodCell || entity instanceof Lymphocyte) {
+                                if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
+                                    this.x = entity.BB.x - this.BB.radius * 3.5;
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                     //console.log("left collision");
                                 } else if (this.lastBB.x >= entity.BB.x) { // Collided with the right
-                                    this.x = entity.BB.x + this.radius;
+                                    this.x = entity.BB.x + this.BB.radius;
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                     //console.log("right collision");
-                                }  
+                                }
 
-                                if (this.lastBB.y >= (entity.BB.y + this.radius)) { // Collided with the bottom
-                                    this.y = entity.BB.y + this.radius;
+                                if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
+                                    this.y = entity.BB.y + this.BB.radius;
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                     //console.log("bottom collision");
                                 } else if (this.lastBB.y <= entity.BB.y) { // Collided with the top
-                                    this.y = entity.BB.y - this.radius*2.5;
+                                    this.y = entity.BB.y - this.BB.radius * 2.5;
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                     //console.log("top collision");
                                 }
-
                             }
 
                             if (entity instanceof Powerup) { //make them last for like 15 seconds only
+                                entity.removeFromWorld = true;
                                 if (entity.type === "speed") {
-                                    this.WALK = 1000;
-                                    entity.removeFromWorld = true;
+                                    this.poweredUpSpeed = true;
+                                    this.speedTime = 0;
                                 } else if (entity.type === "size") {
-                                    this.size = 1;
-                                    entity.removeFromWorld = true;
+                                    this.poweredUpSize = true;
+                                    this.sizeTime = 0;
                                 }
+
+                                this.powerUp();
                             }
                         }
 
-                    } 
-                } 
+                    }
+                }
             }
         }
     };
@@ -363,12 +405,38 @@ class Micro {
         const barY = ctx.canvas.height - this.healthBar.barHeight;
         this.healthBar.draw(ctx, barX, barY, this);
 
-        
+
         if (PARAMS.DEBUG) {
             ctx.beginPath();
             ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
             ctx.strokeStyle = 'red';
             ctx.stroke();
-            }
+        }
+    };
+
+
+    powerUp() {
+        if (this.poweredUpSpeed == true && this.speedTime < 750) {
+            this.walk = 800;
+            this.speedTime++;
+            //console.log("setting speed");
+        } else if (this.poweredUpSpeed == true && this.speedTime >= 750) {
+            this.walk = 500;
+            this.speedTime = 0;
+            this.poweredUpSpeed = false;
+            //console.log("resetting speed");
+        }
+        
+        if (this.poweredUpSize == true && this.sizeTime < 750) {
+            //console.log("setting size");
+            this.sizeTime++;
+            this.size = 1;
+        } else if (this.poweredUpSize == true && this.sizeTime >= 750) {
+            this.size = 0;
+            this.sizeTime = 0;
+            this.poweredUpSize = false;
+            //console.log("resetting size");
+        }
+
     };
 };

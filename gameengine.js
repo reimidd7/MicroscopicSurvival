@@ -21,6 +21,8 @@ class GameEngine {
         this.A = false;
         // this.B = false;
 
+        this.keyCode = null;
+
         // Options and the Details
         this.options = options || {
             debugging: false,
@@ -100,6 +102,8 @@ class GameEngine {
                     this.A = true;
                     break;
             }
+
+            this.keyCode = e.code;
         }, false);
 
         this.ctx.canvas.addEventListener("keyup", e => {

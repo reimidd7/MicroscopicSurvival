@@ -43,7 +43,7 @@ class Lymphocyte {
                 for (var i = 0; i < this.game.entities.length; i++) {
                     var micro = this.game.entities[i];
                     if (micro instanceof Micro && this.elapsedTime > this.fireRate) {
-                        this.game.addEntity(new Antibody(this.game, this.x, this.y-35, micro));
+                        this.game.addEntity(new Antibody(this.game, this.x-30, this.y-25, micro));
 
                         this.elapsedTime = 0;
                     }

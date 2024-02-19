@@ -203,7 +203,7 @@ var levelOne = {
 
     //add bones
     bones: [
-        {x: 300, y: 300}
+        {x: 230, y: 275}
     ],
 
     //add red blood cells
@@ -213,7 +213,7 @@ var levelOne = {
     
     //add power ups (Level 1 only has speed and size powerups)
     powerups:[
-        {x: 200, y: 350, type: "speed"},
+        {x: 220, y: 550, type: "speed"},
         {x: 475, y: 620, type: "size"}
     ],
 
