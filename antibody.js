@@ -7,16 +7,7 @@ class Antibody {
 
         this.spritesheet = ASSET_MANAGER.getAsset("./antibody.png");
 
-        this.frame1 = ASSET_MANAGER.getAsset("./antibody1.png");
-        this.frame2 = ASSET_MANAGER.getAsset("./antibody2.png");
-        this.frame3 = ASSET_MANAGER.getAsset("./antibody3.png");
-        this.frame4 = ASSET_MANAGER.getAsset("./antibody4.png");
-        this.frame5 = ASSET_MANAGER.getAsset("./antibody5.png");
-        this.frame6 = ASSET_MANAGER.getAsset("./antibody6.png");
-        this.frame7 = ASSET_MANAGER.getAsset("./antibody7.png");
-
-        this.antibodySprites = [this.frame1, this.frame2, this.frame3, this.frame4, this.frame5, this.frame6, this.frame7];
-        //after on frame, do this, after 2 frames, do frame 2
+        this.target = target;
 
         this.speed = 30;
 
@@ -31,22 +22,7 @@ class Antibody {
         this.facing = getFacing(this.velocity); //0 = N, 1 = NE, 2 = E, 3 = SE, 4 = S, 5 = SW, 6 = W, 7 = NW
 
         this.cache = [];
-        //this.animator = new Animator(this.spritesheet, 0, 10, 126, 82, 7, 0.1);
-
-        this.animator1 = new Animator(this.frame1, 0, 0, 126, 92, 1, 1);
-
-        this.animator2 = new Animator(this.frame2, 0, 0, 126, 92, 1, 1);
-
-        this.animator3 = new Animator(this.frame3, 0, 0, 126, 92, 1, 1);
-
-        this.animator4 = new Animator(this.frame4, 0, 0, 126, 92, 1, 1);
-
-        this.animator5 = new Animator(this.frame5, 0, 0, 126, 92, 1, 1);
-
-        this.animator6 = new Animator(this.frame6, 0, 0, 126, 92, 1, 1);
-
-        this.animator7 = new Animator(this.frame7, 0, 0, 126, 92, 1, 1);
-
+        this.animator = new Animator(this.spritesheet, 0, 10, 126, 82, 7, 0.1);
     };
 
     //ADAPTED FROM PROFESSOR MARRIOTT'S TOWER-DEFENSE-DEMO CODE (ARROW CLASS)
@@ -71,27 +47,6 @@ class Antibody {
 
             //this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, false);
 
-            // if (this.facing == 0) {
-            //     xOffset = 50;
-            //     yOffset = 0;
-            // } else if (this.facing == 1) {
-                
-            // } else if (this.facing == 2) {
-                
-            // } else if (this.facing == 3) {
-                
-            // } else if (this.facing == 4) {
-            //     xOffset = 60;
-            //     yOffset = 60;
-            // } else if (this.facing == 5) {
-            //     xOffset = 60;
-            //     yOffset = 60;
-            // } else if (this.facing == 6) {
-                
-            // } else if (this.facing == 7) {
-                
-            // }
-
             offscreenCtx.save();
             offscreenCtx.translate(126, 126);
             offscreenCtx.rotate(radians);
@@ -105,28 +60,23 @@ class Antibody {
             //for reference
             //drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
 
+
             //working
-            offscreenCtx.drawImage(this.antibodySprites[frameNumber], 0, 0, 126, 92, 126, 92, 126, 92);
+            offscreenCtx.drawImage(this.spritesheet, 0, 0, 126, 92, 126, 92, 84, 54);
             offscreenCtx.restore();
             this.cache[frameNumber][angle] = offscreenCanvas;
 
             //console.log(this.cache[frameNumber][angle]);
 
         }
+
         //prof said to try focusing on this
         //attempt
-        //ctx.drawImage(this.cache[frameNumber][angle], 0 + 126 * frameNumber, 92, 126, 92, (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y, 126, 92);
+        //ctx.drawImage(this.cache[frameNumber][angle], 0 + 126 * frameNumber, 82, 126, 82, (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y, 126, 82);
 
         //working
+        ctx.drawImage((this.cache[frameNumber][angle]), (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y);
 
-        //ctx.drawImage((this.cache[frameNumber][angle]), (this.x - xOffset) - this.game.camera.x, (this.y - yOffset) - this.game.camera.y);
-
-        this.animation = new Animator(this.cache[frameNumber][angle], 0, 0, 126, 92, 1, 1);
-
-        this.animation.drawFrame(this.game.clockTick, ctx, 126, 92, 1, false);
-
-
-        //this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1, false);
         //for reference
         // ctx.drawImage(this.spritesheet, 
         //     this.xStart + this.width*frame, this.yStart,
@@ -150,22 +100,20 @@ class Antibody {
         }
 
         //calls 7 times for all 7 frames in the spritesheet
-        //for (let k = 0; k < 7; k++) {
-            
-        this.drawAngle(ctx, degrees, 1);
-            
-        //}
+        // for (let k = 1; k <= 7; k++) {
+        //     this.drawAngle(ctx, degrees, k);
+        // }
 
-        //this.drawAngle(ctx, degrees, 1);
+        this.drawAngle(ctx, degrees, 1);
 
         this.updateBB();
         
-        //if (PARAMS.DEBUG) {
+        if (PARAMS.DEBUG) {
             ctx.beginPath();
             ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
             ctx.strokeStyle = 'red';
             ctx.stroke();
-        //}
+        }
 
     };
 
@@ -177,10 +125,8 @@ class Antibody {
         this.updateBB();
 
         for (var i = 0; i < this.game.entities.length; i++) {
-            var entity = this.game.entities[i];
-            if (entity instanceof Micro && collide(this, entity)) {
-                this.removeFromWorld = true;
-            } else if ((entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) && (this.collideBottom() || this.collideRight() || this.collideTop() || this.collideLeft())) {
+            var micro = this.game.entities[i];
+            if (micro instanceof Micro && collide(this, micro)) {
                 this.removeFromWorld = true;
             }
         }
@@ -191,45 +137,26 @@ class Antibody {
     };
 
     updateBB() {
-        //maybe refine this a little more?
+        //FIX THIS FOR ALL DIRECTIONS!!
 
         if (this.facing == 0) {
-            this.BB = new BoundingCircle(this.x + 150 / 2, this.y + 10 / 2, 30);
+            this.BB = new BoundingCircle(this.x + 150 / 2, this.y + 10 / 2, 20);
         } else if (this.facing == 1) {
-            this.BB = new BoundingCircle(this.x + 245 / 2, this.y + 50 / 2, 30);
+            this.BB = new BoundingCircle(this.x + 245 / 2, this.y + 50 / 2, 20);
         } else if (this.facing == 2) {
-            this.BB = new BoundingCircle(this.x + 250 / 2, this.y + 165 / 2, 30);
+            this.BB = new BoundingCircle(this.x + 250 / 2, this.y + 165 / 2, 20);
         } else if (this.facing == 3) {
-            this.BB = new BoundingCircle(this.x + 220 / 2, this.y + 210 / 2, 30);
+            this.BB = new BoundingCircle(this.x + 220 / 2, this.y + 210 / 2, 20);
         } else if (this.facing == 4) {
-            this.BB = new BoundingCircle(this.x + 100 / 2, this.y + 245 / 2, 30);
+            this.BB = new BoundingCircle(this.x + 100 / 2, this.y + 245 / 2, 20);
         } else if (this.facing == 5) {
-            this.BB = new BoundingCircle(this.x + 20 / 2, this.y + 210 / 2, 30);
+            this.BB = new BoundingCircle(this.x + 20 / 2, this.y + 210 / 2, 20);
         } else if (this.facing == 6) {
-            this.BB = new BoundingCircle(this.x + 10 / 2, this.y + 150 / 2, 30);
+            this.BB = new BoundingCircle(this.x + 10 / 2, this.y + 150 / 2, 20);
         } else if (this.facing == 7) {
-            this.BB = new BoundingCircle(this.x + 50 / 2, this.y + 5 / 2, 30);
+            this.BB = new BoundingCircle(this.x + 50 / 2, this.y + 5 / 2, 20);
         }
 
-    };
-
-    collideLeft() {
-        return (this.x - this.BB.radius) < 28;
-    };
-
-    //right wall
-    collideRight() {
-        return (this.x + this.BB.radius) > 868;
-    };
-
-    //Top wall
-    collideTop() {
-        return (this.y - this.BB.radius) < 28;
-    };
-
-    //Bottom wall
-    collideBottom() {
-        return (this.y + this.BB.radius) > 602;
     };
 
 }
