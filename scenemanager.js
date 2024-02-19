@@ -171,9 +171,6 @@ class SceneManager {
                 this.loadLevel(levelOne, false);
             }
         }
-
-
-
     };
 
 
@@ -210,7 +207,7 @@ class SceneManager {
         //this.game.ctx.fillText(level1Text + level1Count, xPositionCenter, yPosition + 2 * lineHeight);
         this.game.ctx.fillText(level1Text, xPositionCenter, yPosition);
 
-        
+
         const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x 
         const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
         this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions
@@ -267,29 +264,46 @@ class SceneManager {
             ctx.font = "32px sans-serif";
             ctx.fillStyle = "White";
             ctx.fillText("START", PARAMS.CANVAS_WIDTH / 2 - 64, 450);
-        }
+        } else if (this.micro.gameover) {
+            // Code to draw the game over screen
+            ctx.font = "60px Veranda";
+            ctx.fillStyle = "White";
+            ctx.fillText("GAME OVER", 170, 150);
 
-        // Check if the game has started
-        if (this.title) {
-            // Game has not started, do not draw the minimap
-            return;
-        }
-
-        //HUD and minimap
-        this.renderHUD();
-        this.minimap.draw(ctx);
-
-        if (this.micro.gameover) {
-            //add end screen here
-        }
-        if (this.micro.won) {
+        } else if (this.micro.won) {
             ctx.font = "40px Veranda";
             ctx.fillStyle = "White";
             ctx.fillText("YOU WON LEVEL" + this.level.label, 190, 100);
             ctx.font = "20px Veranda";
-            ctx.fillText("Find Portal...", 300,300);
+            ctx.fillText("Find Portal...", 300, 300);
+        } else {
 
+            // Check if the game has started for mini map pop up on Title screen 
+            if (this.title) {
+                // Game has not started, do not draw the minimap
+                return;
+            }
+
+            //HUD and minimap
+            this.renderHUD();
+            this.minimap.draw(ctx);
         }
+
+        // if (this.micro.gameover) {
+        //     //add end screen here
+        //     ctx.fillStyle = "#a6a2a8";
+        //     ctx.fillRect(0, 0, width, height);
+        //     this.animation = new Animator(ASSET_MANAGER.getAsset("./MicroSpritesheet.png"), 2, 0, 64, 60, 3, 0.4);
+        //     this.animation.drawFrame(this.game.clockTick, ctx, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2, 1.5, true);
+        // }
+        // if (this.micro.won) {
+        //     ctx.font = "40px Veranda";
+        //     ctx.fillStyle = "White";
+        //     ctx.fillText("YOU WON LEVEL" + this.level.label, 190, 100);
+        //     ctx.font = "20px Veranda";
+        //     ctx.fillText("Find Portal...", 300, 300);
+
+        // }
     };
 
 

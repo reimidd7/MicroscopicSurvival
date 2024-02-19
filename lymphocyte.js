@@ -43,6 +43,7 @@ class Lymphocyte {
         //Lymphocytes two states are ALIVE (and shooting) or DEAD (and not shooting)
         var adjustedx = this.x - this.game.camera.x;
         var adjustedy = this.y - this.game.camera.y;
+
         if (this.dead) {
             this.animation = new Animator(this.spritesheet, 640, 0, 160, 160, 0.65, 0.3);
 
