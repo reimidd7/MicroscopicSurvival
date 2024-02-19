@@ -10,6 +10,7 @@ ASSET_MANAGER.queueDownload("clone.png");
 ASSET_MANAGER.queueDownload("explode.png");
 ASSET_MANAGER.queueDownload("shield.png");
 ASSET_MANAGER.queueDownload("size.png");
+ASSET_MANAGER.queueDownload("./portals.png");
 ASSET_MANAGER.queueDownload("stun.png");
 ASSET_MANAGER.queueDownload("./antibody.png");
 ASSET_MANAGER.queueDownload("./MicroSpritesheet.png");

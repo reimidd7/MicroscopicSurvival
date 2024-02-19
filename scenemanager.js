@@ -171,6 +171,12 @@ class SceneManager {
                 this.loadLevel(levelOne, false);
             }
         }
+
+        if (this.micro.won) {
+            console.log("portal");
+            this.game.addEntity(new Portal(this.game, 480, 675));
+
+        }
     };
 
 

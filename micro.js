@@ -86,7 +86,7 @@ class Micro {
         if (this.size === 0) {
             this.BB = new BoundingCircle(this.x + 64 / 2, this.y + 60 / 2, 20);
         } else if (this.size === 1) {
-            this.BB = new BoundingCircle(this.x + 88 / 2, this.y + 74 / 2, 40);
+            this.BB = new BoundingCircle(this.x + 88 / 2, this.y + 74 / 2, 30);
         }
     };
 
@@ -228,6 +228,7 @@ class Micro {
                     if (entity !== that && this.BB.collide(entity.BB)) {
 
                         // when punching Micro causes Cell and Lymphocyte's health to decline
+                        // AT some point add cool off to punching
                         if (that.state == 2) {
                             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
                                 entity.decreaseHealth();
@@ -243,8 +244,6 @@ class Micro {
                                     if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
 
                                     entity.dead = true;
-
-
                                 }
 
                                 if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {

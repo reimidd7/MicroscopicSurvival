@@ -252,6 +252,10 @@ var levelOne = {
         {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
        
 
+    ],
+    
+    portal: [
+        {x: 700, y: 480}
     ]
     
 
