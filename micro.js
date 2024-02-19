@@ -431,7 +431,7 @@ class Micro {
 
     powerUp() {
         if (this.poweredUpSpeed == true && this.speedTime < 750) {
-            this.walk = 800;
+            this.walk = 500;
             this.speedTime++;
             //console.log("setting speed");
         } else if (this.poweredUpSpeed == true && this.speedTime >= 750) {
