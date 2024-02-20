@@ -329,8 +329,8 @@ class Micro {
                                 this.healthpoints -= 1;
                             }
 
-                            // Check collisions with bones and redblood cells
-                             if (entity instanceof Bone || entity instanceof RedBloodCell) {
+                            // Check collisions with bones and redblood cells and lymphocytes
+                             if (entity instanceof Bone || entity instanceof RedBloodCell || entity instanceof Lymphocyte) {
                             if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
                                 this.x = entity.BB.x - this.BB.radius * 3.5;
                                 if (this.velocity.x > 0) {
