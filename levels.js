@@ -1,6 +1,5 @@
 BLOCK_SIZE = 32;
-CANVAS_WIDTH = 1024;
-CANVAS_HEIGHT = 768;
+
 var levelOne = {
     // add music
     // label

@@ -82,6 +82,8 @@ function collide(A, B) {
 const PARAMS = {
     BITWIDTH: 16,
     SCALE: 2,
-    DEBUG: true
+    DEBUG: true,
+    CANVAS_WIDTH: 1024,
+    CANVAS_HEIGHT: 768
 
 };
