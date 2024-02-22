@@ -297,7 +297,6 @@ class Micro {
 
                                 if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
                                     this.won = true;
-                                    console.log("WON");
                                 }
                             }
                         } else {
