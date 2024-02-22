@@ -10,8 +10,16 @@ ASSET_MANAGER.queueDownload("clone.png");
 ASSET_MANAGER.queueDownload("explode.png");
 ASSET_MANAGER.queueDownload("shield.png");
 ASSET_MANAGER.queueDownload("size.png");
+ASSET_MANAGER.queueDownload("./portals.png");
 ASSET_MANAGER.queueDownload("stun.png");
 ASSET_MANAGER.queueDownload("./antibody.png");
+ASSET_MANAGER.queueDownload("./antibody1.png");
+ASSET_MANAGER.queueDownload("./antibody2.png");
+ASSET_MANAGER.queueDownload("./antibody3.png");
+ASSET_MANAGER.queueDownload("./antibody4.png");
+ASSET_MANAGER.queueDownload("./antibody5.png");
+ASSET_MANAGER.queueDownload("./antibody6.png");
+ASSET_MANAGER.queueDownload("./antibody7.png");
 ASSET_MANAGER.queueDownload("./MicroSpritesheet.png");
 ASSET_MANAGER.queueDownload("./cellman.png");
 ASSET_MANAGER.queueDownload("./otherTiles.png");
@@ -21,7 +29,6 @@ ASSET_MANAGER.queueDownload("./redtiles_med.png");
 ASSET_MANAGER.queueDownload("./Micro_IDLE.png");
 ASSET_MANAGER.queueDownload("./TitleSpritesheet.png");
 ASSET_MANAGER.queueDownload("./title.png");
-
 ASSET_MANAGER.queueDownload("./bones.png");
 
 ASSET_MANAGER.downloadAll(() => {

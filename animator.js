@@ -26,8 +26,4 @@ class Animator {
     isDone() {
         return (this.elapsedTime >= this.totalTime);
     };
-
-    changeDuration(newDuration) {
-        this.frameDuration = newDuration;
-    };
 };

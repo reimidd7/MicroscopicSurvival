@@ -56,7 +56,7 @@ class CornerTiles {
 
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'White';
-            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
         }
 
 
@@ -69,7 +69,7 @@ class TopBottomWalls {
         Object.assign(this, { game, x, y, flip });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
-        
+
         this.BB = new BoundingBox(this.x, this.y, 32, 32);
 
     }
@@ -101,8 +101,8 @@ class TopBottomWalls {
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         // ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x, this.y, 32, 32);
         if (PARAMS.DEBUG) {
-        ctx.strokeStyle = 'White';
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+            ctx.strokeStyle = 'White';
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
         }
     };
 
@@ -115,7 +115,7 @@ class LeftRightWalls {
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
         this.BB = new BoundingBox(this.x, this.y, 32, 32);
 
-       
+
     }
 
     update() {
@@ -145,8 +145,8 @@ class LeftRightWalls {
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         //  ctx.drawImage(this.spritesheet, 143, 31, 16, 16, this.x, this.y, 32, 32);
         if (PARAMS.DEBUG) {
-        ctx.strokeStyle = 'White';
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+            ctx.strokeStyle = 'White';
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
         }
     };
 
@@ -175,8 +175,8 @@ class CharacterTiles {
         // ctx.drawImage(this.spritesheet, 62, 0, 16, 16, this.x, this.y, 32 * this.scale, 32 * this.scale);
 
         if (PARAMS.DEBUG) {
-        ctx.strokeStyle = 'White';
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+            ctx.strokeStyle = 'White';
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
         }
 
     };
@@ -188,7 +188,7 @@ class RippedTiles {
         Object.assign(this, { game, x, y });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
-       this.BB = new BoundingBox(this.x, this.y, 32, 32);
+        this.BB = new BoundingBox(this.x, this.y, 32, 32);
     };
 
 
@@ -206,8 +206,8 @@ class RippedTiles {
         // ctx.drawImage(this.spritesheet, 79, 31, 16, 16, this.x, this.y, 32, 32);
 
         if (PARAMS.DEBUG) {
-        ctx.strokeStyle = 'White';
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+            ctx.strokeStyle = 'White';
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
         }
     };
 
@@ -218,7 +218,7 @@ class NormalTiles {
         Object.assign(this, { game, x, y });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
-       this.BB = new BoundingBox(this.x, this.y, 32, 32);
+        this.BB = new BoundingBox(this.x, this.y, 32, 32);
 
     }
 
@@ -236,8 +236,40 @@ class NormalTiles {
         // ctx.drawImage(this.spritesheet, 80, 0, 16, 16, this.x, this.y, 32, 32);
 
         if (PARAMS.DEBUG) {
-        ctx.strokeStyle = 'White';
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y- this.game.camera.y, this.BB.w, this.BB.h);
+            ctx.strokeStyle = 'White';
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
+        }
+
+    };
+
+};
+
+class Portal {
+    constructor(game, x, y) {
+        Object.assign(this, { game, x, y });
+
+        this.spritesheet = ASSET_MANAGER.getAsset("./portals.png");
+        this.BB = new BoundingCircle(this.x + 32, this.y + 32, 32);
+
+    }
+
+    update() {
+
+    };
+
+    // drawMiniMap(ctx, mmX, mmY) {
+
+    // }
+
+    draw(ctx) {
+        //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
+        ctx.drawImage(this.spritesheet, 0, 0, 48, 32, this.x - this.game.camera.x, this.y - this.game.camera.y, 64, 64);
+
+        if (PARAMS.DEBUG) {
+            ctx.beginPath();
+            ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
         }
 
     };

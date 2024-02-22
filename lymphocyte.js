@@ -12,7 +12,7 @@ class Lymphocyte {
 
         this.speed = 50;
 
-        this.fireRate = 65;
+        this.fireRate = 80;
         this.elapsedTime = 0;
         this.updateBB();
     };
@@ -43,26 +43,29 @@ class Lymphocyte {
         //Lymphocytes two states are ALIVE (and shooting) or DEAD (and not shooting)
         var adjustedx = this.x - this.game.camera.x;
         var adjustedy = this.y - this.game.camera.y;
+
         if (this.dead) {
-            this.animation = new Animator(this.spritesheet, 640, 0, 160, 160, 0.45, 0.3);
+            this.animation = new Animator(this.spritesheet, 640, 0, 160, 160, 0.65, 0.3);
 
         } else {
             if (this.elapsedTime > this.fireRate) {
                 for (var i = 0; i < this.game.entities.length; i++) {
                     var micro = this.game.entities[i];
                     if (micro instanceof Micro && this.elapsedTime > this.fireRate) {
-                        this.game.addEntity(new Antibody(this.game, this.x, this.y-35, micro));
+                        if (!micro.dead) {
+                        this.game.addEntity(new Antibody(this.game, this.x-30, this.y-25, micro));
 
                         this.elapsedTime = 0;
+                        }
                     }
                 }
             }
             this.elapsedTime++;
-            //this.animation.drawFrame(this.game.clockTick, ctx, adjustedx, adjustedy, .5, 1, true);
+            // this.animation.drawFrame(this.game.clockTick, ctx, adjustedx, adjustedy, .5, 1, true);
             // this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, .5, 1, true);
 
         }
-        this.animation.drawFrame(this.game.clockTick, ctx, adjustedx, adjustedy, .45, 1, true);
+        this.animation.drawFrame(this.game.clockTick, ctx, adjustedx, adjustedy, .45, 0.65, true);
 
         if (PARAMS.DEBUG) {
         ctx.beginPath();

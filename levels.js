@@ -1,7 +1,10 @@
 BLOCK_SIZE = 32;
+CANVAS_WIDTH = 1024;
+CANVAS_HEIGHT = 768;
 var levelOne = {
     // add music
     // label
+    label: "1",
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [{x: 0, y: 0, flip: 0}, {x: BLOCK_SIZE * 31, y: 0, flip: 1}
@@ -201,25 +204,33 @@ var levelOne = {
     
     // ------------------------ ALL BACKGROUND ^^^^ CAN ADD MORE ABOVE HERE -------------------------------------
 
-    //add bones
+    //adds a bone randomly in each quadrent of the gameboard.
     bones: [
-        {x: 300, y: 300}
+        {x: 312, y: 88}, 
+        {x: 263, y: 199},
+        {x: 50, y: 337},
+        {x: 682, y: 472},
+        {x: 839, y: 356}
     ],
 
-    //add red blood cells
+    //adds 1 red blood cell randomly in each quadrent of the gameboard.
     redbloodcells: [
-        {x: 400, y: 400}
+        {x: 63, y: 40}, // ++
+        {x: 487, y: 460}, // --
+        {x: 673, y: 83}, // -+
+        {x: 260, y: 636} //+-
+        
     ],
     
     //add power ups (Level 1 only has speed and size powerups)
     powerups:[
-        {x: 200, y: 350, type: "speed"},
-        {x: 475, y: 620, type: "size"}
+        {x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed"},
+        {x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size"}
     ],
 
     //adding 1 lymphocyte
     lymphocyte: [
-        {x: 500, y: 200}
+        {x: Math.random() * (960-64) + 64, y: Math.random() * (704 - 64) + 64}
     ],
 
     //adding 30 cellmans
@@ -241,6 +252,10 @@ var levelOne = {
         {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
        
 
+    ],
+    
+    portal: [
+        {x: 700, y: 480}
     ]
     
 
