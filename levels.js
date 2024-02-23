@@ -225,7 +225,8 @@ var levelOne = {
     //add power ups (Level 1 only has speed and size powerups)
     powerups:[
         {x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed"},
-        {x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size"}
+        {x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size"},
+        {x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "explode"},
     ],
 
     //adding 1 lymphocyte

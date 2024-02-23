@@ -43,6 +43,11 @@ class SceneManager {
 
         this.loadLevel(levelOne, true);
 
+        //Adding timer for cells
+        this.cellSpawnTimer = 0;
+        this.cellSpawnInterval = 5; //seconds
+        this.cellsToSpawn = 5;
+
 
 
     }
@@ -124,13 +129,17 @@ class SceneManager {
 
         //This was for the showing Chris meeting spawnded 5 cell man
         if (!this.title) {
-            if (level.cell) {
-                for (var i = 0; i < 30; i++) {
-                    let c = level.cell[i];
-                    this.game.addEntity(new Cell(this.game, c.x, c.y));
+            this.cellSpawnTimer += this.game.clockTick;
+            if (this.cellSpawnTimer >= this.cellSpawnInterval) {
+                this.cellSpawnTimer = 0;
+                for (let i = 0; i < 30; i++) {
+                    let x = Math.random();
+                    let y = Math.random();
+                    this.game.addEntity(new Cell(this.game, x, y));
                 }
             }
         }
+        
 
         if (level.powerups) {
             for (var i = 0; i < level.powerups.length; i++) {
@@ -177,9 +186,33 @@ class SceneManager {
             this.game.addEntity(new Portal(this.game, 480, 675));
 
         }
+
+        this.cellSpawnTimer += this.game.clockTick;
+
+        // Check if it's time to spawn cells
+        if (this.cellSpawnTimer >= this.cellSpawnInterval) {
+            this.spawnCells();
+            this.cellSpawnTimer = 0; // Reset the timer
+        }
     };
 
+    spawnCells() {
+        // Count the total number of cells currently in the game
+        let totalCells = this.game.entities.filter(entity => entity instanceof Cell).length;
+    
+        // limit of 30
+        let cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
+    
+        // Spawn number of cells
+        for (let i = 0; i < cellsToSpawn; i++) {
+            let x = Math.random() * PARAMS.CANVAS_WIDTH;
+            let y = Math.random() * PARAMS.CANVAS_HEIGHT;
+            this.game.addEntity(new Cell(this.game, x, y));
+        }
+    }
+    
 
+ 
     //start of HUD
 
     // How many enemies are in the level

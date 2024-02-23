@@ -378,6 +378,8 @@ class Micro {
 
                                     this.poweredUpSize = true;
                                     this.sizeTime = 0;
+                                } else if (entity.type === "explode") {
+                                    entity.removeFromWorld = true;
                                 }
 
                                 this.powerUp();
