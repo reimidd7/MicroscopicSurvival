@@ -124,6 +124,13 @@ class SceneManager {
                     this.game.addEntity(new Powerup(this.game, p.x, p.y, p.type));
                 }
             }
+
+            if (level.portal && this.micro.winner) {
+                for (var i = 0; i < level.portal.length; i++) {
+                    let z = level.portal[i];
+                    this.game.addEntity(new Portal(this.game, z.x, z.y));
+                }
+            }
     
             this.micro.x = PARAMS.CANVAS_WIDTH / 2;
             this.micro.y = PARAMS.CANVAS_HEIGHT / 2;
@@ -170,7 +177,9 @@ class SceneManager {
         }
 
         if (this.micro.winner) {
+            this.portal = new Portal(this.game, 480, 675);
             this.game.addEntity(this.portal);
+            
         }
 
     };
