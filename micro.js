@@ -13,13 +13,13 @@ class Micro {
 
         this.dead = false;
         this.won = false;
+        this.winner = false;
+        this.levelCount = 1;
 
         this.poweredUpSize = false;
         this.sizeTime = 0;
         this.poweredUpSpeed = false;
         this.speedTime = 0;
-
-        // health decline animation: this.animations = new Animator(this.spritesheet, 0, 75, 65, 60, 1, 0.1 )
 
         this.velocity = { x: 0, y: 0 };
 
@@ -148,20 +148,15 @@ class Micro {
 
         if (this.dead) {
             this.game.camera.microLives -= 1;
-            if (this.game.camera.microLives > 0) {
-
+            if (this.game.camera.microLives > 0) {          
                 this.dead = false;
                 this.healthpoints = this.maxHealth;
                 this.x = PARAMS.CANVAS_WIDTH / 2;
                 this.y = PARAMS.CANVAS_WIDTH / 2;
-                this.game.camera.loadLevel(levelOne, false);
             } else {
-                console.log("dead");
-
                 this.velocity.x = 0;
                 this.velocity.y = 0;
                 this.gameover = true;
-                //add end of game screen here? or in draw()
             }
 
         } else {
@@ -296,7 +291,7 @@ class Micro {
                                 }
 
                                 if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
-                                    this.won = true;
+                                    this.winner = true;
                                 }
                             }
                         } else {
@@ -329,41 +324,41 @@ class Micro {
                             }
 
                             // Check collisions with bones and redblood cells and lymphocytes
-                             if (entity instanceof Bone || entity instanceof RedBloodCell || entity instanceof Lymphocyte) {
-                            if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
-                                this.x = entity.BB.x - this.BB.radius * 3.5;
-                                if (this.velocity.x > 0) {
-                                    this.velocity.x = 0;
-                                    this.velocity.y = 0;
+                            if (entity instanceof Bone || entity instanceof RedBloodCell) {
+                                if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
+                                    this.x = entity.BB.x - this.BB.radius * 3.5;
+                                    if (this.velocity.x > 0) {
+                                        this.velocity.x = 0;
+                                        this.velocity.y = 0;
+                                    }
+                                    //console.log("left collision");
+                                } else if (this.lastBB.x >= entity.BB.x) { // Collided with the right
+                                    this.x = entity.BB.x + this.BB.radius;
+                                    if (this.velocity.x > 0) {
+                                        this.velocity.x = 0;
+                                        this.velocity.y = 0;
+                                    }
+                                    //console.log("right collision");
                                 }
-                                //console.log("left collision");
-                            } else if (this.lastBB.x >= entity.BB.x) { // Collided with the right
-                                this.x = entity.BB.x + this.BB.radius;
-                                if (this.velocity.x > 0) {
-                                    this.velocity.x = 0;
-                                    this.velocity.y = 0;
+
+                                if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
+                                    this.y = entity.BB.y + this.BB.radius;
+                                    if (this.velocity.y > 0) {
+                                        this.velocity.x = 0;
+                                        this.velocity.y = 0;
+                                    }
+                                    //console.log("bottom collision");
+                                } else if (this.lastBB.y <= entity.BB.y) { // Collided with the top
+                                    this.y = entity.BB.y - this.BB.radius * 2.5;
+                                    if (this.velocity.y > 0) {
+                                        this.velocity.x = 0;
+                                        this.velocity.y = 0;
+                                    }
+                                    //console.log("top collision");
+
+
                                 }
-                                //console.log("right collision");
                             }
-
-                            if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
-                                this.y = entity.BB.y + this.BB.radius;
-                                if (this.velocity.y > 0) {
-                                    this.velocity.x = 0;
-                                    this.velocity.y = 0;
-                                }
-                                //console.log("bottom collision");
-                            } else if (this.lastBB.y <= entity.BB.y) { // Collided with the top
-                                this.y = entity.BB.y - this.BB.radius * 2.5;
-                                if (this.velocity.y > 0) {
-                                    this.velocity.x = 0;
-                                    this.velocity.y = 0;
-                                }
-                                //console.log("top collision");
-
-
-                            }
-                        }
 
                             if (entity instanceof Powerup) { //make them last for like 15 seconds only
                                 entity.removeFromWorld = true;
@@ -381,12 +376,40 @@ class Micro {
 
                                 this.powerUp();
                             }
+
                         }
 
                     }
                 }
             }
+            if (this.winner) {
+                if (this.BB.collide(this.game.camera.portal.BB)) {
+                    this.levelCount++;
+                    this.winner = false;
+                    if (this.levelCount == 2) {
+                        this.game.camera.loadLevel(levelTwo, true, false);
+                    } else if (this.levelCount == 3) {
+                        this.game.camera.loadLevel(levelThree, true, false);
+                    } else if (this.levelCount == 4) {
+                        this.game.camera.loadLevel(levelFour, true, false);
+                    } else if (this.levelCount == 5) {
+                        this.game.camera.loadLevel(levelFive, true, false);
+                    } else {
+
+                    }
+                    this.game.startInput();
+                }
+
+                if (this.levelCount == 5 && this.winner) {
+                    this.won = true;
+                    console.log("won");
+                }
+                console.log(this.levelCount);
+            }
+            
+
             this.healthBar.update(this);
+
         }
     };
 

@@ -1,7 +1,3 @@
-/** NOT IMPLEMENTED YET
- * Will use for the official background
- */
-
 class CornerTiles {
     constructor(game, x, y, flip) {
         Object.assign(this, { game, x, y, flip });
@@ -26,40 +22,31 @@ class CornerTiles {
         if (this.flip == 1) {
             ctx.scale(-1, 1);
             ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x - 32) + this.game.camera.x, this.y - this.game.camera.y, 32, 32);
-            // ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x-32), this.y, 32, 32);
 
             ctx.restore();
 
         } else if (this.flip == 2) {
             ctx.scale(1, -1);
             ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x - this.game.camera.x, (-this.y - 32) + this.game.camera.y, 32, 32);
-            // ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x, (-this.y-32), 32, 32);
 
             ctx.restore();
 
         } else if (this.flip == 3) {
             ctx.scale(-1, -1);
             ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x - 32) + this.game.camera.x, (-this.y - 32) + this.game.camera.y, 32, 32);
-            // ctx.drawImage(this.spritesheet, 142, 15, 16, 16, (-this.x-32), (-this.y-32), 32, 32);
 
             ctx.restore();
 
         } else {
             ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
-            // ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x, this.y , 32, 32);
 
 
         }
-        //ctx.restore();
-        //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
-        //ctx.drawImage(this.spritesheet, 142, 15, 16, 16, this.x, this.y, 32, 32);
 
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'White';
             ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
         }
-
-
     };
 
 };
@@ -78,10 +65,6 @@ class TopBottomWalls {
 
     };
 
-    // drawMiniMap(ctx, mmX, mmY) {
-
-    // }
-
     draw(ctx) {
         ctx.save();
 
@@ -89,17 +72,14 @@ class TopBottomWalls {
         if (this.flip == 1) {
             ctx.scale(1, -1);
             ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x - this.game.camera.x, (-this.y - 32) + this.game.camera.y, 32, 32);
-            // ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x, (-this.y-32), 32, 32);
 
             ctx.restore();
 
         } else {
             ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
-            // ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x, this.y, 32, 32);
 
         }
-        //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
-        // ctx.drawImage(this.spritesheet, 111, 15, 16, 16, this.x, this.y, 32, 32);
+
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'White';
             ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
@@ -118,13 +98,7 @@ class LeftRightWalls {
 
     }
 
-    update() {
-
-    };
-
-    // drawMiniMap(ctx, mmX, mmY) {
-
-    // }
+    update() {};
 
     draw(ctx) {
         ctx.save();
@@ -133,17 +107,14 @@ class LeftRightWalls {
         if (this.flip == 1) {
             ctx.scale(-1, 1);
             ctx.drawImage(this.spritesheet, 143, 31, 16, 16, (-this.x - 32) + this.game.camera.x, this.y - this.game.camera.y, 32, 32);
-            // ctx.drawImage(this.spritesheet, 143, 31, 16, 16, (-this.x-32), this.y, 32, 32);
 
             ctx.restore();
 
         } else {
             ctx.drawImage(this.spritesheet, 143, 31, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
-            // ctx.drawImage(this.spritesheet, 143, 31, 16, 16, this.x, this.y , 32, 32);
 
         }
-        //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
-        //  ctx.drawImage(this.spritesheet, 143, 31, 16, 16, this.x, this.y, 32, 32);
+        
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'White';
             ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
@@ -165,14 +136,8 @@ class CharacterTiles {
 
     };
 
-    // drawMiniMap(ctx, mmX, mmY) {
-
-    // }
-
     draw(ctx) {
-        //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         ctx.drawImage(this.spritesheet, 62, 0, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32 * this.scale, 32 * this.scale);
-        // ctx.drawImage(this.spritesheet, 62, 0, 16, 16, this.x, this.y, 32 * this.scale, 32 * this.scale);
 
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'White';
@@ -196,14 +161,8 @@ class RippedTiles {
 
     };
 
-    // drawMiniMap(ctx, mmX, mmY) {
-
-    // }
-
     draw(ctx) {
-        //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         ctx.drawImage(this.spritesheet, 79, 31, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
-        // ctx.drawImage(this.spritesheet, 79, 31, 16, 16, this.x, this.y, 32, 32);
 
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'White';
@@ -226,14 +185,8 @@ class NormalTiles {
 
     };
 
-    // drawMiniMap(ctx, mmX, mmY) {
-
-    // }
-
     draw(ctx) {
-        //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
         ctx.drawImage(this.spritesheet, 80, 0, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
-        // ctx.drawImage(this.spritesheet, 80, 0, 16, 16, this.x, this.y, 32, 32);
 
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'White';
@@ -249,17 +202,13 @@ class Portal {
         Object.assign(this, { game, x, y });
 
         this.spritesheet = ASSET_MANAGER.getAsset("./portals.png");
-        this.BB = new BoundingCircle(this.x + 32, this.y + 32, 32);
+        this.BB = new BoundingCircle(this.x + 32, this.y + 31, 15);
 
     }
 
     update() {
 
     };
-
-    // drawMiniMap(ctx, mmX, mmY) {
-
-    // }
 
     draw(ctx) {
         //this.spritesheet,this.xStart, this.yStart,this.width, this.height,x, y,this.width*scale, this.height*scale
