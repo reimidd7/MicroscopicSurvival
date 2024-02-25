@@ -173,6 +173,7 @@ class SceneManager {
                 this.title = false;
                 //this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
                 this.loadLevel(levelOne, true, false);
+                //this.loadLevel(levelFour, true, false);
             }
         }
 

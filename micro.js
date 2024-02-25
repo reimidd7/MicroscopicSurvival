@@ -178,62 +178,62 @@ class Micro {
             this.key = this.game.keyCode;
 
             //update position
-            if (this.collideLeft() || this.collideRight()) {
-                if (this.prevCode != this.key && this.key != null) {
-                    this.velocity.x = -this.velocity.x;
-                    if (this.collideLeft() && this.size == 0) {
-                        this.x = this.BB.radius + 20;
-                    } else if (this.collideLeft() && this.size == 1) {
-                        this.x = this.BB.radius - 2;
-                    }
+            // if (this.collideLeft() || this.collideRight()) {
+            //     if (this.prevCode != this.key && this.key != null) {
+            //         this.velocity.x = -this.velocity.x;
+            //         if (this.collideLeft() && this.size == 0) {
+            //             this.x = this.BB.radius + 20;
+            //         } else if (this.collideLeft() && this.size == 1) {
+            //             this.x = this.BB.radius - 2;
+            //         }
 
-                    if (this.collideRight() && this.size == 0) {
-                        this.x = 950 - this.BB.radius;
-                    } else if (this.collideRight() && this.size == 1) {
-                        this.x = 925 - this.BB.radius;
-                    }
+            //         if (this.collideRight() && this.size == 0) {
+            //             this.x = 950 - this.BB.radius;
+            //         } else if (this.collideRight() && this.size == 1) {
+            //             this.x = 925 - this.BB.radius;
+            //         }
 
-                    //random direction after hitting wall
-                    this.velocity.y = Math.random() * 100 + 50;
-                    this.updateLastBB();
-                    this.updateBB();
-                }
+            //         //random direction after hitting wall
+            //         this.velocity.y = Math.random() * 100 + 50;
+            //         this.updateLastBB();
+            //         this.updateBB();
+            //     }
 
-                this.prevCode = this.key;
+            //     this.prevCode = this.key;
 
-                this.key = this.game.keyCode;
+            //     this.key = this.game.keyCode;
 
-            } else if (this.collideBottom() || this.collideTop()) {
-                if (this.prevCode != this.key && this.key != null) {
-                    this.velocity.y = -this.velocity.y;
-                    if (this.collideTop() && this.size == 0) {
-                        this.y = this.BB.radius + 5;
-                    } else if (this.collideTop() && this.size == 1) {
-                        this.y = this.BB.radius - 3;
-                    }
+            // } else if (this.collideBottom() || this.collideTop()) {
+            //     if (this.prevCode != this.key && this.key != null) {
+            //         this.velocity.y = -this.velocity.y;
+            //         if (this.collideTop() && this.size == 0) {
+            //             this.y = this.BB.radius + 5;
+            //         } else if (this.collideTop() && this.size == 1) {
+            //             this.y = this.BB.radius - 3;
+            //         }
 
-                    if (this.collideBottom() && this.size == 0) {
-                        this.y = 708 - this.BB.radius;
-                    } else if (this.collideBottom() && this.size == 1) {
-                        this.y = 692 - this.BB.radius;
-                    }
+            //         if (this.collideBottom() && this.size == 0) {
+            //             this.y = 708 - this.BB.radius;
+            //         } else if (this.collideBottom() && this.size == 1) {
+            //             this.y = 692 - this.BB.radius;
+            //         }
 
-                    //random direction after hitting wall
-                    this.velocity.x = Math.random() * 100 + 50;
-                    this.updateLastBB();
-                    this.updateBB();
-                }
+            //         //random direction after hitting wall
+            //         this.velocity.x = Math.random() * 100 + 50;
+            //         this.updateLastBB();
+            //         this.updateBB();
+            //     }
 
-                this.prevCode = this.key;
+            //     this.prevCode = this.key;
 
-                this.key = this.game.keyCode;
+            //     this.key = this.game.keyCode;
 
-            } else {
+            // } else {
                 this.x += this.velocity.x * this.game.clockTick;
                 this.y += this.velocity.y * this.game.clockTick;
                 this.updateLastBB();
                 this.updateBB();
-            }
+           // }
 
 
             // update state!
@@ -387,10 +387,13 @@ class Micro {
                     this.levelCount++;
                     this.winner = false;
                     if (this.levelCount == 2) {
+                        
                         this.game.camera.loadLevel(levelTwo, true, false);
                     } else if (this.levelCount == 3) {
                         this.game.camera.loadLevel(levelThree, true, false);
                     } else if (this.levelCount == 4) {
+                        PARAMS.CANVAS_WIDTH = (32 * 40);
+                        PARAMS.CANVAS_HEIGHT = (32 * 32);
                         this.game.camera.loadLevel(levelFour, true, false);
                     } else if (this.levelCount == 5) {
                         this.game.camera.loadLevel(levelFive, true, false);
@@ -402,9 +405,7 @@ class Micro {
 
                 if (this.levelCount == 5 && this.winner) {
                     this.won = true;
-                    console.log("won");
                 }
-                console.log(this.levelCount);
             }
             
 
