@@ -48,6 +48,10 @@ class Micro {
         this.animations = [];
         this.loadAnimations();
 
+        //Explosion
+        this.poweredUpExplode = false;
+        this.explodeTime = 0;
+
 
     };
 
@@ -154,12 +158,12 @@ class Micro {
 
         if (this.dead) {
             this.game.camera.microLives -= 1;
-            if (this.game.camera.microLives > 0) {          
+            if (this.game.camera.microLives > 0) {
                 this.dead = false;
                 this.healthpoints = this.maxHealth;
                 this.x = PARAMS.CANVAS_WIDTH / 2;
                 this.y = PARAMS.CANVAS_WIDTH / 2;
-               // this.game.camera.loadLevel(levelThree, false);
+                // this.game.camera.loadLevel(levelThree, false);
             } else {
                 this.velocity.x = 0;
                 this.velocity.y = 0;
@@ -236,11 +240,11 @@ class Micro {
             //     this.key = this.game.keyCode;
 
             // } else {
-                this.x += this.velocity.x * this.game.clockTick;
-                this.y += this.velocity.y * this.game.clockTick;
-                this.updateLastBB();
-                this.updateBB();
-           // }
+            this.x += this.velocity.x * this.game.clockTick;
+            this.y += this.velocity.y * this.game.clockTick;
+            this.updateLastBB();
+            this.updateBB();
+            // }
 
 
             // update state!
@@ -366,65 +370,88 @@ class Micro {
 
                                 }
                             }
-
-                            if (entity instanceof Powerup) { //make them last for like 15 seconds only
-                                entity.removeFromWorld = true;
-                                if (entity.type === "speed") {
-                                    entity.removeFromWorld = true;
-
-                                    this.poweredUpSpeed = true;
-                                    this.speedTime = 0;
-                                } else if (entity.type === "size") {
-                                    entity.removeFromWorld = true;
-
-                                    this.poweredUpSize = true;
-                                    this.sizeTime = 0;
-
-                                } else if (entity.type === "stun") {
-                                    this.stunTime = 0;
-                                    this.stunMine = new Mine(this.game, this.x, this.y, "stun");
-                                    this.game.addEntity(this.stunMine);
-                                    this.stunMine.active = true;
-                                    this.activeStunMine = true;
+                        }
+                        //Make sure that the enemies keep dying while explosion is up
+                        if (this.poweredUpExplode) {
+                            for (const entity of this.game.entities) {
+                                if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
+                                    const dx = this.x - entity.x;
+                                    const dy = this.y - entity.y;
+                                    const distance = Math.sqrt(dx * dx + dy * dy);
+                                    if (distance < 50) {
+                                        entity.decreaseHealth();
+                                        if (entity.healthpoints <= 0) {
+                                            if (entity instanceof Cell) this.game.camera.cellCount -= 1;
+                                            if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
+                                            entity.dead = true;
+                                        }
+                                    }
                                 }
+                            }
+                        }
 
-                                this.powerUp();
+                        if (entity instanceof Powerup) { //make them last for like 15 seconds only
+                            entity.removeFromWorld = true;
+                            if (entity.type === "speed") {
+                                entity.removeFromWorld = true;
+
+                                this.poweredUpSpeed = true;
+                                this.speedTime = 0;
+                            } else if (entity.type === "size") {
+                                entity.removeFromWorld = true;
+
+                                this.poweredUpSize = true;
+                                this.sizeTime = 0;
+
+                            } else if (entity.type === "stun") {
+                                this.stunTime = 0;
+                                this.stunMine = new Mine(this.game, this.x, this.y, "stun");
+                                this.game.addEntity(this.stunMine);
+                                this.stunMine.active = true;
+                                this.activeStunMine = true;
+                            } else if (entity.type === "explode") {
+                                entity.removeFromWorld = true;
+                                this.poweredUpExplode = true;
+                                this.explodeTime = 0;
                             }
 
+                            this.powerUp();
                         }
 
                     }
+
                 }
             }
-            if (this.winner) {
-                if (this.BB.collide(this.game.camera.portal.BB)) {
-                    this.levelCount++;
-                    this.winner = false;
-                    if (this.levelCount == 2) {
-                        
-                        this.game.camera.loadLevel(levelTwo, true, false);
-                    } else if (this.levelCount == 3) {
-                        this.game.camera.loadLevel(levelThree, true, false);
-                    } else if (this.levelCount == 4) {
-                        this.game.camera.loadLevel(levelFour, true, false);
-                    } else if (this.levelCount == 5) {
-                        this.game.camera.loadLevel(levelFive, true, false);
-                    } else {
-
-                    }
-                    this.game.startInput();
-                }
-
-                if (this.levelCount == 5 && this.winner) {
-                    this.won = true;
-                }
-            }
-            
-
-            this.healthBar.update(this);
-
         }
+        if (this.winner) {
+            if (this.BB.collide(this.game.camera.portal.BB)) {
+                this.levelCount++;
+                this.winner = false;
+                if (this.levelCount == 2) {
+
+                    this.game.camera.loadLevel(levelTwo, true, false);
+                } else if (this.levelCount == 3) {
+                    this.game.camera.loadLevel(levelThree, true, false);
+                } else if (this.levelCount == 4) {
+                    this.game.camera.loadLevel(levelFour, true, false);
+                } else if (this.levelCount == 5) {
+                    this.game.camera.loadLevel(levelFive, true, false);
+                } else {
+
+                }
+                this.game.startInput();
+            }
+
+            if (this.levelCount == 5 && this.winner) {
+                this.won = true;
+            }
+        }
+
+
+        this.healthBar.update(this);
+
     };
+
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Green";
@@ -461,6 +488,19 @@ class Micro {
             ctx.stroke();
         }
 
+        //Drawing the radius of the explosion
+        if (this.poweredUpExplode) {
+            ctx.save();
+            ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
+            ctx.beginPath();
+            ctx.arc(0, 0, 50, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+            ctx.fill();
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            ctx.restore();
+        }
+
     };
 
 
@@ -485,6 +525,31 @@ class Micro {
             this.sizeTime = 0;
             this.poweredUpSize = false;
             //console.log("resetting size");
+        }
+        if (this.poweredUpExplode) {
+
+            if (this.explodeTime >= 420) {
+                this.poweredUpExplode = false;
+                this.explodeTime = 0;
+            } else {
+                // Explode logic
+                for (const entity of this.game.entities) {
+                    if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
+                        const dx = this.x - entity.x;
+                        const dy = this.y - entity.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 50) {
+                            entity.decreaseHealth();
+                            if (entity.healthpoints <= 0) {
+                                if (entity instanceof Cell) this.game.camera.cellCount -= 1;
+                                if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
+                                entity.dead = true;
+                            }
+                        }
+                    }
+                }
+                this.explodeTime++;
+            }
         }
 
         if (this.activeStunMine == true && this.stunTime < 500) {

@@ -42,6 +42,15 @@ class SceneManager {
 
         this.minimap = new Minimap(this.game, 0, 460, 68); // Adjust size as needed
 
+
+
+        //Adding timer for cells
+        this.cellSpawnTimer = 0;
+        this.cellSpawnInterval = 5; //seconds
+        this.cellsToSpawn = 5;
+
+
+
     }
 
     clearEntities() {
@@ -113,12 +122,25 @@ class SceneManager {
                 }
             }
 
-            if (level.cell) {
-                for (var i = 0; i < level.cell.length; i++) {
-                    let c = level.cell[i];
-                    this.game.addEntity(new Cell(this.game, c.x, c.y, this));
+
+
+            //Spawns 5 cell men
+            if (!this.title) {
+                this.cellSpawnTimer += this.game.clockTick;
+                if (this.cellSpawnTimer >= this.cellSpawnInterval) {
+                    this.cellSpawnTimer = 0;
+                    for (let i = 0; i < 30; i++) {
+                        let x = Math.random();
+                        let y = Math.random();
+                        this.game.addEntity(new Cell(this.game, x, y));
+                    }
+                    // for (var i = 0; i < level.cell.length; i++) {
+                    //     let c = level.cell[i];
+                    //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
+                    // }
                 }
             }
+
 
             if (level.powerups) {
                 for (var i = 0; i < level.powerups.length; i++) {
@@ -206,7 +228,33 @@ class SceneManager {
 
         }
 
+        this.cellSpawnTimer += this.game.clockTick;
+
+        // Check if it's time to spawn cells
+        if (this.cellSpawnTimer >= this.cellSpawnInterval) {
+            this.spawnCells();
+            this.cellSpawnTimer = 0; // Reset the timer
+        }
     };
+
+    spawnCells() {
+        let totalCells = this.game.entities.filter(entity => entity instanceof Cell).length;
+
+        let cellsToSpawn = 0;
+        if (this.level === levelOne) {
+            cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelTwo) {
+            cellsToSpawn = Math.min(40 - totalCells, this.cellsToSpawn);
+        }
+
+        for (let i = 0; i < cellsToSpawn; i++) {
+            let x = Math.random() * PARAMS.CANVAS_WIDTH;
+            let y = Math.random() * PARAMS.CANVAS_HEIGHT;
+            this.game.addEntity(new Cell(this.game, x, y));
+        }
+    }
+
+
 
 
     //start of HUD
@@ -221,20 +269,17 @@ class SceneManager {
 
     // Create the HUD with all components.
     renderHUD() {
-
-        //Number of Enemies and Level
+        // Define positions and styles
         const xPositionLeft = 10;
-        const xPositionCenter = (PARAMS.CANVAS_WIDTH - this.game.ctx.measureText("Level 1: " + (this.level.level1Count || 0)).width) / 2; // Center alignment position
+        const xPositionCenter = (PARAMS.CANVAS_WIDTH - this.game.ctx.measureText("Level: " + (this.level.label || 0)).width) / 2; // Center alignment position
         const yPosition = 20;
         const lineHeight = 30;
         const fontSize = 15;
         this.game.ctx.font = fontSize + "px Comic Sans MS";
         this.game.ctx.fillStyle = "white";
 
-
+        // Display counts for lymphocytes and cellman
         this.game.ctx.fillText("Lymphocytes: " + this.lymphocyteCount, xPositionLeft, yPosition);
-
-
         this.game.ctx.fillText("Cellman: " + this.cellCount, xPositionLeft, yPosition + lineHeight);
 
         const levelText = "Level " + this.level.label; // Text for levels
