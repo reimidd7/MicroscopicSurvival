@@ -28,7 +28,9 @@ class SceneManager {
         this.animation5 = new Animator(this.spritesheet, 108, 121, 74, 140, 3, 0.2); //human
 
         this.menuSelect = {
-            start: false
+            start: false,
+            instr: false,
+            credit: false
         };
 
         this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
@@ -61,63 +63,63 @@ class SceneManager {
                 let corner = level.cornertiles[i];
                 this.game.addEntity(new CornerTiles(this.game, corner.x, corner.y, corner.flip, this.level));
             }
-    
+
             if (level.topbottomwalls) {
                 for (var i = 0; i < level.topbottomwalls.length; i++) {
                     let topbottom = level.topbottomwalls[i];
                     this.game.addEntity(new TopBottomWalls(this.game, topbottom.x, topbottom.y, topbottom.flip, this.level));
                 }
             }
-    
+
             if (level.leftrightwalls) {
                 for (var i = 0; i < level.leftrightwalls.length; i++) {
                     let leftright = level.leftrightwalls[i];
-                    this.game.addEntity(new LeftRightWalls(this.game, leftright.x, leftright.y, leftright.flip,this.level));
+                    this.game.addEntity(new LeftRightWalls(this.game, leftright.x, leftright.y, leftright.flip, this.level));
                 }
             }
-    
+
             if (level.normaltiles) {
                 for (var i = 0; i < level.normaltiles.length; i++) {
                     let normal = level.normaltiles[i];
-                    this.game.addEntity(new NormalTiles(this.game, normal.x, normal.y,this.level));
+                    this.game.addEntity(new NormalTiles(this.game, normal.x, normal.y, this.level));
                 }
             }
-    
+
             if (level.rippedtiles) {
                 for (var i = 0; i < level.rippedtiles.length; i++) {
                     let rip = level.rippedtiles[i];
                     this.game.addEntity(new RippedTiles(this.game, rip.x, rip.y, this.level));
                 }
             }
-    
+
             if (level.bones) {
                 for (var i = 0; i < level.bones.length; i++) {
                     let bone = level.bones[i];
                     this.game.addEntity(new Bone(this.game, bone.x, bone.y));
                 }
             }
-    
+
             if (level.redbloodcells) {
                 for (var i = 0; i < level.redbloodcells.length; i++) {
                     let blood = level.redbloodcells[i];
                     this.game.addEntity(new RedBloodCell(this.game, blood.x, blood.y));
                 }
             }
-        
+
             if (level.lymphocyte) {
                 for (var i = 0; i < level.lymphocyte.length; i++) {
                     let l = level.lymphocyte[i];
                     this.game.addEntity(new Lymphocyte(this.game, l.x, l.y));
                 }
             }
-    
+
             if (level.cell) {
                 for (var i = 0; i < level.cell.length; i++) {
                     let c = level.cell[i];
                     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
                 }
             }
-    
+
             if (level.powerups) {
                 for (var i = 0; i < level.powerups.length; i++) {
                     let p = level.powerups[i];
@@ -131,17 +133,17 @@ class SceneManager {
                     this.game.addEntity(new Portal(this.game, z.x, z.y));
                 }
             }
-    
+
             this.micro.x = PARAMS.CANVAS_WIDTH / 2;
             this.micro.y = PARAMS.CANVAS_HEIGHT / 2;
-            
-            this.micro.removeFromWorld = false;
-            this.micro.velocity = {x: 0, y: 0};
 
-        
+            this.micro.removeFromWorld = false;
+            this.micro.velocity = { x: 0, y: 0 };
+
+
             this.game.addEntity(this.micro); //might need to add a loop here if micro has a noticable speed difference
-    
-    
+
+
             this.updateCounts();
 
             if (this.micro.dead) {
@@ -149,10 +151,10 @@ class SceneManager {
                     this.loadLevel(level, false, false);
                 }
             }
-    
-    
+
+
         }
-        
+
     };
 
 
@@ -169,18 +171,39 @@ class SceneManager {
 
 
         if (this.title) {
-            if ((this.game.click && this.game.click.x > 278 && this.game.click.x < 382) && (this.game.click && this.game.click.y > 425 && this.game.click.y < 452)) {
+            //Start
+            if ((this.game.click && this.game.click.x > 275 && this.game.click.x < 383) && (this.game.click && this.game.click.y > 411 && this.game.click.y < 443)) {
                 this.title = false;
-                //this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
                 this.loadLevel(levelOne, true, false);
-                //this.loadLevel(levelFour, true, false);
+            }
+            //instructions
+            if ((this.game.click && this.game.click.x > 276 && this.game.click.x < 401) && (this.game.click && this.game.click.y > 460 && this.game.click.y < 480)) {
+                this.title = false;
+                this.instr = true;
+            }
+
+            //credits
+            if ((this.game.click && this.game.click.x > 276 && this.game.click.x < 351) && (this.game.click && this.game.click.y > 484 && this.game.click.y < 505)) {
+                this.title = false;
+                this.credit = true;
+            }
+        }
+
+        if (this.instr || this.credit) {
+            //done go back to title
+            if ((this.game.click && this.game.click.x > 277 && this.game.click.x < 373) && (this.game.click && this.game.click.y > 424 && this.game.click.y < 452)) {
+                this.game.click.x = 0;
+                this.game.click.y = 0;
+                this.title = true;
+                this.instr = false;
+                this.credit = false;
             }
         }
 
         if (this.micro.winner) {
             this.portal = new Portal(this.game, 480, 675);
             this.game.addEntity(this.portal);
-            
+
         }
 
     };
@@ -267,9 +290,49 @@ class SceneManager {
             ctx.fillText("LEVELS:", 170, 320);
             ctx.font = "32px sans-serif";
             ctx.fillStyle = "White";
-            ctx.fillText("START", PARAMS.CANVAS_WIDTH / 2 - 64, 450);
+            ctx.fillText("START", PARAMS.CANVAS_WIDTH / 2 - 64, 440);
+            ctx.font = "16px sans-serif";
+            ctx.fillText("INSTRUCTIONS", PARAMS.CANVAS_WIDTH / 2 - 64, 475);
+            ctx.fillText("CREDITS", PARAMS.CANVAS_WIDTH / 2 - 64, 500);
 
-        } else if (this.micro.won) {                                    //EVENTUALLY ADD THE DEAD LEVELS!
+        } else if (this.instr) {
+            const width = PARAMS.CANVAS_WIDTH;
+            const height = PARAMS.CANVAS_HEIGHT;
+
+            ctx.fillStyle = "#a6a2a8";
+            ctx.fillRect(0, 0, width, height);
+            ctx.font = "64px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("INSTRUCTIONS:", PARAMS.CANVAS_WIDTH / 4 - 64, 100);
+            ctx.font = "24px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("Arrow Keys or AWSD: Moves Micro around the screen.", 50, 170);
+            ctx.fillText("SpaceBar: Causes Micro to punch and inflict damage ", 50, 260);
+            ctx.fillText("on enemies.", 170, 285);
+            ctx.font = "22px sans-serif";
+            ctx.fillText("GOAL: Kill all Lymphocytes and Cellmen to reach next level", 50, 375);
+            ctx.font = "32px sans-serif";
+            ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
+
+        } else if (this.credit) {
+            const width = PARAMS.CANVAS_WIDTH;
+            const height = PARAMS.CANVAS_HEIGHT;
+
+            ctx.fillStyle = "#a6a2a8";
+            ctx.fillRect(0, 0, width, height);
+            ctx.font = "64px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("CREDITS:", PARAMS.CANVAS_WIDTH / 2 - 128, 100);
+            ctx.font = "24px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("Created by...", 50, 170);
+            ctx.fillText(" ", 50, 260);
+            ctx.font = "32px sans-serif";
+            ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
+
+
+
+        } else if (this.micro.won) {
             ctx.fillStyle = "#a6a2a8";
             ctx.fillRect(0, 0, PARAMS.CANVAS_WIDTH, PARAMS.CANVAS_HEIGHT);
             ctx.font = "40px Veranda";
@@ -282,13 +345,13 @@ class SceneManager {
             ctx.fillStyle = "White";
             ctx.fillText("GAME OVER", 170, 150);
 
-        }  else if (this.micro.winner) {
+        } else if (this.micro.winner) {
             ctx.font = "40px Veranda";
             ctx.fillStyle = "White";
             ctx.fillText("YOU WON LEVEL " + this.level.label, 200, 100);
             ctx.font = "20px Veranda";
             ctx.fillText("Find Portal...", 300, 300);
-        }  else {
+        } else {
             // Check if the game has started for mini map pop up on Title screen 
             if (this.title) {
                 // Game has not started, do not draw the minimap
