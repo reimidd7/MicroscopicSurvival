@@ -1,8 +1,6 @@
 
 const ASSET_MANAGER = new AssetManager();
 
-
-
 ASSET_MANAGER.queueDownload("./LymphocyteEdited.png");
 ASSET_MANAGER.queueDownload("./RedBloodCell.png"); 
 ASSET_MANAGER.queueDownload("speed.png");
@@ -30,6 +28,11 @@ ASSET_MANAGER.queueDownload("./Micro_IDLE.png");
 ASSET_MANAGER.queueDownload("./TitleSpritesheet.png");
 ASSET_MANAGER.queueDownload("./title.png");
 ASSET_MANAGER.queueDownload("./bones.png");
+ASSET_MANAGER.queueDownload("./blackBackground.png");
+ASSET_MANAGER.queueDownload("./blueBackground.png");
+ASSET_MANAGER.queueDownload("./brownBackground.png");
+ASSET_MANAGER.queueDownload("./tanBackground.png");
+
 
 ASSET_MANAGER.downloadAll(() => {
 	const gameEngine = new GameEngine();
@@ -43,7 +46,6 @@ ASSET_MANAGER.downloadAll(() => {
 
 	PARAMS.CANVAS_WIDTH = canvas.width;
 	PARAMS.CANVAS_HEIGHT = canvas.height;
-
 
 	gameEngine.init(ctx);
 

@@ -16,7 +16,7 @@ class Antibody {
         this.animationFrame = 0;
         this.animationDuration = 0;
 
-        this.speed = 50;
+        this.speed = 80;
 
         // to make antibody head toward Micro 
         var dist = getDistance(this, this.target);
@@ -70,7 +70,7 @@ class Antibody {
         if (angle < 0) angle += Math.PI * 2;
         let degrees = Math.floor(angle / Math.PI / 2 * 360);
 
-        //made cache into a 2d array to try to get rotations for all 7 frames
+        //made cache into a 2d array to try to get 360 degree rotations for all 7 frames
         for (let i = 0; i < 8; i++) { // 7 frames
             this.cache.push([]);
             for (var j = 0; j < 360; j++) { // 360 degrees
@@ -78,6 +78,7 @@ class Antibody {
             }
         }
 
+        //draws Antibody at correct angle
         this.drawAngle(ctx, degrees, this.animationFrame);
 
         this.updateBB();
@@ -96,17 +97,22 @@ class Antibody {
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
 
-        this.updateBB();
+        //this.updateBB();
 
+        //if an Antibody collides with Micro, it disappears
         for (var i = 0; i < this.game.entities.length; i++) {
-            var micro = this.game.entities[i];
-            if (micro instanceof Micro && collide(this, micro)) {
+            var entity = this.game.entities[i];
+            if (entity instanceof Micro && collide(this, entity)) {
+                this.removeFromWorld = true;
+            } else if ((entity instanceof TopBottomWalls || entity instanceof LeftRightWalls || entity instanceof CornerTiles) && (this.collideBottom() || this.collideRight() || this.collideTop() || this.collideLeft())) {
                 this.removeFromWorld = true;
             }
         }
 
+        //updates direction the Antibody should be facing
         this.facing = getFacing(this.velocity);
 
+        //updates animation
         if (this.animationFrame <= 5 && this.animationDuration <= 2) {
             this.animationDuration++;
         } else if (this.animationDuration > 2) {
@@ -118,26 +124,47 @@ class Antibody {
     };
 
     updateBB() {
-        //FIX THIS FOR NEW SIZE
 
         if (this.facing == 0) {
-            this.BB = new BoundingCircle(this.x + 150 / 2, this.y + 10 / 2, 20);
+            this.BB = new BoundingCircle(this.x + 130 / 2, this.y + 45 / 2, 20);
         } else if (this.facing == 1) {
-            this.BB = new BoundingCircle(this.x + 245 / 2, this.y + 50 / 2, 20);
+            this.BB = new BoundingCircle(this.x + 175 / 2, this.y + 40 / 2, 20);
         } else if (this.facing == 2) {
-            this.BB = new BoundingCircle(this.x + 250 / 2, this.y + 165 / 2, 20);
+            this.BB = new BoundingCircle(this.x + 220 / 2, this.y + 130 / 2, 20);
         } else if (this.facing == 3) {
-            this.BB = new BoundingCircle(this.x + 220 / 2, this.y + 210 / 2, 20);
+            this.BB = new BoundingCircle(this.x + 200 / 2, this.y + 160 / 2, 20);
         } else if (this.facing == 4) {
-            this.BB = new BoundingCircle(this.x + 100 / 2, this.y + 245 / 2, 20);
+            this.BB = new BoundingCircle(this.x + 140 / 2, this.y + 210 / 2, 20);
         } else if (this.facing == 5) {
-            this.BB = new BoundingCircle(this.x + 20 / 2, this.y + 210 / 2, 20);
+            this.BB = new BoundingCircle(this.x + 60 / 2, this.y + 190 / 2, 20);
         } else if (this.facing == 6) {
-            this.BB = new BoundingCircle(this.x + 10 / 2, this.y + 150 / 2, 20);
+            this.BB = new BoundingCircle(this.x + 40 / 2, this.y + 140 / 2, 20);
         } else if (this.facing == 7) {
-            this.BB = new BoundingCircle(this.x + 50 / 2, this.y + 5 / 2, 20);
+            this.BB = new BoundingCircle(this.x + 60 / 2, this.y + 90 / 2, 20);
         }
 
+    };
+
+    //left wall
+    collideLeft() {
+        return (this.x - this.BB.radius) < 28;
+    };
+
+    //fix this for additional levels
+    //right wall
+    collideRight() {
+        return (this.x + this.BB.radius) > 868;
+    };
+
+    //top wall
+    collideTop() {
+        return (this.y - this.BB.radius) < 28;
+    };
+
+    //fix this for additional levels
+    //bottom wall
+    collideBottom() {
+        return (this.y + this.BB.radius) > 602;
     };
 
 }

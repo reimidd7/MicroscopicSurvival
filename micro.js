@@ -19,6 +19,10 @@ class Micro {
         this.poweredUpSpeed = false;
         this.speedTime = 0;
 
+        this.stunMine = null;
+        this.activeStunMine = false;
+        this.stunTime = 0;
+
         // health decline animation: this.animations = new Animator(this.spritesheet, 0, 75, 65, 60, 1, 0.1 )
 
         this.velocity = { x: 0, y: 0 };
@@ -114,6 +118,7 @@ class Micro {
         }
     };
 
+    //fix this for additional levels
     //right wall
     collideRight() {
         if (this.size == 0) {
@@ -133,6 +138,7 @@ class Micro {
         }
     };
 
+    //fix this for additional levels
     //Bottom wall
     collideBottom() {
         if (this.size == 0) {
@@ -154,7 +160,7 @@ class Micro {
                 this.healthpoints = this.maxHealth;
                 this.x = PARAMS.CANVAS_WIDTH / 2;
                 this.y = PARAMS.CANVAS_WIDTH / 2;
-                this.game.camera.loadLevel(levelOne, false);
+                this.game.camera.loadLevel(levelThree, false);
             } else {
                 console.log("dead");
 
@@ -166,7 +172,7 @@ class Micro {
 
         } else {
 
-            if (this.poweredUpSpeed == true || this.poweredUpSize == true) {
+            if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine) {
                 this.powerUp();
             }
 
@@ -378,6 +384,13 @@ class Micro {
 
                                     this.poweredUpSize = true;
                                     this.sizeTime = 0;
+
+                                } else if (entity.type === "stun") {
+                                    this.stunTime = 0;
+                                    this.stunMine = new Mine(this.game, this.x, this.y, "stun");
+                                    this.game.addEntity(this.stunMine);
+                                    this.stunMine.active = true;
+                                    this.activeStunMine = true;
                                 }
 
                                 this.powerUp();
@@ -431,7 +444,7 @@ class Micro {
 
     powerUp() {
         if (this.poweredUpSpeed == true && this.speedTime < 750) {
-            this.walk = 500;
+            this.walk = 400;
             this.speedTime++;
             //console.log("setting speed");
         } else if (this.poweredUpSpeed == true && this.speedTime >= 750) {
@@ -450,6 +463,15 @@ class Micro {
             this.sizeTime = 0;
             this.poweredUpSize = false;
             //console.log("resetting size");
+        }
+
+        if (this.activeStunMine == true && this.stunTime < 500) {
+            this.stunTime++;
+        } else if (this.activeStunMine == true && this.stunTime >= 500) {
+            this.stunMine.active = false;
+            //this.stunMine.update();
+            this.stunTime = 0;
+            this.activeStunMine = false;
         }
 
     };
