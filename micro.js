@@ -392,8 +392,6 @@ class Micro {
                     } else if (this.levelCount == 3) {
                         this.game.camera.loadLevel(levelThree, true, false);
                     } else if (this.levelCount == 4) {
-                        PARAMS.CANVAS_WIDTH = (32 * 40);
-                        PARAMS.CANVAS_HEIGHT = (32 * 32);
                         this.game.camera.loadLevel(levelFour, true, false);
                     } else if (this.levelCount == 5) {
                         this.game.camera.loadLevel(levelFive, true, false);

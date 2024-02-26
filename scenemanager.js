@@ -59,34 +59,34 @@ class SceneManager {
         } else {
             for (var i = 0; i < level.cornertiles.length; i++) {
                 let corner = level.cornertiles[i];
-                this.game.addEntity(new CornerTiles(this.game, corner.x, corner.y, corner.flip));
+                this.game.addEntity(new CornerTiles(this.game, corner.x, corner.y, corner.flip, this.level));
             }
     
             if (level.topbottomwalls) {
                 for (var i = 0; i < level.topbottomwalls.length; i++) {
                     let topbottom = level.topbottomwalls[i];
-                    this.game.addEntity(new TopBottomWalls(this.game, topbottom.x, topbottom.y, topbottom.flip));
+                    this.game.addEntity(new TopBottomWalls(this.game, topbottom.x, topbottom.y, topbottom.flip, this.level));
                 }
             }
     
             if (level.leftrightwalls) {
                 for (var i = 0; i < level.leftrightwalls.length; i++) {
                     let leftright = level.leftrightwalls[i];
-                    this.game.addEntity(new LeftRightWalls(this.game, leftright.x, leftright.y, leftright.flip));
+                    this.game.addEntity(new LeftRightWalls(this.game, leftright.x, leftright.y, leftright.flip,this.level));
                 }
             }
     
             if (level.normaltiles) {
                 for (var i = 0; i < level.normaltiles.length; i++) {
                     let normal = level.normaltiles[i];
-                    this.game.addEntity(new NormalTiles(this.game, normal.x, normal.y));
+                    this.game.addEntity(new NormalTiles(this.game, normal.x, normal.y,this.level));
                 }
             }
     
             if (level.rippedtiles) {
                 for (var i = 0; i < level.rippedtiles.length; i++) {
                     let rip = level.rippedtiles[i];
-                    this.game.addEntity(new RippedTiles(this.game, rip.x, rip.y));
+                    this.game.addEntity(new RippedTiles(this.game, rip.x, rip.y, this.level));
                 }
             }
     

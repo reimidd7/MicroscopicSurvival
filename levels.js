@@ -325,7 +325,7 @@ var levelThree = {
     portal: []
 };
 
-var levelFour = { //Width: 32x38 = 1280 Height: 32x32 = 1024 
+var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024 
     // add music
     // label
     label: "4",
@@ -367,6 +367,7 @@ var levelFour = { //Width: 32x38 = 1280 Height: 32x32 = 1024
 
 
     ],
+
     normaltiles: [
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 1 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 1 },
@@ -624,21 +625,88 @@ var levelFour = { //Width: 32x38 = 1280 Height: 32x32 = 1024
     // ------------------------ ALL BACKGROUND ^^^^ CAN ADD MORE ABOVE HERE -------------------------------------
 
     //adds a bone randomly in each quadrent of the gameboard.
-    bones: [],
+    bones: [
+        { x: 183, y: 86 },   // (0 - 608), (0-512)
+        { x: 469, y: 210 },   //  (0 - 608), (0-512)
+        { x: 104, y: 383 },   //  (0 - 608), (0-512)
+        { x: 955, y: 205 }, // (609 - 1152), (0 - 512)
+        { x: 1135, y: 106 },   // (609 - 1152), (0 - 512)
+        { x: 827, y: 359 },   // (609 - 1152), (0 - 512)
+        { x: 90, y: 841 },  // (0 - 608), (513 - 960)
+        { x: 351, y: 567 },   // (0 - 608), (513 - 960)
+        { x: 460, y: 935 },   // (0 - 608), (513 - 960)
+        { x: 1011, y: 551 },    //(609 - 1152), (513 - 960)
+        { x: 706, y: 762 },   // (609 - 1152), (513 - 960)
+        { x: 989, y: 912 }    // (609 - 1152), (513 - 960)
+    ],
 
     //adds 1 red blood cell randomly in each quadrent of the gameboard.
-    redbloodcells: [],
+    redbloodcells: [
+        { x: 57, y: 180 },   // (0 - 608), (0-512)
+        { x: 284, y: 411 },   //  (0 - 608), (0-512)
+        { x: 161, y: 289 },   //  (0 - 608), (0-512)
+        { x: 812, y: 460 }, // (609 - 1152), (0 - 512)
+        { x: 639, y: 257 },   // (609 - 1152), (0 - 512)
+        { x: 904, y: 61 },   // (609 - 1152), (0 - 512)
+        { x: 470, y: 695 },  // (0 - 608), (513 - 960)
+        { x: 168, y: 855 },   // (0 - 608), (513 - 960)
+        { x: 517, y: 611 },   // (0 - 608), (513 - 960)
+        { x: 773, y: 907 },    //(609 - 1152), (513 - 960)
+        { x: 931, y: 545 },   // (609 - 1152), (513 - 960)
+        { x: 1079, y: 743 }    // (609 - 1152), (513 - 960)
 
-    //add power ups (Level 1 only has speed and size powerups)
+
+    ],
+
+    //add power ups (Level )
     powerups: [],
 
-    //adding 1 lymphocyte
-    lymphocyte: [],
+    //adding 4 lymphocytes, one in each quadrant
+    lymphocyte: [
+        { x: 477, y: 370 },
+        { x: 857, y: 108 },
+        { x: 179, y: 923 },
+        { x: 1064, y: 613 }
+    ],
 
-    //adding 30 cellmans
-    cell: [],
+    //adding 60 cellmans
+    cell: [
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
 
-    portal: []
+
+    ],
+
+    portal: [
+        { x: 480, y: 675 }
+    ]
 };
 
 var levelFive = {
