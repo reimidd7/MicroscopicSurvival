@@ -30,6 +30,7 @@ class Cell {
         this.healthpoints = 1;
         this.hitpoints = 1;
         this.timer = 3;
+        
 
 
     }

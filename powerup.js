@@ -51,6 +51,8 @@ class Powerup {
         } else {
             this.BB = new BoundingCircle(this.x + 78 / 2, this.y + 84 /2, 24);
         }
+
+
     }
 
     draw(ctx) {

@@ -44,6 +44,10 @@ class Micro {
         this.animations = [];
         this.loadAnimations();
 
+        //Explosion
+        this.poweredUpExplode = false;
+        this.explodeTime = 0;
+
 
     };
 
@@ -365,6 +369,24 @@ class Micro {
 
                             }
                         }
+                        //Make sure that the enemies keep dying while explosion is up
+                        if (this.poweredUpExplode) {
+                            for (const entity of this.game.entities) {
+                                if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
+                                    const dx = this.x - entity.x;
+                                    const dy = this.y - entity.y;
+                                    const distance = Math.sqrt(dx * dx + dy * dy);
+                                    if (distance < 50) {
+                                        entity.decreaseHealth();
+                                        if (entity.healthpoints <= 0) {
+                                            if (entity instanceof Cell) this.game.camera.cellCount -= 1;
+                                            if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
+                                            entity.dead = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
 
                             if (entity instanceof Powerup) { //make them last for like 15 seconds only
                                 entity.removeFromWorld = true;
@@ -380,6 +402,8 @@ class Micro {
                                     this.sizeTime = 0;
                                 } else if (entity.type === "explode") {
                                     entity.removeFromWorld = true;
+                                     this.poweredUpExplode = true;
+                                     this.explodeTime = 0;
                                 }
 
                                 this.powerUp();
@@ -428,6 +452,19 @@ class Micro {
             ctx.stroke();
         }
 
+        //Drawing the radius of the explosion
+        if (this.poweredUpExplode) {
+            ctx.save();
+            ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
+            ctx.beginPath();
+            ctx.arc(0, 0, 50, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+            ctx.fill();
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            ctx.restore();
+        }    
+
     };
 
 
@@ -452,6 +489,31 @@ class Micro {
             this.sizeTime = 0;
             this.poweredUpSize = false;
             //console.log("resetting size");
+        }
+        if (this.poweredUpExplode) {
+            
+            if (this.explodeTime >= 420) {
+                this.poweredUpExplode = false; 
+                this.explodeTime = 0;
+            } else {
+                // Explode logic
+                for (const entity of this.game.entities) {
+                    if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
+                        const dx = this.x - entity.x;
+                        const dy = this.y - entity.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 50) {
+                            entity.decreaseHealth();
+                            if (entity.healthpoints <= 0) {
+                                if (entity instanceof Cell) this.game.camera.cellCount -= 1;
+                                if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
+                                entity.dead = true;
+                            }
+                        }
+                    }
+                }
+                this.explodeTime++;
+            }
         }
 
     };

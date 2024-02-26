@@ -41,7 +41,7 @@ class SceneManager {
         this.minimap = new Minimap(this.game, 0, 460, 68); // Adjust size as needed
 
 
-        this.loadLevel(levelOne, true);
+        this.loadLevel(levelTwo, true);
 
         //Adding timer for cells
         this.cellSpawnTimer = 0;
@@ -177,7 +177,7 @@ class SceneManager {
             if ((this.game.click && this.game.click.x > 278 && this.game.click.x < 382) && (this.game.click && this.game.click.y > 425 && this.game.click.y < 452)) {
                 this.title = false;
                 //this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
-                this.loadLevel(levelOne, false);
+                this.loadLevel(levelTwo, false);
             }
         }
 
@@ -197,13 +197,15 @@ class SceneManager {
     };
 
     spawnCells() {
-        // Count the total number of cells currently in the game
         let totalCells = this.game.entities.filter(entity => entity instanceof Cell).length;
     
-        // limit of 30
-        let cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
+        let cellsToSpawn = 0;
+        if (this.level === levelOne) {
+            cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelTwo) {
+            cellsToSpawn = Math.min(40 - totalCells, this.cellsToSpawn);
+        }
     
-        // Spawn number of cells
         for (let i = 0; i < cellsToSpawn; i++) {
             let x = Math.random() * PARAMS.CANVAS_WIDTH;
             let y = Math.random() * PARAMS.CANVAS_HEIGHT;
@@ -211,6 +213,7 @@ class SceneManager {
         }
     }
     
+
 
  
     //start of HUD
@@ -225,31 +228,34 @@ class SceneManager {
 
     // Create the HUD with all components.
     renderHUD() {
+         // Define positions and styles
+    const xPositionLeft = 10;
+    const xPositionCenter = (PARAMS.CANVAS_WIDTH - this.game.ctx.measureText("Level: " + (this.level.label || 0)).width) / 2; // Center alignment position
+    const yPosition = 20;
+    const lineHeight = 30;
+    const fontSize = 15;
+    this.game.ctx.font = fontSize + "px Comic Sans MS";
+    this.game.ctx.fillStyle = "white";
 
-        //Number of Enemies and Level
-        const xPositionLeft = 10;
-        const xPositionCenter = (PARAMS.CANVAS_WIDTH - this.game.ctx.measureText("Level 1: " + (this.level.level1Count || 0)).width) / 2; // Center alignment position
-        const yPosition = 20;
-        const lineHeight = 30;
-        const fontSize = 15;
-        this.game.ctx.font = fontSize + "px Comic Sans MS";
-        this.game.ctx.fillStyle = "white";
+    // Display counts for lymphocytes and cellman
+    this.game.ctx.fillText("Lymphocytes: " + this.lymphocyteCount, xPositionLeft, yPosition);
+    this.game.ctx.fillText("Cellman: " + this.cellCount, xPositionLeft, yPosition + lineHeight);
 
+    // Display level text based on current level
+    const level1Text = "Level 1 ";
+    const level2Text = "Level 2";
+    const level3Text = "Level 3 ";
+    const level4Text = "Level 4";
+    const level5Text = "Level 5 ";
 
-        this.game.ctx.fillText("Lymphocytes: " + this.lymphocyteCount, xPositionLeft, yPosition);
-
-
-        this.game.ctx.fillText("Cellman: " + this.cellCount, xPositionLeft, yPosition + lineHeight);
-
-        const level1Text = "Level 1 "; // Text for level 1
-        // const level1Count = this.level.level1Count || 0; // Get level 1 count from level object
-        //this.game.ctx.fillText(level1Text + level1Count, xPositionCenter, yPosition + 2 * lineHeight);
+    //Add the rest of the levels to this 
+    if (this.level === levelOne) {
         this.game.ctx.fillText(level1Text, xPositionCenter, yPosition);
+    } else if (this.level === levelTwo) {
+        this.game.ctx.fillText(level2Text, xPositionCenter, yPosition);
+    }
 
-
-        const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x 
-        const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
-        this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions
+        
 
 
 
