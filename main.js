@@ -1,8 +1,6 @@
 
 const ASSET_MANAGER = new AssetManager();
 
-
-
 ASSET_MANAGER.queueDownload("./LymphocyteEdited.png");
 ASSET_MANAGER.queueDownload("./RedBloodCell.png"); 
 ASSET_MANAGER.queueDownload("speed.png");
@@ -47,7 +45,6 @@ ASSET_MANAGER.downloadAll(() => {
 
 	PARAMS.CANVAS_WIDTH = canvas.width;
 	PARAMS.CANVAS_HEIGHT = canvas.height;
-
 
 	gameEngine.init(ctx);
 
