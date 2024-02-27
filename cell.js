@@ -30,6 +30,9 @@ class Cell {
         this.healthpoints = 1;
         this.hitpoints = 1;
         this.timer = 3;
+
+        this.deadTimer=0;
+    
         
 
 
@@ -88,7 +91,18 @@ class Cell {
 
     decreaseHealth() {
         this.healthpoints -= 1;
+        
+        if (this.dead && this.deadTimer < 200) {
+            this.deadTimer++;
+            //console.log("got to deadtimer inc");
+        } else if (this.dead && this.deadTimer != 0 && this.deadTimer >= 200) {
+            this.removeFromWorld = true;
+            this.deadTimer = 0;
+            //console.log("got to deadtimer reset");
+        }
     };
+    
+    
 
     loadAnimations() {
         for (var i = 0; i < 4; i++) {
@@ -130,6 +144,7 @@ class Cell {
             if (!this.dead) {
                 this.x += this.velocity.x * this.game.clockTick;
                 this.y += this.velocity.y * this.game.clockTick;
+                
     
                 if (this.velocity.x > 0) {
                     this.facing = 0; // Moving right

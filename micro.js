@@ -48,6 +48,9 @@ class Micro {
         this.poweredUpExplode = false;
         this.explodeTime = 0;
 
+        
+
+
 
     };
 
@@ -285,6 +288,7 @@ class Micro {
                         if (that.state == 2) {
                             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
                                 entity.decreaseHealth();
+                          
 
 
                                 if (entity.healthpoints > 0 && this.size == 1) {
