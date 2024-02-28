@@ -2,6 +2,7 @@ BLOCK_SIZE = 32;
 
 CANVAS_WIDTH = 1024;
 CANVAS_HEIGHT = 768;
+// w: 32X32 = 1024 h: 32X24 = 768
 var levelOne = {
     // add music
     // label
@@ -261,6 +262,7 @@ var levelOne = {
 
 };
 
+// w: 34X32 = 1088 h: 28X32 = 896
 var levelTwo = {
     // add music
     // label
@@ -542,7 +544,7 @@ var levelTwo = {
     ]
 };
 
-//level 3 w=36 h=30
+//level 3 w=36X32 = 1152 h=30X32 = 960
 CANVAS_WIDTH = 1152;
 CANVAS_HEIGHT = 960;
 var levelThree = {
@@ -866,16 +868,16 @@ var levelThree = {
     ]
 };
 
-
-var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024 
+//Width: 32x38 = 1216 Height: 32x32 = 1024 
+var levelFour = {
     // add music
     // label
     label: "4",
-    // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [
         { x: 0, y: 0, flip: 0 }, { x: BLOCK_SIZE * 38, y: 0, flip: 1 },
-        { x: 0, y: BLOCK_SIZE * 32, flip: 2 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 32, flip: 3 }],
+        { x: 0, y: BLOCK_SIZE * 32, flip: 2 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 32, flip: 3 }
+    ],
     topbottomwalls: [
         { x: BLOCK_SIZE * 1, y: 0, flip: 0 }, { x: BLOCK_SIZE * 2, y: 0, flip: 0 }, { x: BLOCK_SIZE * 3, y: 0, flip: 0 }, { x: BLOCK_SIZE * 4, y: 0, flip: 0 }, { x: BLOCK_SIZE * 5, y: 0, flip: 0 }, { x: BLOCK_SIZE * 6, y: 0, flip: 0 },
         { x: BLOCK_SIZE * 7, y: 0, flip: 0 }, { x: BLOCK_SIZE * 8, y: 0, flip: 0 }, { x: BLOCK_SIZE * 9, y: 0, flip: 0 }, { x: BLOCK_SIZE * 10, y: 0, flip: 0 }, { x: BLOCK_SIZE * 11, y: 0, flip: 0 }, { x: BLOCK_SIZE * 12, y: 0, flip: 0 },
@@ -906,15 +908,13 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 19, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 20, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 21, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 22, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 23, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 24, flip: 1 },
         { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 25, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 26, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 27, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 28, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 29, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 30, flip: 1 },
         { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 31, flip: 1 }
-
-
     ],
 
     normaltiles: [
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 1 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 1 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 1 },
-        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 1 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 1 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 1 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 1 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 1 },
@@ -923,12 +923,12 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 2 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 2 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 2 },
-        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 2 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 2 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 2 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 2 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 3 },
-        { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 3 },
+        { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 3 },
         { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 3 },
         { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 3 },
         { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 3 },
@@ -941,12 +941,12 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 4 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 4 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 4 },
-        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 4 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 4 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 4 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 5 },
         { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 5 },
-        { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 5 },
+        { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 5 },
         { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 5 },
         { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 5 },
         { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 5 },
@@ -957,11 +957,11 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 6 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 6 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 6 },
-        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 6 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 6 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 7 },
-        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 7 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 7 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 7 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 7 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 7 },
@@ -970,7 +970,7 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 8 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 8 },
-        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 8 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 8 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 8 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 8 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 8 },
@@ -980,19 +980,19 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 9 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 9 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 9 },
-        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 9 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 9 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 9 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 9 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 10 },
-        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 10 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 10 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 10 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 10 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 10 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 10 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 10 },
 
-        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 11 },
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 11 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 11 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 11 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 11 },
@@ -1005,12 +1005,12 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 12 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 12 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 12 },
-        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 12 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 12 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 13 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 13 },
-        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 13 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 13 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 13 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 13 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 13 },
@@ -1022,10 +1022,10 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 14 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 14 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 14 },
-        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 14 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 14 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 14 },
 
-        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 15 },
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 15 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 15 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 15 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 15 },
@@ -1035,7 +1035,7 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 16 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 16 },
-        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 16 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 16 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 16 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 16 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 16 },
@@ -1046,10 +1046,10 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 17 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 17 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 17 },
-        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 17 },
+        { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 17 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 17 },
 
-        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 18 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 18 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 18 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 18 },
@@ -1062,12 +1062,12 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 19 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 19 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 19 },
-        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 19 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 19 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 19 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 20 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 20 },
-        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 20 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 20 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 20 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 20 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 20 },
@@ -1076,13 +1076,13 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 21 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 21 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 21 },
-        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 21 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 21 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 21 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 21 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 21 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 22 },
-        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 22 },
+        { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 22 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 22 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 22 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 22 },
@@ -1090,7 +1090,7 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 22 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 23 },
-        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 23 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 23 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 23 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 23 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 23 },
@@ -1100,12 +1100,12 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 24 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 24 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 24 },
-        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 24 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 24 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 24 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 24 },
 
-        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 25 },
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 25 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 25 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 25 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 25 },
@@ -1117,14 +1117,14 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 26 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 26 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 26 },
-        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 26 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 26 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 26 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 26 },
 
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 27 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 27 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 27 },
-        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 27 },
+        { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 27 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 27 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 27 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 27 },
@@ -1134,10 +1134,10 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 28 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 28 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 28 },
-        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 28 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 28 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 28 },
 
-        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 29 },
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 29 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 29 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 29 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 29 },
@@ -1148,7 +1148,7 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 30 },
         { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 30 },
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 30 },
-        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 30 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 30 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 30 },
         { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 30 },
@@ -1158,11 +1158,18 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 31 },
         { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 31 },
         { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 31 },
-        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 31 },
-        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 31 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 31 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 31 }
     ],
 
-    rippedtiles: [],
+    rippedtiles: [
+        { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 31 }
+    ],
 
     // ------------------------ ALL BACKGROUND ^^^^ CAN ADD MORE ABOVE HERE -------------------------------------
 
@@ -1242,6 +1249,7 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
+        { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 }
 
 
     ],
@@ -1252,27 +1260,362 @@ var levelFour = { //Width: 32x38 = 1216 Height: 32x32 = 1024
 };
 
 
-
+// w: 40X32 = 1280 h: 34X32 = 1088
 var levelFive = {
     // add music
     // label
     label: "5",
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
-    cornertiles: [],
-    topbottomwalls: [],
-    leftrightwalls: [],
-    normaltiles: [],
+    cornertiles: [
+        { x: 0, y: 0, flip: 0 }, { x: BLOCK_SIZE * 40, y: 0, flip: 1 },
+        { x: 0, y: BLOCK_SIZE * 34, flip: 2 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 34, flip: 3 }
+    ],
 
-    rippedtiles: [],
+    topbottomwalls: [
+        { x: BLOCK_SIZE * 1, y: 0, flip: 0 }, { x: BLOCK_SIZE * 2, y: 0, flip: 0 }, { x: BLOCK_SIZE * 3, y: 0, flip: 0 }, { x: BLOCK_SIZE * 4, y: 0, flip: 0 }, { x: BLOCK_SIZE * 5, y: 0, flip: 0 }, { x: BLOCK_SIZE * 6, y: 0, flip: 0 },
+        { x: BLOCK_SIZE * 7, y: 0, flip: 0 }, { x: BLOCK_SIZE * 8, y: 0, flip: 0 }, { x: BLOCK_SIZE * 9, y: 0, flip: 0 }, { x: BLOCK_SIZE * 10, y: 0, flip: 0 }, { x: BLOCK_SIZE * 11, y: 0, flip: 0 }, { x: BLOCK_SIZE * 12, y: 0, flip: 0 },
+        { x: BLOCK_SIZE * 13, y: 0, flip: 0 }, { x: BLOCK_SIZE * 14, y: 0, flip: 0 }, { x: BLOCK_SIZE * 15, y: 0, flip: 0 }, { x: BLOCK_SIZE * 16, y: 0, flip: 0 }, { x: BLOCK_SIZE * 17, y: 0, flip: 0 }, { x: BLOCK_SIZE * 18, y: 0, flip: 0 },
+        { x: BLOCK_SIZE * 19, y: 0, flip: 0 }, { x: BLOCK_SIZE * 20, y: 0, flip: 0 }, { x: BLOCK_SIZE * 21, y: 0, flip: 0 }, { x: BLOCK_SIZE * 22, y: 0, flip: 0 }, { x: BLOCK_SIZE * 23, y: 0, flip: 0 }, { x: BLOCK_SIZE * 24, y: 0, flip: 0 },
+        { x: BLOCK_SIZE * 25, y: 0, flip: 0 }, { x: BLOCK_SIZE * 26, y: 0, flip: 0 }, { x: BLOCK_SIZE * 27, y: 0, flip: 0 }, { x: BLOCK_SIZE * 28, y: 0, flip: 0 }, { x: BLOCK_SIZE * 29, y: 0, flip: 0 }, { x: BLOCK_SIZE * 30, y: 0, flip: 0 },
+        { x: BLOCK_SIZE * 31, y: 0, flip: 0 }, { x: BLOCK_SIZE * 32, y: 0, flip: 0 }, { x: BLOCK_SIZE * 33, y: 0, flip: 0 }, { x: BLOCK_SIZE * 34, y: 0, flip: 0 }, { x: BLOCK_SIZE * 35, y: 0, flip: 0 }, { x: BLOCK_SIZE * 36, y: 0, flip: 0 },
+        { x: BLOCK_SIZE * 37, y: 0, flip: 0 }, { x: BLOCK_SIZE * 38, y: 0, flip: 0 }, { x: BLOCK_SIZE * 39, y: 0, flip: 0 },
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 34, flip: 1 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 34, flip: 1 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 34, flip: 1 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 34, flip: 1 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 34, flip: 1 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 34, flip: 1 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 34, flip: 1 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 34, flip: 1 }
+    ],
+
+    leftrightwalls: [
+        { x: 0, y: BLOCK_SIZE * 1, flip: 0 }, { x: 0, y: BLOCK_SIZE * 2, flip: 0 }, { x: 0, y: BLOCK_SIZE * 3, flip: 0 }, { x: 0, y: BLOCK_SIZE * 4, flip: 0 }, { x: 0, y: BLOCK_SIZE * 5, flip: 0 }, { x: 0, y: BLOCK_SIZE * 6, flip: 0 },
+        { x: 0, y: BLOCK_SIZE * 7, flip: 0 }, { x: 0, y: BLOCK_SIZE * 8, flip: 0 }, { x: 0, y: BLOCK_SIZE * 9, flip: 0 }, { x: 0, y: BLOCK_SIZE * 10, flip: 0 }, { x: 0, y: BLOCK_SIZE * 11, flip: 0 }, { x: 0, y: BLOCK_SIZE * 12, flip: 0 },
+        { x: 0, y: BLOCK_SIZE * 13, flip: 0 }, { x: 0, y: BLOCK_SIZE * 14, flip: 0 }, { x: 0, y: BLOCK_SIZE * 15, flip: 0 }, { x: 0, y: BLOCK_SIZE * 16, flip: 0 }, { x: 0, y: BLOCK_SIZE * 17, flip: 0 }, { x: 0, y: BLOCK_SIZE * 18, flip: 0 },
+        { x: 0, y: BLOCK_SIZE * 19, flip: 0 }, { x: 0, y: BLOCK_SIZE * 20, flip: 0 }, { x: 0, y: BLOCK_SIZE * 21, flip: 0 }, { x: 0, y: BLOCK_SIZE * 22, flip: 0 }, { x: 0, y: BLOCK_SIZE * 23, flip: 0 }, { x: 0, y: BLOCK_SIZE * 24, flip: 0 },
+        { x: 0, y: BLOCK_SIZE * 25, flip: 0 }, { x: 0, y: BLOCK_SIZE * 26, flip: 0 }, { x: 0, y: BLOCK_SIZE * 27, flip: 0 }, { x: 0, y: BLOCK_SIZE * 28, flip: 0 }, { x: 0, y: BLOCK_SIZE * 29, flip: 0 }, { x: 0, y: BLOCK_SIZE * 30, flip: 0 },
+        { x: 0, y: BLOCK_SIZE * 31, flip: 0 }, { x: 0, y: BLOCK_SIZE * 32, flip: 0 }, { x: 0, y: BLOCK_SIZE * 33, flip: 0 },
+        { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 1, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 2, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 3, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 4, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 5, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 6, flip: 1 },
+        { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 7, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 8, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 9, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 10, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 11, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 12, flip: 1 },
+        { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 13, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 14, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 15, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 16, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 17, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 18, flip: 1 },
+        { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 19, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 20, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 21, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 22, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 23, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 24, flip: 1 },
+        { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 25, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 26, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 27, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 28, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 29, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 30, flip: 1 },
+        { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 31, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 32, flip: 1 }, { x: BLOCK_SIZE * 40, y: BLOCK_SIZE * 33, flip: 1 }
+    ],
+
+    normaltiles: [
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 1 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 1 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 1 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 1 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 1 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 1 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 1 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 2 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 2 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 2 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 2 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 2 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 2 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 2 },  { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 2 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 3 },
+        { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 3 },
+        { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 3 },
+        { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 3 },
+        { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 3 },
+        { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 3 },
+        { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 3 },  { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 3 }, 
+        { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 3 },
+
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 4 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 4 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 4 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 4 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 4 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 4 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 4 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 5 },
+        { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 5 },
+        { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 5 },
+        { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 5 },
+        { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 5 },
+        { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 5 },
+        { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 5 }, 
+        { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 5 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 6 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 6 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 7 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 7 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 7 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 7 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 7 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 7 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 7 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 8 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 8 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 8 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 8 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 8 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 8 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 8 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 9 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 9 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 9 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 9 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 9 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 9 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 9 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 10 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 10 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 10 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 10 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 10 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 10 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 10 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 11 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 11 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 11 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 11 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 11 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 11 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 11 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 12 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 12 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 13 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 13 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 13 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 13 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 13 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 13 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 13 },
+
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 14 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 14 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 14 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 14 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 14 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 14 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 14 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 15 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 15 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 15 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 15 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 15 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 15 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 15 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 16 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 16 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 16 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 16 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 16 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 16 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 16 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 17 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 17 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 17 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 17 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 17 },
+        { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 17 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 17 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 18 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 18 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 19 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 19 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 19 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 19 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 19 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 19 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 19 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 20 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 20 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 20 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 20 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 20 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 20 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 20 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 21 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 21 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 21 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 21 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 21 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 21 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 21 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 22 },
+        { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 22 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 22 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 22 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 22 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 22 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 22 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 23 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 23 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 23 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 23 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 23 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 23 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 23 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 24 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 24 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 25 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 25 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 25 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 25 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 25 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 25 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 25 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 26 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 26 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 26 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 26 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 26 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 26 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 26 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 27 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 27 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 27 },
+        { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 27 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 27 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 27 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 27 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 28 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 28 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 28 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 28 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 28 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 28 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 28 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 29 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 29 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 29 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 29 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 29 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 29 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 29 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 30 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 30 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 31 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 31 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 31 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 31 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 31 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 31 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 31 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 31 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 32 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 32 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 32 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 32 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 32 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 32 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 32 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 32 },
+
+        { x: BLOCK_SIZE * 1, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 3, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 6, y: BLOCK_SIZE * 33 },
+        { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 8, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 9, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 12, y: BLOCK_SIZE * 33 },
+        { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 15, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 33 },
+        { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 22, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 23, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 33 },
+        { x: BLOCK_SIZE * 25, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 28, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 33 },
+        { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 33 },
+        { x: BLOCK_SIZE * 37, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 38, y: BLOCK_SIZE * 33 }, { x: BLOCK_SIZE * 39, y: BLOCK_SIZE * 33 }
+    ],
+
+    rippedtiles: [
+        { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 1 }, { x: BLOCK_SIZE * 29, y: BLOCK_SIZE * 2 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 3 }, { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 4 }, { x: BLOCK_SIZE * 13, y: BLOCK_SIZE * 5 }, { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 6 },
+        { x: BLOCK_SIZE * 10, y: BLOCK_SIZE * 7 }, { x: BLOCK_SIZE * 18, y: BLOCK_SIZE * 8 }, { x: BLOCK_SIZE * 26, y: BLOCK_SIZE * 9 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 10 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 11 }, { x: BLOCK_SIZE * 34, y: BLOCK_SIZE * 12 },
+        { x: BLOCK_SIZE * 14, y: BLOCK_SIZE * 13 }, { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 14 }, { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 15 }, { x: BLOCK_SIZE * 16, y: BLOCK_SIZE * 16 }, { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 17 }, { x: BLOCK_SIZE * 5, y: BLOCK_SIZE * 18 },
+        { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 19 }, { x: BLOCK_SIZE * 17, y: BLOCK_SIZE * 20 }, { x: BLOCK_SIZE * 20, y: BLOCK_SIZE * 21 }, { x: BLOCK_SIZE * 7, y: BLOCK_SIZE * 22 }, { x: BLOCK_SIZE * 11, y: BLOCK_SIZE * 23 }, { x: BLOCK_SIZE * 24, y: BLOCK_SIZE * 24 },
+        { x: BLOCK_SIZE * 2, y: BLOCK_SIZE * 25 }, { x: BLOCK_SIZE * 27, y: BLOCK_SIZE * 26 }, { x: BLOCK_SIZE * 19, y: BLOCK_SIZE * 27 }, { x: BLOCK_SIZE * 36, y: BLOCK_SIZE * 28 }, { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 29 }, { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 30 },
+        { x: BLOCK_SIZE * 35, y: BLOCK_SIZE * 31 },  { x: BLOCK_SIZE * 21, y: BLOCK_SIZE * 32 },  { x: BLOCK_SIZE * 4, y: BLOCK_SIZE * 33 }
+    ],
 
     // ------------------------ ALL BACKGROUND ^^^^ CAN ADD MORE ABOVE HERE -------------------------------------
 
     //adds a bones in each quadrent of the gameboard.
-    bones: [],
+    bones: [
+        { x: 215, y: 118 },   // (0 - 608), (0-512)
+        { x: 501, y: 210 },   //  (0 - 608), (0-512)
+        { x: 136, y: 415 },   //  (0 - 608), (0-512)
+        { x: 987, y: 205 }, // (609 - 1152), (0 - 512)
+        { x: 1167, y: 138 },   // (609 - 1152), (0 - 512)
+        { x: 859, y: 359 },   // (609 - 1152), (0 - 512)
+        { x: 122, y: 873 },  // (0 - 608), (513 - 960)
+        { x: 383, y: 567 },   // (0 - 608), (513 - 960)
+        { x: 492, y: 967 },   // (0 - 608), (513 - 960)
+        { x: 1043, y: 551 },    //(609 - 1152), (513 - 960)
+        { x: 738, y: 794 },   // (609 - 1152), (513 - 960)
+        { x: 1021, y: 912 }    // (609 - 1152), (513 - 960)
+    ],
 
     //adds red blood cellsin each quadrent of the gameboard.
-    redbloodcells: [],
+    redbloodcells: [
+        { x: 57, y: 212 },   // (0 - 608), (0-512)
+        { x: 316, y: 443 },   //  (0 - 608), (0-512)
+        { x: 193, y: 321 },   //  (0 - 608), (0-512)
+        { x: 844, y: 492 }, // (609 - 1152), (0 - 512)
+        { x: 671, y: 289 },   // (609 - 1152), (0 - 512)
+        { x: 936, y: 93 },   // (609 - 1152), (0 - 512)
+        { x: 502, y: 727 },  // (0 - 608), (513 - 960)
+        { x: 200, y: 887 },   // (0 - 608), (513 - 960)
+        { x: 549, y:  643},   // (0 - 608), (513 - 960)
+        { x: 805, y: 939 },    //(609 - 1152), (513 - 960)
+        { x: 963, y: 500 },   // (609 - 1152), (513 - 960)
+        { x: 1111, y: 775 }    // (609 - 1152), (513 - 960)
+    ],
 
     //add power ups (Level 5 only has )
     powerups: [],

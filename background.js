@@ -11,9 +11,9 @@ class CornerTiles {
         } else if (this.level.label == "4") {
             this.spritesheet = ASSET_MANAGER.getAsset("./tanBackground.png");
         } else if (this.level.label == "5") {
-            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
         }
-       
+
         this.BB = new BoundingBox(this.x, this.y, 32, 32);
 
 
@@ -75,7 +75,7 @@ class TopBottomWalls {
         } else if (this.level.label == "4") {
             this.spritesheet = ASSET_MANAGER.getAsset("./tanBackground.png");
         } else if (this.level.label == "5") {
-            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
         }
 
         this.BB = new BoundingBox(this.x, this.y, 32, 32);
@@ -110,7 +110,7 @@ class TopBottomWalls {
 };
 
 class LeftRightWalls {
-    constructor(game, x, y, flip, level ) {
+    constructor(game, x, y, flip, level) {
         Object.assign(this, { game, x, y, flip, level });
 
         if (this.level.label == "1") {
@@ -122,14 +122,14 @@ class LeftRightWalls {
         } else if (this.level.label == "4") {
             this.spritesheet = ASSET_MANAGER.getAsset("./tanBackground.png");
         } else if (this.level.label == "5") {
-            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
         }
         this.BB = new BoundingBox(this.x, this.y, 32, 32);
 
 
     }
 
-    update() {};
+    update() { };
 
     draw(ctx) {
         ctx.save();
@@ -145,7 +145,7 @@ class LeftRightWalls {
             ctx.drawImage(this.spritesheet, 143, 31, 16, 16, this.x - this.game.camera.x, this.y - this.game.camera.y, 32, 32);
 
         }
-        
+
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'White';
             ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.w, this.BB.h);
@@ -156,7 +156,7 @@ class LeftRightWalls {
 
 
 class RippedTiles {
-    constructor(game, x, y, level ) {
+    constructor(game, x, y, level) {
         Object.assign(this, { game, x, y, level });
 
         if (this.level.label == "1") {
@@ -168,7 +168,7 @@ class RippedTiles {
         } else if (this.level.label == "4") {
             this.spritesheet = ASSET_MANAGER.getAsset("./tanBackground.png");
         } else if (this.level.label == "5") {
-            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
         }
         this.BB = new BoundingBox(this.x, this.y, 32, 32);
     };
@@ -202,7 +202,7 @@ class NormalTiles {
         } else if (this.level.label == "4") {
             this.spritesheet = ASSET_MANAGER.getAsset("./tanBackground.png");
         } else if (this.level.label == "5") {
-            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_bright.png");
+            this.spritesheet = ASSET_MANAGER.getAsset("./redtiles_med.png");
         }
         this.BB = new BoundingBox(this.x, this.y, 32, 32);
 

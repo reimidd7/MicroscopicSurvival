@@ -36,6 +36,7 @@ class SceneManager {
         this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
         this.cell = new Cell(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
         this.lymphocyte = new Lymphocyte(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
+        
         this.portal = new Portal(this.game, 480, 675);
 
         this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
@@ -122,24 +123,30 @@ class SceneManager {
                 }
             }
 
+            // if (level.cell) {
+            //         for (var i = 0; i < level.cell.length; i++) {
+            //             let c = level.cell[i];
+            //             this.game.addEntity(new Cell(this.game, c.x, c.y, this));
+            //         }
+            //     }
 
 
-            //Spawns 5 cell men
-            if (!this.title) {
-                this.cellSpawnTimer += this.game.clockTick;
-                if (this.cellSpawnTimer >= this.cellSpawnInterval) {
-                    this.cellSpawnTimer = 0;
-                    for (let i = 0; i < 30; i++) {
-                        let x = Math.random();
-                        let y = Math.random();
-                        this.game.addEntity(new Cell(this.game, x, y));
-                    }
-                    // for (var i = 0; i < level.cell.length; i++) {
-                    //     let c = level.cell[i];
-                    //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
-                    // }
-                }
-            }
+            //Spawns 5 cell men at a time
+            // if (!this.title) {
+            //     this.cellSpawnTimer += this.game.clockTick;
+            //     if (this.cellSpawnTimer >= this.cellSpawnInterval) {
+            //         this.cellSpawnTimer = 0;
+            //         for (let i = 0; i < 30; i++) {
+            //             let x = Math.random();
+            //             let y = Math.random();
+            //             this.game.addEntity(new Cell(this.game, x, y));
+            //         }
+            //         // for (var i = 0; i < level.cell.length; i++) {
+            //         //     let c = level.cell[i];
+            //         //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
+            //         // }
+            //     }
+            // }
 
 
             if (level.powerups) {
@@ -161,6 +168,7 @@ class SceneManager {
 
             this.micro.removeFromWorld = false;
             this.micro.velocity = { x: 0, y: 0 };
+
 
 
             this.game.addEntity(this.micro); //might need to add a loop here if micro has a noticable speed difference
@@ -196,7 +204,8 @@ class SceneManager {
             //Start
             if ((this.game.click && this.game.click.x > 275 && this.game.click.x < 383) && (this.game.click && this.game.click.y > 411 && this.game.click.y < 443)) {
                 this.title = false;
-                this.loadLevel(levelOne, true, false);
+                //this.loadLevel(levelOne, true, false);
+                this.loadLevel(levelFive, true, false);
             }
             //instructions
             if ((this.game.click && this.game.click.x > 276 && this.game.click.x < 401) && (this.game.click && this.game.click.y > 460 && this.game.click.y < 480)) {
@@ -245,6 +254,12 @@ class SceneManager {
             cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
         } else if (this.level === levelTwo) {
             cellsToSpawn = Math.min(40 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelThree) {
+            cellsToSpawn = Math.min(50 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelFour) {
+            cellsToSpawn = Math.min(60 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelFive) {
+            cellsToSpawn = Math.min(100 - totalCells, this.cellsToSpawn);
         }
 
         for (let i = 0; i < cellsToSpawn; i++) {
