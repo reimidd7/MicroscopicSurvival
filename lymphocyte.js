@@ -4,7 +4,6 @@ class Lymphocyte {
         Object.assign(this, { game, x, y });
         this.spritesheet = ASSET_MANAGER.getAsset("./LymphocyteEdited.png");
 
-
         this.animation = new Animator(this.spritesheet, 0, 0, 160, 160, 3, 0.45);
 
         this.dead = false;
@@ -15,6 +14,8 @@ class Lymphocyte {
         this.fireRate = 80;
         this.elapsedTime = 0;
         this.updateBB();
+
+        this.deadTimer = 0;
     };
 
     decreaseHealth() {
@@ -29,6 +30,14 @@ class Lymphocyte {
         //if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
         //this.updateBB();
 
+        if (this.dead && this.deadTimer < 200) {
+            this.deadTimer++;
+            //console.log("got to deadtimer inc");
+        } else if (this.dead && this.deadTimer != 0 && this.deadTimer >= 200) {
+            this.removeFromWorld = true;
+            this.deadTimer = 0;
+            //console.log("got to deadtimer reset");
+        }
     };
 
     drawMinimap(ctx, mmX, mmY) {

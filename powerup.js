@@ -81,6 +81,55 @@ class Powerup {
 
         //if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
 
+        // if (this.type === "stun" || this.type === "explode") {
+        //     this.mine.update();
+        // }
     };
 }
 
+
+class Mine {
+    constructor(game, x, y, type) {
+        Object.assign(this, {game, x, y, type});
+
+        this.removeFromWorld = false;
+
+        this.BB = new BoundingCircle(this.x + 78 / 2, this.y + 84 /2, 45);
+
+        this.active = false;
+
+        this.elapsedTime = 0;
+
+        this.entities = [];
+
+        this.oldVelocities = [];
+    }
+
+
+    update() {
+        if (this.active && this.elapsedTime < 1) {
+            for(var i = 0; i < this.game.entities.length; i++) {
+                var entity = this.game.entities[i];
+                if (entity instanceof Cell && getDistance(this, entity) < 50) {
+                   this.entities.push(entity);
+                   this.oldVelocities.push(entity.velocity); 
+                   entity.stunned = true;
+                   entity.velocity = {x: 0, y: 0};
+               } 
+           }
+           this.elapsedTime++;
+        } else if (!this.active && this.entities.length > 0) {
+            for (var i = 0; i < this.entities.length; i++) {
+                this.entities[i].stunned = false;
+                this.entities[i].velocity = this.oldVelocities[i];
+            }
+            this.removeFromWorld = true;
+        }
+
+    };
+
+    draw(ctx) {
+
+    };
+
+};

@@ -35,6 +35,8 @@ class Cell {
     
         
 
+        this.stunned = false;
+
 
     }
     updateBB() {
@@ -47,7 +49,7 @@ class Cell {
         const directionY = target.y - this.y;
         const distance = Math.sqrt(directionX ** 2 + directionY ** 2);
         
-        if (distance > 0 ) {
+        if (distance > 0 && !this.stunned) {
             // Calculate normalized components of the direction vector
             const vectorDirectionX = directionX / distance;
             const vectorDirectionY = directionY / distance;
