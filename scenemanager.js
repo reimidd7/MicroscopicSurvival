@@ -46,7 +46,7 @@ class SceneManager {
 
         //Adding timer for cells
         this.cellSpawnTimer = 0;
-        this.cellSpawnInterval = 5; //seconds
+        this.cellSpawnInterval = 3; //seconds
         this.cellsToSpawn = 5;
 
 
@@ -124,22 +124,22 @@ class SceneManager {
 
 
 
-            //Spawns 5 cell men
-            if (!this.title) {
-                this.cellSpawnTimer += this.game.clockTick;
-                if (this.cellSpawnTimer >= this.cellSpawnInterval) {
-                    this.cellSpawnTimer = 0;
-                    for (let i = 0; i < 30; i++) {
-                        let x = Math.random();
-                        let y = Math.random();
-                        this.game.addEntity(new Cell(this.game, x, y));
-                    }
-                    // for (var i = 0; i < level.cell.length; i++) {
-                    //     let c = level.cell[i];
-                    //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
-                    // }
-                }
-            }
+            // //Spawns 5 cell men
+            // if (!this.title && !this.TransitionScreen) {
+            //     this.cellSpawnTimer += this.game.clockTick;
+            //     if (this.cellSpawnTimer >= this.cellSpawnInterval) {
+            //         this.cellSpawnTimer = 0;
+            //         for (let i = 0; i < 30; i++) {
+            //             let x = Math.random();
+            //             let y = Math.random();
+            //             this.game.addEntity(new Cell(this.game, x, y));
+            //         }
+            //         // for (var i = 0; i < level.cell.length; i++) {
+            //         //     let c = level.cell[i];
+            //         //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
+            //         // }
+            //     }
+            // }
 
 
             if (level.powerups) {
@@ -231,28 +231,33 @@ class SceneManager {
         this.cellSpawnTimer += this.game.clockTick;
 
         // Check if it's time to spawn cells
-        if (this.cellSpawnTimer >= this.cellSpawnInterval) {
+        if (this.cellSpawnTimer >= this.cellSpawnInterval && !this.micro.winner) {
             this.spawnCells();
             this.cellSpawnTimer = 0; // Reset the timer
         }
     };
 
     spawnCells() {
-        let totalCells = this.game.entities.filter(entity => entity instanceof Cell).length;
-
-        let cellsToSpawn = 0;
-        if (this.level === levelOne) {
-            cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
-        } else if (this.level === levelTwo) {
-            cellsToSpawn = Math.min(40 - totalCells, this.cellsToSpawn);
-        }
-
-        for (let i = 0; i < cellsToSpawn; i++) {
-            let x = Math.random() * PARAMS.CANVAS_WIDTH;
-            let y = Math.random() * PARAMS.CANVAS_HEIGHT;
-            this.game.addEntity(new Cell(this.game, x, y));
+        // Check if the game is not transitioning and the cell count is not 0
+        if (!this.TransitionScreen && this.level !== undefined && this.level.cell !== undefined && this.level.cell.length > 0) {
+            let totalCells = this.game.entities.filter(entity => entity instanceof Cell).length;
+    
+            let cellsToSpawn = 0;
+            if (this.level === levelOne) {
+                cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
+            } else if (this.level === levelTwo) {
+                cellsToSpawn = Math.min(40 - totalCells, this.cellsToSpawn);
+            }
+    
+            for (let i = 0; i < cellsToSpawn; i++) {
+                let x = Math.random() * PARAMS.CANVAS_WIDTH;
+                let y = Math.random() * PARAMS.CANVAS_HEIGHT;
+                this.game.addEntity(new Cell(this.game, x, y));
+            }
         }
     }
+    
+    
 
 
 

@@ -198,9 +198,19 @@ class Cell {
                 if (targetEntity) {
                     this.chaseTarget(targetEntity);
                 }
-            }
-    
+                
+            }else {
+                // If the cell is dead, increment the dead timer
+                this.deadTimer += this.game.clockTick;
+   
+                // Check if the dead timer has reached 3 seconds
+                if (this.deadTimer >= 3) {
+                    // If 3 seconds have passed, mark the cell for removal
+                    this.removeFromWorld = true;
+                }
+            
             this.updateBB();
+        }
         }
     };
     
