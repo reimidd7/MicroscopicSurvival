@@ -43,14 +43,10 @@ class SceneManager {
 
         this.minimap = new Minimap(this.game, 0, 460, 68); // Adjust size as needed
 
-
-
         //Adding timer for cells
         this.cellSpawnTimer = 0;
         this.cellSpawnInterval = 5; //seconds
         this.cellsToSpawn = 5;
-
-
 
     }
 
@@ -169,10 +165,7 @@ class SceneManager {
             this.micro.removeFromWorld = false;
             this.micro.velocity = { x: 0, y: 0 };
 
-
-
             this.game.addEntity(this.micro); //might need to add a loop here if micro has a noticable speed difference
-
 
             this.updateCounts();
 
@@ -181,13 +174,9 @@ class SceneManager {
                     this.loadLevel(level, false, false);
                 }
             }
-
-            console.log("w: " + PARAMS.CANVAS_WIDTH + "h: " + PARAMS.CANVAS_HEIGHT);
-
         }
 
     };
-
 
     update() {
         PARAMS.DEBUG = document.getElementById("debug").checked;
@@ -195,11 +184,9 @@ class SceneManager {
         let midpointX = PARAMS.CANVAS_WIDTH / 2 - MICRO_WIDTH / 2;
         let midpointY = PARAMS.CANVAS_HEIGHT / 2 - MICRO_HEIGHT / 2;
 
-
         // should keep micro completely centered in the screen
         this.x = this.micro.x - midpointX;
         this.y = this.micro.y - midpointY;
-
 
         if (this.title) {
             //Start
@@ -207,8 +194,8 @@ class SceneManager {
                 this.title = false;
                 this.loadLevel(levelOne, true, false);
                 //this.loadLevel(levelFour, true, false);
-                //this.loadLevel(levelFive, true, false);
             }
+
             //instructions
             if ((this.game.click && this.game.click.x > 276 && this.game.click.x < 401) && (this.game.click && this.game.click.y > 460 && this.game.click.y < 480)) {
                 this.title = false;
@@ -236,7 +223,6 @@ class SceneManager {
         if (this.micro.winner) {
             this.portal = new Portal(this.game, 480, 675);
             this.game.addEntity(this.portal);
-
         }
 
         this.cellSpawnTimer += this.game.clockTick;
@@ -271,16 +257,12 @@ class SceneManager {
         }
     }
 
-
-
-
     //start of HUD
 
     // How many enemies are in the level
     updateCounts() {
 
         this.lymphocyteCount = this.level.lymphocyte ? this.level.lymphocyte.length : 0;
-
         this.cellCount = this.level.cell ? this.level.cell.length : 0;
     }
 
@@ -324,8 +306,6 @@ class SceneManager {
         }
 
     }
-
-
 
     draw(ctx) {
 
@@ -391,8 +371,6 @@ class SceneManager {
             ctx.fillText(" ", 50, 260);
             ctx.font = "32px sans-serif";
             ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
-
-
 
         } else if (this.micro.won) {
             ctx.fillStyle = "#a6a2a8";

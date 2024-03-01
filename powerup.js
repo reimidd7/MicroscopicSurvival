@@ -1,3 +1,4 @@
+// This powerup class is only used to draw the animations of each power up.
 class Powerup {
 
     constructor(game, x, y, type) {
@@ -51,13 +52,10 @@ class Powerup {
         } else {
             this.BB = new BoundingCircle(this.x + 78 / 2, this.y + 84 / 2, 24);
         }
-
-
     }
 
     draw(ctx) {
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, this.scale, true);
-
 
         if (PARAMS.DEBUG) {
             ctx.beginPath();
@@ -68,26 +66,11 @@ class Powerup {
     };
 
     update() {
-        //not working yet
-        //this.updateBB();
-        // for(var i = 0; i < this.game.entities.length; i++) {
-        //     var entity = this.game.entities[i];
-        //     if (entity instanceof Micro && this.BB.collide(entity.BB)) {
-        //         //this.animator.changeDuration(0.5); //fix this
-        //         this.removeFromWorld = true;
-        //         //console.log("getting to change duration");
-        //     } 
-        // }
 
-        //if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
-
-        // if (this.type === "stun" || this.type === "explode") {
-        //     this.mine.update();
-        // }
     };
 }
 
-
+// This class handles the logic for both mines (stun and explode). It also draws the Explode radius.
 class Mine {
     constructor(game, x, y, type) {
         Object.assign(this, { game, x, y, type });
@@ -99,6 +82,8 @@ class Mine {
         this.active = false;
 
         this.elapsedTime = 0;
+        this.timer = 0;
+        this.maxTimer = 10;
 
         this.entities = [];
 
@@ -107,33 +92,79 @@ class Mine {
 
 
     update() {
-        if (this.active && this.elapsedTime < 1) {
-            for (var i = 0; i < this.game.entities.length; i++) {
-                var entity = this.game.entities[i];
-                if (entity instanceof Cell && getDistance(this, entity) < 50) {
-                    this.entities.push(entity);
-                    this.oldVelocities.push(entity.velocity);
-                    entity.stunned = true;
-                    entity.velocity = { x: 0, y: 0 };
+        // used with the exploding time to hanldle time
+        this.timer += this.game.clockTick;
+
+        // stun logic... timed by powerup() in Micro.js
+        if (this.type == "stun") {
+            if (this.active && this.elapsedTime < 1) {
+                for (var i = 0; i < this.game.entities.length; i++) {
+                    var entity = this.game.entities[i];
+                    if (entity instanceof Cell && getDistance(this, entity) < 50) {
+                        this.entities.push(entity);
+                        this.oldVelocities.push(entity.velocity);
+                        entity.stunned = true;
+                        entity.velocity = { x: 0, y: 0 };
+                    }
                 }
+                this.elapsedTime++;
+            } else if (!this.active && this.entities.length > 0) {
+                for (var i = 0; i < this.entities.length; i++) {
+                    this.entities[i].stunned = false;
+                    this.entities[i].velocity = this.oldVelocities[i];
+                }
+                this.removeFromWorld = true;
             }
-            this.elapsedTime++;
-        } else if (!this.active && this.entities.length > 0) {
-            for (var i = 0; i < this.entities.length; i++) {
-                this.entities[i].stunned = false;
-                this.entities[i].velocity = this.oldVelocities[i];
-            }
-            this.removeFromWorld = true;
         }
 
+        // explode logic... pulled from powerup()
+        // time is handled WITHNIN using timer and maxTimer (no need for the if statement in powerup())
+        if (this.type == "explode") {
+            if (this.timer >= this.maxTimer) {
+                this.game.micro.poweredUpExplode = false; 
+                return;
+            }
+
+            if (this.game.micro.poweredUpExplode) {
+                for (const entity of this.game.entities) {
+                    if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
+                        const dx = this.game.micro.x - entity.x;
+                        const dy = this.game.micro.y - entity.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 50 && !entity.dead) {
+                            entity.decreaseHealth();
+                            if (entity.healthpoints <= 0 ) {
+                                if (entity instanceof Cell) this.game.camera.cellCount -= 1;
+                                if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
+                                entity.dead = true;
+                            }
+                        }
+                    }
+                }
+                //this.explodeTime++; // not needed anymore due to time being handled with Timer
+            }
+        }
     };
 
     draw(ctx) {
 
+        // Draws the exploding radius, disappears after the powerup logic has stopped
+        if (this.type == "explode" && this.timer < this.maxTimer) {
+            ctx.save();
+            ctx.translate(this.game.micro.x - this.game.camera.x + 32, this.game.micro.y - this.game.camera.y + 30); // Adjusted for center
+            ctx.beginPath();
+            ctx.arc(0, 0, 50, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+            ctx.fill();
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            ctx.restore();
+        }
     };
 
 };
 
+// This class handles the logic and drawing of the clones
 class Clone {
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
@@ -141,8 +172,6 @@ class Clone {
         this.removeFromWorld = false;
         this.width = this.game.camera.level.width;
         this.height = this.game.camera.level.height;
-
-        
 
         this.spritesheet = ASSET_MANAGER.getAsset("./MicroSpritesheet.png");
 
@@ -169,7 +198,7 @@ class Clone {
     //right wall
     collideRight() {
         return (this.x + this.BB.radius) > this.width - 32;
-        
+
     };
 
     //top wall
@@ -180,7 +209,7 @@ class Clone {
     //fix this for additional levels
     //bottom wall
     collideBottom() {
-        
+
         return (this.y + this.BB.radius) > this.height - 32;
     };
 
@@ -223,7 +252,6 @@ class Clone {
 
     };
 
-
     draw(ctx) {
         // Draw the clone using the animation
         this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 0.75, true);
@@ -236,4 +264,35 @@ class Clone {
             ctx.stroke();
         }
     };
+
 };
+
+
+class Shield {
+    constructor(game, x, y, type) {
+        Object.assign(this, { game, x, y, type });
+
+        this.timer = 0;
+        this.maxTimer = 10;
+
+    }
+
+
+    update() {
+        // A logic like this can be used to set the timer
+       /* this.timer += this.game.clockTick;
+        if (this.timer >= this.maxTimer) {
+            this.game.micro.poweredUpExplode = false; // Remove the clone from the world
+            return;
+        }*/
+
+        
+    };
+
+    draw(ctx) {
+
+        // can add drawing logic here
+        // if you want the drawing to follow micro use this.game.micro.x and this.game.micro.y
+        
+    };
+}

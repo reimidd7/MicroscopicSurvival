@@ -1,8 +1,8 @@
 BLOCK_SIZE = 32;
 
-CANVAS_WIDTH = 1024;
-CANVAS_HEIGHT = 768;
 // w: 32X32 = 1024 h: 32X24 = 768
+CANVAS_WIDTH1 = 1024;
+CANVAS_HEIGHT1 = 768;
 var levelOne = {
     // add music
     // label
@@ -228,8 +228,8 @@ var levelOne = {
 
     //add power ups (Level 1 only has speed and size powerups)
     powerups: [
-        { x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed" },
-        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size" }
+        {x: Math.random() * ((CANVAS_WIDTH1 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT1 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH1 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT1 - 64) - 64) + 64, type: "size" }
     ],
 
     //adding 1 lymphocyte
@@ -254,8 +254,6 @@ var levelOne = {
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
-
-
     ],
 
     portal: [
@@ -265,6 +263,8 @@ var levelOne = {
 };
 
 // w: 34X32 = 1088 h: 28X32 = 896
+CANVAS_WIDTH2 = 1088;
+CANVAS_HEIGHT2 = 896;
 var levelTwo = {
     // add music
     // label
@@ -510,9 +510,9 @@ var levelTwo = {
     ],
     // Power-ups
     powerups: [
-        { x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed" },
-        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size" },
-        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "explode" },
+        { x: Math.random() * ((CANVAS_WIDTH2 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT2 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH2 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT2 - 64) - 64) + 64, type: "size" },
+        { x: Math.random() * ((CANVAS_WIDTH2 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT2 - 64) - 64) + 64, type: "explode" },
     ],
     // 2 Lymphocyte
     lymphocyte: [
@@ -549,8 +549,8 @@ var levelTwo = {
 };
 
 //level 3 w=36X32 = 1152 h=30X32 = 960
-CANVAS_WIDTH = 1152;
-CANVAS_HEIGHT = 960;
+CANVAS_WIDTH3 = 1152;
+CANVAS_HEIGHT3 = 960;
 var levelThree = {
     // add music
     // label
@@ -828,9 +828,10 @@ var levelThree = {
 
     //add power ups (Level 1 only has speed and size powerups)
     powerups: [
-        { x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed" },
-        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size" },
-        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "stun" }
+        { x: Math.random() * ((CANVAS_WIDTH3 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT3 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH3 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT3 - 64) - 64) + 64, type: "size" },
+        { x: Math.random() * ((CANVAS_WIDTH3 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT3 - 64) - 64) + 64, type: "explode" },
+        { x: Math.random() * ((CANVAS_WIDTH3 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT3 - 64) - 64) + 64, type: "stun" }
     ],
 
     //adding 3 lymphocyte
@@ -874,6 +875,8 @@ var levelThree = {
     ]
 };
 
+CANVAS_WIDTH4 = 1216;
+CANVAS_HEIGHT4 = 1024;
 //Width: 32x38 = 1216 Height: 32x32 = 1024 
 var levelFour = {
     // add music
@@ -1182,7 +1185,7 @@ var levelFour = {
     // ------------------------ ALL BACKGROUND ^^^^ CAN ADD MORE ABOVE HERE -------------------------------------
 
     //adds a bone randomly in each quadrent of the gameboard.
-  /*  bones: [
+    bones: [
         { x: 183, y: 86 },   // (0 - 608), (0-512)
         { x: 469, y: 210 },   //  (0 - 608), (0-512)
         { x: 104, y: 383 },   //  (0 - 608), (0-512)
@@ -1213,18 +1216,19 @@ var levelFour = {
         { x: 1079, y: 743 }    // (609 - 1152), (513 - 960)
 
 
-    ],*/
+    ],
 
     //add power ups (Level )
     powerups: [
-       // { x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed" },
-       // { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size" },
-        //{ x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "stun" },
-        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "clone" }
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "size" },
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "stun" },
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "explode" },
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "clone" }  
     ],
 
     //adding 4 lymphocytes, one in each quadrant
-   lymphocyte: [
+    lymphocyte: [
         { x: 477, y: 370 },
         { x: 857, y: 108 },
         { x: 179, y: 923 },
@@ -1232,7 +1236,7 @@ var levelFour = {
     ],
 
     //adding 60 cellmans
-     cell: [
+    cell: [
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
@@ -1274,6 +1278,8 @@ var levelFour = {
 
 
 // w: 40X32 = 1280 h: 34X32 = 1088
+CANVAS_WIDTH5 = 1280;
+CANVAS_HEIGHT5 = 1088;
 var levelFive = {
     // add music
     // label
