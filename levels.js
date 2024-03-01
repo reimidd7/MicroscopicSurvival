@@ -7,6 +7,8 @@ var levelOne = {
     // add music
     // label
     label: "1",
+    width: 1024,
+    height: 768,
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [{ x: 0, y: 0, flip: 0 }, { x: BLOCK_SIZE * 31, y: 0, flip: 1 }
@@ -267,6 +269,8 @@ var levelTwo = {
     // add music
     // label
     label: "2",
+    width: 1088,
+    height: 896,
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [{ x: 0, y: 0, flip: 0 }, { x: BLOCK_SIZE * 31, y: 0, flip: 1 }
@@ -551,6 +555,8 @@ var levelThree = {
     // add music
     // label
     label: "3",
+    width: 1152,
+    height: 960,
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [{ x: 0, y: 0, flip: 0 }, { x: BLOCK_SIZE * 35, y: 0, flip: 1 }
@@ -873,6 +879,8 @@ var levelFour = {
     // add music
     // label
     label: "4",
+    width: 1216,
+    height: 1024,
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [
         { x: 0, y: 0, flip: 0 }, { x: BLOCK_SIZE * 38, y: 0, flip: 1 },
@@ -1174,7 +1182,7 @@ var levelFour = {
     // ------------------------ ALL BACKGROUND ^^^^ CAN ADD MORE ABOVE HERE -------------------------------------
 
     //adds a bone randomly in each quadrent of the gameboard.
-    bones: [
+  /*  bones: [
         { x: 183, y: 86 },   // (0 - 608), (0-512)
         { x: 469, y: 210 },   //  (0 - 608), (0-512)
         { x: 104, y: 383 },   //  (0 - 608), (0-512)
@@ -1205,13 +1213,18 @@ var levelFour = {
         { x: 1079, y: 743 }    // (609 - 1152), (513 - 960)
 
 
-    ],
+    ],*/
 
     //add power ups (Level )
-    powerups: [],
+    powerups: [
+       // { x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed" },
+       // { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size" },
+        //{ x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "stun" },
+        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "clone" }
+    ],
 
     //adding 4 lymphocytes, one in each quadrant
-    lymphocyte: [
+   lymphocyte: [
         { x: 477, y: 370 },
         { x: 857, y: 108 },
         { x: 179, y: 923 },
@@ -1219,7 +1232,7 @@ var levelFour = {
     ],
 
     //adding 60 cellmans
-    cell: [
+     cell: [
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 },
@@ -1265,6 +1278,8 @@ var levelFive = {
     // add music
     // label
     label: "5",
+    width: 1280,
+    height: 1088,
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [
