@@ -36,20 +36,17 @@ class SceneManager {
         this.micro = new Micro(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
         this.cell = new Cell(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
         this.lymphocyte = new Lymphocyte(this.game, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
+        
         this.portal = new Portal(this.game, 480, 675);
 
         this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
 
         this.minimap = new Minimap(this.game, 0, 460, 68); // Adjust size as needed
 
-
-
         //Adding timer for cells
         this.cellSpawnTimer = 0;
         this.cellSpawnInterval = 3; //seconds
         this.cellsToSpawn = 5;
-
-
 
     }
 
@@ -122,24 +119,30 @@ class SceneManager {
                 }
             }
 
-
-
-            // //Spawns 5 cell men
-            // if (!this.title && !this.TransitionScreen) {
-            //     this.cellSpawnTimer += this.game.clockTick;
-            //     if (this.cellSpawnTimer >= this.cellSpawnInterval) {
-            //         this.cellSpawnTimer = 0;
-            //         for (let i = 0; i < 30; i++) {
-            //             let x = Math.random();
-            //             let y = Math.random();
-            //             this.game.addEntity(new Cell(this.game, x, y));
+            // if (level.cell) {
+            //         for (var i = 0; i < level.cell.length; i++) {
+            //             let c = level.cell[i];
+            //             this.game.addEntity(new Cell(this.game, c.x, c.y, this));
             //         }
-            //         // for (var i = 0; i < level.cell.length; i++) {
-            //         //     let c = level.cell[i];
-            //         //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
-            //         // }
             //     }
-            // }
+
+
+            //Spawns 5 cell men
+            if (!this.title) {
+                this.cellSpawnTimer += this.game.clockTick;
+                if (this.cellSpawnTimer >= this.cellSpawnInterval) {
+                    this.cellSpawnTimer = 0;
+                    for (let i = 0; i < 30; i++) {
+                        let x = Math.random();
+                        let y = Math.random();
+                        this.game.addEntity(new Cell(this.game, x, y));
+                    }
+                    // for (var i = 0; i < level.cell.length; i++) {
+                    //     let c = level.cell[i];
+                    //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
+                    // }
+                }
+            }
 
 
             if (level.powerups) {
@@ -162,9 +165,7 @@ class SceneManager {
             this.micro.removeFromWorld = false;
             this.micro.velocity = { x: 0, y: 0 };
 
-
             this.game.addEntity(this.micro); //might need to add a loop here if micro has a noticable speed difference
-
 
             this.updateCounts();
 
@@ -173,12 +174,9 @@ class SceneManager {
                     this.loadLevel(level, false, false);
                 }
             }
-
-
         }
 
     };
-
 
     update() {
         PARAMS.DEBUG = document.getElementById("debug").checked;
@@ -186,18 +184,18 @@ class SceneManager {
         let midpointX = PARAMS.CANVAS_WIDTH / 2 - MICRO_WIDTH / 2;
         let midpointY = PARAMS.CANVAS_HEIGHT / 2 - MICRO_HEIGHT / 2;
 
-
         // should keep micro completely centered in the screen
         this.x = this.micro.x - midpointX;
         this.y = this.micro.y - midpointY;
-
 
         if (this.title) {
             //Start
             if ((this.game.click && this.game.click.x > 275 && this.game.click.x < 383) && (this.game.click && this.game.click.y > 411 && this.game.click.y < 443)) {
                 this.title = false;
                 this.loadLevel(levelOne, true, false);
+                //this.loadLevel(levelFour, true, false);
             }
+
             //instructions
             if ((this.game.click && this.game.click.x > 276 && this.game.click.x < 401) && (this.game.click && this.game.click.y > 460 && this.game.click.y < 480)) {
                 this.title = false;
@@ -225,7 +223,6 @@ class SceneManager {
         if (this.micro.winner) {
             this.portal = new Portal(this.game, 480, 675);
             this.game.addEntity(this.portal);
-
         }
 
         this.cellSpawnTimer += this.game.clockTick;
@@ -238,9 +235,21 @@ class SceneManager {
     };
     
     spawnCells() {
-        const remainingCells = Math.max(0, this.maxCells - this.cellCount); // Calculate the remaining cells
-        const cellsToSpawn = Math.min(this.defaultSpawnAmount, remainingCells); // Determine the number of cells to spawn
-    
+        let totalCells = this.game.entities.filter(entity => entity instanceof Cell).length;
+
+        let cellsToSpawn = 0;
+        if (this.level === levelOne) {
+            cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelTwo) {
+            cellsToSpawn = Math.min(40 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelThree) {
+            cellsToSpawn = Math.min(50 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelFour) {
+            cellsToSpawn = Math.min(60 - totalCells, this.cellsToSpawn);
+        } else if (this.level === levelFive) {
+            cellsToSpawn = Math.min(100 - totalCells, this.cellsToSpawn);
+        }
+
         for (let i = 0; i < cellsToSpawn; i++) {
             // Spawn a cell at a random position
             const x = Math.random() * this.game.surfaceWidth;
@@ -248,14 +257,6 @@ class SceneManager {
             this.game.addEntity(new Cell(this.game, x, y));
         }
     }
-    
-    
-    
-    
-    
-
-
-
 
     //start of HUD
 
@@ -263,7 +264,6 @@ class SceneManager {
     updateCounts() {
 
         this.lymphocyteCount = this.level.lymphocyte ? this.level.lymphocyte.length : 0;
-
         this.cellCount = this.level.cell ? this.level.cell.length : 0;
     }
 
@@ -307,8 +307,6 @@ class SceneManager {
         }
 
     }
-
-
 
     draw(ctx) {
 
@@ -374,8 +372,6 @@ class SceneManager {
             ctx.fillText(" ", 50, 260);
             ctx.font = "32px sans-serif";
             ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
-
-
 
         } else if (this.micro.won) {
             ctx.fillStyle = "#a6a2a8";

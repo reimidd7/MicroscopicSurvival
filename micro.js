@@ -16,14 +16,26 @@ class Micro {
         this.winner = false;
         this.levelCount = 1;
 
+        // size powerup
         this.poweredUpSize = false;
         this.sizeTime = 0;
+
+        // speed powerup
         this.poweredUpSpeed = false;
         this.speedTime = 0;
 
+        // stun powerup
         this.stunMine = null;
         this.activeStunMine = false;
         this.stunTime = 0;
+
+        // explosion powerup
+        this.poweredUpExplode = false;
+        this.explodeTime = 0;
+
+        // clone powerup
+        this.poweredUpCLone = false;
+        this.cloneTime = 0;
 
         this.velocity = { x: 0, y: 0 };
 
@@ -48,18 +60,6 @@ class Micro {
         this.animations = [];
         this.loadAnimations();
 
-        //Explosion
-        this.poweredUpExplode = false;
-        this.explodeTime = 0;
-
-        //Shield
-        this.poweredUpShield = false;
-        this.shieldTime = 0;
-
-        
-
-
-
     };
 
     loadAnimations() {
@@ -78,27 +78,19 @@ class Micro {
         // State 0 = idle animation
         // Facing 0 = forward facing
         this.animations[0][0][0] = new Animator(this.spritesheet, 2, 375, 64, 60, 2, 0.2);
-        // this.animations[0][2][0] = new Animator(this.spritesheet, ) not implemented
-        // this.animations[0][3][0] = new Animator(this.spritesheet, ) not implemented
 
         // WALK
         // State 1 = walking
         // facing 0 = forward facing
         this.animations[1][0][0] = new Animator(this.spritesheet, 2, 260, 64, 60, 3, 0.2);
-        //this.animations[1][2][0] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[1][3][0] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 1 = right facing
         this.animations[1][0][1] = new Animator(this.spritesheet, 2, 320, 64, 60, 2, 0.2);
-        //this.animations[1][2][1] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[1][3][1] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 2 = left facing
         this.animations[1][0][2] = new Animator(this.spritesheet, 2, 135, 64, 60, 2, 0.2);
-        //this.animations[1][2][2] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[1][3][2] = new Animator(this.spritesheet, ) not implemented
 
         // PUNCHING - not implemented
         // State 2 = punching
@@ -133,11 +125,10 @@ class Micro {
     //right wall
     collideRight() {
         if (this.size == 0) {
-            return (this.x + this.BB.radius) > 955;
+            return (this.x + this.BB.radius) > this.game.camera.level.width - 69;
         } else if (this.size == 1) {
-            return (this.x + this.BB.radius) > 930;
+            return (this.x + this.BB.radius) > this.game.camera.level.width - 94;
         }
-
     };
 
     //Top wall
@@ -153,11 +144,10 @@ class Micro {
     //Bottom wall
     collideBottom() {
         if (this.size == 0) {
-            return (this.y + this.BB.radius) > 712;
+            return (this.y + this.BB.radius) > this.game.camera.level.height - 56;
         } else if (this.size == 1) {
-            return (this.y + this.BB.radius) > 695;
+            return (this.y + this.BB.radius) > this.game.camera.level.height - 73;
         }
-
     };
 
     update() {
@@ -196,62 +186,62 @@ class Micro {
             this.key = this.game.keyCode;
 
             //update position
-            // if (this.collideLeft() || this.collideRight()) {
-            //     if (this.prevCode != this.key && this.key != null) {
-            //         this.velocity.x = -this.velocity.x;
-            //         if (this.collideLeft() && this.size == 0) {
-            //             this.x = this.BB.radius + 20;
-            //         } else if (this.collideLeft() && this.size == 1) {
-            //             this.x = this.BB.radius - 2;
-            //         }
+            // // if (this.collideLeft() || this.collideRight()) {
+            // //     if (this.prevCode != this.key && this.key != null) {
+            // //         this.velocity.x = -this.velocity.x;
+            // //         if (this.collideLeft() && this.size == 0) {
+            // //             this.x = this.BB.radius + 20;
+            // //         } else if (this.collideLeft() && this.size == 1) {
+            // //             this.x = this.BB.radius - 2;
+            // //         }
 
-            //         if (this.collideRight() && this.size == 0) {
-            //             this.x = 950 - this.BB.radius;
-            //         } else if (this.collideRight() && this.size == 1) {
-            //             this.x = 925 - this.BB.radius;
-            //         }
+            // //         if (this.collideRight() && this.size == 0) {
+            // //             this.x = 950 - this.BB.radius;
+            // //         } else if (this.collideRight() && this.size == 1) {
+            // //             this.x = 925 - this.BB.radius;
+            // //         }
 
-            //         //random direction after hitting wall
-            //         this.velocity.y = Math.random() * 100 + 50;
-            //         this.updateLastBB();
-            //         this.updateBB();
-            //     }
+            // //         //random direction after hitting wall
+            // //         this.velocity.y = Math.random() * 100 + 50;
+            // //         this.updateLastBB();
+            // //         this.updateBB();
+            // //     }
 
-            //     this.prevCode = this.key;
+            // //     this.prevCode = this.key;
 
-            //     this.key = this.game.keyCode;
+            // //     this.key = this.game.keyCode;
 
-            // } else if (this.collideBottom() || this.collideTop()) {
-            //     if (this.prevCode != this.key && this.key != null) {
-            //         this.velocity.y = -this.velocity.y;
-            //         if (this.collideTop() && this.size == 0) {
-            //             this.y = this.BB.radius + 5;
-            //         } else if (this.collideTop() && this.size == 1) {
-            //             this.y = this.BB.radius - 3;
-            //         }
+            // // } else if (this.collideBottom() || this.collideTop()) {
+            // //     if (this.prevCode != this.key && this.key != null) {
+            // //         this.velocity.y = -this.velocity.y;
+            // //         if (this.collideTop() && this.size == 0) {
+            // //             this.y = this.BB.radius + 5;
+            // //         } else if (this.collideTop() && this.size == 1) {
+            // //             this.y = this.BB.radius - 3;
+            // //         }
 
-            //         if (this.collideBottom() && this.size == 0) {
-            //             this.y = 708 - this.BB.radius;
-            //         } else if (this.collideBottom() && this.size == 1) {
-            //             this.y = 692 - this.BB.radius;
-            //         }
+            // //         if (this.collideBottom() && this.size == 0) {
+            // //             this.y = 708 - this.BB.radius;
+            // //         } else if (this.collideBottom() && this.size == 1) {
+            // //             this.y = 692 - this.BB.radius;
+            // //         }
 
-            //         //random direction after hitting wall
-            //         this.velocity.x = Math.random() * 100 + 50;
-            //         this.updateLastBB();
-            //         this.updateBB();
-            //     }
+            // //         //random direction after hitting wall
+            // //         this.velocity.x = Math.random() * 100 + 50;
+            // //         this.updateLastBB();
+            // //         this.updateBB();
+            // //     }
 
-            //     this.prevCode = this.key;
+            // //     this.prevCode = this.key;
 
-            //     this.key = this.game.keyCode;
+            // //     this.key = this.game.keyCode;
 
             // } else {
             this.x += this.velocity.x * this.game.clockTick;
             this.y += this.velocity.y * this.game.clockTick;
             this.updateLastBB();
             this.updateBB();
-            // }
+            //}
 
 
             // update state!
@@ -319,7 +309,7 @@ class Micro {
                             if (entity instanceof Cell && !entity.dead) {
                                 // Cell touched the Micro, make the Micro take damage
                                 if (entity.timer <= 0) {
-                                    this.healthpoints -= 1;
+                                    this.healthpoints -= 2;
                                     entity.timer = 1;
                                 }
                                 // makes it so micro doesnt die as quick
@@ -374,26 +364,6 @@ class Micro {
                                         this.velocity.y = 0;
                                     }
                                     //console.log("top collision");
-
-
-                                }
-                            }
-                        }
-                        //Make sure that the enemies keep dying while explosion is up
-                        if (this.poweredUpExplode) {
-                            for (const entity of this.game.entities) {
-                                if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
-                                    const dx = this.x - entity.x;
-                                    const dy = this.y - entity.y;
-                                    const distance = Math.sqrt(dx * dx + dy * dy);
-                                    if (distance < 50) {
-                                        entity.decreaseHealth();
-                                        if (entity.healthpoints <= 0) {
-                                            if (entity instanceof Cell) this.game.camera.cellCount -= 1;
-                                            if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
-                                            entity.dead = true;
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -431,12 +401,11 @@ class Micro {
                             entity.removeFromWorld = true;
                             if (entity.type === "speed") {
                                 entity.removeFromWorld = true;
-
                                 this.poweredUpSpeed = true;
                                 this.speedTime = 0;
+
                             } else if (entity.type === "size") {
                                 entity.removeFromWorld = true;
-
                                 this.poweredUpSize = true;
                                 this.sizeTime = 0;
 
@@ -446,14 +415,14 @@ class Micro {
                                 this.game.addEntity(this.stunMine);
                                 this.stunMine.active = true;
                                 this.activeStunMine = true;
+
                             } else if (entity.type === "explode") {
+                                this.explodeTime = 0;
+                                this.explodeMine = new Mine(this.game, this.x, this.y, "explode");
+                                this.game.addEntity(this.explodeMine);
                                 entity.removeFromWorld = true;
                                 this.poweredUpExplode = true;
                                 this.explodeTime = 0;
-                            } else if (entity.type === "shield") {
-                                entity.removeFromWorld = true;
-                                this.poweredUpShield = true;
-                                this.shieldTime = 0;
                             }
 
                             this.powerUp();
@@ -469,7 +438,6 @@ class Micro {
                 this.levelCount++;
                 this.winner = false;
                 if (this.levelCount == 2) {
-
                     this.game.camera.loadLevel(levelTwo, true, false);
                 } else if (this.levelCount == 3) {
                     this.game.camera.loadLevel(levelThree, true, false);
@@ -530,7 +498,7 @@ class Micro {
         }
 
         //Drawing the radius of the explosion
-        if (this.poweredUpExplode && this.size === 0) {
+        if (this.poweredUpExplode) {
             ctx.save();
             ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
             ctx.beginPath();
@@ -540,63 +508,30 @@ class Micro {
             ctx.strokeStyle = 'red';
             ctx.stroke();
             ctx.restore();
-        } else if (this.poweredUpExplode && this.size === 1) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
-            ctx.fill();
-            ctx.strokeStyle = 'red';
-            ctx.stroke();
-            ctx.restore();
         }
-
-
-         //Drawing the radius of the shield
-         if (this.poweredUpShield && this.size === 0) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
-            ctx.fill();
-            ctx.strokeStyle = 'turquoise'; // Turquoise color
-            ctx.stroke();
-            ctx.restore();
-        } else if (this.poweredUpShield && this.size === 1) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
-            ctx.fill();
-            ctx.strokeStyle = 'turquoise'; // Turquoise color
-            ctx.stroke();
-            ctx.restore();
-        }
-        
 
     };
 
-
     powerUp() {
-        if (this.poweredUpSpeed == true && this.speedTime < 750) {
+        // speed powerup logic
+        if (this.poweredUpSpeed == true && this.speedTime < 700) {
             this.walk = 400;
             this.speedTime++;
-            //console.log("setting speed");
-        } else if (this.poweredUpSpeed == true && this.speedTime >= 750) {
+            // console.log("setting speed");
+            // console.log(this.speedTime);
+        } else if (this.poweredUpSpeed == true && this.speedTime >= 700) {
             this.walk = 200;
             this.speedTime = 0;
             this.poweredUpSpeed = false;
-            //console.log("resetting speed");
+            // console.log("resetting speed");
         }
 
-        if (this.poweredUpSize == true && this.sizeTime < 750) {
+        // size powerup logic
+        if (this.poweredUpSize == true && this.sizeTime < 700) {
             //console.log("setting size");
             this.sizeTime++;
             this.size = 1;
-        } else if (this.poweredUpSize == true && this.sizeTime >= 750) {
+        } else if (this.poweredUpSize == true && this.sizeTime >= 700) {
             this.size = 0;
             this.sizeTime = 0;
             this.poweredUpSize = false;
@@ -604,7 +539,7 @@ class Micro {
         }
         if (this.poweredUpExplode) {
 
-            if (this.explodeTime >= 300) {
+            if (this.explodeTime >= 420) {
                 this.poweredUpExplode = false;
                 this.explodeTime = 0;
             } else {
@@ -628,46 +563,6 @@ class Micro {
             }
         }
 
-        if (this.poweredUpShield) {
-            if (this.shieldTime >= 300) {
-                this.poweredUpShield = false;
-                this.shieldTime = 0;
-            } else {
-                for (const entity of this.game.entities) {
-                    if (this.poweredUpShield) {
-                        const shieldRadius = 50; 
-                        const centerX = this.x;
-                        const centerY = this.y;
-                        const distanceThreshold = 50;
-                    
-                        
-                        this.game.entities.forEach((entity) => {
-                            if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
-                                const dx = centerX - entity.x;
-                                const dy = centerY - entity.y;
-                                const distance = Math.sqrt(dx * dx + dy * dy);
-                                if (distance < shieldRadius) {
-                                    // Move the entity outside the shield radius
-                                    const angle = Math.atan2(dy, dx);
-                                    const newDistance = shieldRadius + distanceThreshold;
-                                    const newX = centerX + newDistance * Math.cos(angle);
-                                    const newY = centerY + newDistance * Math.sin(angle);
-                                    entity.x = newX;
-                                    entity.y = newY;
-                                }
-                            }
-                        });
-              
-                                        
-                    }
-                    
-                    
-                }
-                this.shieldTime++;
-            }
-        }
-        
-
         if (this.activeStunMine == true && this.stunTime < 500) {
             this.stunTime++;
         } else if (this.activeStunMine == true && this.stunTime >= 500) {
@@ -676,6 +571,19 @@ class Micro {
             this.stunTime = 0;
             this.activeStunMine = false;
         }
+
+        // clone powerup logic NOT NEEDED HERE EVERYTHING IS IN MINE.JS
+        // if (this.poweredUpClone == true && this.cloneTime < 50) {
+        //     console.log("setting clone");
+        //     this.cloneTime++;
+        //     console.log(this.cloneTime);
+        //     //this.size = 1;
+        // } else if (this.poweredUpClone == true && this.cloneTime >= 50) {
+        //     //this.size = 0;
+        //     this.cloneTime = 0;
+        //     this.poweredUpClone = false;
+        //     console.log("resetting clone");
+        // }
 
     };
 };
