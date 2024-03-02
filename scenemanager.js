@@ -236,26 +236,21 @@ class SceneManager {
             this.cellSpawnTimer = 0; // Reset the timer
         }
     };
-
+    
     spawnCells() {
-        // Check if the game is not transitioning and the cell count is not 0
-        if (!this.TransitionScreen && this.level !== undefined && this.level.cell !== undefined && this.level.cell.length > 0) {
-            let totalCells = this.game.entities.filter(entity => entity instanceof Cell).length;
+        const remainingCells = Math.max(0, this.maxCells - this.cellCount); // Calculate the remaining cells
+        const cellsToSpawn = Math.min(this.defaultSpawnAmount, remainingCells); // Determine the number of cells to spawn
     
-            let cellsToSpawn = 0;
-            if (this.level === levelOne) {
-                cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
-            } else if (this.level === levelTwo) {
-                cellsToSpawn = Math.min(40 - totalCells, this.cellsToSpawn);
-            }
-    
-            for (let i = 0; i < cellsToSpawn; i++) {
-                let x = Math.random() * PARAMS.CANVAS_WIDTH;
-                let y = Math.random() * PARAMS.CANVAS_HEIGHT;
-                this.game.addEntity(new Cell(this.game, x, y));
-            }
+        for (let i = 0; i < cellsToSpawn; i++) {
+            // Spawn a cell at a random position
+            const x = Math.random() * this.game.surfaceWidth;
+            const y = Math.random() * this.game.surfaceHeight;
+            this.game.addEntity(new Cell(this.game, x, y));
         }
     }
+    
+    
+    
     
     
 
