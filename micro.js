@@ -33,6 +33,10 @@ class Micro {
         this.poweredUpExplode = false;
         this.explodeTime = 0;
 
+        // explosion powerup
+        this.poweredUpShield = false;
+        this.shieldTime = 0;
+
         // clone powerup
         this.poweredUpCLone = false;
         this.cloneTime = 0;
@@ -367,34 +371,7 @@ class Micro {
                                 }
                             }
                         }
-                        //Shield pushing bakc
-                        if (this.poweredUpShield) {
-                            const shieldRadius = 50; 
-                            const centerX = this.x;
-                            const centerY = this.y;
-                            const distanceThreshold = 50; 
-                        
-                            
-                            this.game.entities.forEach((entity) => {
-                                if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
-                                    const dx = centerX - entity.x;
-                                    const dy = centerY - entity.y;
-                                    const distance = Math.sqrt(dx * dx + dy * dy);
-                                    if (distance < shieldRadius) {
-                                        // Move the entity outside the shield radius
-                                        const angle = Math.atan2(dy, dx);
-                                        const newDistance = shieldRadius + distanceThreshold;
-                                        const newX = centerX + newDistance * Math.cos(angle);
-                                        const newY = centerY + newDistance * Math.sin(angle);
-                                        entity.x = newX;
-                                        entity.y = newY;
-                                    }
-                                }
-                            });
-                        }
-                        
-                        
-                        
+                       
                         
 
                         if (entity instanceof Powerup) { //make them last for like 15 seconds only
@@ -423,6 +400,10 @@ class Micro {
                                 entity.removeFromWorld = true;
                                 this.poweredUpExplode = true;
                                 this.explodeTime = 0;
+                            } else if (entity.type === "shield") {
+                                entity.removeFromWorld = true;
+                                this.poweredUpShield = true;
+                                this.shieldTime = 0;
                             }
 
                             this.powerUp();
@@ -508,7 +489,44 @@ class Micro {
             ctx.strokeStyle = 'red';
             ctx.stroke();
             ctx.restore();
+        } else if (this.poweredUpShield && this.size === 1) {
+            ctx.save();
+            ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
+            ctx.beginPath();
+            ctx.arc(0, 0, 50, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+            ctx.fill();
+            ctx.strokeStyle = 'red'
+            ctx.stroke();
+            ctx.restore();
         }
+
+
+        if (this.poweredUpShield && this.size === 0) {
+            ctx.save();
+            ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
+            ctx.beginPath();
+            ctx.arc(0, 0, 50, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+            ctx.fill();
+            ctx.strokeStyle = 'turquoise'; // Turquoise color
+            ctx.stroke();
+            ctx.restore();
+        } else if (this.poweredUpShield && this.size === 1) {
+            ctx.save();
+            ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
+            ctx.beginPath();
+            ctx.arc(0, 0, 50, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+            ctx.fill();
+            ctx.strokeStyle = 'turquoise'; // Turquoise color
+            ctx.stroke();
+            ctx.restore();
+        }
+        
+
+    
+
 
     };
 
@@ -571,6 +589,46 @@ class Micro {
             this.stunTime = 0;
             this.activeStunMine = false;
         }
+
+        if (this.poweredUpShield) {
+            if (this.shieldTime >= 300) {
+                this.poweredUpShield = false;
+                this.shieldTime = 0;
+            } else {
+                for (const entity of this.game.entities) {
+                    if (this.poweredUpShield) {
+                        const shieldRadius = 50; 
+                        const centerX = this.x;
+                        const centerY = this.y;
+                        const distanceThreshold = 50;
+                    
+                        
+                        this.game.entities.forEach((entity) => {
+                            if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
+                                const dx = centerX - entity.x;
+                                const dy = centerY - entity.y;
+                                const distance = Math.sqrt(dx * dx + dy * dy);
+                                if (distance < shieldRadius) {
+                                    // Move the entity outside the shield radius
+                                    const angle = Math.atan2(dy, dx);
+                                    const newDistance = shieldRadius + distanceThreshold;
+                                    const newX = centerX + newDistance * Math.cos(angle);
+                                    const newY = centerY + newDistance * Math.sin(angle);
+                                    entity.x = newX;
+                                    entity.y = newY;
+                                }
+                            }
+                        });
+              
+                                        
+                    }
+                    
+                    
+                }
+                this.shieldTime++;
+            }
+        }
+
 
         // clone powerup logic NOT NEEDED HERE EVERYTHING IS IN MINE.JS
         // if (this.poweredUpClone == true && this.cloneTime < 50) {
