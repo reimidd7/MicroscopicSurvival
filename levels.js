@@ -228,7 +228,7 @@ var levelOne = {
 
     //add power ups (Level 1 only has speed and size powerups)
     powerups: [
-        { x: Math.random() * ((CANVAS_WIDTH1 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT1 - 64) - 64) + 64, type: "shield" },
+        { x: Math.random() * ((CANVAS_WIDTH1 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT1 - 64) - 64) + 64, type: "speed" },
         { x: Math.random() * ((CANVAS_WIDTH1 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT1 - 64) - 64) + 64, type: "size" }
     ],
 
@@ -1621,15 +1621,7 @@ var levelFive = {
     ],
 
     //add power ups (Level 5 only has )
-    powerups: [
-        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "speed" },
-        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "size" },
-        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "stun" },
-        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "explode" },
-        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "clone" },
-        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "shield" }
-   
-    ],
+    powerups: [],
 
     //adding  lymphocyte (10)
     lymphocyte: [
