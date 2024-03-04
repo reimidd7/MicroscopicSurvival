@@ -33,7 +33,7 @@ class Micro {
         this.poweredUpExplode = false;
         this.explodeTime = 0;
 
-        // explosion powerup
+        // sheild powerup
         this.poweredUpShield = false;
         this.shieldTime = 0;
 
@@ -404,9 +404,13 @@ class Micro {
                                     this.poweredUpExplode = true;
 
                                 } else if (entity.type === "shield") {
+                                    this.shieldTime = 0;
                                     entity.removeFromWorld = true;
                                     this.poweredUpShield = true;
-                                    this.shieldTime = 0;
+                                    this.shield = new Shield(this.game, this.x, this.y);
+                                    this.game.addEntity(this.shield);
+
+
 
                                 } else if (entity.type === "clone") {
                                     entity.removeFromWorld = true;
@@ -489,51 +493,51 @@ class Micro {
             ctx.stroke();
         }
 
-        //Drawing the radius of the explosion
-        if (this.poweredUpExplode) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
-            ctx.fill();
-            ctx.strokeStyle = 'red';
-            ctx.stroke();
-            ctx.restore();
-        } else if (this.poweredUpShield && this.size === 1) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
-            ctx.fill();
-            ctx.strokeStyle = 'red'
-            ctx.stroke();
-            ctx.restore();
-        }
+        // //Drawing the radius of the explosion
+        // if (this.poweredUpExplode) {
+        //     ctx.save();
+        //     ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
+        //     ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+        //     ctx.fill();
+        //     ctx.strokeStyle = 'red';
+        //     ctx.stroke();
+        //     ctx.restore();
+        // } else if (this.poweredUpShield && this.size === 1) {
+        //     ctx.save();
+        //     ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
+        //     ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+        //     ctx.fill();
+        //     ctx.strokeStyle = 'red'
+        //     ctx.stroke();
+        //     ctx.restore();
+        // }
 
 
-        if (this.poweredUpShield && this.size === 0) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
-            ctx.fill();
-            ctx.strokeStyle = 'turquoise'; // Turquoise color
-            ctx.stroke();
-            ctx.restore();
-        } else if (this.poweredUpShield && this.size === 1) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
-            ctx.fill();
-            ctx.strokeStyle = 'turquoise'; // Turquoise color
-            ctx.stroke();
-            ctx.restore();
-        }
+        // if (this.poweredUpShield && this.size === 0) {
+        //     ctx.save();
+        //     ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
+        //     ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+        //     ctx.fill();
+        //     ctx.strokeStyle = 'turquoise'; // Turquoise color
+        //     ctx.stroke();
+        //     ctx.restore();
+        // } else if (this.poweredUpShield && this.size === 1) {
+        //     ctx.save();
+        //     ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
+        //     ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+        //     ctx.fill();
+        //     ctx.strokeStyle = 'turquoise'; // Turquoise color
+        //     ctx.stroke();
+        //     ctx.restore();
+        // }
 
 
 
@@ -567,31 +571,31 @@ class Micro {
             this.poweredUpSize = false;
             //console.log("resetting size");
         }
-        if (this.poweredUpExplode) {
+        // if (this.poweredUpExplode) {
 
-            if (this.explodeTime >= 420) {
-                this.poweredUpExplode = false;
-                this.explodeTime = 0;
-            } else {
-                // Explode logic
-                for (const entity of this.game.entities) {
-                    if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
-                        const dx = this.x - entity.x;
-                        const dy = this.y - entity.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < 50) {
-                            entity.decreaseHealth();
-                            if (entity.healthpoints <= 0) {
-                                if (entity instanceof Cell) this.game.camera.cellCount -= 1;
-                                if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
-                                entity.dead = true;
-                            }
-                        }
-                    }
-                }
-                this.explodeTime++;
-            }
-        }
+        //     if (this.explodeTime >= 420) {
+        //         this.poweredUpExplode = false;
+        //         this.explodeTime = 0;
+        //     } else {
+        //         // Explode logic
+        //         for (const entity of this.game.entities) {
+        //             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
+        //                 const dx = this.x - entity.x;
+        //                 const dy = this.y - entity.y;
+        //                 const distance = Math.sqrt(dx * dx + dy * dy);
+        //                 if (distance < 50) {
+        //                     entity.decreaseHealth();
+        //                     if (entity.healthpoints <= 0) {
+        //                         if (entity instanceof Cell) this.game.camera.cellCount -= 1;
+        //                         if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
+        //                         entity.dead = true;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         this.explodeTime++;
+        //     }
+        // }
 
         if (this.activeStunMine == true && this.stunTime < 500) {
             this.stunTime++;
@@ -602,44 +606,44 @@ class Micro {
             this.activeStunMine = false;
         }
 
-        if (this.poweredUpShield) {
-            if (this.shieldTime >= 300) {
-                this.poweredUpShield = false;
-                this.shieldTime = 0;
-            } else {
-                for (const entity of this.game.entities) {
-                    if (this.poweredUpShield) {
-                        const shieldRadius = 50;
-                        const centerX = this.x;
-                        const centerY = this.y;
-                        const distanceThreshold = 50;
+        // if (this.poweredUpShield) {
+        //     if (this.shieldTime >= 300) {
+        //         this.poweredUpShield = false;
+        //         this.shieldTime = 0;
+        //     } else {
+        //         for (const entity of this.game.entities) {
+        //             if (this.poweredUpShield) {
+        //                 const shieldRadius = 50;
+        //                 const centerX = this.x;
+        //                 const centerY = this.y;
+        //                 const distanceThreshold = 50;
 
 
-                        this.game.entities.forEach((entity) => {
-                            if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
-                                const dx = centerX - entity.x;
-                                const dy = centerY - entity.y;
-                                const distance = Math.sqrt(dx * dx + dy * dy);
-                                if (distance < shieldRadius) {
-                                    // Move the entity outside the shield radius
-                                    const angle = Math.atan2(dy, dx);
-                                    const newDistance = shieldRadius + distanceThreshold;
-                                    const newX = centerX + newDistance * Math.cos(angle);
-                                    const newY = centerY + newDistance * Math.sin(angle);
-                                    entity.x = newX;
-                                    entity.y = newY;
-                                }
-                            }
-                        });
+        //                 this.game.entities.forEach((entity) => {
+        //                     if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
+        //                         const dx = centerX - entity.x;
+        //                         const dy = centerY - entity.y;
+        //                         const distance = Math.sqrt(dx * dx + dy * dy);
+        //                         if (distance < shieldRadius) {
+        //                             // Move the entity outside the shield radius
+        //                             const angle = Math.atan2(dy, dx);
+        //                             const newDistance = shieldRadius + distanceThreshold;
+        //                             const newX = centerX + newDistance * Math.cos(angle);
+        //                             const newY = centerY + newDistance * Math.sin(angle);
+        //                             entity.x = newX;
+        //                             entity.y = newY;
+        //                         }
+        //                     }
+        //                 });
 
 
-                    }
+        //             }
 
 
-                }
-                this.shieldTime++;
-            }
-        }
+        //         }
+        //         this.shieldTime++;
+        //     }
+        // }
 
 
         // clone powerup logic NOT NEEDED HERE EVERYTHING IS IN MINE.JS
