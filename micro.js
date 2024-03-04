@@ -172,9 +172,9 @@ class Micro {
 
         } else {
 
-            if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine) {
+            //if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine) {
                 this.powerUp();
-            }
+            //}
 
             this.velocity.x = 0;
             this.velocity.y = 0;
@@ -301,10 +301,9 @@ class Micro {
                                     entity.dead = true;
                                 }
 
-                                if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
-                                    this.won = true;
-                                    console.log("WON");
-                                }
+                                // if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
+                                //     this.winner = true;
+                                // }
                             }
                         } else {
 
@@ -393,16 +392,45 @@ class Micro {
                                     this.activeStunMine = true;
                                 }
 
-                                this.powerUp();
-                            }
+                            this.powerUp();
                         }
 
                     }
+
                 }
             }
-            this.healthBar.update(this);
         }
+        if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
+            this.winner = true;
+        }
+        if (this.winner) {
+            if (this.BB.collide(this.game.camera.portal.BB)) {
+                this.levelCount++;
+                this.winner = false;
+                if (this.levelCount == 2) {
+                    this.game.camera.loadLevel(levelTwo, true, false);
+                } else if (this.levelCount == 3) {
+                    this.game.camera.loadLevel(levelThree, true, false);
+                } else if (this.levelCount == 4) {
+                    this.game.camera.loadLevel(levelFour, true, false);
+                } else if (this.levelCount == 5) {
+                    this.game.camera.loadLevel(levelFive, true, false);
+                } else {
+
+                }
+                this.game.startInput();
+            }
+
+            if (this.levelCount == 5 && this.winner) {
+                this.won = true;
+            }
+        }
+
+
+        this.healthBar.update(this);
+
     };
+
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Green";
