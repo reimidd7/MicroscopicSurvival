@@ -429,8 +429,8 @@ class Micro {
 
         this.healthBar.update(this);
 
+        }
     };
-
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Green";
