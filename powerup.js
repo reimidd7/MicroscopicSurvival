@@ -121,7 +121,7 @@ class Mine {
         // time is handled WITHNIN using timer and maxTimer (no need for the if statement in powerup())
         if (this.type == "explode") {
             if (this.timer >= this.maxTimer) {
-                this.game.micro.poweredUpExplode = false; 
+                this.game.micro.poweredUpExplode = false;
                 return;
             }
 
@@ -133,7 +133,7 @@ class Mine {
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         if (distance < 50 && !entity.dead) {
                             entity.decreaseHealth();
-                            if (entity.healthpoints <= 0 ) {
+                            if (entity.healthpoints <= 0) {
                                 if (entity instanceof Cell) this.game.camera.cellCount -= 1;
                                 if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
                                 entity.dead = true;
@@ -193,23 +193,16 @@ class Clone {
     collideLeft() {
         return (this.x - this.BB.radius) < 28;
     };
-
-    //fix this for additional levels
     //right wall
     collideRight() {
         return (this.x + this.BB.radius) > this.width - 32;
-
     };
-
     //top wall
     collideTop() {
         return (this.y - this.BB.radius) < 28;
     };
-
-    //fix this for additional levels
     //bottom wall
     collideBottom() {
-
         return (this.y + this.BB.radius) > this.height - 32;
     };
 
@@ -269,77 +262,90 @@ class Clone {
 
 
 class Shield {
-    constructor(game, x, y, type) {
-        Object.assign(this, { game, x, y, type });
+    constructor(game, x, y) {
+        Object.assign(this, { game, x, y });
 
         this.timer = 0;
         this.maxTimer = 10;
 
+        this.BB = new BoundingCircle(this.x + 78 / 2, this.y + 84 / 2, 45);
     }
 
-
     update() {
-            if (his.type == "shield") {
-                if (this.timer >= this.maxTimer) {
-                    this.game.micro.poweredUpShield = false; 
-                    return;
-                } else {
-                    for (const entity of this.game.entities) {
-                        if (this.poweredUpShield) {
-                            const shieldRadius = 50;
-                            const centerX = this.x;
-                            const centerY = this.y;
-                            const distanceThreshold = 50;
-        
-                            this.game.entities.forEach((entity) => {
-                                if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
-                                    const dx = centerX - entity.x;
-                                    const dy = centerY - entity.y;
-                                    const distance = Math.sqrt(dx * dx + dy * dy);
-                                    if (distance < shieldRadius) {
-                                        // Move the entity outside the shield radius
-                                        const angle = Math.atan2(dy, dx);
-                                        const newDistance = shieldRadius + distanceThreshold;
-                                        const newX = centerX + newDistance * Math.cos(angle);
-                                        const newY = centerY + newDistance * Math.sin(angle);
-                                        entity.x = newX;
-                                        entity.y = newY;
-                                    }
-                                }
-                            });
+
+        this.timer += this.game.clockTick;
+
+        if (this.timer >= this.maxTimer) {
+            this.game.micro.poweredUpShield = false;
+            return;
+        }
+
+        for (const entity of this.game.entities) {
+            if (this.game.micro.poweredUpShield) {
+                const shieldRadius = 50;
+                const centerX = this.game.micro.x;
+                const centerY = this.game.micro.y;
+                const distanceThreshold = 50;
+
+                this.game.entities.forEach((entity) => {
+                    if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
+                        const dx = centerX - entity.x;
+                        const dy = centerY - entity.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < shieldRadius) {
+                            // Move the entity outside the shield radius
+                            const angle = Math.atan2(dy, dx);
+                            const newDistance = shieldRadius + distanceThreshold;
+                            const newX = centerX + newDistance * Math.cos(angle);
+                            const newY = centerY + newDistance * Math.sin(angle);
+                            entity.x = newX;
+                            entity.y = newY;
                         }
                     }
-                }
+                });
+
             }
-        };
-        
+        }
+
+    };
+
 
 
     draw(ctx) {
 
-          //Drawing the radius of the shield
-          if (this.poweredUpShield && this.size === 0) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
-            ctx.fill();
-            ctx.strokeStyle = 'turquoise'; // Turquoise color
-            ctx.stroke();
-            ctx.restore();
-        } else if (this.poweredUpShield && this.size === 1) {
-            ctx.save();
-            ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
-            ctx.fill();
-            ctx.strokeStyle = 'turquoise'; // Turquoise color
-            ctx.stroke();
-            ctx.restore();
+        //Drawing the radius of the shield
+        if (this.timer < this.maxTimer) {
+            if (this.game.micro.poweredUpShield && this.game.micro.size === 0) {
+                ctx.save();
+                ctx.translate(this.game.micro.x - this.game.camera.x + 32, this.game.micro.y - this.game.camera.y + 30); // Adjusted for center
+                ctx.beginPath();
+                ctx.arc(0, 0, 50, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+                ctx.fill();
+                ctx.strokeStyle = 'turquoise'; // Turquoise color
+                ctx.stroke();
+                ctx.restore();
+            } else if (this.game.micro.poweredUpShield && this.game.micro.size === 1) {
+                ctx.save();
+                ctx.translate(this.game.micro.x - this.game.camera.x + 47, this.game.micro.x - this.game.camera.y + 35); // Adjusted for center
+                ctx.beginPath();
+                ctx.arc(0, 0, 50, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+                ctx.fill();
+                ctx.strokeStyle = 'turquoise'; // Turquoise color
+                ctx.stroke();
+                ctx.restore();
+            }
         }
-        
+
+         // If in DEBUG mode, draw the bounding box
+         if (PARAMS.DEBUG) {
+            ctx.beginPath();
+            ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+        }
+
 
     };
 }
