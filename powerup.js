@@ -279,20 +279,67 @@ class Shield {
 
 
     update() {
-        // A logic like this can be used to set the timer
-       /* this.timer += this.game.clockTick;
-        if (this.timer >= this.maxTimer) {
-            this.game.micro.poweredUpExplode = false; // Remove the clone from the world
-            return;
-        }*/
-
+            if (his.type == "shield") {
+                if (this.timer >= this.maxTimer) {
+                    this.game.micro.poweredUpShield = false; 
+                    return;
+                } else {
+                    for (const entity of this.game.entities) {
+                        if (this.poweredUpShield) {
+                            const shieldRadius = 50;
+                            const centerX = this.x;
+                            const centerY = this.y;
+                            const distanceThreshold = 50;
         
-    };
+                            this.game.entities.forEach((entity) => {
+                                if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
+                                    const dx = centerX - entity.x;
+                                    const dy = centerY - entity.y;
+                                    const distance = Math.sqrt(dx * dx + dy * dy);
+                                    if (distance < shieldRadius) {
+                                        // Move the entity outside the shield radius
+                                        const angle = Math.atan2(dy, dx);
+                                        const newDistance = shieldRadius + distanceThreshold;
+                                        const newX = centerX + newDistance * Math.cos(angle);
+                                        const newY = centerY + newDistance * Math.sin(angle);
+                                        entity.x = newX;
+                                        entity.y = newY;
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        };
+        
+
 
     draw(ctx) {
 
-        // can add drawing logic here
-        // if you want the drawing to follow micro use this.game.micro.x and this.game.micro.y
+          //Drawing the radius of the shield
+          if (this.poweredUpShield && this.size === 0) {
+            ctx.save();
+            ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
+            ctx.beginPath();
+            ctx.arc(0, 0, 50, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+            ctx.fill();
+            ctx.strokeStyle = 'turquoise'; // Turquoise color
+            ctx.stroke();
+            ctx.restore();
+        } else if (this.poweredUpShield && this.size === 1) {
+            ctx.save();
+            ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
+            ctx.beginPath();
+            ctx.arc(0, 0, 50, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+            ctx.fill();
+            ctx.strokeStyle = 'turquoise'; // Turquoise color
+            ctx.stroke();
+            ctx.restore();
+        }
         
+
     };
 }
