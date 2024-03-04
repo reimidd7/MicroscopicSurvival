@@ -13,6 +13,8 @@ class Micro {
 
         this.dead = false;
         this.won = false;
+        this.winner = false;
+        this.levelCount = 1;
 
         // size powerup
         this.poweredUpSize = false;
@@ -426,6 +428,7 @@ class Micro {
             if (this.winner) {
                 if (this.BB.collide(this.game.camera.portal.BB)) {
                     this.levelCount++;
+                    console.log("next level" + this.levelCount);
                     this.winner = false;
                     if (this.levelCount == 2) {
                         this.game.camera.loadLevel(levelTwo, true, false);

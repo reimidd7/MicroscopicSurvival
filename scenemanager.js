@@ -40,8 +40,6 @@ class SceneManager {
 
         this.portal = new Portal(this.game, 480, 675);
 
-
-
         this.speedboostLvl1 = new Animator(ASSET_MANAGER.getAsset("speed.png"), 0, 0, 0, 113, 1, 0, 0, false, true);
 
         this.minimap = new Minimap(this.game, 0, 460, 68); // Adjust size as needed
