@@ -43,9 +43,11 @@ class SceneManager {
         this.minimap = new Minimap(this.game, 0, 460, 68); // Adjust size as needed
 
 
-        this.loadLevel(levelOne, true);
-
-
+       // this.loadLevel(levelOne, true);
+        //Adding timer for cells
+        this.cellSpawnTimer = 0;
+        this.cellSpawnInterval = 5; //seconds
+        this.cellsToSpawn = 5;
 
     }
 
@@ -55,7 +57,7 @@ class SceneManager {
         }
     };
 
-    loadLevel(level, title) {
+    loadLevel(level, transition, title) {
         this.title = title;
         this.level = level;
         this.transition = transition;
@@ -162,10 +164,7 @@ class SceneManager {
             this.micro.removeFromWorld = false;
             this.micro.velocity = { x: 0, y: 0 };
 
-
-
             this.game.addEntity(this.micro); //might need to add a loop here if micro has a noticable speed difference
-
 
             this.updateCounts();
 
@@ -174,8 +173,6 @@ class SceneManager {
                     this.loadLevel(level, false, false);
                 }
             }
-
-
         }
 
         this.micro.removeFromWorld = false;
@@ -190,25 +187,23 @@ class SceneManager {
 
     };
 
-
     update() {
         PARAMS.DEBUG = document.getElementById("debug").checked;
 
         let midpointX = PARAMS.CANVAS_WIDTH / 2 - MICRO_WIDTH / 2;
         let midpointY = PARAMS.CANVAS_HEIGHT / 2 - MICRO_HEIGHT / 2;
 
-
         // should keep micro completely centered in the screen
         this.x = this.micro.x - midpointX;
         this.y = this.micro.y - midpointY;
-
 
         if (this.title) {
             if ((this.game.click && this.game.click.x > 278 && this.game.click.x < 382) && (this.game.click && this.game.click.y > 425 && this.game.click.y < 452)) {
                 this.title = false;
                 this.loadLevel(levelOne, true, false);
-                //this.loadLevel(levelFive, true, false);
+                //this.loadLevel(levelFour, true, false);
             }
+
             //instructions
             if ((this.game.click && this.game.click.x > 276 && this.game.click.x < 401) && (this.game.click && this.game.click.y > 460 && this.game.click.y < 480)) {
                 this.title = false;
@@ -236,7 +231,6 @@ class SceneManager {
         if (this.micro.winner) {
             this.portal = new Portal(this.game, 480, 675);
             this.game.addEntity(this.portal);
-
         }
 
         this.cellSpawnTimer += this.game.clockTick;
@@ -269,8 +263,7 @@ class SceneManager {
             let y = Math.random() * PARAMS.CANVAS_HEIGHT;
             this.game.addEntity(new Cell(this.game, x, y));
         }
-    };
-
+    }
 
     //start of HUD
 
@@ -278,7 +271,6 @@ class SceneManager {
     updateCounts() {
 
         this.lymphocyteCount = this.level.lymphocyte ? this.level.lymphocyte.length : 0;
-
         this.cellCount = this.level.cell ? this.level.cell.length : 0;
     }
 
@@ -330,8 +322,6 @@ class SceneManager {
 
     }
 
-
-
     draw(ctx) {
 
         //title screen 
@@ -361,14 +351,60 @@ class SceneManager {
             ctx.fillText("LEVELS:", 170, 320);
             ctx.font = "32px sans-serif";
             ctx.fillStyle = "White";
-            ctx.fillText("START", PARAMS.CANVAS_WIDTH / 2 - 64, 450);
+            ctx.fillText("START", PARAMS.CANVAS_WIDTH / 2 - 64, 440);
+            ctx.font = "16px sans-serif";
+            ctx.fillText("INSTRUCTIONS", PARAMS.CANVAS_WIDTH / 2 - 64, 475);
+            ctx.fillText("CREDITS", PARAMS.CANVAS_WIDTH / 2 - 64, 500);
+
+        } else if (this.instr) {
+            const width = PARAMS.CANVAS_WIDTH;
+            const height = PARAMS.CANVAS_HEIGHT;
+
+            ctx.fillStyle = "#a6a2a8";
+            ctx.fillRect(0, 0, width, height);
+            ctx.font = "64px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("INSTRUCTIONS:", PARAMS.CANVAS_WIDTH / 4 - 64, 100);
+            ctx.font = "24px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("Arrow Keys or AWSD: Moves Micro around the screen.", 50, 170);
+            ctx.fillText("SpaceBar: Causes Micro to punch and inflict damage ", 50, 260);
+            ctx.fillText("on enemies.", 170, 285);
+            ctx.font = "22px sans-serif";
+            ctx.fillText("GOAL: Kill all Lymphocytes and Cellmen to reach next level", 50, 375);
+            ctx.font = "32px sans-serif";
+            ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
+
+        } else if (this.credit) {
+            const width = PARAMS.CANVAS_WIDTH;
+            const height = PARAMS.CANVAS_HEIGHT;
+
+            ctx.fillStyle = "#a6a2a8";
+            ctx.fillRect(0, 0, width, height);
+            ctx.font = "64px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("CREDITS:", PARAMS.CANVAS_WIDTH / 2 - 128, 100);
+            ctx.font = "24px sans-serif";
+            ctx.fillStyle = "White";
+            ctx.fillText("Created by...", 50, 170);
+            ctx.fillText(" ", 50, 260);
+            ctx.font = "32px sans-serif";
+            ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
+
+        } else if (this.micro.won) {
+            ctx.fillStyle = "#a6a2a8";
+            ctx.fillRect(0, 0, PARAMS.CANVAS_WIDTH, PARAMS.CANVAS_HEIGHT);
+            ctx.font = "40px Veranda";
+            ctx.fillStyle = "White";
+            ctx.fillText("YOU WON!!", PARAMS.CANVAS_WIDTH / 2 - 120, PARAMS.CANVAS_HEIGHT / 2);
+
         } else if (this.micro.gameover) {
             // Code to draw the game over screen
             ctx.font = "60px Veranda";
             ctx.fillStyle = "White";
             ctx.fillText("GAME OVER", 170, 150);
 
-        } else if (this.micro.won) {
+        } else if (this.micro.winner) {
             ctx.font = "40px Veranda";
             ctx.fillStyle = "White";
             ctx.fillText("YOU WON LEVEL" + this.level.label, 190, 100);
@@ -387,21 +423,6 @@ class SceneManager {
             this.minimap.draw(ctx);
         }
 
-        // if (this.micro.gameover) {
-        //     //add end screen here
-        //     ctx.fillStyle = "#a6a2a8";
-        //     ctx.fillRect(0, 0, width, height);
-        //     this.animation = new Animator(ASSET_MANAGER.getAsset("./MicroSpritesheet.png"), 2, 0, 64, 60, 3, 0.4);
-        //     this.animation.drawFrame(this.game.clockTick, ctx, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2, 1.5, true);
-        // }
-        // if (this.micro.won) {
-        //     ctx.font = "40px Veranda";
-        //     ctx.fillStyle = "White";
-        //     ctx.fillText("YOU WON LEVEL" + this.level.label, 190, 100);
-        //     ctx.font = "20px Veranda";
-        //     ctx.fillText("Find Portal...", 300, 300);
-
-        // }
     };
 
 

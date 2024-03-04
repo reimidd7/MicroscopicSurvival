@@ -1,12 +1,14 @@
 BLOCK_SIZE = 32;
 
-CANVAS_WIDTH = 1024;
-CANVAS_HEIGHT = 768;
 // w: 32X32 = 1024 h: 32X24 = 768
+CANVAS_WIDTH1 = 1024;
+CANVAS_HEIGHT1 = 768;
 var levelOne = {
     // add music
     // label
     label: "1",
+    width: 1024,
+    height: 768,
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [{x: 0, y: 0, flip: 0}, {x: BLOCK_SIZE * 31, y: 0, flip: 1}
@@ -225,9 +227,9 @@ var levelOne = {
     ],
     
     //add power ups (Level 1 only has speed and size powerups)
-    powerups:[
-        {x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed"},
-        {x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size"}
+    powerups: [
+        {x: Math.random() * ((CANVAS_WIDTH1 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT1 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH1 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT1 - 64) - 64) + 64, type: "size" }
     ],
 
     //adding 1 lymphocyte
@@ -237,23 +239,21 @@ var levelOne = {
 
     //adding 30 cellmans
     cell: [
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-        {x: Math.random() * 1024, y: Math.random() * 768}, {x: Math.random() * 1024, y: Math.random() * 768}, 
-       
-
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
+        { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
     ],
     
     portal: [
@@ -265,10 +265,14 @@ var levelOne = {
 };
 
 // w: 34X32 = 1088 h: 28X32 = 896
+CANVAS_WIDTH2 = 1088;
+CANVAS_HEIGHT2 = 896;
 var levelTwo = {
     // add music
     // label
     label: "2",
+    width: 1088,
+    height: 896,
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [{ x: 0, y: 0, flip: 0 }, { x: BLOCK_SIZE * 31, y: 0, flip: 1 }
@@ -508,9 +512,9 @@ var levelTwo = {
     ],
     // Power-ups
     powerups: [
-        { x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed" },
-        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size" },
-        { x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "explode" },
+        { x: Math.random() * ((CANVAS_WIDTH2 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT2 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH2 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT2 - 64) - 64) + 64, type: "size" },
+        { x: Math.random() * ((CANVAS_WIDTH2 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT2 - 64) - 64) + 64, type: "explode" },
     ],
     // 2 Lymphocyte
     lymphocyte: [
@@ -547,12 +551,14 @@ var levelTwo = {
 };
 
 //level 3 w=36X32 = 1152 h=30X32 = 960
-CANVAS_WIDTH = 1152;
-CANVAS_HEIGHT = 960;
+CANVAS_WIDTH3 = 1152;
+CANVAS_HEIGHT3 = 960;
 var levelThree = {
     // add music
     // label
     label: "3",
+    width: 1152,
+    height: 960,
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [{x: 0, y: 0, flip: 0}, {x: BLOCK_SIZE * 35, y: 0, flip: 1}
@@ -823,10 +829,11 @@ var levelThree = {
     ],
     
     //add power ups (Level 1 only has speed and size powerups)
-    powerups:[
-        {x: Math.random() * (496 - 32) + 32, y: Math.random() * (704 - 32) + 32, type: "speed"},
-        {x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "size"},
-        {x: Math.random() * (960 - 497) + 497, y: Math.random() * (704 - 32) + 32, type: "stun"}
+    powerups: [
+        { x: Math.random() * ((CANVAS_WIDTH3 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT3 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH3 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT3 - 64) - 64) + 64, type: "size" },
+        { x: Math.random() * ((CANVAS_WIDTH3 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT3 - 64) - 64) + 64, type: "explode" },
+        { x: Math.random() * ((CANVAS_WIDTH3 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT3 - 64) - 64) + 64, type: "stun" }
     ],
 
     //adding 3 lymphocyte
@@ -870,11 +877,15 @@ var levelThree = {
     ]
 };
 
+CANVAS_WIDTH4 = 1216;
+CANVAS_HEIGHT4 = 1024;
 //Width: 32x38 = 1216 Height: 32x32 = 1024 
 var levelFour = {
     // add music
     // label
     label: "4",
+    width: 1216,
+    height: 1024,
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [
         { x: 0, y: 0, flip: 0 }, { x: BLOCK_SIZE * 38, y: 0, flip: 1 },
@@ -1210,7 +1221,13 @@ var levelFour = {
     ],
 
     //add power ups (Level )
-    powerups: [],
+    powerups: [
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "size" },
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "stun" },
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "explode" },
+        { x: Math.random() * ((CANVAS_WIDTH4 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT4 - 64) - 64) + 64, type: "clone" }  
+    ],
 
     //adding 4 lymphocytes, one in each quadrant
     lymphocyte: [
@@ -1263,10 +1280,14 @@ var levelFour = {
 
 
 // w: 40X32 = 1280 h: 34X32 = 1088
+CANVAS_WIDTH5 = 1280;
+CANVAS_HEIGHT5 = 1088;
 var levelFive = {
     // add music
     // label
     label: "5",
+    width: 1280,
+    height: 1088,
     // 
     // ------------------------ ALL BACKGROUND -------------------------------------
     cornertiles: [
