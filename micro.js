@@ -192,7 +192,7 @@ class Micro {
 
         } else { 
 
-            //if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine) {
+            //if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine || this.poweredUpExplode || this.poweredUpShield || this.poweredUpClone) {
                 this.powerUp();
             //}
 
@@ -414,41 +414,71 @@ class Micro {
                             entity.removeFromWorld = true;
                             if (entity.type === "speed") {
                                 entity.removeFromWorld = true;
-
                                 this.poweredUpSpeed = true;
                                 this.speedTime = 0;
                             } else if (entity.type === "size") {
                                 entity.removeFromWorld = true;
-
                                 this.poweredUpSize = true;
                                 this.sizeTime = 0;
-
                             } else if (entity.type === "stun") {
                                 this.stunTime = 0;
                                 this.stunMine = new Mine(this.game, this.x, this.y, "stun");
                                 this.game.addEntity(this.stunMine);
                                 this.stunMine.active = true;
                                 this.activeStunMine = true;
+
                             } else if (entity.type === "explode") {
+                                this.explodeTime = 0;
+                                this.explodeMine = new Mine(this.game, this.x, this.y, "explode");
+                                this.game.addEntity(this.explodeMine);
                                 entity.removeFromWorld = true;
                                 this.poweredUpExplode = true;
-                                this.explodeTime = 0;
-                            }
 
+                            } else if (entity.type === "shield") {
+                                this.shieldTime = 0;
+                                entity.removeFromWorld = true;
+                                this.poweredUpShield = true;
+                                this.shield = new Shield(this.game, this.x, this.y);
+                                this.game.addEntity(this.shield);
+
+                            } else if (entity.type === "clone") {
+                                entity.removeFromWorld = true;
+                                this.poweredUpClone = true;
+                                this.cloneTime = 0;
+                                for (var i = 0; i < 5; i++) {
+                                    const clone = new Clone(this.game, this.x, this.y);
+                                    this.game.addEntity(clone);
+                                }
+                            }
                             this.powerUp();
                         }
 
                     }
-
                 }
             }
         }
+
         if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
             this.winner = true;
         }
+
         if (this.winner) {
             if (this.BB.collide(this.game.camera.portal.BB)) {
+                //remove all powerups and disable mines/shields/clones
+                this.walk = 200;
+                this.size = 0;
+                this.activeStunMine = false;
+                this.poweredUpSpeed = false;
+                this.poweredUpSize = false;
+                this.poweredUpExplode = false;
+                this.poweredUpShield = false;
+                this.poweredUpClone = false;
+                this.shield = null;
+                this.stunMine = null;
+                this.explodeMine = null;
+
                 this.levelCount++;
+                console.log("next level" + this.levelCount);
                 this.winner = false;
                 if (this.levelCount == 2) {
                     this.game.camera.loadLevel(levelTwo, true, false);
@@ -458,9 +488,7 @@ class Micro {
                     this.game.camera.loadLevel(levelFour, true, false);
                 } else if (this.levelCount == 5) {
                     this.game.camera.loadLevel(levelFive, true, false);
-                } else {
-
-                }
+                } 
                 this.game.startInput();
             }
 
@@ -535,8 +563,9 @@ class Micro {
         if (this.poweredUpSpeed == true && this.speedTime < 750) {
             this.walk = 400;
             this.speedTime++;
-            //console.log("setting speed");
-        } else if (this.poweredUpSpeed == true && this.speedTime >= 750) {
+            // console.log("setting speed");
+            // console.log(this.speedTime);
+        } else if ((this.poweredUpSpeed == true && this.speedTime >= 700) || !this.poweredUpSpeed) {
             this.walk = 200;
             this.speedTime = 0;
             this.poweredUpSpeed = false;
@@ -547,7 +576,7 @@ class Micro {
             //console.log("setting size");
             this.sizeTime++;
             this.size = 1;
-        } else if (this.poweredUpSize == true && this.sizeTime >= 750) {
+        } else if ((this.poweredUpSize == true && this.sizeTime >= 700) || !this.poweredUpSize) {
             this.size = 0;
             this.sizeTime = 0;
             this.poweredUpSize = false;
