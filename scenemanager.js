@@ -189,13 +189,21 @@ class SceneManager {
     
             // Ensure that cellsToSpawn is not greater than the remaining cells needed
             cellsToSpawn = Math.min(cellsToSpawn, this.cellCount - totalCells);
+           
+            const spawnArea = {
+                minX: 50,  // Minimum X coordinate
+                maxX: 850, // Maximum X coordinate
+                minY: 50,  // Minimum Y coordinate
+                maxY: 850, // Maximum Y coordinate
+            };
     
             // Spawn cells until the maximum is reached
             for (let i = 0; i < cellsToSpawn; i++) {
-                const x = Math.random() * this.game.surfaceWidth;
-                const y = Math.random() * this.game.surfaceHeight;
+                let x = spawnArea.minX + Math.random() * (spawnArea.maxX - spawnArea.minX);
+                let y = spawnArea.minY + Math.random() * (spawnArea.maxY - spawnArea.minY);
                 this.game.addEntity(new Cell(this.game, x, y));
             }
+        
         }
     }
     
