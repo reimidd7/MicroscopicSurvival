@@ -31,6 +31,12 @@ class Cell {
         this.hitpoints = 1;
         this.timer = 3;
 
+        this.deadTimer=0;
+    
+        
+
+        this.stunned = false;
+
 
     }
     updateBB() {
@@ -43,7 +49,7 @@ class Cell {
         const directionY = target.y - this.y;
         const distance = Math.sqrt(directionX ** 2 + directionY ** 2);
         
-        if (distance > 0 ) {
+        if (distance > 0 && !this.stunned) {
             // Calculate normalized components of the direction vector
             const vectorDirectionX = directionX / distance;
             const vectorDirectionY = directionY / distance;
@@ -87,7 +93,18 @@ class Cell {
 
     decreaseHealth() {
         this.healthpoints -= 1;
+        
+        if (this.dead && this.deadTimer < 200) {
+            this.deadTimer++;
+            //console.log("got to deadtimer inc");
+        } else if (this.dead && this.deadTimer != 0 && this.deadTimer >= 200) {
+            this.removeFromWorld = true;
+            this.deadTimer = 0;
+            //console.log("got to deadtimer reset");
+        }
     };
+    
+    
 
     loadAnimations() {
         for (var i = 0; i < 4; i++) {
@@ -129,6 +146,7 @@ class Cell {
             if (!this.dead) {
                 this.x += this.velocity.x * this.game.clockTick;
                 this.y += this.velocity.y * this.game.clockTick;
+                
     
                 if (this.velocity.x > 0) {
                     this.facing = 0; // Moving right
@@ -180,9 +198,19 @@ class Cell {
                 if (targetEntity) {
                     this.chaseTarget(targetEntity);
                 }
-            }
-    
+                
+            }else {
+                // If the cell is dead, increment the dead timer
+                this.deadTimer += this.game.clockTick;
+   
+                // Check if the dead timer has reached 3 seconds
+                if (this.deadTimer >= 3) {
+                    // If 3 seconds have passed, mark the cell for removal
+                    this.removeFromWorld = true;
+                }
+            
             this.updateBB();
+        }
         }
     };
     
