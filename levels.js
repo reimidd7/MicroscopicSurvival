@@ -1625,16 +1625,16 @@ var levelFive = {
 
     //adding  lymphocyte (10)
     lymphocyte: [
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 },
-        { x: Math.random() * (1360 - 64) + 64, y: Math.random() * (1088 - 64) + 64 }
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64 }
     ],
 
     //adding  cellmans (100)
