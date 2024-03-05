@@ -360,7 +360,6 @@ class Micro {
 
                             // Check collisions with bones and redblood cells and lymphocytes 
                             if (entity instanceof Bone || entity instanceof RedBloodCell) {
-                                if (this.prevCode != this.key && this.key != null) {
                                 if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
                                     this.x = entity.BB.x - this.BB.radius * 3.5;
                                     if (this.velocity.x > 0) {
@@ -394,10 +393,6 @@ class Micro {
 
 
                                 }
-                                }
-                                this.prevCode = this.key;
-
-                                this.key = this.game.keyCode;
                             }
 
                             if (entity instanceof Powerup) { //make them last for like 15 seconds only
