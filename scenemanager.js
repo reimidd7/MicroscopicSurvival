@@ -13,7 +13,6 @@ class SceneManager {
         this.game.camera = this;
         this.x = 0;
         this.y = 0;
-
         this.microLives = 3;
 
         // Initialize counts
@@ -329,7 +328,6 @@ class SceneManager {
             const width = PARAMS.CANVAS_WIDTH;
             const height = PARAMS.CANVAS_HEIGHT;
 
-
             ctx.fillStyle = "#a6a2a8";
             ctx.fillRect(0, 0, width, height);
 
@@ -340,11 +338,8 @@ class SceneManager {
             this.animation4.drawFrame(this.game.clockTick, ctx, 355, 300, .65, true);
             this.animation5.drawFrame(this.game.clockTick, ctx, 460, 318, .5, true);
 
-
             ctx.drawImage(ASSET_MANAGER.getAsset("./title.png"), 108, 48, 468, 209);
-
             ctx.drawImage(ASSET_MANAGER.getAsset("./Micro_IDLE.png"), 140, 155, 128, 64);
-
 
             ctx.font = "24px sans-serif";
             ctx.fillStyle = "White";
@@ -407,17 +402,15 @@ class SceneManager {
         } else if (this.micro.winner) {
             ctx.font = "40px Veranda";
             ctx.fillStyle = "White";
-            ctx.fillText("YOU WON LEVEL" + this.level.label, 190, 100);
+            ctx.fillText("YOU WON LEVEL " + this.level.label, 190, 100);
             ctx.font = "20px Veranda";
             ctx.fillText("Find Portal...", 300, 300);
         } else {
-
             // Check if the game has started for mini map pop up on Title screen 
             if (this.title) {
                 // Game has not started, do not draw the minimap
                 return;
             }
-
             //HUD and minimap
             this.renderHUD();
             this.minimap.draw(ctx);

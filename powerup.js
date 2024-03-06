@@ -151,7 +151,11 @@ class Mine {
         // Draws the exploding radius, disappears after the powerup logic has stopped
         if (this.type == "explode" && this.timer < this.maxTimer) {
             ctx.save();
-            ctx.translate(this.game.micro.x - this.game.camera.x + 32, this.game.micro.y - this.game.camera.y + 30); // Adjusted for center
+            if (this.game.micro.size == 0) {
+                ctx.translate(this.game.micro.x - this.game.camera.x + 32, this.game.micro.y - this.game.camera.y + 30); // Adjusted for center
+            } else if (this.game.micro.size == 1) {
+                ctx.translate(this.game.micro.x - this.game.camera.x + 46, this.game.micro.y - this.game.camera.y + 40); // Adjusted for center
+            }
             ctx.beginPath();
             ctx.arc(0, 0, 50, 0, Math.PI * 2);
             ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';

@@ -60,6 +60,9 @@ class Micro {
 
         this.gameover = false;
 
+        this.bottomOffset = 0;
+        this.rightOffset = 0;
+
         // Micro's animations
         this.animations = [];
         this.loadAnimations();
@@ -119,7 +122,7 @@ class Micro {
     //left wall
     collideLeft() {
         if (this.size == 0) {
-            return (this.x - this.BB.radius) < 2;
+            return (this.x - this.BB.radius) < 1;
         } else if (this.size == 1) {
             return (this.x - this.BB.radius) < -5;
         }
@@ -129,10 +132,20 @@ class Micro {
     //right wall
     collideRight() {
         if (this.size == 0) {
-            return (this.x + this.BB.radius) > this.game.camera.level.width - 69;
+            if (this.levelCount == 2) {
+                this.rightOffset = 1058;
+            } else {
+                this.rightOffset = 950 + (64 * (this.levelCount - 1));
+            }
         } else if (this.size == 1) {
-            return (this.x + this.BB.radius) > this.game.camera.level.width - 94;
+            if (this.levelCount == 2) {
+                this.rightOffset = 1030;
+            } else {
+                this.rightOffset = 930 + (64 * (this.levelCount - 1));
+            } 
         }
+
+        return (this.x + this.BB.radius) > this.rightOffset;
     };
 
     //Top wall
@@ -144,14 +157,23 @@ class Micro {
         }
     };
 
-    //fix this for additional levels
     //Bottom wall
     collideBottom() {
         if (this.size == 0) {
-            return (this.y + this.BB.radius) > this.game.camera.level.height - 56;
+            if (this.levelCount == 2) {
+                this.bottomOffset = 866;
+            } else {
+                this.bottomOffset = 708 + (95 * (this.levelCount - 1));
+            }
         } else if (this.size == 1) {
-            return (this.y + this.BB.radius) > this.game.camera.level.height - 73;
+            if (this.levelCount == 2) {
+                this.bottomOffset = 856;
+            } else {
+                this.bottomOffset = 695 + (95 * (this.levelCount - 1));
+            } 
         }
+
+        return (this.y + this.BB.radius) > this.bottomOffset;
     };
 
     update() {
@@ -160,22 +182,18 @@ class Micro {
         if (this.dead) {
             this.game.camera.microLives -= 1;
             if (this.game.camera.microLives > 0) {
-
                 this.dead = false;
                 this.healthpoints = this.maxHealth;
                 this.x = PARAMS.CANVAS_WIDTH / 2;
                 this.y = PARAMS.CANVAS_WIDTH / 2;
-                this.game.camera.loadLevel(levelThree, false);
+                // this.game.camera.loadLevel(levelThree, false);
             } else {
-                console.log("dead");
-
                 this.velocity.x = 0;
                 this.velocity.y = 0;
                 this.gameover = true;
-                //add end of game screen here? or in draw()
             }
 
-        } else {
+        } else { 
 
             if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine || this.poweredUpExplode || this.poweredUpShield || this.poweredUpClone) {
                 this.powerUp();
@@ -198,15 +216,15 @@ class Micro {
                 if (this.prevCode != this.key && this.key != null) {
                     this.velocity.x = -this.velocity.x;
                     if (this.collideLeft() && this.size == 0) {
-                        this.x = this.BB.radius + 20;
+                        this.x = this.BB.radius + 3;
                     } else if (this.collideLeft() && this.size == 1) {
                         this.x = this.BB.radius - 2;
                     }
 
                     if (this.collideRight() && this.size == 0) {
-                        this.x = 950 - this.BB.radius;
+                        this.x = this.rightOffset - 2 - this.BB.radius;
                     } else if (this.collideRight() && this.size == 1) {
-                        this.x = 925 - this.BB.radius;
+                        this.x = this.rightOffset - 1 - this.BB.radius;
                     }
 
                     //random direction after hitting wall
@@ -229,9 +247,9 @@ class Micro {
                     }
 
                     if (this.collideBottom() && this.size == 0) {
-                        this.y = 708 - this.BB.radius;
+                        this.y = this.bottomOffset - 2 - this.BB.radius;
                     } else if (this.collideBottom() && this.size == 1) {
-                        this.y = 692 - this.BB.radius;
+                        this.y = this.bottomOffset - 1 - this.BB.radius;
                     }
 
                     //random direction after hitting wall
@@ -245,10 +263,10 @@ class Micro {
                 this.key = this.game.keyCode;
 
             } else {
-                this.x += this.velocity.x * this.game.clockTick;
-                this.y += this.velocity.y * this.game.clockTick;
-                this.updateLastBB();
-                this.updateBB();
+            this.x += this.velocity.x * this.game.clockTick;
+            this.y += this.velocity.y * this.game.clockTick;
+            this.updateLastBB();
+            this.updateBB();
             }
 
 
@@ -340,7 +358,7 @@ class Micro {
                                 this.healthpoints -= 1;
                             }
 
-                            // Check collisions with bones and redblood cells and lymphocytes
+                            // Check collisions with bones and redblood cells and lymphocytes 
                             if (entity instanceof Bone || entity instanceof RedBloodCell) {
                                 if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
                                     this.x = entity.BB.x - this.BB.radius * 3.5;
@@ -357,7 +375,7 @@ class Micro {
                                     }
                                     //console.log("right collision");
                                 }
-
+                            
                                 if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
                                     this.y = entity.BB.y + this.BB.radius;
                                     if (this.velocity.y > 0) {
@@ -410,8 +428,6 @@ class Micro {
                                     this.shield = new Shield(this.game, this.x, this.y);
                                     this.game.addEntity(this.shield);
 
-
-
                                 } else if (entity.type === "clone") {
                                     entity.removeFromWorld = true;
                                     this.poweredUpClone = true;
@@ -429,6 +445,10 @@ class Micro {
                 }
             }
 
+            if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
+                this.winner = true;
+            }
+
             if (this.winner) {
                 if (this.BB.collide(this.game.camera.portal.BB)) {
                     this.levelCount++;
@@ -442,9 +462,7 @@ class Micro {
                         this.game.camera.loadLevel(levelFour, true, false);
                     } else if (this.levelCount == 5) {
                         this.game.camera.loadLevel(levelFive, true, false);
-                    } else {
-
-                    }
+                    } 
                     this.game.startInput();
                 }
 
@@ -454,9 +472,10 @@ class Micro {
             }
 
             this.healthBar.update(this);
-
         }
+    
     };
+
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Green";
@@ -660,4 +679,5 @@ class Micro {
         // }
 
     };
+  
 };
