@@ -279,7 +279,7 @@ class SceneManager {
 
         //Number of Enemies and Level
         const xPositionLeft = 10;
-        const xPositionCenter = (PARAMS.CANVAS_WIDTH - this.game.ctx.measureText("Level 1: " + (this.level.level1Count || 0)).width) / 2; // Center alignment position
+        const xPositionCenter = (PARAMS.CANVAS_WIDTH - this.game.ctx.measureText("Level : " + (this.level.label || 0)).width) / 2; // Center alignment position
         const yPosition = 20;
         const lineHeight = 30;
         const fontSize = 15;
@@ -292,13 +292,13 @@ class SceneManager {
 
         this.game.ctx.fillText("Cellman: " + this.cellCount, xPositionLeft, yPosition + lineHeight);
 
-        const level1Text = "Level 1 "; // Text for level 1
+        const levelText = "Level " + this.level.label; // Text for level 
         // const level1Count = this.level.level1Count || 0; // Get level 1 count from level object
         //this.game.ctx.fillText(level1Text + level1Count, xPositionCenter, yPosition + 2 * lineHeight);
-        this.game.ctx.fillText(level1Text, xPositionCenter, yPosition);
+        this.game.ctx.fillText("Level " + this.level.label, xPositionCenter, yPosition);
 
 
-        const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(level1Text).width + 10; // Adjust the x 
+        const speedBoostSpriteX = xPositionCenter + this.game.ctx.measureText(levelText).width + 10; // Adjust the x 
         const speedBoostSpriteY = yPosition - fontSize / 2; // Align with the text vertically
         this.speedboostLvl1.drawFrame(this.game.clockTick, this.game.ctx, speedBoostSpriteX, speedBoostSpriteY); // Adjust x and y positions
 
