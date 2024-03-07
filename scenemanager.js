@@ -120,35 +120,11 @@ class SceneManager {
                     this.game.addEntity(new Lymphocyte(this.game, l.x, l.y));
                 }
             }
-            // //Spawns 5 cell men
-            // if (!this.title) {
-            //     this.cellSpawnTimer += this.game.clockTick;
-            //     if (this.cellSpawnTimer >= this.cellSpawnInterval) {
-            //         this.cellSpawnTimer = 0;
-            //         for (let i = 0; i < 30; i++) {
-            //             let x = Math.random();
-            //             let y = Math.random();
-            //             this.game.addEntity(new Cell(this.game, x, y));
-            //         }
-            //         // for (var i = 0; i < level.cell.length; i++) {
-            //         //     let c = level.cell[i];
-            //         //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
-            //         // }
-            //     }
-            // }
-
 
             if (level.powerups) {
                 for (var i = 0; i < level.powerups.length; i++) {
                     let p = level.powerups[i];
                     this.game.addEntity(new Powerup(this.game, p.x, p.y, p.type));
-                }
-            }
-
-            if (level.portal && this.micro.winner) {
-                for (var i = 0; i < level.portal.length; i++) {
-                    let z = level.portal[i];
-                    this.game.addEntity(new Portal(this.game, z.x, z.y));
                 }
             }
 
@@ -169,7 +145,6 @@ class SceneManager {
             }
         }
     
-
     };
 
     spawnCells() {
@@ -247,7 +222,7 @@ class SceneManager {
 
 
         if (this.micro.winner) {
-            this.portal = new Portal(this.game, 480, 675);
+            this.portal = new Portal(this.game, this.game.camera.level.width / 2, this.game.camera.level.height - 80);
             this.game.addEntity(this.portal);
         }
         

@@ -254,14 +254,7 @@ var levelOne = {
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
-    ],
-
-    portal: [
-        { x: 700, y: 480 }
     ]
-
-
-
 };
 
 // w: 34X32 = 1088 h: 28X32 = 896
@@ -523,10 +516,6 @@ var levelTwo = {
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
-    ],
-    // Portal configuration
-    portal: [
-        { x: 300, y: 480 }
     ]
 };
 
@@ -850,10 +839,6 @@ var levelThree = {
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 }
-    ],
-
-    portal: [
-        { x: 700, y: 480 }
     ]
 };
 
@@ -1251,11 +1236,8 @@ var levelFour = {
         { x: Math.random() * 1216, y: Math.random() * 1024 }, { x: Math.random() * 1216, y: Math.random() * 1024 }
 
 
-    ],
-
-    portal: [
-        { x: 608, y: 440 }
     ]
+
 };
 
 
@@ -1689,8 +1671,6 @@ var levelFive = {
         { x: Math.random() * 1360, y: Math.random() * 1088 }, { x: Math.random() * 1360, y: Math.random() * 1088 },
         { x: Math.random() * 1360, y: Math.random() * 1088 }, { x: Math.random() * 1360, y: Math.random() * 1088 },
         { x: Math.random() * 1360, y: Math.random() * 1088 }, { x: Math.random() * 1360, y: Math.random() * 1088 }
-    ],
-
-    portal: []
+    ]
 
 };
