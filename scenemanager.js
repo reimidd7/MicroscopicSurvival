@@ -27,6 +27,9 @@ class SceneManager {
         this.animation4 = new Animator(this.spritesheet, 7, 280, 145, 140, 3, 0.2); //horse
         this.animation5 = new Animator(this.spritesheet, 108, 121, 74, 140, 3, 0.2); //human
 
+        this.spritesheet2 = ASSET_MANAGER.getAsset("./RIP.png");
+        this.animation6 = new Animator(this.spritesheet2, 0, 0, 64, 64, 2, 0.5);
+
         this.menuSelect = {
             start: false,
             instr: false,
@@ -44,7 +47,6 @@ class SceneManager {
         this.minimap = new Minimap(this.game, 0, 460, 68); // Adjust size as needed
 
 
-        // this.loadLevel(levelOne, true);
         //Adding timer for cells
         this.cellSpawnTimer = 0;
         this.cellSpawnInterval = 2; //seconds
@@ -193,7 +195,7 @@ class SceneManager {
             if ((this.game.click && this.game.click.x > 275 && this.game.click.x < 383) && (this.game.click && this.game.click.y > 411 && this.game.click.y < 443)) {
                 this.title = false;
                 this.loadLevel(levelOne, true, false);
-                //this.loadLevel(levelFour, true, false);
+                //this.loadLevel(levelFive, true, false);
             }
 
             //instructions
@@ -334,7 +336,8 @@ class SceneManager {
             ctx.fillRect(0, 0, width, height);
             ctx.font = "64px sans-serif";
             ctx.fillStyle = "White";
-            ctx.fillText("INSTRUCTIONS:", PARAMS.CANVAS_WIDTH / 4 - 64, 100);
+            const xPositionCenter = (PARAMS.CANVAS_WIDTH - ctx.measureText("INSTRUCTIONS:").width) / 2; // Center alignment position
+            ctx.fillText("INSTRUCTIONS:", xPositionCenter, 100);
             ctx.font = "24px sans-serif";
             ctx.fillStyle = "White";
             ctx.fillText("Arrow Keys or AWSD: Moves Micro around the screen.", 50, 170);
@@ -353,7 +356,8 @@ class SceneManager {
             ctx.fillRect(0, 0, width, height);
             ctx.font = "64px sans-serif";
             ctx.fillStyle = "White";
-            ctx.fillText("CREDITS:", PARAMS.CANVAS_WIDTH / 2 - 128, 100);
+            const xPositionCenter = (PARAMS.CANVAS_WIDTH - ctx.measureText("CREDITS:").width) / 2; // Center alignment position
+            ctx.fillText("CREDITS:", xPositionCenter, 100);
             ctx.font = "24px sans-serif";
             ctx.fillStyle = "White";
             ctx.fillText("Created by...", 50, 170);
@@ -362,22 +366,31 @@ class SceneManager {
             ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
 
         } else if (this.micro.won) {
+            
             ctx.fillStyle = "#a6a2a8";
             ctx.fillRect(0, 0, PARAMS.CANVAS_WIDTH, PARAMS.CANVAS_HEIGHT);
-            ctx.font = "40px Veranda";
+            ctx.font = "80px Veranda";
             ctx.fillStyle = "White";
-            ctx.fillText("YOU WON!!", PARAMS.CANVAS_WIDTH / 2 - 120, PARAMS.CANVAS_HEIGHT / 2);
+            const xPositionCenter = (PARAMS.CANVAS_WIDTH - ctx.measureText("YOU WON!!").width) / 2; // Center alignment position
+            ctx.fillText("YOU WON!!", xPositionCenter + 5, PARAMS.CANVAS_HEIGHT / 3);
+            this.animation6.drawFrame(this.game.clockTick, ctx, 160, 300, 1.25, true);
+            this.animation6.drawFrame(this.game.clockTick, ctx, 235, 300, 1.25, true);
+            this.animation6.drawFrame(this.game.clockTick, ctx, 310, 300, 1.25, true);
+            this.animation6.drawFrame(this.game.clockTick, ctx, 385, 300, 1.25, true);
+            this.animation6.drawFrame(this.game.clockTick, ctx, 460, 300, 1.25, true);
 
         } else if (this.micro.gameover) {
             // Code to draw the game over screen
             ctx.font = "60px Veranda";
             ctx.fillStyle = "White";
-            ctx.fillText("GAME OVER", 170, 150);
+            const xPositionCenter = (PARAMS.CANVAS_WIDTH - ctx.measureText("GAME OVER").width) / 2; // Center alignment position
+            ctx.fillText("GAME OVER", xPositionCenter, 150);
 
         } else if (this.micro.winner) {
             ctx.font = "40px Veranda";
             ctx.fillStyle = "White";
-            ctx.fillText("YOU WON LEVEL " + this.level.label, 190, 100);
+            const xPositionCenter = (PARAMS.CANVAS_WIDTH - ctx.measureText("YOU WON LEVEL " + this.level.label).width) / 2; // Center alignment position
+            ctx.fillText("YOU WON LEVEL " + this.level.label, xPositionCenter, 100);
             ctx.font = "20px Veranda";
             ctx.fillText("Find Portal...", 300, 300);
         } else {
