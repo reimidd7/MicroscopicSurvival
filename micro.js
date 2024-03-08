@@ -16,14 +16,30 @@ class Micro {
         this.winner = false;
         this.levelCount = 1;
 
+        // size powerup
         this.poweredUpSize = false;
         this.sizeTime = 0;
+
+        // speed powerup
         this.poweredUpSpeed = false;
         this.speedTime = 0;
 
+        // stun powerup
         this.stunMine = null;
         this.activeStunMine = false;
         this.stunTime = 0;
+
+        // explosion powerup
+        this.poweredUpExplode = false;
+        this.explodeTime = 0;
+
+        // sheild powerup
+        this.poweredUpShield = false;
+        this.shieldTime = 0;
+
+        // clone powerup
+        this.poweredUpClone = false;
+        this.cloneTime = 0;
 
         this.velocity = { x: 0, y: 0 };
 
@@ -51,11 +67,6 @@ class Micro {
         this.animations = [];
         this.loadAnimations();
 
-        //Explosion
-        this.poweredUpExplode = false;
-        this.explodeTime = 0;
-
-
     };
 
     loadAnimations() {
@@ -74,27 +85,19 @@ class Micro {
         // State 0 = idle animation
         // Facing 0 = forward facing
         this.animations[0][0][0] = new Animator(this.spritesheet, 2, 375, 64, 60, 2, 0.2);
-        // this.animations[0][2][0] = new Animator(this.spritesheet, ) not implemented
-        // this.animations[0][3][0] = new Animator(this.spritesheet, ) not implemented
 
         // WALK
         // State 1 = walking
         // facing 0 = forward facing
         this.animations[1][0][0] = new Animator(this.spritesheet, 2, 260, 64, 60, 3, 0.2);
-        //this.animations[1][2][0] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[1][3][0] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 1 = right facing
         this.animations[1][0][1] = new Animator(this.spritesheet, 2, 320, 64, 60, 2, 0.2);
-        //this.animations[1][2][1] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[1][3][1] = new Animator(this.spritesheet, ) not implemented
 
         // State 1 = walking
         // facing 2 = left facing
         this.animations[1][0][2] = new Animator(this.spritesheet, 2, 135, 64, 60, 2, 0.2);
-        //this.animations[1][2][2] = new Animator(this.spritesheet, ) not implemented
-        //this.animations[1][3][2] = new Animator(this.spritesheet, ) not implemented
 
         // PUNCHING - not implemented
         // State 2 = punching
@@ -192,9 +195,9 @@ class Micro {
 
         } else { 
 
-            //if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine || this.poweredUpExplode || this.poweredUpShield || this.poweredUpClone) {
+            if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine || this.poweredUpExplode || this.poweredUpShield || this.poweredUpClone) {
                 this.powerUp();
-            //}
+            }
 
             this.velocity.x = 0;
             this.velocity.y = 0;
@@ -309,6 +312,7 @@ class Micro {
                                 entity.decreaseHealth();
 
 
+
                                 if (entity.healthpoints > 0 && this.size == 1) {
                                     entity.decreaseHealth(); //deal double damage (if able to) -- basically only works on lymphocytes
                                 }
@@ -321,9 +325,9 @@ class Micro {
                                     entity.dead = true;
                                 }
 
-                                // if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
-                                //     this.winner = true;
-                                // }
+                                if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
+                                    this.winner = true;
+                                }
                             }
                         } else {
 
@@ -331,7 +335,7 @@ class Micro {
                             if (entity instanceof Cell && !entity.dead) {
                                 // Cell touched the Micro, make the Micro take damage
                                 if (entity.timer <= 0) {
-                                    this.healthpoints -= 1;
+                                    this.healthpoints -= 2;
                                     entity.timer = 1;
                                 }
                                 // makes it so micro doesnt die as quick
@@ -354,7 +358,7 @@ class Micro {
                                 this.healthpoints -= 1;
                             }
 
-                            // Check collisions with bones and redblood cells and lymphocytes
+                            // Check collisions with bones and redblood cells and lymphocytes 
                             if (entity instanceof Bone || entity instanceof RedBloodCell) {
                                 if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
                                     this.x = entity.BB.x - this.BB.radius * 3.5;
@@ -371,7 +375,7 @@ class Micro {
                                     }
                                     //console.log("right collision");
                                 }
-
+                            
                                 if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
                                     this.y = entity.BB.y + this.BB.radius;
                                     if (this.velocity.y > 0) {
@@ -390,25 +394,6 @@ class Micro {
 
                                 }
                             }
-                        }
-                        //Make sure that the enemies keep dying while explosion is up
-                        if (this.poweredUpExplode) {
-                            for (const entity of this.game.entities) {
-                                if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
-                                    const dx = this.x - entity.x;
-                                    const dy = this.y - entity.y;
-                                    const distance = Math.sqrt(dx * dx + dy * dy);
-                                    if (distance < 50) {
-                                        entity.decreaseHealth();
-                                        if (entity.healthpoints <= 0) {
-                                            if (entity instanceof Cell) this.game.camera.cellCount -= 1;
-                                            if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
-                                            entity.dead = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
 
                         if (entity instanceof Powerup) { //make them last for like 15 seconds only
                             entity.removeFromWorld = true;
@@ -492,14 +477,14 @@ class Micro {
                 this.game.startInput();
             }
 
-            if (this.levelCount == 5 && this.winner) {
-                this.won = true;
+                if (this.levelCount == 5 && this.winner) {
+                    this.won = true;
+                }
             }
+
+            this.healthBar.update(this);
         }
-
-
-        this.healthBar.update(this);
-
+    
     };
 
 
@@ -538,29 +523,62 @@ class Micro {
             ctx.stroke();
         }
 
-        //Drawing the radius of the explosion
-        if (this.poweredUpExplode) {
-            ctx.save();
-            if (this.size == 0) {
-                ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
-            } else if (this.size == 1) {
-                ctx.translate(this.x - this.game.camera.x + 46, this.y - this.game.camera.y + 40); // Adjusted for center
-            }
-            
-            ctx.beginPath();
-            ctx.arc(0, 0, 50, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
-            ctx.fill();
-            ctx.strokeStyle = 'red';
-            ctx.stroke();
-            ctx.restore();
-        }
+        // //Drawing the radius of the explosion
+        // if (this.poweredUpExplode) {
+        //     ctx.save();
+        //     ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
+        //     ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+        //     ctx.fill();
+        //     ctx.strokeStyle = 'red';
+        //     ctx.stroke();
+        //     ctx.restore();
+        // } else if (this.poweredUpShield && this.size === 1) {
+        //     ctx.save();
+        //     ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
+        //     ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+        //     ctx.fill();
+        //     ctx.strokeStyle = 'red'
+        //     ctx.stroke();
+        //     ctx.restore();
+        // }
+
+
+        // if (this.poweredUpShield && this.size === 0) {
+        //     ctx.save();
+        //     ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
+        //     ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+        //     ctx.fill();
+        //     ctx.strokeStyle = 'turquoise'; // Turquoise color
+        //     ctx.stroke();
+        //     ctx.restore();
+        // } else if (this.poweredUpShield && this.size === 1) {
+        //     ctx.save();
+        //     ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
+        //     ctx.beginPath();
+        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
+        //     ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
+        //     ctx.fill();
+        //     ctx.strokeStyle = 'turquoise'; // Turquoise color
+        //     ctx.stroke();
+        //     ctx.restore();
+        // }
+
+
+
+
 
     };
 
-
     powerUp() {
-        if (this.poweredUpSpeed == true && this.speedTime < 750) {
+
+        // speed powerup logic
+        if (this.poweredUpSpeed == true && this.speedTime < 700) {
             this.walk = 400;
             this.speedTime++;
             // console.log("setting speed");
@@ -569,10 +587,11 @@ class Micro {
             this.walk = 200;
             this.speedTime = 0;
             this.poweredUpSpeed = false;
-            //console.log("resetting speed");
+            // console.log("resetting speed");
         }
 
-        if (this.poweredUpSize == true && this.sizeTime < 750) {
+        // size powerup logic
+        if (this.poweredUpSize == true && this.sizeTime < 700) {
             //console.log("setting size");
             this.sizeTime++;
             this.size = 1;
@@ -582,31 +601,31 @@ class Micro {
             this.poweredUpSize = false;
             //console.log("resetting size");
         }
-        if (this.poweredUpExplode) {
+        // if (this.poweredUpExplode) {
 
-            if (this.explodeTime >= 420) {
-                this.poweredUpExplode = false;
-                this.explodeTime = 0;
-            } else {
-                // Explode logic
-                for (const entity of this.game.entities) {
-                    if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
-                        const dx = this.x - entity.x;
-                        const dy = this.y - entity.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < 50) {
-                            entity.decreaseHealth();
-                            if (entity.healthpoints <= 0) {
-                                if (entity instanceof Cell) this.game.camera.cellCount -= 1;
-                                if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
-                                entity.dead = true;
-                            }
-                        }
-                    }
-                }
-                this.explodeTime++;
-            }
-        }
+        //     if (this.explodeTime >= 420) {
+        //         this.poweredUpExplode = false;
+        //         this.explodeTime = 0;
+        //     } else {
+        //         // Explode logic
+        //         for (const entity of this.game.entities) {
+        //             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
+        //                 const dx = this.x - entity.x;
+        //                 const dy = this.y - entity.y;
+        //                 const distance = Math.sqrt(dx * dx + dy * dy);
+        //                 if (distance < 50) {
+        //                     entity.decreaseHealth();
+        //                     if (entity.healthpoints <= 0) {
+        //                         if (entity instanceof Cell) this.game.camera.cellCount -= 1;
+        //                         if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
+        //                         entity.dead = true;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         this.explodeTime++;
+        //     }
+        // }
 
         if (this.activeStunMine == true && this.stunTime < 500) {
             this.stunTime++;
@@ -617,5 +636,59 @@ class Micro {
             this.activeStunMine = false;
         }
 
+        // if (this.poweredUpShield) {
+        //     if (this.shieldTime >= 300) {
+        //         this.poweredUpShield = false;
+        //         this.shieldTime = 0;
+        //     } else {
+        //         for (const entity of this.game.entities) {
+        //             if (this.poweredUpShield) {
+        //                 const shieldRadius = 50;
+        //                 const centerX = this.x;
+        //                 const centerY = this.y;
+        //                 const distanceThreshold = 50;
+
+
+        //                 this.game.entities.forEach((entity) => {
+        //                     if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
+        //                         const dx = centerX - entity.x;
+        //                         const dy = centerY - entity.y;
+        //                         const distance = Math.sqrt(dx * dx + dy * dy);
+        //                         if (distance < shieldRadius) {
+        //                             // Move the entity outside the shield radius
+        //                             const angle = Math.atan2(dy, dx);
+        //                             const newDistance = shieldRadius + distanceThreshold;
+        //                             const newX = centerX + newDistance * Math.cos(angle);
+        //                             const newY = centerY + newDistance * Math.sin(angle);
+        //                             entity.x = newX;
+        //                             entity.y = newY;
+        //                         }
+        //                     }
+        //                 });
+
+
+        //             }
+
+
+        //         }
+        //         this.shieldTime++;
+        //     }
+        // }
+
+
+        // clone powerup logic NOT NEEDED HERE EVERYTHING IS IN MINE.JS
+        // if (this.poweredUpClone == true && this.cloneTime < 50) {
+        //     console.log("setting clone");
+        //     this.cloneTime++;
+        //     console.log(this.cloneTime);
+        //     //this.size = 1;
+        // } else if (this.poweredUpClone == true && this.cloneTime >= 50) {
+        //     //this.size = 0;
+        //     this.cloneTime = 0;
+        //     this.poweredUpClone = false;
+        //     console.log("resetting clone");
+        // }
+
     };
+  
 };
