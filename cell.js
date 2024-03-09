@@ -14,8 +14,9 @@ class Cell {
         this.velocity = { x: 100, y: 100 };
 
         // The area the cells spawn from
-        this.x = x || 0;
-        this.y = y || 0;
+        this.x = x || Math.random();
+        this.y = y || Math.random();
+        
 
         // size of circle for collisions
         this.radius = 21;
@@ -28,12 +29,11 @@ class Cell {
         //fighting
         this.dead = false;
         this.healthpoints = 1;
-        this.hitpoints = 1;
-        this.timer = 3;
+        this.hitpoints = 2;
+        this.timer = .2;
 
         this.deadTimer=0;
     
-        
 
         this.stunned = false;
 

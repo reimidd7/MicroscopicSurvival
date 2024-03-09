@@ -23,6 +23,13 @@ class GameEngine {
 
         this.keyCode = null;
 
+        this.spacebarHeld = false;
+
+
+        //timer for 
+        this.lastSpacebarClick = 0;
+        this.spacebarCooldown = 2;
+
         // Options and the Details
         this.options = options || {
             debugging: false,
@@ -101,12 +108,17 @@ class GameEngine {
                     this.down = true;
                     break;
                 case "Space":
-                    this.A = true;
+                    if (!this.A && Date.now() - this.lastSpacebarClick >= this.spacebarCooldown * 1000) {
+                        this.A = true;
+                        this.lastSpacebarClick = Date.now();
+                        // Perform any other actions you need here
+                    }
                     break;
             }
-
+        
             this.keyCode = e.code;
         }, false);
+        
 
         this.ctx.canvas.addEventListener("keyup", e => {
             switch (e.code) {
