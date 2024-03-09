@@ -108,7 +108,7 @@ class GameEngine {
                     this.down = true;
                     break;
                 case "Space":
-                    if (!this.A && Date.now() - this.lastSpacebarClick >= this.spacebarCooldown * 1000) {
+                    if (!this.A && Date.now() - this.lastSpacebarClick >= this.spacebarCooldown * 800) {
                         this.A = true;
                         this.lastSpacebarClick = Date.now();
                         // Perform any other actions you need here

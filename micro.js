@@ -11,6 +11,7 @@ class Micro {
         this.facing = 0; // 0 = forward, 1 = right, 2 = left
         this.state = 0; //  0 = idle, 1 = walking, 2 = punching, 3 = running (PU)
 
+        this.transitionlife = false;
         this.dead = false;
         this.won = false;
         this.winner = false;
@@ -182,10 +183,11 @@ class Micro {
             this.game.camera.microLives -= 1;
             if (this.game.camera.microLives > 0) {
                 this.dead = false;
+                this.transitionlife = true;
                 this.healthpoints = this.maxHealth;
                 this.x = PARAMS.CANVAS_WIDTH / 2;
                 this.y = PARAMS.CANVAS_WIDTH / 2;
-                // this.game.camera.loadLevel(levelThree, false);
+                this.game.camera.loadLevel(this.game.camera.level, true, false);
             } else {
                 this.velocity.x = 0;
                 this.velocity.y = 0;
@@ -310,8 +312,6 @@ class Micro {
                             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
                                 entity.decreaseHealth();
 
-
-
                                 if (entity.healthpoints > 0 && this.size == 1) {
                                     entity.decreaseHealth(); //deal double damage (if able to) -- basically only works on lymphocytes
                                 }
@@ -325,6 +325,7 @@ class Micro {
                                 }
 
                                 if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
+                                    this.transitionlife = false;
                                     this.winner = true;
                                 }
                             }
@@ -561,31 +562,6 @@ class Micro {
             this.poweredUpSize = false;
             //console.log("resetting size");
         }
-        // if (this.poweredUpExplode) {
-
-        //     if (this.explodeTime >= 420) {
-        //         this.poweredUpExplode = false;
-        //         this.explodeTime = 0;
-        //     } else {
-        //         // Explode logic
-        //         for (const entity of this.game.entities) {
-        //             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
-        //                 const dx = this.x - entity.x;
-        //                 const dy = this.y - entity.y;
-        //                 const distance = Math.sqrt(dx * dx + dy * dy);
-        //                 if (distance < 50) {
-        //                     entity.decreaseHealth();
-        //                     if (entity.healthpoints <= 0) {
-        //                         if (entity instanceof Cell) this.game.camera.cellCount -= 1;
-        //                         if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
-        //                         entity.dead = true;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         this.explodeTime++;
-        //     }
-        // }
 
         if (this.activeStunMine == true && this.stunTime < 500) {
             this.stunTime++;
@@ -595,60 +571,6 @@ class Micro {
             this.stunTime = 0;
             this.activeStunMine = false;
         }
-
-        // if (this.poweredUpShield) {
-        //     if (this.shieldTime >= 300) {
-        //         this.poweredUpShield = false;
-        //         this.shieldTime = 0;
-        //     } else {
-        //         for (const entity of this.game.entities) {
-        //             if (this.poweredUpShield) {
-        //                 const shieldRadius = 50;
-        //                 const centerX = this.x;
-        //                 const centerY = this.y;
-        //                 const distanceThreshold = 50;
-
-
-        //                 this.game.entities.forEach((entity) => {
-        //                     if ((entity instanceof Cell || entity instanceof Antibody) && !entity.dead) {
-        //                         const dx = centerX - entity.x;
-        //                         const dy = centerY - entity.y;
-        //                         const distance = Math.sqrt(dx * dx + dy * dy);
-        //                         if (distance < shieldRadius) {
-        //                             // Move the entity outside the shield radius
-        //                             const angle = Math.atan2(dy, dx);
-        //                             const newDistance = shieldRadius + distanceThreshold;
-        //                             const newX = centerX + newDistance * Math.cos(angle);
-        //                             const newY = centerY + newDistance * Math.sin(angle);
-        //                             entity.x = newX;
-        //                             entity.y = newY;
-        //                         }
-        //                     }
-        //                 });
-
-
-        //             }
-
-
-        //         }
-        //         this.shieldTime++;
-        //     }
-        // }
-
-
-        // clone powerup logic NOT NEEDED HERE EVERYTHING IS IN MINE.JS
-        // if (this.poweredUpClone == true && this.cloneTime < 50) {
-        //     console.log("setting clone");
-        //     this.cloneTime++;
-        //     console.log(this.cloneTime);
-        //     //this.size = 1;
-        // } else if (this.poweredUpClone == true && this.cloneTime >= 50) {
-        //     //this.size = 0;
-        //     this.cloneTime = 0;
-        //     this.poweredUpClone = false;
-        //     console.log("resetting clone");
-        // }
-
     };
   
 };
