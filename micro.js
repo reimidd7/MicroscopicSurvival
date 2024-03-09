@@ -142,7 +142,7 @@ class Micro {
                 this.rightOffset = 1030;
             } else {
                 this.rightOffset = 930 + (64 * (this.levelCount - 1));
-            } 
+            }
         }
 
         return (this.x + this.BB.radius) > this.rightOffset;
@@ -170,7 +170,7 @@ class Micro {
                 this.bottomOffset = 856;
             } else {
                 this.bottomOffset = 695 + (95 * (this.levelCount - 1));
-            } 
+            }
         }
 
         return (this.y + this.BB.radius) > this.bottomOffset;
@@ -194,7 +194,7 @@ class Micro {
                 this.gameover = true;
             }
 
-        } else { 
+        } else {
 
             if (this.poweredUpSpeed == true || this.poweredUpSize == true || this.activeStunMine || this.poweredUpExplode || this.poweredUpShield || this.poweredUpClone) {
                 this.powerUp();
@@ -264,10 +264,10 @@ class Micro {
                 this.key = this.game.keyCode;
 
             } else {
-            this.x += this.velocity.x * this.game.clockTick;
-            this.y += this.velocity.y * this.game.clockTick;
-            this.updateLastBB();
-            this.updateBB();
+                this.x += this.velocity.x * this.game.clockTick;
+                this.y += this.velocity.y * this.game.clockTick;
+                this.updateLastBB();
+                this.updateBB();
             }
 
 
@@ -347,6 +347,17 @@ class Micro {
 
                                 // Check if Micro's healthpoints reach zero
                                 if (this.healthpoints <= 0) {
+                                    this.walk = 200;
+                                    this.size = 0;
+                                    this.activeStunMine = false;
+                                    this.poweredUpSpeed = false;
+                                    this.poweredUpSize = false;
+                                    this.poweredUpExplode = false;
+                                    this.poweredUpShield = false;
+                                    this.poweredUpClone = false;
+                                    this.shield = null;
+                                    this.stunMine = null;
+                                    this.explodeMine = null;
                                     this.dead = true;
 
                                 }
@@ -366,7 +377,7 @@ class Micro {
                                     } else if (this.size == 1) {
                                         this.x = entity.BB.x - this.BB.radius * 3;
                                     }
-                                    
+
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
@@ -377,11 +388,11 @@ class Micro {
                                     } else if (this.size == 1) {
                                         this.x = entity.BB.x + 1;
                                     }
-                                    
+
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
-                                    } 
+                                    }
                                 } else if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
                                     if (this.size == 0) {
                                         this.y = entity.BB.y + 2;
@@ -399,7 +410,7 @@ class Micro {
                                     } else if (this.size == 1) {
                                         this.y = entity.BB.y - this.BB.radius * 3.;
                                     }
-                                   
+
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
@@ -407,87 +418,87 @@ class Micro {
                                 }
                             }
 
-                        if (entity instanceof Powerup) { //make them last for like 15 seconds only
-                            entity.removeFromWorld = true;
-                            if (entity.type === "speed") {
+                            if (entity instanceof Powerup) { //make them last for like 15 seconds only
                                 entity.removeFromWorld = true;
-                                this.poweredUpSpeed = true;
-                                this.speedTime = 0;
-                            } else if (entity.type === "size") {
-                                entity.removeFromWorld = true;
-                                this.poweredUpSize = true;
-                                this.sizeTime = 0;
-                            } else if (entity.type === "stun") {
-                                this.stunTime = 0;
-                                this.stunMine = new Mine(this.game, this.x, this.y, "stun");
-                                this.game.addEntity(this.stunMine);
-                                this.stunMine.active = true;
-                                this.activeStunMine = true;
+                                if (entity.type === "speed") {
+                                    entity.removeFromWorld = true;
+                                    this.poweredUpSpeed = true;
+                                    this.speedTime = 0;
+                                } else if (entity.type === "size") {
+                                    entity.removeFromWorld = true;
+                                    this.poweredUpSize = true;
+                                    this.sizeTime = 0;
+                                } else if (entity.type === "stun") {
+                                    this.stunTime = 0;
+                                    this.stunMine = new Mine(this.game, this.x, this.y, "stun");
+                                    this.game.addEntity(this.stunMine);
+                                    this.stunMine.active = true;
+                                    this.activeStunMine = true;
 
-                            } else if (entity.type === "explode") {
-                                this.explodeTime = 0;
-                                this.explodeMine = new Mine(this.game, this.x, this.y, "explode");
-                                this.game.addEntity(this.explodeMine);
-                                entity.removeFromWorld = true;
-                                this.poweredUpExplode = true;
+                                } else if (entity.type === "explode") {
+                                    this.explodeTime = 0;
+                                    this.explodeMine = new Mine(this.game, this.x, this.y, "explode");
+                                    this.game.addEntity(this.explodeMine);
+                                    entity.removeFromWorld = true;
+                                    this.poweredUpExplode = true;
 
-                            } else if (entity.type === "shield") {
-                                this.shieldTime = 0;
-                                entity.removeFromWorld = true;
-                                this.poweredUpShield = true;
-                                this.shield = new Shield(this.game, this.x, this.y);
-                                this.game.addEntity(this.shield);
+                                } else if (entity.type === "shield") {
+                                    this.shieldTime = 0;
+                                    entity.removeFromWorld = true;
+                                    this.poweredUpShield = true;
+                                    this.shield = new Shield(this.game, this.x, this.y);
+                                    this.game.addEntity(this.shield);
 
-                            } else if (entity.type === "clone") {
-                                entity.removeFromWorld = true;
-                                this.poweredUpClone = true;
-                                this.cloneTime = 0;
-                                for (var i = 0; i < 5; i++) {
-                                    const clone = new Clone(this.game, this.x, this.y);
-                                    this.game.addEntity(clone);
+                                } else if (entity.type === "clone") {
+                                    entity.removeFromWorld = true;
+                                    this.poweredUpClone = true;
+                                    this.cloneTime = 0;
+                                    for (var i = 0; i < 5; i++) {
+                                        const clone = new Clone(this.game, this.x, this.y);
+                                        this.game.addEntity(clone);
+                                    }
                                 }
+                                this.powerUp();
                             }
-                            this.powerUp();
-                        }
 
+                        }
                     }
                 }
             }
-        }
 
-        if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
-            this.winner = true;
-        }
-
-        if (this.winner) {
-            if (this.BB.collide(this.game.camera.portal.BB)) {
-                //remove all powerups and disable mines/shields/clones
-                this.walk = 200;
-                this.size = 0;
-                this.activeStunMine = false;
-                this.poweredUpSpeed = false;
-                this.poweredUpSize = false;
-                this.poweredUpExplode = false;
-                this.poweredUpShield = false;
-                this.poweredUpClone = false;
-                this.shield = null;
-                this.stunMine = null;
-                this.explodeMine = null;
-
-                this.levelCount++;
-                console.log("next level" + this.levelCount);
-                this.winner = false;
-                if (this.levelCount == 2) {
-                    this.game.camera.loadLevel(levelTwo, true, false);
-                } else if (this.levelCount == 3) {
-                    this.game.camera.loadLevel(levelThree, true, false);
-                } else if (this.levelCount == 4) {
-                    this.game.camera.loadLevel(levelFour, true, false);
-                } else if (this.levelCount == 5) {
-                    this.game.camera.loadLevel(levelFive, true, false);
-                } 
-                this.game.startInput();
+            if (this.game.camera.cellCount == 0 && this.game.camera.lymphocyteCount == 0) {
+                this.winner = true;
             }
+
+            if (this.winner) {
+                if (this.BB.collide(this.game.camera.portal.BB)) {
+                    //remove all powerups and disable mines/shields/clones
+                    this.walk = 200;
+                    this.size = 0;
+                    this.activeStunMine = false;
+                    this.poweredUpSpeed = false;
+                    this.poweredUpSize = false;
+                    this.poweredUpExplode = false;
+                    this.poweredUpShield = false;
+                    this.poweredUpClone = false;
+                    this.shield = null;
+                    this.stunMine = null;
+                    this.explodeMine = null;
+
+                    this.levelCount++;
+                    console.log("next level" + this.levelCount);
+                    this.winner = false;
+                    if (this.levelCount == 2) {
+                        this.game.camera.loadLevel(levelTwo, true, false);
+                    } else if (this.levelCount == 3) {
+                        this.game.camera.loadLevel(levelThree, true, false);
+                    } else if (this.levelCount == 4) {
+                        this.game.camera.loadLevel(levelFour, true, false);
+                    } else if (this.levelCount == 5) {
+                        this.game.camera.loadLevel(levelFive, true, false);
+                    }
+                    this.game.startInput();
+                }
 
                 if (this.levelCount == 5 && this.winner) {
                     this.won = true;
@@ -496,7 +507,7 @@ class Micro {
 
             this.healthBar.update(this);
         }
-    
+
     };
 
 
@@ -572,5 +583,5 @@ class Micro {
             this.activeStunMine = false;
         }
     };
-  
+
 };

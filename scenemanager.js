@@ -122,26 +122,26 @@ class SceneManager {
                     let x = l.x;
                     let y = l.y;
                     let canSpawn = TopBottomWalls && LeftRightWalls;
-            
+
                     // Check if the position is suitable for spawning a lymphocyte
                     if (canSpawn) {
                         this.game.addEntity(new Lymphocyte(this.game, x, y));
                     }
                 }
             }
-            
-        
-        
+
+
+
             function distance(x1, y1, x2, y2) {
                 return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
             }
-            
+
             if (level.powerups) {
                 for (const p of level.powerups) {
                     let x = p.x;
                     let y = p.y;
                     let canSpawn = true;
-            
+
                     // Check if the position is suitable for spawning a powerup
                     for (const entity of this.game.entities) {
                         if ((entity instanceof RedBloodCell || entity instanceof Bone ||
@@ -151,16 +151,16 @@ class SceneManager {
                             break;
                         }
                     }
-            
+
                     // Spawn the powerup if the position is suitable
                     if (canSpawn) {
                         this.game.addEntity(new Powerup(this.game, x, y, p.type));
                     }
                 }
             }
-            
-            
-               
+
+
+
 
             if (level.portal && this.micro.winner) {
                 for (var i = 0; i < level.portal.length; i++) {
@@ -185,13 +185,13 @@ class SceneManager {
                 }
             }
         }
-    
+
     };
 
     spawnCells() {
         if (this.level.cell) {
             const totalCells = this.game.entities.filter(entity => entity instanceof Cell).length;
-    
+
             let cellsToSpawn = 0;
             if (this.level.label === levelOne.label) {
                 cellsToSpawn = Math.min(30 - totalCells, this.cellsToSpawn);
@@ -204,28 +204,28 @@ class SceneManager {
             } else if (this.level.label === levelFive.label) {
                 cellsToSpawn = Math.min(100 - totalCells, this.cellsToSpawn);
             }
-    
+
             // Ensure that cellsToSpawn is not greater than the remaining cells needed
             cellsToSpawn = Math.min(cellsToSpawn, this.cellCount - totalCells);
-           
+
             const spawnArea = {
                 minX: 50,  // Minimum X coordinate
                 maxX: 850, // Maximum X coordinate
                 minY: 50,  // Minimum Y coordinate
                 maxY: 850, // Maximum Y coordinate
             };
-    
+
             // Spawn cells until the maximum is reached
             for (let i = 0; i < cellsToSpawn; i++) {
                 let x = spawnArea.minX + Math.random() * (spawnArea.maxX - spawnArea.minX);
                 let y = spawnArea.minY + Math.random() * (spawnArea.maxY - spawnArea.minY);
                 this.game.addEntity(new Cell(this.game, x, y));
             }
-        
+
         }
     }
-    
-    
+
+
 
     update() {
         PARAMS.DEBUG = document.getElementById("debug").checked;
@@ -271,22 +271,23 @@ class SceneManager {
 
 
         if (this.micro.winner) {
+            
             this.portal = new Portal(this.game, this.game.camera.level.width / 2, this.game.camera.level.height - 80);
             this.game.addEntity(this.portal);
         }
-        
+
         if (this.cellCount > 0) {
             this.cellSpawnTimer += this.game.clockTick;
-    
+
             // Check if it's time to spawn cells
             if (this.cellSpawnTimer >= this.cellSpawnInterval) {
                 this.spawnCells();
                 this.cellSpawnTimer = 0; // Reset the timer
             }
         }
-    
-    }   
-   
+
+    }
+
 
     //start of HUD
 
@@ -398,7 +399,7 @@ class SceneManager {
         } else if (this.credit) {
             const width = PARAMS.CANVAS_WIDTH;
             const height = PARAMS.CANVAS_HEIGHT;
-        
+
             ctx.fillStyle = "#a6a2a8";
             ctx.fillRect(0, 0, width, height);
             ctx.font = "64px sans-serif";
@@ -406,16 +407,16 @@ class SceneManager {
             ctx.fillText("Created by:", width / 2 - 155, 90);
             ctx.font = "24px sans-serif";
             ctx.fillStyle = "White";
-            
+
             // Define the text to display
             const text = "Reilly Lynn Middlebrooks\nAbi Gutierrez\nEnrique Vargas";
             const lines = text.split("\n");
             const lineHeight = 50;
             const totalHeight = lines.length * lineHeight;
-        
+
             // Calculate the starting Y position to center the text vertically
             const centerY = (height - totalHeight) / 2;
-        
+
             // Draw each line of text centered horizontally and spaced vertically
             lines.forEach((line, index) => {
                 const textWidth = ctx.measureText(line).width;
@@ -423,16 +424,16 @@ class SceneManager {
                 const startY = centerY + index * lineHeight;
                 ctx.fillText(line, startX, startY);
             });
-        
-        
-            
+
+
+
 
             ctx.fillText(" ", 50, 260);
             ctx.font = "32px sans-serif";
             ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
 
         } else if (this.micro.won) {
-            
+
             ctx.fillStyle = "#a6a2a8";
             ctx.fillRect(0, 0, PARAMS.CANVAS_WIDTH, PARAMS.CANVAS_HEIGHT);
             ctx.font = "80px Veranda";
