@@ -360,25 +360,45 @@ class Micro {
                             // Check collisions with bones and redblood cells and lymphocytes 
                             if ((entity instanceof Bone || entity instanceof RedBloodCell)) {
                                 if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
-                                    this.x = entity.BB.x - this.BB.radius * 3.5;
+                                    if (this.size == 0) {
+                                        this.x = entity.BB.x - this.BB.radius * 3.5;
+                                    } else if (this.size == 1) {
+                                        this.x = entity.BB.x - this.BB.radius * 3;
+                                    }
+                                    
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                 } else if (this.lastBB.x >= entity.BB.x) { // Collided with the right
-                                    this.x = entity.BB.x + 2;
+                                    if (this.size == 0) {
+                                        this.x = entity.BB.x + 2;
+                                    } else if (this.size == 1) {
+                                        this.x = entity.BB.x + 1;
+                                    }
+                                    
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     } 
                                 } else if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
-                                    this.y = entity.BB.y + 2;
+                                    if (this.size == 0) {
+                                        this.y = entity.BB.y + 2;
+                                    } else if (this.size == 1) {
+                                        this.y = entity.BB.y + 1;
+                                    }
+
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
                                 } else if (this.lastBB.y <= entity.BB.y) { // Collided with the top
-                                    this.y = entity.BB.y - this.BB.radius * 3.5;
+                                    if (this.size == 0) {
+                                        this.y = entity.BB.y - this.BB.radius * 3.5;
+                                    } else if (this.size == 1) {
+                                        this.y = entity.BB.y - this.BB.radius * 3.;
+                                    }
+                                   
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
