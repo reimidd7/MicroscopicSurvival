@@ -68,7 +68,7 @@ class GameEngine {
             if (this.options.debugging) {
                 console.log("CLICK", getXandY(e));
             }
-            
+
             this.click = getXandY(e);
             console.log("click y " + getXandY(e).y + "click x " + getXandY(e).x);
         });
@@ -108,17 +108,17 @@ class GameEngine {
                     this.down = true;
                     break;
                 case "Space":
-                    if (!this.A && Date.now() - this.lastSpacebarClick >= this.spacebarCooldown * 800) {
+                    if (!this.A && Date.now() - this.lastSpacebarClick >= this.spacebarCooldown * 500) {
                         this.A = true;
                         this.lastSpacebarClick = Date.now();
                         // Perform any other actions you need here
                     }
                     break;
             }
-        
+
             this.keyCode = e.code;
         }, false);
-        
+
 
         this.ctx.canvas.addEventListener("keyup", e => {
             switch (e.code) {
@@ -149,12 +149,38 @@ class GameEngine {
         this.entities.push(entity);
     };
 
+    drawPunchCooldown() {
+        const currentTime = Date.now();
+        const elapsedTime = (currentTime - this.lastSpacebarClick);
+
+        let remainingTime = (this.spacebarCooldown * 500) - elapsedTime;
+        remainingTime = Math.max(0, remainingTime); // Ensure remainingTime does not go negative
+
+        // Display the remaining time on the canvas
+        this.ctx.font = "12px Arial";
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText("Punch Cooldown: " + (remainingTime / 1000).toFixed(1), 285, 45); // Display the countdown at (10, 20) coordinates
+        if (remainingTime == 0) {
+            this.ctx.fillText("PUNCH NOW", 305, 60); // Display the countdown at (10, 20) coordinates
+        }
+
+        if (remainingTime <= 0) {
+            this.A = false; // Reset the A flag when cooldown is over
+        }
+
+    }
+
     draw() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
         for (var i = 0; i < this.entities.length; i++) {
             this.entities[i].draw(this.ctx);
         }
+        this.drawPunchCooldown();
+
         this.camera.draw(this.ctx);
+
+
+
     };
 
     update() {

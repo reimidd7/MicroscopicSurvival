@@ -47,7 +47,6 @@ class TransitionScreen {
 
 
 
-
             if (this.game.micro.levelCount == 1) {
                 ctx.beginPath();
                 ctx.arc(190, 360, 29, 0, 2 * Math.PI);
