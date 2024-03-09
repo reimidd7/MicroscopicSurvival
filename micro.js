@@ -333,7 +333,7 @@ class Micro {
                             // Check collisions with the antibodies MUST ADD BOUNDING BOXES TO THE ANTIBODIES (theres a chance this might be weird)
                             if (entity instanceof Antibody) {
                                 entity.removeFromWorld = true;
-                                this.healthpoints -= 1;
+                                this.healthpoints -= 5;
                             }
 
                             // Check collisions with bones and redblood cells and lymphocytes

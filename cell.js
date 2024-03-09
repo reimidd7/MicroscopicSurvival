@@ -29,12 +29,11 @@ class Cell {
         //fighting
         this.dead = false;
         this.healthpoints = 1;
-        this.hitpoints = 1;
-        this.timer = 3;
+        this.hitpoints = 2;
+        this.timer = .2;
 
         this.deadTimer=0;
     
-        
 
         this.stunned = false;
 

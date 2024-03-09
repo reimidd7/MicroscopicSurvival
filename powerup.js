@@ -54,6 +54,13 @@ class Powerup {
         }
     }
 
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = 'Blue';
+        ctx.beginPath();
+        ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
     draw(ctx) {
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, this.scale, true);
 
@@ -144,7 +151,14 @@ class Mine {
                 //this.explodeTime++; // not needed anymore due to time being handled with Timer
             }
         }
-    };
+    }; drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+
 
     draw(ctx) {
 
@@ -252,6 +266,13 @@ class Clone {
 
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
     draw(ctx) {
         // Draw the clone using the animation
         this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 0.75, true);
@@ -312,7 +333,13 @@ class Shield {
                 }
             }
         };
-        
+
+        drawMinimap(ctx, mmX, mmY) {
+            ctx.fillStyle = 'blue';
+            ctx.beginPath();
+            ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+            ctx.fill();
+        }
 
 
     draw(ctx) {

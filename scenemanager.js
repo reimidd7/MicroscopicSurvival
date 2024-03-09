@@ -112,36 +112,51 @@ class SceneManager {
                 }
             }
 
+
             if (level.lymphocyte) {
-                for (var i = 0; i < level.lymphocyte.length; i++) {
-                    let l = level.lymphocyte[i];
-                    this.game.addEntity(new Lymphocyte(this.game, l.x, l.y));
+                for (const l of level.lymphocyte) {
+                    let x = l.x;
+                    let y = l.y;
+                    let canSpawn = TopBottomWalls && LeftRightWalls;
+            
+                    // Check if the position is suitable for spawning a lymphocyte
+                    if (canSpawn) {
+                        this.game.addEntity(new Lymphocyte(this.game, x, y));
+                    }
                 }
             }
-            // //Spawns 5 cell men
-            // if (!this.title) {
-            //     this.cellSpawnTimer += this.game.clockTick;
-            //     if (this.cellSpawnTimer >= this.cellSpawnInterval) {
-            //         this.cellSpawnTimer = 0;
-            //         for (let i = 0; i < 30; i++) {
-            //             let x = Math.random();
-            //             let y = Math.random();
-            //             this.game.addEntity(new Cell(this.game, x, y));
-            //         }
-            //         // for (var i = 0; i < level.cell.length; i++) {
-            //         //     let c = level.cell[i];
-            //         //     this.game.addEntity(new Cell(this.game, c.x, c.y, this));
-            //         // }
-            //     }
-            // }
-
-
+            
+        
+        
+            function distance(x1, y1, x2, y2) {
+                return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+            }
+            
             if (level.powerups) {
-                for (var i = 0; i < level.powerups.length; i++) {
-                    let p = level.powerups[i];
-                    this.game.addEntity(new Powerup(this.game, p.x, p.y, p.type));
+                for (const p of level.powerups) {
+                    let x = p.x;
+                    let y = p.y;
+                    let canSpawn = true;
+            
+                    // Check if the position is suitable for spawning a powerup
+                    for (const entity of this.game.entities) {
+                        if ((entity instanceof RedBloodCell || entity instanceof Bone ||
+                            entity instanceof Lymphocyte || entity instanceof Powerup || entity instanceof LeftRightWalls || entity instanceof TopBottomWalls) &&
+                            distance(entity.x, entity.y, x, y) < 11) { // Increase the distance threshold
+                            canSpawn = false;
+                            break;
+                        }
+                    }
+            
+                    // Spawn the powerup if the position is suitable
+                    if (canSpawn) {
+                        this.game.addEntity(new Powerup(this.game, x, y, p.type));
+                    }
                 }
             }
+            
+            
+               
 
             if (level.portal && this.micro.winner) {
                 for (var i = 0; i < level.portal.length; i++) {
@@ -371,15 +386,35 @@ class SceneManager {
         } else if (this.credit) {
             const width = PARAMS.CANVAS_WIDTH;
             const height = PARAMS.CANVAS_HEIGHT;
-
+        
             ctx.fillStyle = "#a6a2a8";
             ctx.fillRect(0, 0, width, height);
             ctx.font = "64px sans-serif";
             ctx.fillStyle = "White";
-            ctx.fillText("CREDITS:", PARAMS.CANVAS_WIDTH / 2 - 128, 100);
+            ctx.fillText("Created by:", width / 2 - 155, 90);
             ctx.font = "24px sans-serif";
             ctx.fillStyle = "White";
-            ctx.fillText("Created by...", 50, 170);
+            
+            // Define the text to display
+            const text = "Reilly Lynn Middlebrooks\nAbi Gutierrez\nEnrique Vargas";
+            const lines = text.split("\n");
+            const lineHeight = 50;
+            const totalHeight = lines.length * lineHeight;
+        
+            // Calculate the starting Y position to center the text vertically
+            const centerY = (height - totalHeight) / 2;
+        
+            // Draw each line of text centered horizontally and spaced vertically
+            lines.forEach((line, index) => {
+                const textWidth = ctx.measureText(line).width;
+                const startX = (width - textWidth) / 2;
+                const startY = centerY + index * lineHeight;
+                ctx.fillText(line, startX, startY);
+            });
+        
+        
+            
+
             ctx.fillText(" ", 50, 260);
             ctx.font = "32px sans-serif";
             ctx.fillText("DONE", PARAMS.CANVAS_WIDTH / 2 - 64, 450)
