@@ -2,10 +2,6 @@ class Cell {
     constructor(game, x, y) {
         Object.assign(this, { game, x, y });
 
-        
-
-        //this.game.cell = this;
-
         this.spritesheet = ASSET_MANAGER.getAsset("./cellman.png");
 
         this.facing = 0; //0 = right // 1 = left, dead, stick, idle
@@ -35,10 +31,11 @@ class Cell {
         this.deadTimer=0;
     
 
+    
         this.stunned = false;
 
-
     }
+
     updateBB() {
         this.BB = new BoundingCircle(this.x + 45 / 2, this.y + 51 / 2, 21);
     }
@@ -127,7 +124,7 @@ class Cell {
     }
     //right wall
     collideRight() {
-        return (this.x + this.BB.radius) > 960;
+        return (this.x + this.BB.radius) > this.game.camera.level.width - 64;
     }
     //Top wall
     collideTop() {
@@ -135,7 +132,7 @@ class Cell {
     }
     //Bottom wall
     collideBottom() {
-        return (this.y + this.BB.radius) > 720;
+        return (this.y + this.BB.radius) > this.game.camera.level.height - 48;
     }
 
    
@@ -160,7 +157,7 @@ class Cell {
                         this.x = this.BB.radius;
                     }
                     if (this.collideRight()) {
-                        this.x = 960 - this.BB.radius;
+                        this.x = this.game.camera.level.width - 64 - this.BB.radius;
                     }
                 }
     
@@ -170,7 +167,7 @@ class Cell {
                         this.y = this.BB.radius;
                     }
                     if (this.collideBottom()) {
-                        this.y = 720 - this.BB.radius;
+                        this.y = this.game.camera.level.height - 48 - this.BB.radius;
                     }
                 }
     

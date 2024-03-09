@@ -533,57 +533,6 @@ class Micro {
             ctx.strokeStyle = 'red';
             ctx.stroke();
         }
-
-        // //Drawing the radius of the explosion
-        // if (this.poweredUpExplode) {
-        //     ctx.save();
-        //     ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
-        //     ctx.beginPath();
-        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
-        //     ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
-        //     ctx.fill();
-        //     ctx.strokeStyle = 'red';
-        //     ctx.stroke();
-        //     ctx.restore();
-        // } else if (this.poweredUpShield && this.size === 1) {
-        //     ctx.save();
-        //     ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
-        //     ctx.beginPath();
-        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
-        //     ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
-        //     ctx.fill();
-        //     ctx.strokeStyle = 'red'
-        //     ctx.stroke();
-        //     ctx.restore();
-        // }
-
-
-        // if (this.poweredUpShield && this.size === 0) {
-        //     ctx.save();
-        //     ctx.translate(this.x - this.game.camera.x + 32, this.y - this.game.camera.y + 30); // Adjusted for center
-        //     ctx.beginPath();
-        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
-        //     ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
-        //     ctx.fill();
-        //     ctx.strokeStyle = 'turquoise'; // Turquoise color
-        //     ctx.stroke();
-        //     ctx.restore();
-        // } else if (this.poweredUpShield && this.size === 1) {
-        //     ctx.save();
-        //     ctx.translate(this.x - this.game.camera.x + 47, this.y - this.game.camera.y + 35); // Adjusted for center
-        //     ctx.beginPath();
-        //     ctx.arc(0, 0, 50, 0, Math.PI * 2);
-        //     ctx.fillStyle = 'rgba(64, 224, 208, 0.2)'; // Turquoise color
-        //     ctx.fill();
-        //     ctx.strokeStyle = 'turquoise'; // Turquoise color
-        //     ctx.stroke();
-        //     ctx.restore();
-        // }
-
-
-
-
-
     };
 
     powerUp() {
