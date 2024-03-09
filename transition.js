@@ -2,6 +2,8 @@ class TransitionScreen {
     constructor(game, x, y, level) {
         Object.assign(this, { game, x, y, level });
 
+        this.game.transitionscreen = this;
+
         this.spritesheet = ASSET_MANAGER.getAsset("./TitleSpritesheet.png");
         this.animation = new Animator(this.spritesheet, 143, 75, 52, 40, 3, 0.3); //flea
         this.animation2 = new Animator(this.spritesheet, 116, 0, 75, 70, 3, 0.3); //bird
