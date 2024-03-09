@@ -128,7 +128,6 @@ class Micro {
         }
     };
 
-    //fix this for additional levels
     //right wall
     collideRight() {
         if (this.size == 0) {
@@ -359,39 +358,31 @@ class Micro {
                             }
 
                             // Check collisions with bones and redblood cells and lymphocytes 
-                            if (entity instanceof Bone || entity instanceof RedBloodCell) {
+                            if ((entity instanceof Bone || entity instanceof RedBloodCell)) {
                                 if (this.lastBB.x <= (entity.BB.x - this.BB.radius)) { // Collided with the left
                                     this.x = entity.BB.x - this.BB.radius * 3.5;
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
-                                    //console.log("left collision");
                                 } else if (this.lastBB.x >= entity.BB.x) { // Collided with the right
-                                    this.x = entity.BB.x + this.BB.radius;
+                                    this.x = entity.BB.x + 2;
                                     if (this.velocity.x > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
-                                    }
-                                    //console.log("right collision");
-                                }
-                            
-                                if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
-                                    this.y = entity.BB.y + this.BB.radius;
+                                    } 
+                                } else if (this.lastBB.y >= (entity.BB.y + this.BB.radius)) { // Collided with the bottom
+                                    this.y = entity.BB.y + 2;
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
-                                    //console.log("bottom collision");
                                 } else if (this.lastBB.y <= entity.BB.y) { // Collided with the top
-                                    this.y = entity.BB.y - this.BB.radius * 2.5;
+                                    this.y = entity.BB.y - this.BB.radius * 3.5;
                                     if (this.velocity.y > 0) {
                                         this.velocity.x = 0;
                                         this.velocity.y = 0;
                                     }
-                                    //console.log("top collision");
-
-
                                 }
                             }
 
