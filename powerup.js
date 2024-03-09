@@ -331,13 +331,14 @@ class Shield {
 
             }
         };
+    }
 
-        drawMinimap(ctx, mmX, mmY) {
-            ctx.fillStyle = 'blue';
-            ctx.beginPath();
-            ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
-            ctx.fill();
-        }
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
+        ctx.fill();
+    }
 
 
     draw(ctx) {
@@ -367,8 +368,8 @@ class Shield {
             }
         }
 
-         // If in DEBUG mode, draw the bounding box
-         if (PARAMS.DEBUG) {
+        // If in DEBUG mode, draw the bounding box
+        if (PARAMS.DEBUG) {
             ctx.beginPath();
             ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
             ctx.strokeStyle = 'red';
@@ -378,3 +379,4 @@ class Shield {
 
     };
 }
+
