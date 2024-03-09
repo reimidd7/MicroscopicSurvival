@@ -237,9 +237,6 @@ var levelOne = {
         { x: 600, y: 250 }
     ],
 
-
-    
-
     //adding 30 cellmans
     cell: [
         { x: Math.random() * 1024, y: Math.random() * 768 }, { x: Math.random() * 1024, y: Math.random() * 768 },
@@ -583,14 +580,7 @@ var levelTwo = {
         { x: BLOCK_SIZE * 30, y: BLOCK_SIZE * 27 },
         { x: BLOCK_SIZE * 31, y: BLOCK_SIZE * 27 },
         { x: BLOCK_SIZE * 32, y: BLOCK_SIZE * 27 },
-        { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 27 },
-
-        
-
-
-
-
-
+        { x: BLOCK_SIZE * 33, y: BLOCK_SIZE * 27 }
 
         
     ],

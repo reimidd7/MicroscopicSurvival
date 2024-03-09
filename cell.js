@@ -58,30 +58,36 @@ class Cell {
             this.velocity.x = vectorDirectionX * chaseSpeed;
             this.velocity.y = vectorDirectionY * chaseSpeed;
     
-            // Update position based on velocity
             this.x += this.velocity.x * this.game.clockTick;
             this.y += this.velocity.y * this.game.clockTick;
-    
-            // Handle wall collisions
-            if (this.collideLeft() || this.collideRight()) {
-                this.velocity.x = -this.velocity.x;
-                if (this.collideLeft()) {
-                    this.x = this.BB.radius;
-                }
-                if (this.collideRight()) {
-                    this.x = 960 - this.BB.radius;
-                }
+            
+
+            if (this.velocity.x > 0) {
+                this.facing = 0; // Moving right
+            } else if (this.velocity.x < 0) {
+                this.facing = 1; // Moving left
             }
-    
-            if (this.collideTop() || this.collideBottom()) {
-                this.velocity.y = -this.velocity.y;
-                if (this.collideTop()) {
-                    this.y = this.BB.radius;
-                }
-                if (this.collideBottom()) {
-                    this.y = 720 - this.BB.radius;
-                }
-            }
+            // // This might not be needed
+            // if (this.collideLeft() || this.collideRight()) {
+            //     this.velocity.x = -this.velocity.x;
+            //     if (this.collideLeft()) {
+            //         this.x = this.BB.radius;
+            //     }
+            //     if (this.collideRight()) {
+            //         this.x = this.game.camera.level.width - 64 - this.BB.radius;
+            //     }
+            // }
+
+            // if (this.collideTop() || this.collideBottom()) {
+
+            //     this.velocity.y = -this.velocity.y;
+            //     if (this.collideTop()) {
+            //         this.y = this.BB.radius;
+            //     }
+            //     if (this.collideBottom()) {
+            //         this.y = this.game.camera.level.height - 64 - this.BB.radius;
+            //     }
+            // }
     
             this.updateBB();
         }
@@ -124,7 +130,7 @@ class Cell {
     }
     //right wall
     collideRight() {
-        return (this.x + this.BB.radius) > this.game.camera.level.width - 64;
+        return (this.x + this.BB.radius) > this.game.camera.level.width - 32;
     }
     //Top wall
     collideTop() {
@@ -132,7 +138,7 @@ class Cell {
     }
     //Bottom wall
     collideBottom() {
-        return (this.y + this.BB.radius) > this.game.camera.level.height - 48;
+        return (this.y + this.BB.radius) > this.game.camera.level.height - 32;
     }
 
    
@@ -141,6 +147,14 @@ class Cell {
             this.paused -= this.game.clockTick;
         } else {
             if (!this.dead) {
+                
+    
+                if (this.velocity.x > 0) {
+                    this.facing = 0; // Moving right
+                } else if (this.velocity.x < 0) {
+                    this.facing = 1; // Moving left
+                }
+    
                 this.x += this.velocity.x * this.game.clockTick;
                 this.y += this.velocity.y * this.game.clockTick;
                 
@@ -150,24 +164,26 @@ class Cell {
                 } else if (this.velocity.x < 0) {
                     this.facing = 1; // Moving left
                 }
-                // This might not be needed
+                //This might not be needed
                 if (this.collideLeft() || this.collideRight()) {
+
                     this.velocity.x = -this.velocity.x;
                     if (this.collideLeft()) {
                         this.x = this.BB.radius;
                     }
                     if (this.collideRight()) {
-                        this.x = this.game.camera.level.width - 64 - this.BB.radius;
+                        this.x = this.game.camera.level.width - 32 - this.BB.radius;
                     }
                 }
     
                 if (this.collideTop() || this.collideBottom()) {
+
                     this.velocity.y = -this.velocity.y;
                     if (this.collideTop()) {
                         this.y = this.BB.radius;
                     }
                     if (this.collideBottom()) {
-                        this.y = this.game.camera.level.height - 48 - this.BB.radius;
+                        this.y = this.game.camera.level.height - 32 - this.BB.radius;
                     }
                 }
     

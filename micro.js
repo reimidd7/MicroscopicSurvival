@@ -335,7 +335,7 @@ class Micro {
                             if (entity instanceof Cell && !entity.dead) {
                                 // Cell touched the Micro, make the Micro take damage
                                 if (entity.timer <= 0) {
-                                    this.healthpoints -= 2;
+                                 //   this.healthpoints -= 2;
                                     entity.timer = 1;
                                 }
                                 // makes it so micro doesnt die as quick
