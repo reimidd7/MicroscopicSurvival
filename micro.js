@@ -522,7 +522,7 @@ class Micro {
                     this.explodeMine = null;
 
                     this.levelCount++;
-                    console.log("next level" + this.levelCount);
+                    //console.log("next level" + this.levelCount);
                     this.winner = false;
                     if (this.levelCount == 2) {
                         this.game.camera.loadLevel(levelTwo, true, false);

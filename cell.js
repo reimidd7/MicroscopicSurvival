@@ -12,7 +12,7 @@ class Cell {
         // The area the cells spawn from
         this.x = x || Math.random();
         this.y = y || Math.random();
-        
+
 
         // size of circle for collisions
         this.radius = 21;
@@ -28,10 +28,8 @@ class Cell {
         this.hitpoints = 2;
         this.timer = .2;
 
-        this.deadTimer=0;
-    
+        this.deadTimer = 0;
 
-    
         this.stunned = false;
 
     }
@@ -45,58 +43,37 @@ class Cell {
         const directionX = target.x - this.x;
         const directionY = target.y - this.y;
         const distance = Math.sqrt(directionX ** 2 + directionY ** 2);
-        
+
         if (distance > 0 && !this.stunned) {
             // Calculate normalized components of the direction vector
             const vectorDirectionX = directionX / distance;
             const vectorDirectionY = directionY / distance;
-    
+
             // Set chase speed
             const chaseSpeed = 100;
-    
+
             // Update velocity based on chase speed and direction
             this.velocity.x = vectorDirectionX * chaseSpeed;
             this.velocity.y = vectorDirectionY * chaseSpeed;
-    
+
             this.x += this.velocity.x * this.game.clockTick;
             this.y += this.velocity.y * this.game.clockTick;
-            
+
 
             if (this.velocity.x > 0) {
                 this.facing = 0; // Moving right
             } else if (this.velocity.x < 0) {
                 this.facing = 1; // Moving left
             }
-            // // This might not be needed
-            // if (this.collideLeft() || this.collideRight()) {
-            //     this.velocity.x = -this.velocity.x;
-            //     if (this.collideLeft()) {
-            //         this.x = this.BB.radius;
-            //     }
-            //     if (this.collideRight()) {
-            //         this.x = this.game.camera.level.width - 64 - this.BB.radius;
-            //     }
-            // }
 
-            // if (this.collideTop() || this.collideBottom()) {
-
-            //     this.velocity.y = -this.velocity.y;
-            //     if (this.collideTop()) {
-            //         this.y = this.BB.radius;
-            //     }
-            //     if (this.collideBottom()) {
-            //         this.y = this.game.camera.level.height - 64 - this.BB.radius;
-            //     }
-            // }
-    
             this.updateBB();
         }
     }
-    
+
 
     decreaseHealth() {
         this.healthpoints -= 1;
-        
+
         if (this.dead && this.deadTimer < 200) {
             this.deadTimer++;
             //console.log("got to deadtimer inc");
@@ -106,8 +83,8 @@ class Cell {
             //console.log("got to deadtimer reset");
         }
     };
-    
-    
+
+
 
     loadAnimations() {
         for (var i = 0; i < 4; i++) {
@@ -141,24 +118,24 @@ class Cell {
         return (this.y + this.BB.radius) > this.game.camera.level.height - 32;
     }
 
-   
+
     update() {
         if (this.paused > 0) {
             this.paused -= this.game.clockTick;
         } else {
             if (!this.dead) {
-                
-    
+
+
                 if (this.velocity.x > 0) {
                     this.facing = 0; // Moving right
                 } else if (this.velocity.x < 0) {
                     this.facing = 1; // Moving left
                 }
-    
+
                 this.x += this.velocity.x * this.game.clockTick;
                 this.y += this.velocity.y * this.game.clockTick;
-                
-    
+
+
                 if (this.velocity.x > 0) {
                     this.facing = 0; // Moving right
                 } else if (this.velocity.x < 0) {
@@ -175,7 +152,7 @@ class Cell {
                         this.x = this.game.camera.level.width - 32 - this.BB.radius;
                     }
                 }
-    
+
                 if (this.collideTop() || this.collideBottom()) {
 
                     this.velocity.y = -this.velocity.y;
@@ -186,7 +163,7 @@ class Cell {
                         this.y = this.game.camera.level.height - 32 - this.BB.radius;
                     }
                 }
-    
+
                 this.game.entities.forEach(entity => {
                     if (entity instanceof Cell && entity !== this) {
                         const dx = this.x - entity.x;
@@ -205,28 +182,28 @@ class Cell {
                         }
                     }
                 });
-    
+
                 // Check for Micro and chase if found
                 const targetEntity = this.game.entities.find(entity => entity instanceof Micro);
                 if (targetEntity) {
                     this.chaseTarget(targetEntity);
                 }
-                
-            }else {
+
+            } else {
                 // If the cell is dead, increment the dead timer
                 this.deadTimer += this.game.clockTick;
-   
+
                 // Check if the dead timer has reached 3 seconds
                 if (this.deadTimer >= 3) {
                     // If 3 seconds have passed, mark the cell for removal
                     this.removeFromWorld = true;
                 }
-            
-            this.updateBB();
-        }
+
+                this.updateBB();
+            }
         }
     };
-    
+
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Grey";
@@ -234,7 +211,7 @@ class Cell {
         ctx.arc(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, 0, Math.PI * 2);
         ctx.fill();
     }
-    
+
 
     draw(ctx) {
         if (this.dead) {
@@ -248,10 +225,10 @@ class Cell {
         }
 
         if (PARAMS.DEBUG) {
-        ctx.beginPath();
-        ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
-        ctx.strokeStyle = 'red';
-        ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
         }
 
     };
