@@ -15,8 +15,7 @@ class Bone {
     };
 
     update() {
-        // if (this.animator.elapsedTime > this.animator.totalTime) this.animator.elapsedTime -= this.animator.totalTime;
-       // this.updateBB();
+
     };
 
     draw(ctx) {

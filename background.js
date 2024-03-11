@@ -23,10 +23,6 @@ class CornerTiles {
 
     };
 
-    // drawMiniMap(ctx, mmX, mmY) {
-
-    // }
-
     draw(ctx) {
         ctx.save();
         // 1 == flip horizontal | 2 == flip vertical | 3 == flip horizontal and vertical
