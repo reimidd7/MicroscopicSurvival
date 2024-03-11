@@ -32,6 +32,8 @@ ASSET_MANAGER.queueDownload("./blackBackground.png");
 ASSET_MANAGER.queueDownload("./blueBackground.png");
 ASSET_MANAGER.queueDownload("./brownBackground.png");
 ASSET_MANAGER.queueDownload("./tanBackground.png");
+ASSET_MANAGER.queueDownload("./RIP.png");
+
 ASSET_MANAGER.queueDownload("./sounds/background-music.mp3");
 ASSET_MANAGER.queueDownload("./sounds/exploding-mine.mp3");
 ASSET_MANAGER.queueDownload("./sounds/stun-mine.mp3");
