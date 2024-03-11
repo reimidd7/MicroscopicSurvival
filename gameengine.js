@@ -70,7 +70,7 @@ class GameEngine {
             }
 
             this.click = getXandY(e);
-            console.log("click y " + getXandY(e).y + "click x " + getXandY(e).x);
+           // console.log("click y " + getXandY(e).y + "click x " + getXandY(e).x);
         });
 
         this.ctx.canvas.addEventListener("wheel", e => {

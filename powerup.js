@@ -251,7 +251,7 @@ class Clone {
             if (entity instanceof Cell || entity instanceof Lymphocyte) {
                 if (this.BB.collide(entity.BB) && !entity.dead) {
                     entity.decreaseHealth();
-                    console.log(entity + " " + entity.healthpoints);
+                    //console.log(entity + " " + entity.healthpoints);
                     if (entity.healthpoints <= 0) {
                         if (entity instanceof Cell) this.game.camera.cellCount -= 1;
                         if (entity instanceof Lymphocyte) this.game.camera.lymphocyteCount -= 1;
