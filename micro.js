@@ -131,18 +131,31 @@ class Micro {
     //right wall
     collideRight() {
         if (this.size == 0) {
-            if (this.levelCount == 2) {
-                this.rightOffset = 1058;
-            } else {
-                this.rightOffset = 950 + (64 * (this.levelCount - 1));
+            if (this.levelCount == 1) {
+                this.rightOffset = 950;
+            } else if (this.levelCount == 2) {
+                this.rightOffset = 1056;
+            } else if (this.levelCount == 3) {
+                this.rightOffset = 1080;
+            } else if (this.levelCount == 4) {
+                this.rightOffset = 1172;
+            } else if (this.levelCount == 5) {
+                this.rightOffset = 1240;
             }
         } else if (this.size == 1) {
-            if (this.levelCount == 2) {
+            if (this.levelCount == 1) {
+                this.rightOffset = 930;
+            } else if (this.levelCount == 2) {
                 this.rightOffset = 1030;
-            } else {
-                this.rightOffset = 930 + (64 * (this.levelCount - 1));
+            } else if (this.levelCount == 3) {
+                this.rightOffset = 1060;
+            } else if (this.levelCount == 4) {
+                this.rightOffset = 1152;
             } 
         }
+
+        //this.rightOffset = 950 + (64 * (this.levelCount - 1));
+        //this.rightOffset = 930 + (64 * (this.levelCount - 1));
 
         return (this.x + this.BB.radius) > this.rightOffset;
     };
@@ -159,18 +172,32 @@ class Micro {
     //Bottom wall
     collideBottom() {
         if (this.size == 0) {
-            if (this.levelCount == 2) {
+            if (this.levelCount == 1) {
+                this.bottomOffset = 708;
+            } else if (this.levelCount == 2) {
                 this.bottomOffset = 866;
-            } else {
-                this.bottomOffset = 708 + (95 * (this.levelCount - 1));
+            } else if (this.levelCount == 3) {
+                this.bottomOffset = 892;
+            } else if (this.levelCount == 4) {
+                this.bottomOffset = 988;
+            } else if (this.levelCount == 5) {
+                this.bottomOffset = 1052;
             }
+
         } else if (this.size == 1) {
-            if (this.levelCount == 2) {
-                this.bottomOffset = 856;
-            } else {
-                this.bottomOffset = 695 + (95 * (this.levelCount - 1));
+            if (this.levelCount == 1) {
+                this.bottomOffset = 696;
+            } else if (this.levelCount == 2) {
+                this.bottomOffset = 854;
+            } else if (this.levelCount == 3) {
+                this.bottomOffset = 880;
+            } else if (this.levelCount == 4) {
+                this.bottomOffset = 988;
             } 
         }
+
+        //this.bottomOffset = 708 + (92 * (this.levelCount - 1));
+        //this.bottomOffset = 695 + (92 * (this.levelCount - 1));
 
         return (this.y + this.BB.radius) > this.bottomOffset;
     };
@@ -248,7 +275,7 @@ class Micro {
                     if (this.collideBottom() && this.size == 0) {
                         this.y = this.bottomOffset - 2 - this.BB.radius;
                     } else if (this.collideBottom() && this.size == 1) {
-                        this.y = this.bottomOffset - 1 - this.BB.radius;
+                        this.y = this.bottomOffset - 2 - this.BB.radius;
                     }
 
                     //random direction after hitting wall

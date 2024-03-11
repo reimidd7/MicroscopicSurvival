@@ -1223,7 +1223,7 @@ var levelFour = {
     lymphocyte: [
         { x: 477, y: 370 },
         { x: 857, y: 108 },
-        { x: 179, y: 923 },
+        { x: 255, y: 903 },
         { x: 1064, y: 613 }
     ],
 
@@ -1643,7 +1643,7 @@ var levelFive = {
         { x: 400, y: 850 },
         { x: 1100, y: 400 },
         { x: 150, y: 700 },
-        { x: 925, y: 1000 },
+        { x: 1050, y: 950 },
         { x: 870, y: 850 },
 
         // { x: Math.random() * ((CANVAS_WIDTH5 - 64)  - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64)  - 64) + 64 },

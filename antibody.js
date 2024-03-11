@@ -27,6 +27,11 @@ class Antibody {
         this.facing = getFacing(this.velocity); //0 = N, 1 = NE, 2 = E, 3 = SE, 4 = S, 5 = SW, 6 = W, 7 = NW
 
         this.cache = [];
+
+        this.bottomOffset = 0;
+        this.rightOffset = 0;
+
+        
     };
 
     //ADAPTED FROM PROFESSOR MARRIOTT'S TOWER-DEFENSE-DEMO CODE (ARROW CLASS)
@@ -145,26 +150,54 @@ class Antibody {
 
     };
 
+    
     //left wall
     collideLeft() {
-        return (this.x - this.BB.radius) < 28;
+        return (this.x - this.BB.radius) < 5;
+    };
+
+    //top wall
+    collideTop() {
+        return (this.y - this.BB.radius) < 10;
     };
 
     //fix this for additional levels
     //right wall
     collideRight() {
-        return (this.x + this.BB.radius) > 868;
+        if (this.game.micro.levelCount == 1) {
+            this.rightOffset = 874
+        } else if (this.game.micro.levelCount == 2) {
+            this.rightOffset = 978;
+        } else if (this.game.micro.levelCount == 3) {
+            this.rightOffset = 1002;
+        } else if (this.game.micro.levelCount == 4) {
+            this.rightOffset = 1118;
+        } else if (this.game.micro.levelCount == 5) {
+            this.rightOffset = 1170;
+        } 
+
+        //return (this.x + this.BB.radius) > 868;
+        return (this.x + this.BB.radius) > this.rightOffset;
     };
 
-    //top wall
-    collideTop() {
-        return (this.y - this.BB.radius) < 28;
-    };
-
-    //fix this for additional levels
-    //bottom wall
+    //bottom walls
     collideBottom() {
-        return (this.y + this.BB.radius) > 602;
+        if (this.game.micro.levelCount == 1) {
+            this.bottomOffset = 630;
+        } else if (this.game.micro.levelCount == 2) {
+            this.bottomOffset = 780;
+        } else if (this.game.micro.levelCount == 3){
+            this.bottomOffset = 814;
+        } else if (this.game.micro.levelCount == 4){
+            this.bottomOffset = 914;
+        } else if (this.game.micro.levelCount == 5){
+            this.bottomOffset = 982;
+        } else {
+            this.bottomOffset = 630 + (90 * (this.game.micro.levelCount - 1));
+        }
+
+        //return (this.y + this.BB.radius) > 625;
+        return (this.y + this.BB.radius) > this.bottomOffset;
     };
 
 }
