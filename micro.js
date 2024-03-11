@@ -15,7 +15,7 @@ class Micro {
         this.dead = false;
         this.won = false;
         this.winner = false;
-        this.levelCount = 5;
+        this.levelCount = 1;
 
         // size powerup
         this.poweredUpSize = false;
