@@ -50,6 +50,8 @@ class SceneManager {
         this.cellSpawnInterval = 2; //seconds
         this.cellsToSpawn = 5;
 
+        ASSET_MANAGER.playAsset("./sounds/background-music.mp3");
+
     }
 
     clearEntities() {
@@ -167,6 +169,7 @@ class SceneManager {
                     this.loadLevel(level, false, false);
                 }
             }
+            
         }
     
 
@@ -213,11 +216,13 @@ class SceneManager {
         this.x = this.micro.x - midpointX;
         this.y = this.micro.y - midpointY;
 
+        this.updateAudio();
+
         if (this.title) {
             //Start
             if ((this.game.click && this.game.click.x > 275 && this.game.click.x < 383) && (this.game.click && this.game.click.y > 411 && this.game.click.y < 443)) {
                 this.title = false;
-                this.loadLevel(levelOne, true, false);
+                this.loadLevel(levelFive, true, false);
                 //this.loadLevel(levelFour, true, false);
             }
 
@@ -260,8 +265,19 @@ class SceneManager {
                 this.cellSpawnTimer = 0; // Reset the timer
             }
         }
+
     
     }   
+
+    //FROM PROFESSOR MARRIOTT'S SUPER MARRIOTT BROS ASSET MANAGER CLASS
+    updateAudio() {
+        var mute = document.getElementById("mute").checked;
+        var volume = document.getElementById("volume").value;
+
+        ASSET_MANAGER.muteAudio(mute);
+        ASSET_MANAGER.adjustVolume(volume);
+
+    };
    
 
     //start of HUD

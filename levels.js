@@ -1631,7 +1631,25 @@ var levelFive = {
     ],
 
     //add power ups (Level 5 only has )
-    powerups: [],
+    powerups: [ 
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "shield" },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "shield" },
+
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "speed" },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "speed" }, 
+
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "size" },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "size" },
+
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "stun" },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "stun" },
+
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "explode" },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "explode" },
+
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "clone" },
+        { x: Math.random() * ((CANVAS_WIDTH5 - 64) - 64) + 64, y: Math.random() * ((CANVAS_HEIGHT5 - 64) - 64) + 64, type: "clone" }
+    ],
 
     //adding  lymphocyte (10)
     lymphocyte: [

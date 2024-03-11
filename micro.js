@@ -14,7 +14,7 @@ class Micro {
         this.dead = false;
         this.won = false;
         this.winner = false;
-        this.levelCount = 1;
+        this.levelCount = 5;
 
         // size powerup
         this.poweredUpSize = false;
@@ -336,7 +336,7 @@ class Micro {
                         if (that.state == 2) {
                             if ((entity instanceof Cell || entity instanceof Lymphocyte) && !entity.dead) {
                                 entity.decreaseHealth();
-
+                                ASSET_MANAGER.playAsset("./sounds/micro-punch.mp3");
 
 
                                 if (entity.healthpoints > 0 && this.size == 1) {
@@ -382,6 +382,7 @@ class Micro {
                             if (entity instanceof Antibody) {
                                 entity.removeFromWorld = true;
                                 this.healthpoints -= 1;
+                                ASSET_MANAGER.playAsset("./sounds/antibody-impact.mp3");
                             }
 
                             // Check collisions with bones and redblood cells and lymphocytes 
@@ -439,24 +440,26 @@ class Micro {
                                 entity.removeFromWorld = true;
                                 this.poweredUpSpeed = true;
                                 this.speedTime = 0;
+                                ASSET_MANAGER.playAsset("./sounds/speed-powerup.mp3");
                             } else if (entity.type === "size") {
                                 entity.removeFromWorld = true;
                                 this.poweredUpSize = true;
                                 this.sizeTime = 0;
+                                ASSET_MANAGER.playAsset("./sounds/size-powerup.mp3");
                             } else if (entity.type === "stun") {
                                 this.stunTime = 0;
                                 this.stunMine = new Mine(this.game, this.x, this.y, "stun");
                                 this.game.addEntity(this.stunMine);
                                 this.stunMine.active = true;
                                 this.activeStunMine = true;
-
+                                ASSET_MANAGER.playAsset("./sounds/stun-mine.mp3");
                             } else if (entity.type === "explode") {
                                 this.explodeTime = 0;
                                 this.explodeMine = new Mine(this.game, this.x, this.y, "explode");
                                 this.game.addEntity(this.explodeMine);
                                 entity.removeFromWorld = true;
                                 this.poweredUpExplode = true;
-
+                                //ASSET_MANAGER.playAsset("./sounds/exploding-mine.mp3");
                             } else if (entity.type === "shield") {
                                 this.shieldTime = 0;
                                 entity.removeFromWorld = true;

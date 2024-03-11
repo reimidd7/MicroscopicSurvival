@@ -32,11 +32,20 @@ ASSET_MANAGER.queueDownload("./blackBackground.png");
 ASSET_MANAGER.queueDownload("./blueBackground.png");
 ASSET_MANAGER.queueDownload("./brownBackground.png");
 ASSET_MANAGER.queueDownload("./tanBackground.png");
+ASSET_MANAGER.queueDownload("./sounds/background-music.mp3");
+ASSET_MANAGER.queueDownload("./sounds/exploding-mine.mp3");
+ASSET_MANAGER.queueDownload("./sounds/stun-mine.mp3");
+ASSET_MANAGER.queueDownload("./sounds/size-powerup.mp3");
+ASSET_MANAGER.queueDownload("./sounds/speed-powerup.mp3");
+ASSET_MANAGER.queueDownload("./sounds/micro-punch.mp3");
+ASSET_MANAGER.queueDownload("./sounds/antibody-impact.mp3");
+
 
 ASSET_MANAGER.downloadAll(() => {
 	const gameEngine = new GameEngine();
 
 	//add music here
+	ASSET_MANAGER.autoRepeat("./sounds/background-music.mp3");
 
 	PARAMS.BLOCKWIDTH = PARAMS.BITWIDTH * PARAMS.SCALE;
 
