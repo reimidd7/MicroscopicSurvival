@@ -4,6 +4,8 @@
 
 # Description
 
+[Microscopic Survival - Project Plan (1).pdf]
+
 Microscopic Survival is a 2D top-down bullet hell game where you play as a tiny virus, a Microorganism (Micro), navigating through the microscopic world of viruses and bacteria. Your goal is to defeat the host's immune system by killing a certain number of white blood cells while avoiding the depletion of Micro's health levels.
 
 ## Features
